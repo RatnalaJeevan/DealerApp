@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".AddNewCar">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/cv_new_car"
+        >
+
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/back_white_arrow">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/back"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="You are \nadding a \nnew car..."
+            android:textColor="@color/white"
+            android:textSize="50dp">
+
+        </TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_down"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginTop="-15dp"
+        android:background="@drawable/cv_allcars"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp">
+            <RelativeLayout
+                android:id="@+id/rl_make"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+
+                <TextView
+                    android:id="@+id/tv_make"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Make"
+                    android:textColor="@color/blue"
+                    android:textSize="13dp">
+
+                </TextView>
+
+                <View
+                    android:id="@+id/v_make"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_make"
+                    android:background="@color/blue">
+
+                </View>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_basic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+
+
+                <TextView
+                    android:id="@+id/tv_basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Basic"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="13dp">
+
+                </TextView>
+
+                <View
+                    android:id="@+id/v_basic"
+                    android:visibility="gone"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_basic"
+                    android:background="@color/blue">
+
+                </View>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_photos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+
+                <TextView
+                    android:id="@+id/tv_photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Photos"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="13dp">
+
+                </TextView>
+
+                <View
+                    android:id="@+id/v_photos"
+                    android:visibility="gone"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_photos"
+                    android:background="@color/blue">
+
+                </View>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+
+                <TextView
+                    android:id="@+id/tv_ins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Insurance"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="13dp">
+
+                </TextView>
+
+                <View
+                    android:id="@+id/v_ins"
+                    android:visibility="gone"
+                    android:layout_width="25dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_ins"
+                    android:background="@color/blue">
+
+                </View>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/rv_brand_logos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_above="@id/rl_next"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/rv_model_logos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_above="@id/rl_next"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_add_car_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/label_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Fuel"
+                android:textColor="@color/cement"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_diesel"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/label_fuel"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/map_border"
+                android:padding="5dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/label_diesel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_fuel"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/iv_diesel"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Diesel"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_petrol"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/label_fuel"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/label_diesel"
+                android:background="@drawable/map_border"
+                android:padding="5dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/label_petrol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_fuel"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/iv_petrol"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Petrol"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/label_trans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_petrol"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Transmission"
+                android:textColor="@color/cement">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_manual"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/label_trans"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/map_border"
+                android:padding="5dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/label_manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_trans"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/iv_manual"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Manual"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/iv_auto"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/label_trans"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/label_diesel"
+                android:background="@drawable/map_border"
+                android:padding="5dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/label_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_trans"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/iv_auto"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Automatic"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+                <Spinner
+                    android:id="@+id/spinner_year"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@+id/iv_manual"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:maxLength="4"
+                    android:background="@color/v_light_grey"
+                    >
+
+                </Spinner>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/iv_manual"
+                    android:layout_marginTop="38dp"
+
+                    android:layout_toLeftOf="@+id/label_year"
+                    android:src="@drawable/arrow_drop_down">
+
+                </ImageView>
+            <EditText
+                android:visibility="invisible"
+                android:id="@+id/selected_year"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/iv_manual"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:background="@color/v_light_grey"
+                >
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/label_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_manual"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/selected_year"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Year"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+            </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_basic_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_above="@id/rl_next"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:id="@+id/iv_vehno"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/veh_no_plate"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_vehno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_vehno"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Vehicle No."
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/selected_vehno"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="16dp"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="15"
+                    android:gravity="center"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl1"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_sp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/cfs_icon"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Selling Price"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/selected_sp"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="16dp"
+                    android:maxLength="8"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl2"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_kms"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/kms_icon"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_kms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_kms"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Kms Driven"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/selected_kms"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl3"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_no_owners"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/no_owner"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_no_of_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_no_owners"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="No.of Owners"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/selected_owners"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="16dp"
+                    android:maxLength="1"
+                    android:digits="123456789"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl4"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_clr"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/color_icon"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_clr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_clr"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Color"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/selected_clr"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="16dp"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:inputType="textCapCharacters"
+                    android:gravity="center"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_car_imgs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_above="@+id/rl_next"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/img1"
+                android:layout_width="242dp"
+                android:layout_height="242dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/add_car_icon">
+
+            </ImageView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_car_imagelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/img1"
+                android:layout_marginTop="20dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/rv_veh_imagelist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_below="@+id/img1"
+                android:layout_marginTop="20dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_ins_details"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/l1"
+            android:layout_above="@id/rl_next"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/rl_ins_type"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <ImageView
+                    android:id="@+id/iv_ins_type"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ins_type"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_ins_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_ins_type"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Type"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/entered_ins_type"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </Spinner>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/arrow_drop_down">
+
+                </ImageView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ins_pro"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rl_ins_type">
+                <ImageView
+                    android:id="@+id/iv_ins_pro"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/ins_pro"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_ins_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_ins_pro"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Provider"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/entered_ins_provider"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </Spinner>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/arrow_drop_down">
+
+                </ImageView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_pol_no"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rl_ins_pro">
+                <ImageView
+                    android:id="@+id/iv_pol_no"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/pol_no"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_pol_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_pol_no"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Policy No."
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/entered_pol_no"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:inputType="number"
+                    android:maxLength="15"
+                    android:textSize="16dp"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_exp_date"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/rl_pol_no">
+                <ImageView
+                    android:id="@+id/iv_exp_date"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/exp_date"
+                    android:padding="5dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_exp_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toRightOf="@+id/iv_exp_date"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Expiry Date"
+                    android:textColor="@color/lightgrey"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/ins_exp_date"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:background="@drawable/cardview_act_code"
+                    android:backgroundTint="@color/v_light_grey">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Next"
+                android:textColor="@color/blue"
+                android:textSize="13dp">
+
+            </TextView>
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:layout_below="@+id/tv_next"
+                android:background="@color/blue">
+
+            </View>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_addcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/cv_gradient3"
+            >
+            <TextView
+                android:id="@+id/tv_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="ADD CAR"
+                android:textColor="@color/white"
+                android:textSize="15dp">
+
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_editcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/cv_gradient3"
+            >
+            <TextView
+                android:id="@+id/tv_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="EDIT CAR"
+                android:textColor="@color/white"
+                android:textSize="15dp">
+
+            </TextView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Back"
+                android:textColor="@color/black"
+                android:textSize="13dp">
+
+            </TextView>
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="2dp"
+                android:layout_below="@+id/tv_back"
+                android:background="@color/black">
+
+            </View>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/idPBLoading"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_show_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cv"
+            android:background="#80000000">
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="-10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-10dp"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_hascool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:padding="15dp"
+                >
+
+                <ImageView
+                    android:id="@+id/cancel_veh_info"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/cancel_icon">
+
+                </ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/cancel_veh_info"
+                    android:orientation="vertical" >
+                    <TextView
+                        android:id="@+id/Recapture"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Capture"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        />
+                    <TextView
+
+                        android:id="@+id/takefromgallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Gallery"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:id="@+id/cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Cancel"
+                        android:textColor="@color/green"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+<!--        <RelativeLayout-->
+<!--            android:visibility="gone"-->
+<!--            android:id="@+id/rl_open_popup"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:elevation="10dp"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/cardview_lightgrey_margined">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical" >-->
+<!--                <TextView-->
+<!--                    android:id="@+id/Recapture"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:text="Capture"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textStyle="normal"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/poppins_regular"-->
+<!--                    android:gravity="center"-->
+<!--                    />-->
+<!--                <TextView-->
+
+<!--                    android:id="@+id/takefromgallery"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:text="Gallery"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textStyle="normal"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:fontFamily="@font/poppins_regular"-->
+<!--                    android:gravity="center"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/cancel"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:text="Cancel"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textStyle="normal"-->
+<!--                    android:fontFamily="@font/poppins_semibold"-->
+<!--                    android:gravity="center"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+<!--        </RelativeLayout>-->
+
+</RelativeLayout>

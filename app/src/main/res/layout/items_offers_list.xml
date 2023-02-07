@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+
+        android:id="@+id/rl_offer_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/map_border"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_offer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Fastag"
+            android:textColor="@color/black"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_offer_desrptn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_offer_name"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/rl1"
+            android:fontFamily="@font/poppins_regular"
+            android:text="dealer who buys 10 bundle pack"
+            android:textColor="@color/cement"
+            android:textSize="12dp">
+
+        </TextView>
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/map_border">
+
+            <ImageView
+                android:id="@+id/max_ft"
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/blue_tick">
+
+            </ImageView>
+        </RelativeLayout>
+
+<!--        <RelativeLayout-->
+
+<!--            android:id="@+id/rl_offer_max_details"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:layout_below="@+id/tv_offer_name">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rl_ft_no"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="10dp">-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_ft_no"-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:src="@drawable/ft_no_icon"-->
+<!--                    >-->
+
+<!--                </ImageView>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/label_ft_no"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:layout_toRightOf="@+id/iv_ft_no"-->
+<!--                    android:fontFamily="@font/poppins_semibold"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=" Fastag Number"-->
+<!--                    android:textColor="@color/cement"-->
+<!--                    android:textSize="15dp">-->
+
+<!--                </TextView>-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/entered_fastag_no"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_below="@+id/iv_ft_no"-->
+<!--                    android:background="@drawable/cardview_act_code"-->
+<!--                    android:backgroundTint="@color/v_light_grey">-->
+
+<!--                </EditText>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <View-->
+<!--                android:id="@+id/v_ft"-->
+<!--                android:layout_width="1px"-->
+<!--                android:layout_height="1px"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                >-->
+
+<!--            </View>-->
+<!--            <TextView-->
+<!--                android:id="@+id/label_pan_card"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_below="@+id/rl_ft_no"-->
+<!--                android:fontFamily="@font/poppins_semibold"-->
+<!--                android:gravity="center"-->
+<!--                android:text="PanCard Image"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:textColor="@color/cement"-->
+<!--                android:textSize="15dp">-->
+
+<!--            </TextView>-->
+<!--            <TextView-->
+<!--                android:id="@+id/label_ft_img"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/rl_ft_no"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_toRightOf="@+id/v_ft"-->
+<!--                android:fontFamily="@font/poppins_semibold"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Fastag Image"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:textColor="@color/cement"-->
+<!--                android:textSize="15dp">-->
+
+<!--            </TextView>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/pan_img"-->
+<!--                android:layout_width="55dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_below="@+id/label_pan_card"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:src="@drawable/add_car_icon">-->
+
+<!--            </ImageView>-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/fast_tag_img"-->
+<!--                android:layout_width="55dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_marginStart="30dp"-->
+<!--                android:layout_toRightOf="@+id/v_ft"-->
+<!--                android:layout_below="@+id/label_pan_card"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:src="@drawable/add_car_icon">-->
+
+<!--            </ImageView>-->
+
+<!--        </RelativeLayout>-->
+    </RelativeLayout>
+</RelativeLayout>

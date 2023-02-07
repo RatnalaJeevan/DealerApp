@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SoldVehDetails">
+
+        <RelativeLayout
+            android:id="@+id/rl_veh_summary"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="-9dp"
+            android:background="@drawable/cv_approved_veh"
+            >
+            <ImageView
+
+                android:id="@+id/car_logo"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/circle_white"
+                android:src="@drawable/bmw_icon">
+
+            </ImageView>
+
+            <RelativeLayout
+                android:id="@+id/rl_user_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/car_logo">
+
+                <TextView
+                    android:id="@+id/tv_veh_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="City Diesel 2019"
+                    android:textColor="@color/white"
+                    android:textSize="16dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/veh_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_veh_details"
+                    android:fontFamily="@font/zonapro_regular"
+                    android:text="KA00AA0000"
+                    android:textColor="@color/white"
+                    android:textSize="16dp">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/no_cool_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/veh_no"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="45 days &amp; 1000 kms Cooling Period"
+                    android:textColor="@color/white"
+                    android:textSize="11dp"
+                    android:background="@drawable/cv_req_insp">
+
+                </TextView>
+
+                <ImageView
+
+                    android:id="@+id/app_stamp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/sold_label"
+                    >
+
+                </ImageView>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/nsv3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-10dp"
+            android:layout_below="@+id/rl_veh_summary"
+            app:cardCornerRadius="15dp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/rl_down3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                >
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/heading3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="You are activating a new car ..."
+                    android:textColor="@color/blue"
+                    android:textSize="21dp">
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/l2"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/heading3"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp">
+                    <RelativeLayout
+                        android:id="@+id/rl_cust"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_cust"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Customer"
+                            android:textColor="@color/blue"
+                            android:textSize="14dp">
+
+                        </TextView>
+
+                        <View
+                            android:id="@+id/v_cust"
+                            android:layout_width="25dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/tv_cust"
+                            android:background="@color/blue">
+
+                        </View>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_docs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        >
+
+
+                        <TextView
+                            android:id="@+id/tv_docs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:gravity="center"
+                            android:text="Documents"
+                            android:textColor="@color/cement"
+                            android:textSize="14dp">
+
+                        </TextView>
+
+                        <View
+                            android:id="@+id/v_docs"
+                            android:visibility="gone"
+                            android:layout_width="25dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/tv_docs"
+                            android:background="@color/blue">
+
+                        </View>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_purchase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_purchase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Package"
+                            android:textColor="@color/cement"
+                            android:textSize="14dp">
+
+                        </TextView>
+
+                        <View
+                            android:id="@+id/v_purchase"
+                            android:visibility="gone"
+                            android:layout_width="25dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/tv_purchase"
+                            android:background="@color/blue">
+
+                        </View>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_offers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_offers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Offers"
+                            android:textColor="@color/cement"
+                            android:textSize="14dp">
+
+                        </TextView>
+
+                        <View
+                            android:id="@+id/v_offers"
+                            android:visibility="gone"
+                            android:layout_width="25dp"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/tv_offers"
+                            android:background="@color/blue">
+
+                        </View>
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/l2">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <RelativeLayout
+
+                            android:id="@+id/rl_cust_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp">
+
+                            <RelativeLayout
+                                android:id="@+id/rl_cust_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_cust_name"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/profile_icon"
+                                    >
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_cust_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_cust_name"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Name"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_cust_no"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_cust_name"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_phone"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/phone_karo"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_cust_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_phone"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Phone"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_no"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_cust_location"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_cust_no"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_cust_location"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/location_dekho"
+                                    >
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_cust_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_cust_location"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Location"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_location"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_adress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/rl_cust_location"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_adress"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/location_dekho"
+                                    >
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_adress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_adress"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Address"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_adress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_toRightOf="@+id/iv_adress"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_below="@+id/iv_adress"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_pincode"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_adress"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_pincode"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/state_city_icon"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_pincode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_pincode"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Pincode"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_pincode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_city"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_pincode"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_city"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/state_city_icon"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_city"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="City"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_state"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_city"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_state"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:src="@drawable/state_city_icon"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_state"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_state"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="State"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_state"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/rl_veh_docs"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp">
+
+                            <View
+                                android:id="@+id/v_c"
+                                android:layout_width="1px"
+                                android:layout_height="1px"
+                                android:layout_centerHorizontal="true">
+
+                            </View>
+                            <TextView
+                                android:id="@+id/label_reg_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center"
+                                android:text="Registration Card"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/lightgrey"
+                                android:textSize="15dp">
+
+                            </TextView>
+                            <TextView
+                                android:id="@+id/label_aadhar_card"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/v_c"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center"
+                                android:text="Aadhar Card"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/lightgrey"
+                                android:textSize="15dp">
+
+                            </TextView>
+                            <LinearLayout
+                                android:id="@+id/ll_imgs1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/v_c"
+                                android:layout_marginEnd="10dp"
+                                android:layout_below="@+id/label_reg_card">
+
+                                <ImageView
+                                    android:id="@+id/iv_rc_front"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.1"
+                                    android:scaleType="fitXY"
+                                    android:adjustViewBounds="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+
+                                <ImageView
+                                    android:id="@+id/iv_rc_back"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.1"
+                                    android:scaleType="fitXY"
+                                    android:layout_marginStart="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_aadhar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/label_reg_card"
+                                android:layout_marginStart="10dp"
+                                android:layout_toRightOf="@+id/ll_imgs1">
+                                <ImageView
+                                    android:id="@+id/iv_aadhar_front"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.2"
+                                    android:layout_marginEnd="5dp"
+                                    android:scaleType="fitXY"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+
+                                <ImageView
+                                   android:id="@+id/iv_aadhar_back"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.2"
+                                    android:layout_marginStart="5dp"
+                                    android:scaleType="fitXY"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/label_sa_re"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_below="@+id/ll_imgs1"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center"
+                                android:text="Sales Receipt"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/lightgrey"
+                                android:textSize="15dp">
+
+                            </TextView>
+                            <TextView
+                                android:id="@+id/label_de_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/v_c"
+                                android:layout_below="@+id/ll_imgs1"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center"
+                                android:text="Delivery Note"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/lightgrey"
+                                android:textSize="15dp">
+
+                            </TextView>
+
+                            <ImageView
+                                android:id="@+id/iv_sa_re"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_below="@+id/label_sa_re"
+                                android:layout_marginTop="5dp"
+                                android:scaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/add_car_icon">
+
+                            </ImageView>
+
+                            <ImageView
+                                android:id="@+id/iv_de_note"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_marginStart="30dp"
+                                android:layout_toEndOf="@+id/v_c"
+                                android:layout_below="@+id/label_sa_re"
+                                android:layout_marginTop="5dp"
+                                android:scaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/add_car_icon">
+
+                            </ImageView>
+
+                            <TextView
+                                android:id="@+id/label_ins_copy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_below="@+id/iv_sa_re"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:gravity="center"
+                                android:text="Insurance Copy"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/lightgrey"
+                                android:textSize="15dp">
+
+                            </TextView>
+
+                            <LinearLayout
+                                android:id="@+id/ll_ins_copy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@+id/v_c"
+                                android:layout_marginEnd="10dp"
+                                android:layout_below="@+id/label_ins_copy">
+                                <ImageView
+                                    android:id="@+id/iv_insurance_1"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.1"
+                                    android:layout_marginTop="5dp"
+                                    android:scaleType="fitXY"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+
+                                <ImageView
+                                    android:visibility="invisible"
+                                    android:id="@+id/iv_ins_copy2"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_weight="0.1"
+                                    android:layout_marginTop="5dp"
+                                    android:src="@drawable/add_car_icon">
+
+                                </ImageView>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                           android:visibility="gone"
+                            android:id="@+id/rl_pur_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_veh_packlist"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_pur_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp">
+                                <ImageView
+                                    android:id="@+id/iv_pur_price"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/ins_type"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_pur_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_pur_price"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Activation Date"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/act_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_pur_from"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:layout_below="@+id/rl_pur_price">
+                                <ImageView
+                                    android:id="@+id/iv_pur_from"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/ins_pro"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_pur_from"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_pur_from"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Activation Code"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/activation_code"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_warranty_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:layout_below="@+id/rl_pur_from">
+                                <ImageView
+                                    android:id="@+id/iv_wa_type"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/ins_pro"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_wa_type"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_wa_type"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Warranty Type"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/warrantytype"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_sold_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:layout_below="@+id/rl_warranty_type">
+                                <ImageView
+                                    android:id="@+id/iv_sold_date"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_centerVertical="true"
+                                    android:background="@drawable/ins_pro"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_sold_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_sold_date"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="center"
+                                    android:text="Sold Date"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/car_solddate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/rl_offer_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="10dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_offer_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </androidx.core.widget.NestedScrollView>
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_show_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cv1"
+            android:background="#80000000">
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_marginTop="-10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-10dp"
+            app:cardCornerRadius="15dp">
+
+            <com.jsibbold.zoomage.ZoomageView
+                android:id="@+id/doc_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/add_copy">
+
+            </com.jsibbold.zoomage.ZoomageView>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/go_back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/left_arrowwhite">
+
+            </ImageView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/rl_back"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="center"
+            android:text="Add Car"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_vehno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:id="@+id/label_vehno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/zonapro_semibold"
+            android:gravity="center"
+            android:text="Vehicle Number * : "
+            android:textColor="@color/black"
+            android:textSize="14dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/entered_vehno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/label_vehno"
+            android:background="@null"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="KA03AQ4222"
+            android:inputType="textCapCharacters"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+        <View
+            android:id="@+id/line_vehno"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_toRightOf="@+id/label_vehno"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/entered_vehno"
+            android:background="@color/lightgrey">
+        </View>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_vehno"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@+id/line_2"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_make"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/zonapro_semibold"
+            android:gravity="center"
+            android:text="Select Make*"
+            android:textColor="@color/black"
+            android:textSize="14dp"></TextView>
+
+        <EditText
+            android:id="@+id/selected_make"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_make"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: hyundai"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp"></EditText>
+
+        <View
+            android:id="@+id/line_make"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_below="@+id/selected_make"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/lightgrey"></View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/line_2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl_vehno"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/zonapro_semibold"
+            android:gravity="center"
+            android:text="Car Model*"
+            android:textColor="@color/black"
+            android:textSize="14dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/selected_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_model"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: i20"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+        <View
+            android:id="@+id/line_model"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/selected_model"
+            android:background="@color/lightgrey">
+        </View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_sellingprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_make"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@+id/line_2"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/zonapro_semibold"
+            android:gravity="center"
+            android:text="Selling Price*"
+            android:textColor="@color/black"
+            android:textSize="14dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/selected_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: 20,50,000"
+            android:inputType="number"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_below="@+id/selected_sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/lightgrey">
+
+        </View>
+    </RelativeLayout>
+    <View
+        android:id="@+id/line_2"
+        android:layout_width="1dp"
+        android:layout_height="0.5px"
+        android:layout_centerHorizontal="true"
+
+        >
+    </View>
+    <RelativeLayout
+        android:id="@+id/rl_kms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/line_2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl_make"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_kms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/zonapro_semibold"
+            android:gravity="center"
+            android:text="Kms Driven*"
+            android:textColor="@color/black"
+            android:textSize="14dp"></TextView>
+
+        <EditText
+            android:id="@+id/selected_kms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_kms"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: 30,000"
+            android:inputType="number"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+        <View
+            android:id="@+id/line_3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/selected_kms"
+            android:background="@color/lightgrey">
+        </View>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ownership"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/rl_sellingprice"
+        android:layout_toLeftOf="@+id/line_2"
+        android:padding="8dp"
+        >
+        <TextView
+            android:id="@+id/tv_owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zonapro_semibold"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="No.of Owners*"
+            android:textColor="@color/black"
+            android:textSize="14dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/selected_owner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_owner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: 1"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+        <View
+            android:id="@+id/line_4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/selected_owner"
+            android:background="@color/lightgrey">
+        </View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/line_2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/rl_sellingprice"
+        android:padding="8dp"
+        >
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/zonapro_semibold"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Color"
+            android:textColor="@color/black"
+            android:textSize="14dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/selected_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_color"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+            android:fontFamily="@font/zonapro_regular"
+            android:gravity="start"
+            android:hint="eg: RED"
+            android:inputType="textCapCharacters"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/lightgrey"
+            android:textSize="16dp">
+
+        </EditText>
+        <View
+            android:id="@+id/line_5"
+            android:layout_width="match_parent"
+            android:layout_height="0.5px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/selected_color"
+            android:background="@color/lightgrey">
+        </View>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_insert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_update"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/cardview_dealership"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/zonapro_semibold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Insert"
+        android:textColor="@color/white"
+        android:textSize="18dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/cardview_dealership"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/zonapro_semibold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="18dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/cardview_dealership"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/zonapro_semibold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="View"
+        android:textColor="@color/white"
+        android:textSize="18dp">
+
+    </TextView>
+</RelativeLayout>

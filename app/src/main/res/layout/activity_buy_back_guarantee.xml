@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BuyBackGuarantee"
+    android:background="@drawable/cv_buyback">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/back_white_arrow">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/label_buy_guarantee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Buy Back\nGuarantee"
+        android:textColor="@color/white"
+        android:textSize="50dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/label_buy_guarantee"
+        android:fontFamily="@font/poppins_regular"
+        android:lineSpacingExtra="3dp"
+        android:text="If we cannot repair your car in 60 days\nwe will buy your car at the price you\npurchased.The validity of this offer is \nONLY during the extended warranty period."
+        android:textColor="@color/white"
+        android:textSize="16dp">
+
+    </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_veh_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/content"
+            android:layout_above="@+id/rl_pay">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_hatcback"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/content"
+        android:background="@drawable/cv_white_border">
+        <TextView
+            android:id="@+id/label_hatchback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="HatchBack"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/cv_circle_white_border"
+            android:layout_marginEnd="15dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tick_white"
+                >
+
+            </ImageView>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_sedan"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/rl_hatcback"
+        android:background="@drawable/cv_white_border">
+        <TextView
+            android:id="@+id/label_sedan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Sedan"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </TextView>
+        <RelativeLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/cv_circle_white_border"
+            android:layout_marginEnd="15dp">
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tick_white"
+                >
+
+            </ImageView>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_suv"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/rl_sedan"
+        android:background="@drawable/cv_white_border">
+        <TextView
+            android:id="@+id/label_suv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="SUV"
+            android:textColor="@color/white"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/cv_circle_white_border"
+            android:layout_marginEnd="15dp">
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tick_white"
+                >
+
+            </ImageView>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_pay"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/cv_gradient3"
+        android:backgroundTint="#000066">
+
+        <TextView
+            android:id="@+id/label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="start"
+            android:text="Amount"
+            android:textColor="@color/lightgrey"
+            android:textSize="13dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="24dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/label_inr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/price"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="INR"
+            android:textColor="@color/white"
+            android:textSize="14dp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/saved_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="13dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="You saved upto 0%"
+            android:textColor="@color/lightgrey"
+            android:textSize="13dp">
+
+        </TextView>
+        <RelativeLayout
+            android:id="@+id/pay_now"
+            android:layout_width="115dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:background="@drawable/cv_gradient1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Pay Now"
+                android:textColor="@color/white"
+                android:textSize="17dp">
+
+            </TextView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_paymow_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000">
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-10dp"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_hascool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:padding="15dp"
+                >
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/zonapro_semibold"
+                    android:gravity="center"
+                    android:text="Check Status"
+                    android:textColor="@color/blue"
+                    android:textSize="18dp">
+
+                </TextView>
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/car_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/title1"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/insp_approved">
+
+                </pl.droidsonroids.gif.GifImageView>
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/car_img"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/zonapro_semibold"
+                    android:gravity="center"
+                    android:text="Your vehicle is eligible for buy\nback guarantee"
+                    android:textColor="@color/black"
+                    android:textSize="18dp">
+
+                </TextView>
+                <RelativeLayout
+
+                    android:id="@+id/rl_buy_addonpack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/title2"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/cv_new_car"
+                    >
+                    <TextView
+                        android:id="@+id/tv_req_insp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Pay Now"
+                        android:textColor="@color/white"
+                        android:textSize="15dp">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rl_req_ins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/title2"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/cv_new_car"
+                    >
+                    <TextView
+                        android:id="@+id/tv_re_ins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Request Inspection"
+                        android:textColor="@color/white"
+                        android:textSize="15dp">
+
+                    </TextView>
+                </RelativeLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_show_popup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_transparent1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000">
+
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-10dp"
+            app:cardCornerRadius="15dp">
+
+
+                <RelativeLayout
+
+                    android:id="@+id/rl_checkstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/title_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/zonapro_semibold"
+                        android:gravity="center"
+                        android:text="Check Status"
+                        android:textColor="@color/blue"
+                        android:textSize="18dp">
+
+                    </TextView>
+                    <TextView
+                        android:id="@+id/label_reg_vehno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title_check"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Registration Number"
+                        android:textColor="@color/cement"
+                        android:textSize="15dp">
+
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/entered_vehno"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/cv_new_car"
+                        android:backgroundTint="@color/v_light_grey"
+                        android:layout_below="@+id/label_reg_vehno"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:maxLength="15"
+                        android:inputType="textCapCharacters"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                        android:hint="EX - KA00AB0000"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="19dp"
+                        android:textColorHint="@color/cement"
+                        >
+
+                    </EditText>
+                    <RelativeLayout
+
+                        android:id="@+id/rl_check_status"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/entered_vehno"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/cv_req_insp"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_check_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Check Status"
+                            android:textColor="@color/white"
+                            android:textSize="17dp">
+
+                        </TextView>
+                    </RelativeLayout>
+                </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/idPBLoading"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/white"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+</RelativeLayout>

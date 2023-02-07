@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FilterPage">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/go_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_baseline_keyboard_backspace_24">
+
+            </ImageView>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Filters"
+            android:textColor="@color/black"
+            android:textSize="21dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Reset"
+            android:layout_marginEnd="30dp"
+            android:textColor="@color/blue"
+            android:textSize="16dp">
+
+        </TextView>
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/rl_header"
+        android:background="@color/lightgrey">
+
+    </View>
+
+    <TextView
+        android:id="@+id/label_bybrand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/v1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:textSize="15dp"
+        android:text="By Brand">
+
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_brand_logos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/label_bybrand">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/label_byprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rv_brand_logos"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:textSize="15dp"
+        android:text="By Price">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/min_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/label_byprice"
+        android:fontFamily="@font/poppins_regular"
+        android:text="0"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/blue"
+        android:textSize="16dp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/max_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/label_byprice"
+        android:fontFamily="@font/poppins_regular"
+        android:text="10,00,000"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/blue"
+        android:textSize="16dp">
+
+    </TextView>
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/price_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:valueFrom="0.0"
+        android:valueTo="10000000.0"
+        app:values="@array/pricerangeSlider"
+        android:layout_below="@+id/min_price">
+
+    </com.google.android.material.slider.RangeSlider>
+    <TextView
+        android:id="@+id/label_bykms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_range"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:textSize="15dp"
+        android:text="By Kms">
+
+    </TextView>
+    <TextView
+        android:id="@+id/min_kms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/label_bykms"
+        android:fontFamily="@font/poppins_regular"
+        android:text="0"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/blue"
+        android:textSize="16dp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/max_kms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/label_bykms"
+        android:fontFamily="@font/poppins_regular"
+        android:text="1,00,000"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/blue"
+        android:textSize="16dp">
+
+    </TextView>
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/kms_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:valueFrom="0.0"
+        android:valueTo="100000.0"
+        app:values="@array/kmsrangeSlider"
+        android:layout_below="@+id/min_kms">
+
+
+
+    </com.google.android.material.slider.RangeSlider>
+
+    <TextView
+        android:id="@+id/label_fuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kms_range"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:textSize="15dp"
+        android:text="Fuel">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iv_diesel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:padding="5dp"
+        android:layout_below="@+id/label_fuel"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/map_border">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/label_diesel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_diesel"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/label_fuel"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Diesel"
+        android:textColor="@color/black"
+        android:textSize="15dp">
+
+    </TextView>
+    <ImageView
+        android:id="@+id/iv_petrol"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_toRightOf="@+id/label_diesel"
+        android:padding="5dp"
+        android:layout_below="@+id/label_fuel"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/map_border">
+
+    </ImageView>
+    <TextView
+        android:id="@+id/label_petrol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_petrol"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/label_fuel"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Petrol"
+        android:textColor="@color/black"
+        android:textSize="15dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/label_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_petrol"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:text="Transmission">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iv_manual"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:padding="5dp"
+        android:layout_below="@+id/label_trans"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/map_border">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/label_manual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_manual"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/label_trans"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Manual"
+        android:textColor="@color/black"
+        android:textSize="15dp">
+
+    </TextView>
+    <ImageView
+        android:id="@+id/iv_auto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_toRightOf="@+id/label_diesel"
+        android:padding="5dp"
+        android:layout_below="@+id/label_trans"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/map_border">
+
+    </ImageView>
+    <TextView
+        android:id="@+id/label_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_auto"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/label_trans"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Automatic"
+        android:textColor="@color/black"
+        android:textSize="15dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/label_insp_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label_auto"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/cement"
+        android:textSize="15dp"
+        android:text="Inspection Status">
+
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv_insp_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/label_insp_status">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl_apply"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+           android:layout_below="@+id/rv_insp_status"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/cv_gradient3"
+            >
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/pure_whitte"
+                android:layout_centerVertical="true">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toEndOf="@+id/iv1"
+                android:layout_centerVertical="true"
+                android:gravity="start"
+                android:layout_marginStart="10dp"
+                android:text="Apply Filter"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                >
+
+            </TextView>
+        </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

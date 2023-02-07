@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rl_buy_requests"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="14dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        >
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@+id/tv_count_exp_veh_list"
+            android:layout_toLeftOf="@+id/close"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Inspections \nexpiring in 7 days"
+            android:textColor="@color/white"
+            android:textSize="14dp">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/cross_white">
+
+        </ImageView>
+        <TextView
+            android:id="@+id/tv_count_exp_veh_list"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/cardview_package"
+            android:backgroundTint="@color/verylight_blue_wd"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="00"
+            android:textColor="@color/light_blue_wd"
+            android:textSize="16dp">
+
+        </TextView>
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

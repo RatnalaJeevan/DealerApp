@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="15dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/pac_sold_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="3dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="25 Nov ,2022"
+                android:textColor="@color/white"
+                android:background="@drawable/cv_new_car"
+                android:textSize="14dp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/main_pack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pac_sold_on"
+                android:layout_toStartOf="@+id/paid_label"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="6 Bundle Pack"
+                android:textColor="@color/black"
+                android:textSize="16dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/sub_pack_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/main_pack"
+                android:layout_toStartOf="@+id/paid_label"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="16dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/payment_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sub_pack_name"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="UPI"
+                android:textColor="@color/black"
+                android:textSize="13sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/service_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="AddOn"
+                android:textColor="@color/orange"
+                android:textSize="13sp">
+
+            </TextView>
+            <ImageView
+                android:id="@+id/paid_label"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/service_type"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/paid">
+
+            </ImageView>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/label_act_vehicles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/payment_mode"
+                android:paddingTop="5dp"
+                android:paddingBottom="3dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Act_Vehicles"
+                android:textColor="@color/white"
+                android:background="@drawable/cv_new_car"
+                android:textSize="14dp">
+
+            </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_act_veh_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label_act_vehicles">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

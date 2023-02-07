@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "581441044239",
+    "project_id": "wisedrivetestapp",
+    "storage_bucket": "wisedrivetestapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581441044239:android:b1eec0ab851e393482c87a",
+        "android_client_info": {
+          "package_name": "com.wisedrive.dealerapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581441044239-5noi9cdt6mj75pran7mfgua2mvpm3b5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP3gR-MIb5Hj3zJht_KNTOd68DL13Bz1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581441044239-5noi9cdt6mj75pran7mfgua2mvpm3b5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

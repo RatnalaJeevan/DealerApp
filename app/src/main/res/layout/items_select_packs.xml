@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+       <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp">
+        <TextView
+            android:id="@+id/label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="1."
+            android:textColor="@color/cement"
+            android:textSize="25dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/label_pack_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/label1"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Warranty"
+            android:textColor="@color/black"
+            android:textSize="18dp">
+
+        </TextView>
+
+           <TextView
+               android:id="@+id/sub_pack_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/label_pack_type"
+               android:layout_marginEnd="10dp"
+               android:layout_marginStart="10dp"
+               android:layout_toEndOf="@+id/label1"
+               android:fontFamily="@font/poppins_semibold"
+               android:text="Warranty"
+               android:textColor="@color/black"
+               android:textSize="16dp">
+
+           </TextView>
+           <TextView
+               android:id="@+id/label_pending"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/sub_pack_name"
+               android:layout_marginStart="10dp"
+               android:layout_marginEnd="15dp"
+               android:layout_toEndOf="@+id/label1"
+               android:fontFamily="@font/poppins_regular"
+               android:text="Pending :"
+               android:textColor="@color/black"
+               android:textSize="16dp">
+
+           </TextView>
+        <TextView
+            android:id="@+id/pending_packs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_toEndOf="@+id/label_pending"
+            android:layout_below="@+id/sub_pack_name"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="18dp">
+
+        </TextView>
+
+
+           <TextView
+               android:id="@+id/paid_date"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="15dp"
+               android:layout_marginStart="10dp"
+               android:layout_toEndOf="@+id/label1"
+               android:layout_below="@+id/label_pending"
+               android:fontFamily="@font/poppins_semibold"
+               android:text="10 Nov"
+               android:textColor="@color/green"
+               android:textSize="18dp">
+
+           </TextView>
+        <RelativeLayout
+            android:id="@+id/rl_1st"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/map_border"
+            android:padding="5dp">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/selected"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/blue_tick">
+
+            </ImageView>
+        </RelativeLayout>
+
+           <TextView
+               android:id="@+id/label_exp_date"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="10dp"
+               android:layout_marginStart="10dp"
+
+               android:layout_toStartOf="@+id/exp_date"
+               android:layout_below="@+id/paid_date"
+               android:fontFamily="@font/poppins_regular"
+               android:text="Expires in:"
+               android:textColor="@color/red"
+               android:textSize="16dp">
+
+           </TextView>
+           <TextView
+               android:id="@+id/exp_date"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="15dp"
+               android:layout_alignParentEnd="true"
+               android:layout_below="@+id/paid_date"
+               android:fontFamily="@font/poppins_semibold"
+               android:text=""
+               android:textColor="@color/red"
+               android:textSize="16dp">
+
+           </TextView>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@+id/rl1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/lightgrey">
+
+    </View>
+</RelativeLayout>

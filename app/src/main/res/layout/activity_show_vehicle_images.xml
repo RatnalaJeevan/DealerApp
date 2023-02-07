@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowVehicleImages">
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:background="@color/blue">
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            >
+
+            <ImageView
+                android:id="@+id/go_back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/left_arrowwhite">
+
+            </ImageView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        >
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/indicator1"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/indicator1"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="10dp"
+            app:tabBackground="@drawable/indicator_selected"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+    </RelativeLayout>
+</RelativeLayout>

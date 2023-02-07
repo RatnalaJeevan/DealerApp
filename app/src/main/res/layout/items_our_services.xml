@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+
+        android:id="@+id/rl_our_services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+        <ImageView
+            android:id="@+id/label4"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/services_tick">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/label_servicetype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/label4"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Showoom Service"
+            android:textColor="@color/white"
+            android:textSize="13sp">
+
+        </TextView>
+<!--        <ImageView-->
+<!--            android:id="@+id/label5"-->
+<!--            android:layout_width="14dp"-->
+<!--            android:layout_height="14dp"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_below="@+id/label_showroom"-->
+<!--            android:src="@drawable/services_tick">-->
+
+<!--        </ImageView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/label_rsa"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/label_showroom"-->
+<!--            android:layout_toEndOf="@+id/label4"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:text="RoadSide Assistance"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="13sp">-->
+
+<!--        </TextView>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/label6"-->
+<!--            android:layout_width="14dp"-->
+<!--            android:layout_height="14dp"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_below="@+id/label_rsa"-->
+<!--            android:src="@drawable/services_tick">-->
+
+<!--        </ImageView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/label_ext_warra"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/label_rsa"-->
+<!--            android:layout_toEndOf="@+id/label4"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:text="Upto 5L Extended Warranty"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="13sp">-->
+
+<!--        </TextView>-->
+    </RelativeLayout>
+</RelativeLayout>
