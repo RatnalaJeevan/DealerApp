@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             iv_filter.setVisibility(View.VISIBLE);
             iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
             iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
-            iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_cust));
+            iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.customers_black));
             iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
             replaceFragment(new CustomerFragment());
             iv_filter.setVisibility(View.VISIBLE);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             tv_profile.setVisibility(View.GONE);
             iv_filter.setVisibility(View.GONE);
             iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
-            iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_pack));
+            iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
             iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
             iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
             replaceFragment(new PackageFragment());
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_profile.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
                 rl_pack_selection.setVisibility(View.GONE);
-                iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_home));
+                iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.home_selected_black));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
                 iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 iv_filter.setVisibility(View.GONE);
                 rl_pack_selection.setVisibility(View.VISIBLE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
-                iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_pack));
+                iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
                 iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
                 SPHelper.camefrom="";
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 rl_pack_selection.setVisibility(View.GONE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
-                iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_cust));
+                iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.customers_black));
                 iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
                 SPHelper.camefrom="";
                 SPHelper.comingfrom="";

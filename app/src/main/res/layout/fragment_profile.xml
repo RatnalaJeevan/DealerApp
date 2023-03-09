@@ -19,11 +19,11 @@
 
             <ImageView
                 android:id="@+id/go_back_home"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/back_black">
+                android:src="@drawable/back_arrow_black">
 
             </ImageView>
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/go_back_home"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Profile"
@@ -69,7 +69,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Sagar Cars"
                 android:textColor="@color/black"
-                android:textSize="18dp">
+                android:textSize="16dp">
 
             </TextView>
 
@@ -82,7 +82,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="9018243262"
                 android:textColor="@color/black"
-                android:textSize="18dp">
+                android:textSize="16dp">
 
             </TextView>
 
@@ -109,7 +109,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Edit"
                 android:textColor="@color/white"
-                android:textSize="17dp">
+                android:textSize="15dp">
 
             </TextView>
             >
@@ -129,7 +129,7 @@
             <View
                 android:id="@+id/line_view1"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:layout_below="@+id/dealer_phoneno"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
@@ -151,7 +151,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="All Payments"
                     android:textColor="@color/black"
-                    android:textSize="18dp">
+                    android:textSize="16dp">
 
                 </TextView>
                 <TextView
@@ -236,7 +236,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Offers"
                     android:textColor="@color/cement"
-                    android:textSize="18dp">
+                    android:textSize="16dp">
 
                 </TextView>
                 <TextView
@@ -280,7 +280,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Notifications"
                     android:textColor="@color/cement"
-                    android:textSize="18dp">
+                    android:textSize="16dp">
 
                 </TextView>
 
@@ -313,7 +313,7 @@
             <View
                 android:id="@+id/line_view2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:layout_below="@+id/rl_all_claims"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
@@ -330,7 +330,7 @@
                     android:id="@+id/iv_tnc"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/tnc_new"
+                    android:src="@drawable/tnc_black"
                     android:layout_centerVertical="true">
 
                 </ImageView>
@@ -360,7 +360,7 @@
                     android:id="@+id/iv_wa_pol"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/pp_new"
+                    android:src="@drawable/pp_black"
                     android:layout_centerVertical="true">
 
                 </ImageView>
@@ -389,7 +389,7 @@
                     android:id="@+id/iv_pr_pol"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/pp_new"
+                    android:src="@drawable/pp_black"
                     android:layout_centerVertical="true">
 
                 </ImageView>
@@ -418,7 +418,7 @@
                     android:id="@+id/iv_hns"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/hns_new"
+                    android:src="@drawable/hns_black"
                     android:layout_centerVertical="true">
 
                 </ImageView>

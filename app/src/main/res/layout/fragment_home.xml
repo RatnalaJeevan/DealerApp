@@ -41,7 +41,7 @@
             <RelativeLayout
                 android:id="@+id/rl_warranty"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/rl_top"
                 android:elevation="13dp"
                 android:layout_marginStart="24dp"
@@ -63,7 +63,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="30"
                     android:textColor="@color/black"
-                    android:textSize="40dp">
+                    android:textSize="35dp">
 
                 </TextView>
 
@@ -208,7 +208,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="15dp"
                     android:backgroundTint="#f0f6fc"
-                    android:src="@drawable/add_n_car">
+                    android:src="@drawable/add_new_car_black">
 
                 </ImageView>
 
@@ -250,7 +250,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="15dp"
                     android:backgroundTint="#f0f6fc"
-                    android:src="@drawable/req_insp">
+                    android:src="@drawable/req_insp_black">
 
 
                 </ImageView>
@@ -300,7 +300,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_insp_req"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/text_color1"
 
@@ -338,7 +338,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_re_insp"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/text_color1"
@@ -378,7 +378,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_repair_req"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/v_light_red"
@@ -417,7 +417,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_exp_veh"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/v_light_red"
@@ -467,7 +467,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_approved"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/v_light_green"
 
@@ -505,7 +505,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_app_cool_period"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/v_light_green"
@@ -550,7 +550,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_sold_cars"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/text_color1"
@@ -589,7 +589,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_sold_w_o"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/text_color1"
