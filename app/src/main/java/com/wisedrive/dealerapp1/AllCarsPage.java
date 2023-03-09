@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +28,7 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseExtension;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseListener;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.fragments.HomeFragment;
+import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
 import com.wisedrive.dealerapp1.services1.services.ServiceURL;
 import com.wisedrive.dealerapp1.services1.services.WebService;
@@ -48,6 +51,8 @@ public class AllCarsPage extends AppCompatActivity {
     private static AllCarsPage instance;
     RecyclerView rv_veh_imgs;
     public RelativeLayout rl_transparent1,rl_show_veh_images;
+    public Dialog dialog;
+   public TextView comments;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,12 @@ public class AllCarsPage extends AppCompatActivity {
         rl_transparent1=findViewById(R.id.rl_transparent1);
         rl_show_veh_images=findViewById(R.id.rl_show_veh_images);
         rv_veh_imgs=findViewById(R.id.rv_veh_imgs);
+
+        dialog = new Dialog(AllCarsPage.this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setContentView(R.layout.pop_up_comments);
+        dialog.setCancelable(true);
+        comments=dialog.findViewById(R.id.comments) ;
         if(SPHelper.comingfrom.equals("edited")){
 
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();

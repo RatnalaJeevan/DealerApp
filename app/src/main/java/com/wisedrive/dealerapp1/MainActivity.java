@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -58,10 +59,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
    private static MainActivity  instance;
     private DealerApis apiInterface;
-    TextView tv_profile,tv_home,tv_pack,tv_customer;
+    TextView tv_profile,tv_home,tv_pack,tv_customer,bundle_label,label_single;
     LinearLayout layout_1,layout_2,layout_3,layout_4;
     ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
-    RelativeLayout rl_pack_selection;
+    RelativeLayout rl_pack_selection,rl_single,rl_bundle;
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance=this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        bundle_label=findViewById(R.id.bundle_label);
+        label_single=findViewById(R.id.label_single);
+        rl_single=findViewById(R.id.rl_single);
         rl_pack_selection=findViewById(R.id.rl_pack_selection);
+        rl_bundle=findViewById(R.id.rl_bundle);
         layout_2=findViewById(R.id.layout_2);
         layout_3=findViewById(R.id.layout_3);
         layout_4=findViewById(R.id.layout_4);
@@ -225,6 +230,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rl_single.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_single.setBackground(MainActivity.this.getDrawable(R.drawable.cardview_lightgrey_margined));
+                rl_single.setBackgroundTintList(ColorStateList.valueOf(MainActivity.this.getColor(R.color.black)));
+                label_single.setTextColor(ColorStateList.valueOf(MainActivity.this.getColor(R.color.white)));
+                bundle_label.setTextColor(ColorStateList.valueOf(MainActivity.this.getColor(R.color.black)));
+                rl_bundle.setBackground(null);
+                PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+"0%");
+                PackageFragment.getInstance().price.setText("0");
+                PackageFragment.getInstance().pack_type="Single";
+                PackageFragment.getInstance().get_package_type();
+            }
+        });
+        rl_bundle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_bundle.setBackground(MainActivity.this.getDrawable(R.drawable.cardview_lightgrey_margined));
+                rl_bundle.setBackgroundTintList(ColorStateList.valueOf(MainActivity.this.getColor(R.color.black)));
+                label_single.setTextColor(ColorStateList.valueOf(MainActivity.this.getColor(R.color.black)));
+                bundle_label.setTextColor(ColorStateList.valueOf(MainActivity.this.getColor(R.color.white)));
+                rl_single.setBackground(null);
+                PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+"0%");
+                PackageFragment.getInstance().price.setText("0");
+                PackageFragment.getInstance().pack_type="Bundle";
+                PackageFragment.getInstance().get_package_type();
+            }
+        });
     }
 
 

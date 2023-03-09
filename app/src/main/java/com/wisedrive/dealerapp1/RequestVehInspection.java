@@ -101,11 +101,11 @@ public class RequestVehInspection extends AppCompatActivity {
         rl_transparent=findViewById(R.id.rl_transparent);
 
 
-        if(SPHelper.goneto.equals("repair")){
+        if(SPHelper.goneto.equals("repair")||SPHelper.goneto.equals("expired")){
             selected_vehno.setText(SPHelper.vehno);
             selected_veh_no.setText(SPHelper.vehno);
             req_page=3;
-            inspection_type="repair";
+            inspection_type=SPHelper.goneto;
             show_req_insp();
             rl_presale.setEnabled(false);
             rl_postsale.setEnabled(false);
@@ -354,7 +354,8 @@ public class RequestVehInspection extends AppCompatActivity {
         int day = cldr.get(Calendar.DAY_OF_MONTH);
         int month = cldr.get(Calendar.MONTH);
         int year = cldr.get(Calendar.YEAR);
-        date_picker = new DatePickerDialog(activity,
+        //Theme_Material3_Dark_Dialog_Alert
+        date_picker = new DatePickerDialog(activity,R.style.Theme_Material3_Light_Dialog_Alert,
                 new DatePickerDialog.OnDateSetListener()
                 {
                     @SuppressLint("SetTextI18n")

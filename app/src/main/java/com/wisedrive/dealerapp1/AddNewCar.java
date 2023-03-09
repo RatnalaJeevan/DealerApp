@@ -643,14 +643,15 @@ public class AddNewCar extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        rl_exp_date.setOnClickListener(new View.OnClickListener() {
+        rl_exp_date.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 final Calendar cldr = Calendar.getInstance();
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
-                date_picker = new DatePickerDialog(activity,
+                date_picker = new DatePickerDialog(activity,R.style.Theme_Material3_Light_Dialog_Alert,
                         new DatePickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")
                             @Override

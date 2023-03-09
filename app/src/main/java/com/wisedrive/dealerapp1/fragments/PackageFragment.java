@@ -72,7 +72,7 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
     String paymentSessionID = "";
     CFSession.Environment cfEnvironment = CFSession.Environment.SANDBOX;
     String payment_status="",cforderid="";
-    String  gateway_id="";
+    public String  gateway_id="",pack_type="Bundle";
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -155,7 +155,8 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                         Toast.LENGTH_SHORT).show();
             } else {
                 idPBLoading.setVisibility(View.VISIBLE);
-                Call<AppResponse> call = apiInterface.getpackage_type(SPHelper.getSPData(activity, SPHelper.dealerid, ""));
+                Call<AppResponse> call = apiInterface.getpackage_type(SPHelper.getSPData(activity, SPHelper.dealerid, ""),
+                        pack_type);
                 call.enqueue(new Callback<AppResponse>() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override

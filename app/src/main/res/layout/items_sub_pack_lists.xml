@@ -37,8 +37,8 @@
             android:id="@+id/iv_buy_warranty"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/cancel_icon">
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/close_white">
 
         </ImageView>
         <TextView

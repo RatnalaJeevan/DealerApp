@@ -49,7 +49,7 @@
                 android:id="@+id/v1"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_below="@+id/tv_inspect_status"
+                android:layout_below="@+id/tv_insp_on_date"
                 android:layout_marginTop="10dp"
                 android:background="@color/lightgrey">
 
@@ -124,7 +124,7 @@
                     android:layout_marginStart="5dp"
                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_baseline_edit_24">
+                    android:src="@drawable/edit_black">
 
                 </ImageView>
             </RelativeLayout>
@@ -303,67 +303,25 @@
 
             </View>
 
-            <LinearLayout
-                android:id="@+id/linear_price_photos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <View
+                android:id="@+id/centre_line"
+                android:layout_width="1px"
+                android:layout_height="1px"
                 android:layout_below="@+id/v2"
-                android:layout_marginTop="7dp"
-                android:orientation="horizontal">
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@color/lightgrey">
+
+            </View>
+
 
                 <RelativeLayout
-                    android:id="@+id/rl_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5">
 
-                    <TextView
-                        android:id="@+id/label_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Price"
-                        android:textColor="@color/lightgrey"
-                        android:textSize="15dp">
-
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/tv_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/label_price"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="75,00,000"
-                        android:layout_marginTop="-4dp"
-                        android:textColor="@color/black"
-                        android:textSize="17sp">
-
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/label_inr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/tv_price"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_below="@+id/label_price"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:text="INR"
-                        android:textColor="@color/black"
-                        android:textSize="11dp">
-
-                    </TextView>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:visibility="gone"
                     android:id="@+id/rl_photos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/centre_line"
+                    android:layout_toStartOf="@+id/centre_line"
                     >
 
                     <TextView
@@ -437,23 +395,48 @@
                     </TextView>
 
                 </RelativeLayout>
-            </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_last_insp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/centre_line"
+                    android:layout_toEndOf="@+id/centre_line"
+                    >
 
-            <View
-                android:id="@+id/v3"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_below="@+id/linear_price_photos"
-                android:layout_marginTop="3dp"
-                android:background="@color/lightgrey">
+                    <TextView
+                        android:id="@+id/label_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Last Inspected"
+                        android:textColor="@color/lightgrey"
+                        android:textSize="15dp">
 
-            </View>
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_last_insp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/label_price"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text=""
+                        android:layout_marginTop="-4dp"
+                        android:textColor="@color/exp_clr"
+                        android:textSize="15sp">
+
+                    </TextView>
+
+
+                </RelativeLayout>
+
+
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/linear_cp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/v3"
+                android:layout_below="@+id/rl_last_insp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
@@ -559,34 +542,6 @@
                 </TextView>
 
             </RelativeLayout>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/label_map"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toStartOf="@+id/iv_hide"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_below="@+id/v3"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:text="Hide"
-                android:textColor="@color/black"
-                android:textSize="16dp">
-
-            </TextView>
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/iv_hide"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:padding="5dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="15dp"
-                android:layout_below="@+id/v3"
-                android:background="@drawable/map_border">
-
-            </ImageView>
 
         </RelativeLayout>
 
@@ -648,6 +603,7 @@
         >
 
         <RelativeLayout
+            android:id="@+id/rl_reasons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toStartOf="@+id/centre_view">
@@ -656,8 +612,8 @@
                 android:id="@+id/reason_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Reasons"
                 android:textColor="@color/white"
@@ -665,7 +621,7 @@
 
             </TextView>
             <ImageView
-
+                android:visibility="gone"
                 android:id="@+id/iv_arrow2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -709,7 +665,7 @@
 
             </TextView>
             <ImageView
-
+                android:visibility="gone"
                 android:id="@+id/iv_arrow1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -81,17 +81,14 @@ public class AdapterAbtExpVeh extends RecyclerView.Adapter<RecyclerView.ViewHold
             super(itemView);
             rl_cp_comments=itemView.findViewById(R.id.rl_cp_comments);
             tv_insp_on_date=itemView.findViewById(R.id.tv_insp_on_date);
-            label_map=itemView.findViewById(R.id.label_map);
-            iv_hide=itemView.findViewById(R.id.iv_hide);
             rl_sold_label=itemView.findViewById(R.id.rl_sold_label);
             rl_cv=itemView.findViewById(R.id.rl_cv);
-            v3=itemView.findViewById(R.id.v3);
+
             iv_edit=itemView.findViewById(R.id.iv_edit);
             rl_photos=itemView.findViewById(R.id.rl_photos);
             tv_cust_name=itemView.findViewById(R.id.tv_cust_name);
             brand_logo=itemView.findViewById(R.id.brand_logo);
             linear_cp=itemView.findViewById(R.id.linear_cp);
-            tv_price=itemView.findViewById(R.id.tv_price);
             tv_make_model=itemView.findViewById(R.id.tv_make_model);
             tv_makeyear=itemView.findViewById(R.id.tv_makeyear);
             tv_insu=itemView.findViewById(R.id.tv_insu);

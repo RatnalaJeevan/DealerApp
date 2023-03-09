@@ -44,7 +44,6 @@ public class AdapterCustomerCarsPage extends RecyclerView.Adapter<AdapterCustome
             holder.iv_edit.setVisibility(View.INVISIBLE);
             holder.rl_cv.setBackground(AppCompatResources.getDrawable(context,R.drawable.cv_allcars));
             holder.tv_cust_name.setTextColor(ContextCompat.getColorStateList(context, R.color.white));
-            holder.v3.setVisibility(View.GONE);
             holder.rl_sold_label.setVisibility(View.VISIBLE);
             holder.rl_sold_label.setBackground(AppCompatResources.getDrawable(context,R.drawable.cv_soldcars));
             holder.rl_sold_label.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.line2));
@@ -57,7 +56,6 @@ public class AdapterCustomerCarsPage extends RecyclerView.Adapter<AdapterCustome
         else{
             holder.iv_edit.setVisibility(View.VISIBLE);
             holder.rl_cv.setBackground(context.getDrawable(R.drawable.cv_all_cars));
-            holder.v3.setVisibility(View.VISIBLE);
             holder.rl_sold_label.setVisibility(View.GONE);
            // holder.insp_status.setText(allCarsPages.get(position).getInsp_status());
             if(id.equals("1")){
@@ -107,7 +105,6 @@ public class AdapterCustomerCarsPage extends RecyclerView.Adapter<AdapterCustome
             tv_insp_on_date=itemView.findViewById(R.id.tv_insp_on_date);
             rl_sold_label=itemView.findViewById(R.id.rl_sold_label);
             rl_cv=itemView.findViewById(R.id.rl_cv);
-            v3=itemView.findViewById(R.id.v3);
             iv_edit=itemView.findViewById(R.id.iv_edit);
             rl_photos=itemView.findViewById(R.id.rl_photos);
             tv_cust_name=itemView.findViewById(R.id.tv_cust_name);
