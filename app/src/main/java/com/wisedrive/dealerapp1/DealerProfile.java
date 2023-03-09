@@ -21,11 +21,12 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 
 public class DealerProfile extends Fragment {
-    TextView yes,no;
+
     TextView dealer_name,dealer_phoneno;
     ImageView go_back_home;
     RelativeLayout rl_all_payments,rl_log_out,rl_all_cars;
     private Dialog dialog;
+    TextView yes,no;
     Activity activity;
     @Nullable
     @Override

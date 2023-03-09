@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="15dp"
+
     >
         <RelativeLayout
             android:id="@+id/rl_cv"
@@ -638,7 +639,7 @@
 
     <RelativeLayout
         android:visibility="gone"
-        android:id="@+id/rl_insp_req"
+        android:id="@+id/rl_rep_req"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_below="@+id/rl_cv"
@@ -646,43 +647,138 @@
         android:backgroundTint="@color/v_light_brown"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@+id/centre_view">
+
+            <TextView
+                android:id="@+id/reason_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Reasons"
+                android:textColor="@color/white"
+                android:textSize="13sp">
+
+            </TextView>
+            <ImageView
+
+                android:id="@+id/iv_arrow2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/arrow_drop_down">
+
+            </ImageView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_insp_req"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/centre_view">
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Repair Done"
+                android:textColor="@color/white"
+                android:textSize="15sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Request Inspection"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/white"
+                android:textSize="15sp">
+
+            </TextView>
+            <ImageView
+
+                android:id="@+id/iv_arrow1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/forward_white">
+
+            </ImageView>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/centre_view"
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white">
+
+        </View>
 
 
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Repair Done"
-            android:textColor="@color/white"
-            android:textSize="15sp">
+    </RelativeLayout>
 
-        </TextView>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_exp_veh"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_below="@+id/rl_cv"
+        android:background="@drawable/cv_soldcars"
+        android:backgroundTint="@color/v_light_brown"
+        >
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/label_exp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Repair Done"
+                android:textColor="@color/white"
+                android:textSize="15sp">
 
-        <TextView
-            android:id="@+id/label1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Request Inspection"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/white"
-            android:textSize="15sp">
+            </TextView>
 
-        </TextView>
-        <ImageView
-            android:id="@+id/iv_arrow1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/forward_white">
+            <TextView
+                android:id="@+id/label1_req"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Request Inspection"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/white"
+                android:textSize="15sp">
 
-        </ImageView>
+            </TextView>
+            <ImageView
+
+                android:id="@+id/iv_arrow3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/forward_white">
+
+            </ImageView>
     </RelativeLayout>
 </RelativeLayout>

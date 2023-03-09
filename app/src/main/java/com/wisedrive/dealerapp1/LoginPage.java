@@ -567,7 +567,6 @@ public class LoginPage extends AppCompatActivity
     private void hideKeybaord(){
         InputMethodManager inputManager = (InputMethodManager) LoginPage.this.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(LoginPage.this.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-
     }
 
     @Override

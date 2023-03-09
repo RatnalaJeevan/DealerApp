@@ -2,13 +2,16 @@ package com.wisedrive.dealerapp1.adapters.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wisedrive.dealerapp1.R;
@@ -70,7 +73,6 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
                     if (i == position)
                     {
                         subPackLists.get(i).setIsSelected("y");
-
                     } else {
                         subPackLists.get(i).setIsSelected("n");
                     }
@@ -87,9 +89,14 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
         if(subPackLists.get(position).getIsSelected().equals("n")){
             holder.tv_select.setVisibility(View.VISIBLE);
             holder.iv_buy_warranty.setVisibility(View.GONE);
+            holder.tv_sub_pack_name.setTextColor(Color.parseColor("#FF000000"));
+            holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.drawable.cv_black_border));
+
         }else{
             holder.tv_select.setVisibility(View.GONE);
             holder.iv_buy_warranty.setVisibility(View.VISIBLE);
+            holder.tv_sub_pack_name.setTextColor(Color.parseColor("#FFFFFFFF"));
+            holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.color.black));
         }
 
     }
@@ -103,11 +110,13 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView tv_sub_pack_name,tv_select;
         ImageView iv_buy_warranty;
+        RelativeLayout rl_whole;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_sub_pack_name=itemView.findViewById(R.id.tv_sub_pack_name);
             tv_select=itemView.findViewById(R.id.tv_select);
             iv_buy_warranty=itemView.findViewById(R.id.iv_buy_warranty);
+            rl_whole=itemView.findViewById(R.id.rl_whole);
         }
     }
 }

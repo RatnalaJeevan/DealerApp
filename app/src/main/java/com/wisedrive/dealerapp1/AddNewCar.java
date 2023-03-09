@@ -724,7 +724,8 @@ public class AddNewCar extends AppCompatActivity {
             }
         }
         AWSMobileClient.getInstance().initialize(activity).execute();
-        credentials = new BasicAWSCredentials(SPHelper.getSPData(activity,SPHelper.awskey,""), SPHelper.getSPData(activity,SPHelper.awssecret,""));
+        credentials = new BasicAWSCredentials(SPHelper.getSPData(activity,SPHelper.awskey,""),
+                SPHelper.getSPData(activity,SPHelper.awssecret,""));
         s3Client = new AmazonS3Client(credentials);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         mRequestPermissionHandler = new RequestPermissionHandler();
@@ -1361,6 +1362,7 @@ public class AddNewCar extends AppCompatActivity {
         dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         entered_ins_type.setAdapter(dataAdapter3);
     }
+
     public void servicecall_getbankname() {
         if(!Connectivity.isNetworkConnected(activity))
         {
@@ -1519,7 +1521,7 @@ public class AddNewCar extends AppCompatActivity {
                 imageLists.get(selectedObject).setFilename(String.valueOf(OriginalFileName));
                 adapterVehicleImages.notifyDataSetChanged();
             }
-                img1.setImageURI(imageUri);
+            img1.setImageURI(imageUri);
             idPBLoading.setVisibility(View.GONE);
         }
     }
@@ -1731,6 +1733,8 @@ public class AddNewCar extends AppCompatActivity {
             isServiceRunning = false;
         }
     }
+
+
     public void add_car()
     {
         JSONObject params = new JSONObject();

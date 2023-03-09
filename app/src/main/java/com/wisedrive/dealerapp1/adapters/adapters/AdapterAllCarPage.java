@@ -247,11 +247,12 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.tv_insp_on_date.setText(Common.getDateFromString(recyclerdata.getPackage_sold_on()));
                 holder.iv_edit.setVisibility(View.INVISIBLE);
                 holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
+                holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.text_color1));
                 holder.tv_cust_name.setTextColor(ContextCompat.getColorStateList(activity, R.color.white));
                 holder.v3.setVisibility(View.GONE);
                 holder.rl_sold_label.setVisibility(View.VISIBLE);
                 holder.rl_sold_label.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_soldcars));
-                holder.rl_sold_label.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.line2));
+                holder.rl_sold_label.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.black));
                // holder.tv_inspect_status.setBackground(activity.getDrawable(R.drawable.cardview_act_code));
                // holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.ab_green));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.ab_green));
@@ -266,14 +267,21 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.iv_edit.setVisibility(View.VISIBLE);
 
                 holder.rl_sold_label.setVisibility(View.GONE);
-                if(SPHelper.title.equals("Repair Request")){
+                if(SPHelper.title.equals("Repair Request"))
+                {
                     holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
-                    holder.rl_insp_req.setVisibility(View.VISIBLE);
+                    holder.rl_rep_req.setVisibility(View.VISIBLE);
                     holder.v3.setVisibility(View.GONE);
 
-                }else{
+                }
+                else if(SPHelper.title.equals("Expired Inspection List")){
+                    holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
+                    holder.rl_exp_veh.setVisibility(View.VISIBLE);
+                    holder.v3.setVisibility(View.GONE);
+                }
+                else{
                     holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_all_cars));
-                    holder.rl_insp_req.setVisibility(View.GONE);
+                    holder.rl_rep_req.setVisibility(View.GONE);
                     holder.v3.setVisibility(View.VISIBLE);
                 }
 
@@ -426,6 +434,20 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             });
 
+            holder.rl_exp_veh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerdata.getInspection_status_by_mechanic().equalsIgnoreCase("requested")){
+                        Common.CallToast(activity,"Vehicle is already requested for inspection",1);
+                    }else{
+                        SPHelper.vehno=recyclerdata.getVehicle_no();
+                        SPHelper.goneto="expired";
+                        Intent intent=new Intent(activity, RequestVehInspection.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        activity.startActivity(intent);
+                    }
+                }
+            });
             holder.rl_insp_req.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -475,7 +497,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
     {
         TextView tv_insp_on_date,tv_cust_name,tv_exta_img;
         ImageView iv_edit,iv1,iv2,iv3;
-        RelativeLayout rl_sold_label,rl_cv,rl_photos,rl_insp_req;
+        RelativeLayout rl_sold_label,rl_cv,rl_photos,rl_insp_req,rl_rep_req,rl_exp_veh;
         View v3;
         public TextView tv_make_model,tv_insu;
         ImageView brand_logo,transmission_type,iv_more,iv_haswarranty,iv_nowarranty;
@@ -486,6 +508,8 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
         LinearLayout linear_cp;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            rl_exp_veh=itemView.findViewById(R.id.rl_exp_veh);
+            rl_rep_req=itemView.findViewById(R.id.rl_rep_req);
             rl_insp_req=itemView.findViewById(R.id.rl_insp_req);
             linear_cp=itemView.findViewById(R.id.linear_cp);
             tv_exta_img=itemView.findViewById(R.id.tv_exta_img);

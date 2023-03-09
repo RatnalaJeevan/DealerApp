@@ -271,36 +271,7 @@ public class AllPayments extends AppCompatActivity {
         }
 
     }
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
-//        rv_all_payments.setLayoutManager(linearLayoutManager2);
-//        adapterAllPayments = new AdapterPaymentHistory(AllPayments.this, pojoAllPayments,rv_all_payments);
-//        rv_all_payments.setAdapter(adapterAllPayments);
-//        adapterAllPayments.setOnLoadMoreListener(new OnLoadMoreListener() {
-//            @Override
-//            public void onLoadMore() {
-//                if (pageno > 1) {
-//                    pojoAllPayments.add(null);
-//                    rv_all_payments.post(new Runnable() {
-//                        public void run() {
-//                            adapterAllPayments.notifyItemInserted(pojoAllPayments.size() - 1);
-//                            getpagination();
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//        getlist();
-//    }
-//
-////    @Override
-////    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-////        adapterAllPayments.stateRestorationPolicy = PREVENT_WHEN_EMPTY;
-////        super.onRestoreInstanceState(savedInstanceState);
-////
-////    }
+
 
     public static AllPayments getInstance() {
         return instance;

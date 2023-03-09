@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="800dp"
     tools:context=".Activate">
 
     <RelativeLayout
@@ -294,7 +294,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Name"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -344,7 +344,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Phone"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -370,7 +370,7 @@
                             android:id="@+id/rl_cust_location"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_below="@+id/rl_cust_no"
+                            android:layout_below="@+id/rl_adress"
                             android:layout_marginTop="10dp">
 
                             <ImageView
@@ -395,7 +395,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Location"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -420,7 +420,7 @@
                             android:id="@+id/rl_adress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/rl_cust_location"
+                            android:layout_below="@+id/rl_cust_no"
                             android:layout_marginTop="10dp">
 
                             <ImageView
@@ -445,7 +445,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Address"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -460,7 +460,7 @@
                                 android:paddingStart="8dp"
                                 android:paddingTop="8dp"
                                 android:textSize="16dp"
-                                android:maxLength="50"
+                                android:maxLength="100"
                                 android:textColor="@color/black"
                                 android:hint="Enter Dr-no, street, cross, main road"
                                 android:layout_below="@+id/iv_adress"
@@ -474,7 +474,7 @@
                             android:id="@+id/rl_pincode"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:layout_below="@+id/rl_adress"
+                            android:layout_below="@+id/rl_cust_location"
                             android:layout_marginTop="10dp">
 
                             <ImageView
@@ -499,7 +499,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="Pincode"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -549,7 +549,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="City"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -600,7 +600,7 @@
                                 android:fontFamily="@font/poppins_semibold"
                                 android:gravity="center"
                                 android:text="State"
-                                android:textColor="@color/lightgrey"
+                                android:textColor="@color/black"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -1105,12 +1105,13 @@
             <RelativeLayout
                 android:id="@+id/rl_next1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:padding="5dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
                 >
 
                 <TextView
@@ -1120,7 +1121,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Next"
                     android:textColor="@color/blue"
-                    android:textSize="13dp">
+                    android:textSize="15dp">
 
                 </TextView>
 
@@ -1147,7 +1148,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/cv_gradient3"
                 >
                 <TextView
@@ -1157,7 +1158,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="ACTIVATE"
                     android:textColor="@color/white"
-                    android:textSize="15dp">
+                    android:textSize="17dp">
 
                 </TextView>
             </RelativeLayout>
@@ -1166,9 +1167,10 @@
                 android:visibility="gone"
                 android:id="@+id/rl_back1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
+                android:layout_marginBottom="30dp"
                 android:padding="5dp">
 
                 <TextView
@@ -1178,7 +1180,7 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Back"
                     android:textColor="@color/black"
-                    android:textSize="13dp">
+                    android:textSize="15dp">
 
                 </TextView>
 
@@ -1204,7 +1206,6 @@
         android:indeterminateTint="@color/blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
     <RelativeLayout
         android:visibility="gone"
         android:id="@+id/rl_show_popup"

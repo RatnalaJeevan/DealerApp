@@ -37,7 +37,7 @@
     <string name="abt_exp_no">View Details</string>
     <string name="approved">Approved</string>
     <string name="re_inspect">Re-Inspect</string>
-    <string name="cooling_nperiod">Cooling\nPeriod</string>
+    <string name="cooling_nperiod">Approved\nCooling Period</string>
     <string-array name="rangeSlider">
         <item>2000</item>
         <item>2021</item>

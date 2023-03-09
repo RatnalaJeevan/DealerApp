@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
-        android:paddingBottom="20dp"
-        android:background="@drawable/cv_req_insp">
+        android:paddingBottom="50dp"
+        android:background="@color/text_color1">
 
 
         <ImageView
@@ -29,15 +29,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/back"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Get your car inspected before selling"
-            android:textColor="@color/white"
-            android:textSize="50dp">
+            android:gravity="end"
+            android:text="Get your car inspected \nbefore selling"
+            android:textColor="@color/black"
+            android:textSize="25dp">
 
         </TextView>
+
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/rl_down4"
@@ -261,14 +264,15 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="30dp"
                             android:paddingEnd="30dp"
-                            android:paddingTop="7dp"
-                            android:paddingBottom="7dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
                             android:layout_marginTop="20dp"
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/rl_no_ofcars"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/cv_req_insp"
+                            android:backgroundTint="@color/black"
                             >
                             <TextView
                                 android:id="@+id/tv_req_insp"
@@ -351,6 +355,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/cv_req_insp"
+                                android:backgroundTint="@color/black"
                                 >
                                 <TextView
                                     android:id="@+id/tv_check"

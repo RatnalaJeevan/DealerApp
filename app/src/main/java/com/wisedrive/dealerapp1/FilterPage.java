@@ -315,8 +315,6 @@ public class FilterPage extends AppCompatActivity {
         });
     }
 
-
-
     public  void get_carbrands_list() {
         {
             if (!Connectivity.isNetworkConnected(FilterPage.this)) {

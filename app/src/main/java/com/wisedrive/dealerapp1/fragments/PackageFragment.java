@@ -429,10 +429,10 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                             } else if (response_code.equals("300"))
                             {
                                  idPBLoading.setVisibility(View.GONE);
-                                SPHelper.cf_msg=appResponse.getResponse().getMessage();
+                                 SPHelper.cf_msg=appResponse.getResponse().getMessage();
                                  SPHelper.isSuccess="n";
-                                CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
-                                bottomSheetDialogFragment.show(PackageFragment.this.getParentFragmentManager(), "CongratsPage");
+                                 CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
+                                 bottomSheetDialogFragment.show(PackageFragment.this.getParentFragmentManager(), "CongratsPage");
                             }
                         } else{
                             idPBLoading.setVisibility(View.GONE);

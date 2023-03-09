@@ -101,11 +101,11 @@ public class RequestVehInspection extends AppCompatActivity {
         rl_transparent=findViewById(R.id.rl_transparent);
 
 
-        if(SPHelper.goneto.equals("repair")){
+        if(SPHelper.goneto.equals("repair")||SPHelper.goneto.equals("expired")){
             selected_vehno.setText(SPHelper.vehno);
             selected_veh_no.setText(SPHelper.vehno);
             req_page=3;
-            inspection_type="repair";
+            inspection_type=SPHelper.goneto;
             show_req_insp();
             rl_presale.setEnabled(false);
             rl_postsale.setEnabled(false);

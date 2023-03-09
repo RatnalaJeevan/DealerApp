@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/rl_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -18,7 +19,8 @@
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="30dp">
+        android:layout_marginEnd="20dp"
+        >
         <ImageView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
@@ -37,6 +39,71 @@
             >
 
         </ImageView>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_pack_selection"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/cardview_lightgrey_margined"
+            android:backgroundTint="@color/text_color1"
+
+            >
+
+            <TextView
+                android:id="@+id/bundle_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/c_v"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="Bundle"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <View
+                android:id="@+id/c_v"
+                android:layout_width="1px"
+                android:layout_height="1px"
+                android:layout_centerInParent="true">
+
+            </View>
+
+            <RelativeLayout
+                android:id="@+id/rl_activatewarranty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/c_v"
+                android:background="@drawable/cardview_lightgrey_margined"
+                android:backgroundTint="@color/black"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/activate_warranty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:lineSpacingExtra="3dp"
+                    android:text="Single"
+                    android:textColor="@color/white"
+                    android:textSize="15dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

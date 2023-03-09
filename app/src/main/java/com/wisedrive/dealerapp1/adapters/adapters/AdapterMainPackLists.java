@@ -43,7 +43,7 @@ public class AdapterMainPackLists extends RecyclerView.Adapter<AdapterMainPackLi
     @Override
     public AdapterMainPackLists.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_main_packages_list, parent, false);
-        view.getLayoutParams().width = (int) (getScreenWidth()/1.2);
+        //view.getLayoutParams().width = (int) (getScreenWidth()/1.2);
         return new RecyclerViewHolder(view);
 
     }
@@ -58,8 +58,8 @@ public class AdapterMainPackLists extends RecyclerView.Adapter<AdapterMainPackLi
         LinearLayoutManager layoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         holder.rv_veh_category.setLayoutManager(layoutManager);
         holder.rv_veh_category.setAdapter(adapterSubPackList);
-        Glide.with(context).load(pojoMainPackLists.get(position).getPackage_logo()).
-                placeholder(R.drawable.icon_noimage).into(holder.iv_buy_warranty);
+//        Glide.with(context).load(pojoMainPackLists.get(position).getPackage_logo()).
+//                placeholder(R.drawable.icon_noimage).into(holder.iv_buy_warranty);
 
         //if istarter is y,then packnmae is Starter Pack,label2 is display name
         //then normal

@@ -217,8 +217,7 @@ public class BuyBackGuarantee extends AppCompatActivity implements CFCheckoutRes
 
     }
 
-    public void check_addOnEligibility() {
-        {
+    public void check_addOnEligibility() {{
             if (!Connectivity.isNetworkConnected(BuyBackGuarantee.this)) {
                 Toast.makeText(BuyBackGuarantee.this,
                         "Plaese Check Your Internet",
@@ -420,11 +419,6 @@ public class BuyBackGuarantee extends AppCompatActivity implements CFCheckoutRes
             exception.printStackTrace();
         }
     }
-    public static BuyBackGuarantee getInstance() {
-        return instance;
-    }
-
-
 
     @Override
     public void onPaymentVerify(String orderID) {
@@ -440,4 +434,9 @@ public class BuyBackGuarantee extends AppCompatActivity implements CFCheckoutRes
         buyAddOnPack();
 
     }
+
+    public static BuyBackGuarantee getInstance() {
+        return instance;
+    }
+
 }

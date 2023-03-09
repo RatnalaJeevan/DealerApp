@@ -7,17 +7,14 @@
     android:background="@color/white"
     tools:context=".AddNewCar">
 
-
-
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
-        android:paddingBottom="10dp"
-        android:background="@drawable/cv_new_car"
+        android:paddingBottom="30dp"
+        android:background="@color/text_color1"
         >
-
 
         <ImageView
             android:id="@+id/back"
@@ -34,13 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/back"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_regular"
             android:text="You are \nadding a \nnew car..."
-            android:textColor="@color/white"
-            android:textSize="50dp">
+            android:textColor="@color/black"
+            android:textSize="25dp">
 
         </TextView>
     </RelativeLayout>
@@ -184,7 +182,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-
+            android:visibility="gone"
             android:id="@+id/rv_brand_logos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -373,7 +371,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_year"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="35dp"
                     android:layout_below="@+id/iv_manual"
                     android:layout_marginStart="20dp"
@@ -382,17 +380,19 @@
                     android:textSize="16dp"
                     android:gravity="center"
                     android:maxLength="4"
-                    android:background="@color/v_light_grey"
+                    android:popupBackground="@color/white"
+                    android:background="@color/text_color1"
                     >
 
                 </Spinner>
 
                 <ImageView
+
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_below="@+id/iv_manual"
                     android:layout_marginTop="38dp"
-
+                    android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/label_year"
                     android:src="@drawable/arrow_drop_down">
 
@@ -421,7 +421,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="10dp"
-                android:layout_toRightOf="@+id/selected_year"
+                android:layout_toRightOf="@+id/spinner_year"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
                 android:text="Year"
@@ -1001,6 +1001,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             >
 
             <TextView
@@ -1009,8 +1010,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Next"
-                android:textColor="@color/blue"
-                android:textSize="13dp">
+                android:textColor="@color/black"
+                android:textSize="15dp">
 
             </TextView>
 
@@ -1018,7 +1019,7 @@
                 android:layout_width="30dp"
                 android:layout_height="2dp"
                 android:layout_below="@+id/tv_next"
-                android:background="@color/blue">
+                android:background="@color/black">
 
             </View>
 
@@ -1038,6 +1039,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/cv_gradient3"
+            android:backgroundTint="@color/black"
             >
             <TextView
                 android:id="@+id/tv_add"
@@ -1065,6 +1067,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/cv_gradient3"
+            android:backgroundTint="@color/black"
             >
             <TextView
                 android:id="@+id/tv_edit"
@@ -1084,6 +1087,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:padding="5dp">
 
             <TextView
@@ -1093,7 +1097,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Back"
                 android:textColor="@color/black"
-                android:textSize="13dp">
+                android:textSize="15dp">
 
             </TextView>
 

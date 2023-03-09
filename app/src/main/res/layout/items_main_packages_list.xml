@@ -10,14 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:elevation="13dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
         android:background="@drawable/cv_gradient_main_pack"
+        android:backgroundTint="@color/text_color1"
         >
 
         <androidx.core.widget.NestedScrollView
@@ -28,6 +29,7 @@
                 android:layout_height="match_parent">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/iv_buy_warranty"
             android:layout_width="55dp"
             android:layout_height="55dp"
@@ -46,7 +48,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="One Warranty"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp">
 
         </TextView>
@@ -59,7 +61,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/poppins_regular"
             android:text="Choose any car"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="15dp">
 
         </TextView>

@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_profile,tv_home,tv_pack,tv_customer;
     LinearLayout layout_1,layout_2,layout_3,layout_4;
     ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
+    RelativeLayout rl_pack_selection;
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance=this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        rl_pack_selection=findViewById(R.id.rl_pack_selection);
         layout_2=findViewById(R.id.layout_2);
         layout_3=findViewById(R.id.layout_3);
         layout_4=findViewById(R.id.layout_4);
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_customer.setVisibility(View.GONE);
                 tv_profile.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
+                rl_pack_selection.setVisibility(View.GONE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_home));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
@@ -156,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_customer.setVisibility(View.GONE);
                 tv_profile.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
+                rl_pack_selection.setVisibility(View.VISIBLE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_pack));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
@@ -173,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_customer.setVisibility(View.VISIBLE);
                 tv_profile.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.VISIBLE);
+                rl_pack_selection.setVisibility(View.GONE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.selected_cust));
@@ -200,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_customer.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
                 tv_profile.setVisibility(View.VISIBLE);
+                rl_pack_selection.setVisibility(View.GONE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                 iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));

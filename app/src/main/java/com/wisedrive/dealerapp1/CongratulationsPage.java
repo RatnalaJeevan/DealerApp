@@ -62,6 +62,7 @@ public class CongratulationsPage extends BottomSheetDialogFragment {
                 dismiss();
             }
         });
+
         return v;
     }
 

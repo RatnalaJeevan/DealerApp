@@ -107,7 +107,6 @@ public class Activate extends BottomSheetDialogFragment {
     EditText entered_name,entered_no,cust_location,cust_adress,cust_pincode,entered_price,entered_pufr;
     public TextView selected_city,selected_state;
     private RequestPermissionHandler mRequestPermissionHandler;
-
     ArrayList<PojoOfferModuleList> offerModuleListArrayList=new ArrayList<>();
     ArrayList<PojoOfferModuleList> cashbackofferlist=new ArrayList<>();
     AdapterOfferModuleList adapterOfferModuleList;
@@ -255,7 +254,7 @@ public class Activate extends BottomSheetDialogFragment {
                 if(cust_pincode.getText().toString().length()==6){
                    // hideKeybaord();
                     get_pincode_details();
-                }else if(cust_adress.getText().toString().length()<6){
+                }else if(cust_pincode.getText().toString().length()<6){
                     selected_city.setText("");
                     selected_state.setText("");
                 }
@@ -1038,15 +1037,6 @@ public class Activate extends BottomSheetDialogFragment {
                     filename = OriginalFileName;
                     rc_front.setImageURI(imageUri);
 
-                    //imageUri=data.getData();
-//                    Uri uri = data.getData();
-//                    // This profile image i am storing into a sharedpreference
-//
-//                    SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.app_name)+"_ProfileDetails",MODE_PRIVATE).edit();
-//                    // save uri to shared preference
-//                    editor.putString("profilePicUrl",uri.toString());
-//                    editor.commit();
-//                    rc_front.setImageURI(uri);
                     if (!Connectivity.isNetworkConnected(activity)) {
                         idPBLoading.setVisibility(View.GONE);
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
@@ -1063,9 +1053,7 @@ public class Activate extends BottomSheetDialogFragment {
                         alert11.show();
                         return;
                     }
-                    File imageFile = new File(filename);
 
-                    Uri uri = Uri.fromFile(imageFile);
 
                     try {
                         idPBLoading.setVisibility(View.VISIBLE);

@@ -7,6 +7,7 @@
     android:background="@color/white">
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_tabs"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -68,224 +69,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/rl_buy_back"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@+id/rl_tabs"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:background="@drawable/cv_gradient3">
-
-        <ImageView
-            android:id="@+id/iv1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/buybag">
-
-        </ImageView>
-        <ImageView
-            android:id="@+id/iv2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/top_right_arrow"
-            android:layout_marginTop="15dp">
-
-        </ImageView>
-        <TextView
-            android:id="@+id/label_buy_guarantee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv1"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Buy Back\nGuarantee"
-            android:lineSpacingExtra="-10dp"
-            android:textColor="@color/white"
-            android:textSize="40dp">
-
-        </TextView>
-        <TextView
-            android:id="@+id/label_starts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_buy_guarantee"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Starts From"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/label_bbg_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_starts"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="3,456"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-        <TextView
-            android:id="@+id/label_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_toRightOf="@+id/label_bbg_amount"
-            android:layout_below="@+id/label_starts"
-            android:fontFamily="@font/poppins_regular"
-            android:text="INR"
-            android:textColor="@color/white"
-            android:textSize="12dp">
-
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/label_starts"
-            android:layout_marginStart="30dp"
-            android:layout_below="@+id/label_buy_guarantee"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Valid From"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/label_bbg_valid_till"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_starts"
-            android:layout_marginStart="30dp"
-            android:layout_toRightOf="@+id/label_starts"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="365 days"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/rl_showroom_warranty"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@+id/rl_buy_back"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:background="@drawable/cv_shroom">
-
-        <ImageView
-            android:id="@+id/iv3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/showrrom_sample">
-
-        </ImageView>
-        <ImageView
-            android:id="@+id/iv4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/top_right_arrow"
-            android:layout_marginTop="15dp">
-
-        </ImageView>
-        <TextView
-            android:id="@+id/label_showroom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv3"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="ShowRoom\nWarranty"
-            android:lineSpacingExtra="-10dp"
-            android:textColor="@color/white"
-            android:textSize="40dp">
-
-        </TextView>
-        <TextView
-            android:id="@+id/label_starts1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_showroom"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Starts From"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/label_shroom_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_starts1"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="3,456"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-        <TextView
-            android:id="@+id/label_currency1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="3dp"
-            android:layout_toRightOf="@+id/label_shroom_amount"
-            android:layout_below="@+id/label_starts1"
-            android:fontFamily="@font/poppins_regular"
-            android:text="INR"
-            android:textColor="@color/white"
-            android:textSize="12dp">
-
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/label_starts1"
-            android:layout_marginStart="30dp"
-            android:layout_below="@+id/label_showroom"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Valid From"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/label_showroom_valid_till"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/label_starts1"
-            android:layout_marginStart="30dp"
-            android:layout_toRightOf="@+id/label_starts1"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="365 days"
-            android:textColor="@color/white"
-            android:textSize="16dp">
-
-        </TextView>
-    </RelativeLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="gone"
         android:id="@+id/rv_add_on_lists"
@@ -317,7 +100,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/cv_gradient3">
+        android:background="@drawable/cv_gradient3"
+        android:backgroundTint="@color/black">
 
         <TextView
             android:id="@+id/label1"
@@ -382,7 +166,8 @@
             android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
             android:padding="7dp"
-            android:background="@drawable/cv_gradient1">
+            android:background="@drawable/cv_gradient1"
+            android:backgroundTint="@color/white">
 
             <TextView
 
@@ -392,7 +177,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
                 android:text="Pay Now"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="17dp">
 
             </TextView>

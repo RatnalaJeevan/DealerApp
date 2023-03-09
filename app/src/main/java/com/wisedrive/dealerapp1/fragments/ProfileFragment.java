@@ -41,7 +41,7 @@ public class ProfileFragment extends AppCompatActivity {
     TextView yes,no;
     TextView dealer_name,dealer_phoneno;
     ImageView go_back_home,edit_dealer;
-    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars;
+    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars,rl_edit_dealer;
     private  Dialog dialog;
     ProgressBar idPBLoading;
     private DealerApis apiInterface;
@@ -57,6 +57,7 @@ public class ProfileFragment extends AppCompatActivity {
         rl_pr_pol=findViewById(R.id.rl_pr_pol);
         rl_hns=findViewById(R.id.rl_hns);
         idPBLoading=findViewById(R.id.idPBLoading);
+        rl_edit_dealer=findViewById(R.id.rl_edit_dealer);
         edit_dealer=findViewById(R.id.edit_dealer);
         rl_all_cars=findViewById(R.id.rl_all_cars);
         rl_log_out=findViewById(R.id.rl_log_out);
@@ -153,7 +154,7 @@ public class ProfileFragment extends AppCompatActivity {
         dealer_name.setText(SPHelper.getSPData(ProfileFragment.this, SPHelper.dealername, ""));
         dealer_phoneno.setText(SPHelper.getSPData(ProfileFragment.this, SPHelper.dealerno, ""));
 
-        edit_dealer.setOnClickListener(new View.OnClickListener() {
+        rl_edit_dealer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SPHelper.camefrom="edit_d";
