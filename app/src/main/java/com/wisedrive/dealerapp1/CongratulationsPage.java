@@ -38,6 +38,7 @@ public class CongratulationsPage extends BottomSheetDialogFragment {
         rl_retry=v.findViewById(R.id.rl_retry);
         close=v.findViewById(R.id.close);
         label1.setText(SPHelper.cf_msg);
+        SPHelper.goneto="";
         if(SPHelper.isSuccess.equals("y")){
             rl_retry.setVisibility(View.GONE);
             iv_anim.setImageResource(R.drawable.success_anim);

@@ -22,18 +22,17 @@
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
             >
 
             <ImageView
                 android:id="@+id/go_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/ic_baseline_keyboard_backspace_24">
+                android:src="@drawable/back_arrow_black">
 
             </ImageView>
         </RelativeLayout>
@@ -123,7 +122,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="0"
         android:layout_marginEnd="30dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textSize="16dp">
 
     </TextView>
@@ -137,7 +136,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="10,00,000"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textSize="16dp">
 
     </TextView>
@@ -176,7 +175,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="0"
         android:layout_marginEnd="30dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textSize="16dp">
 
     </TextView>
@@ -190,7 +189,7 @@
         android:fontFamily="@font/poppins_regular"
         android:text="1,00,000"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:textSize="16dp">
 
     </TextView>
@@ -386,6 +385,7 @@
            android:layout_below="@+id/rv_insp_status"
             android:layout_centerHorizontal="true"
             android:background="@drawable/cv_gradient3"
+            android:backgroundTint="@color/black"
             >
 
             <ImageView

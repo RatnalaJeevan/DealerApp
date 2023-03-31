@@ -15,18 +15,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.jsibbold.zoomage.ZoomageView;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.PojOurServices;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoMainPackLists;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSubPackList;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
-public class AdapterMainPackLists extends RecyclerView.Adapter<AdapterMainPackLists.RecyclerViewHolder> {
+public class AdapterMainPackLists extends PagerAdapter
+{
 
+    RecyclerView rv_veh_category,rv_our_services;
+    TextView pack_name,label2;
+    RelativeLayout rl_tabs;
+    ImageView iv_buy_warranty;
     ArrayList<PojoMainPackLists> pojoMainPackLists;
     Context context;
     AdapterSubPackList adapterSubPackList;
@@ -39,42 +48,56 @@ public class AdapterMainPackLists extends RecyclerView.Adapter<AdapterMainPackLi
         this.context = context;
     }
 
-    @NonNull
     @Override
-    public AdapterMainPackLists.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_main_packages_list, parent, false);
-        //view.getLayoutParams().width = (int) (getScreenWidth()/1.2);
-        return new RecyclerViewHolder(view);
-
+    public int getCount() {
+        return pojoMainPackLists.size();
+    }
+    @Override
+    public void destroyItem(ViewGroup itemView, int position, Object view) {
+        itemView.removeView( (View)view);
+    }
+    @Override
+    public boolean isViewFromObject(@NonNull @NotNull View view, @NonNull @NotNull Object object) {
+        return view == ( object);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @NonNull
+    @NotNull
     @Override
-    public void onBindViewHolder(@NonNull AdapterMainPackLists.RecyclerViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public Object instantiateItem(@NonNull @NotNull ViewGroup viewGroup, int position)
+    {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.items_main_packages_list, viewGroup, false);
+
+        rv_veh_category=itemView.findViewById(R.id.rv_veh_category);
+        rv_our_services=itemView.findViewById(R.id.rv_our_services);
+        pack_name=itemView.findViewById(R.id.pack_name);
+        rl_tabs=itemView.findViewById(R.id.rl_tabs);
+        iv_buy_warranty=itemView.findViewById(R.id.iv_buy_warranty);
+        label2=itemView.findViewById(R.id.label2);
 
         pojoSubPackLists=new ArrayList<>();
         pojoSubPackLists=pojoMainPackLists.get(position).getPackCombList();
         adapterSubPackList=new AdapterSubPackList(context,pojoSubPackLists);
         LinearLayoutManager layoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-        holder.rv_veh_category.setLayoutManager(layoutManager);
-        holder.rv_veh_category.setAdapter(adapterSubPackList);
+        rv_veh_category.setLayoutManager(layoutManager);
+        rv_veh_category.setAdapter(adapterSubPackList);
 //        Glide.with(context).load(pojoMainPackLists.get(position).getPackage_logo()).
 //                placeholder(R.drawable.icon_noimage).into(holder.iv_buy_warranty);
 
         //if istarter is y,then packnmae is Starter Pack,label2 is display name
         //then normal
         //
-       if( pojoMainPackLists.get(position).getIs_starter_pack().equalsIgnoreCase("y")){
-           holder.label2.setText(pojoMainPackLists.get(position).getDisplay_name());
-           holder.pack_name.setText("Starter Pack");
+        if( pojoMainPackLists.get(position).getIs_starter_pack().equalsIgnoreCase("y")){
+            label2.setText(pojoMainPackLists.get(position).getDisplay_name());
+            pack_name.setText("Starter Pack");
 
-       }else{
-           holder.label2.setText(pojoMainPackLists.get(position).getPackage_type()+" "+"Pack");
-           holder.pack_name.setText(pojoMainPackLists.get(position).getDisplay_name());
+        }else{
+            label2.setText(pojoMainPackLists.get(position).getPackage_type()+" "+"Pack");
+            pack_name.setText(pojoMainPackLists.get(position).getDisplay_name());
 
-       }
+        }
 
-       //if quantuty is 1,then
+        //if quantuty is 1,then
 //        if(pojoMainPackLists.get(position).getPackage_id().equals("9")){
 //            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient_main_pack));
 //        }else if(pojoMainPackLists.get(position).getPackage_id().equals("11")){
@@ -88,45 +111,35 @@ public class AdapterMainPackLists extends RecyclerView.Adapter<AdapterMainPackLi
 //        }
 
         if(pojoMainPackLists.get(position).getStart_color().equals("e233ff")){
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_shroom));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_shroom));
         }else if(pojoMainPackLists.get(position).getStart_color().equals("402565")){
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient2));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient2));
         }else if(pojoMainPackLists.get(position).getStart_color().equals("0b63f6")){
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient4));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient4));
         }else if(pojoMainPackLists.get(position).getStart_color().equals("ff0076")){
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient_main_pack));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient_main_pack));
         }else if(pojoMainPackLists.get(position).getStart_color().equals("000066")){
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient3));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient3));
         }else{
-            holder.rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient5));
+            rl_tabs.setBackground(context.getDrawable(R.drawable.cv_gradient5));
         }
 
         pojOurServices=new ArrayList<>();
         pojOurServices=pojoMainPackLists.get(position).getDescriptionList();
         adapterOurServices=new AdapterOurServices(pojOurServices,context);
         LinearLayoutManager layoutManager1=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-        holder.rv_our_services.setLayoutManager(layoutManager1);
-        holder.rv_our_services.setAdapter(adapterOurServices);
-    }
+        rv_our_services.setLayoutManager(layoutManager1);
+        rv_our_services.setAdapter(adapterOurServices);
 
-    @Override
-    public int getItemCount() {
-        return pojoMainPackLists.size();
+        viewGroup.addView(itemView);
+        return itemView;
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
-        RecyclerView rv_veh_category,rv_our_services;
-        TextView pack_name,label2;
-        RelativeLayout rl_tabs;
-        ImageView iv_buy_warranty;
+
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            rv_veh_category=itemView.findViewById(R.id.rv_veh_category);
-            rv_our_services=itemView.findViewById(R.id.rv_our_services);
-            pack_name=itemView.findViewById(R.id.pack_name);
-            rl_tabs=itemView.findViewById(R.id.rl_tabs);
-            iv_buy_warranty=itemView.findViewById(R.id.iv_buy_warranty);
-            label2=itemView.findViewById(R.id.label2);
+
         }
     }
 

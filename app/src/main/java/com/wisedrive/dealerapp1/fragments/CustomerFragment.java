@@ -42,10 +42,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CustomerFragment extends Fragment {
+public class CustomerFragment extends Fragment
+{
     public  int pageno=0;
     ProgressBar progress_bar;
     Activity activity;
+    TextView tv_no_cars;
     ArrayList<PojoAllCarsList> customer_cars_list=new ArrayList<>();
     AdapterAllCarPage adapterAllCarPage;
     RecyclerView rv_all_cars;
@@ -64,6 +66,7 @@ public class CustomerFragment extends Fragment {
         SPHelper.status_id="99";
         SPHelper.comingfrom="customer";
         //SPHelper.selected_brandid="";
+        tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
         rv_all_cars=rootView.findViewById(R.id.rv_all_cars);
         progress_bar=rootView.findViewById(R.id.progress_bar);
         return rootView;
@@ -121,6 +124,7 @@ public class CustomerFragment extends Fragment {
                                 customer_cars_list.clear();
                                 if (tktobj.getJSONArray("AllInspectedVehWithStatus").length() > 0)
                                 {
+                                    tv_no_cars.setVisibility(View.GONE);
                                     for (int i = 0; i < tktobj.getJSONArray("AllInspectedVehWithStatus").length(); i++) {
                                         JSONObject apartment = tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i);
                                         PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
@@ -136,6 +140,8 @@ public class CustomerFragment extends Fragment {
                                             adapterAllCarPage.notifyDataSetChanged();
                                         }
                                     });
+                                }else {
+                                    tv_no_cars.setVisibility(View.VISIBLE);
                                 }
                             }
                             catch (JSONException e) {

@@ -58,11 +58,8 @@ public class PojoAllCarsList
 
     public PojoAllCarsList(JSONObject obj) throws JSONException
     {
-
         {
             try {
-
-
                 inspection_warranty_status=(obj.has("inspection_warranty_status")?obj.getString("inspection_warranty_status") : "");
                 inspection_status_by_mechanic=(obj.has("inspection_status_by_mechanic")?obj.getString("inspection_status_by_mechanic") : "");
                 vehicle_make=(obj.has("vehicle_make")?obj.getString("vehicle_make") : "");

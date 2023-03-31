@@ -6,7 +6,7 @@
     android:layout_height="500dp"
     tools:context=".VehicleImages">
 
-        <androidx.cardview.widget.CardView
+     <androidx.cardview.widget.CardView
             android:id="@+id/nsv1"
             android:layout_width="match_parent"
             android:layout_height="500dp"
@@ -23,7 +23,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Vehicle Images..."
-                    android:textColor="@color/blue"
+                    android:textColor="@color/black"
                     android:textSize="21dp">
                 </TextView>
                 <androidx.recyclerview.widget.RecyclerView
@@ -35,4 +35,5 @@
                 </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

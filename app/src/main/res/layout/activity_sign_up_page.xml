@@ -13,7 +13,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/rl_go_back"
+            android:layout_width="70dp"
+            android:layout_height="50dp">
+
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back_arrow_black">
+
+            </ImageView>
+
+        </RelativeLayout>
     <ImageView
+        android:visibility="gone"
         android:id="@+id/go_back_home"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -26,8 +43,8 @@
         android:id="@+id/rl_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/go_back_home"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/rl_go_back"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -43,13 +60,14 @@
 
         <TextView
             android:id="@+id/label_create"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_appicon"
             android:fontFamily="@font/zonapro_bold"
             android:gravity="start"
             android:text="Create\nAccount"
             android:textColor="@color/black"
-            android:textSize="50dp">
+            android:textSize="40dp">
 
         </TextView>
     </RelativeLayout>
@@ -79,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_below="@+id/tv_dealership_name"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 "
@@ -123,6 +142,8 @@
                 android:layout_height="25dp"
                 android:layout_below="@+id/tv_dealername"
                 android:layout_marginTop="10dp"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                 android:background="@null"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                 android:fontFamily="@font/zonapro_regular"
@@ -165,6 +186,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_phoneno"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:fontFamily="@font/zonapro_regular"
@@ -210,6 +233,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_mail"
                 android:layout_marginTop="10dp"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                 android:background="@null"
                 android:fontFamily="@font/zonapro_regular"
                 android:gravity="start"
@@ -267,6 +292,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                         android:background="@null"
                         android:fontFamily="@font/zonapro_bold"
                         android:gravity="center"
@@ -294,6 +321,8 @@
                         android:id="@+id/otp2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                         android:layout_weight="1"
                         android:background="@null"
                         android:fontFamily="@font/zonapro_bold"
@@ -319,6 +348,8 @@
                         android:id="@+id/otp3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                         android:layout_weight="0.5"
                         android:background="@null"
                         android:fontFamily="@font/zonapro_bold"
@@ -343,6 +374,8 @@
                         android:id="@+id/otp4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                         android:layout_weight="1"
                         android:background="@null"
                         android:fontFamily="@font/zonapro_bold"
@@ -366,7 +399,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/zonapro_semibold"
                 android:gravity="center"
-                android:text="Add Logo"
+                android:text="Dealer Logo"
                 android:textColor="@color/black"
                 android:textSize="18dp">
 
@@ -409,6 +442,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_below="@+id/tv_adres"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/cardview_lightgrey_margined"
                 android:fontFamily="@font/zonapro_regular"
@@ -444,6 +478,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_location"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:fontFamily="@font/zonapro_regular"
@@ -467,43 +503,13 @@
 
             </View>
 
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/line_10"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/centreline"
-                android:fontFamily="@font/zonapro_semibold"
-                android:gravity="center"
-                android:text="City"
-                android:textColor="@color/black"
-                android:textSize="18dp">
 
-            </TextView>
-
-            <TextView
-                android:id="@+id/selected_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_city"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/centreline"
-                android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
-                android:gravity="start"
-                android:hint="city"
-                android:textColor="@color/bg_missing_item_txt"
-                android:textSize="16sp">
-
-            </TextView>
 
             <View
                 android:id="@+id/centreline"
                 android:layout_width="1px"
                 android:layout_height="1px"
-                android:layout_below="@+id/selected_city"
+
                 android:layout_centerHorizontal="true"
                 android:background="@color/cement">
 
@@ -527,6 +533,8 @@
                 android:id="@+id/selected_pincode"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                 android:layout_below="@+id/tv_pincode"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
@@ -564,7 +572,7 @@
                 android:id="@+id/line_2"
                 android:layout_width="match_parent"
                 android:layout_height="2px"
-                android:layout_below="@+id/selected_city"
+                android:layout_below="@+id/selected_pincode"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@+id/centreline"
@@ -572,6 +580,37 @@
 
             </View>
 
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_2"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/centreline"
+                android:fontFamily="@font/zonapro_semibold"
+                android:gravity="center"
+                android:text="State"
+                android:textColor="@color/black"
+                android:textSize="18dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/selected_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_city"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/centreline"
+                android:background="@null"
+                android:fontFamily="@font/zonapro_regular"
+                android:gravity="start"
+                android:hint="state"
+                android:textColor="@color/bg_missing_item_txt"
+                android:textSize="16sp">
+
+            </TextView>
             <View
                 android:id="@+id/line_right"
                 android:layout_width="match_parent"
@@ -585,21 +624,21 @@
             </View>
 
             <TextView
-                android:id="@+id/tv_state"
+                android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/line_right"
+                android:layout_below="@+id/line_2"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/zonapro_semibold"
                 android:gravity="center"
-                android:text="State"
+                android:text="City"
                 android:textColor="@color/black"
                 android:textSize="18dp">
 
             </TextView>
 
             <TextView
-                android:id="@+id/selected_state"
+                android:id="@+id/selected_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_state"
@@ -609,7 +648,7 @@
                 android:background="@null"
                 android:fontFamily="@font/zonapro_regular"
                 android:gravity="start"
-                android:hint="state"
+                android:hint="city"
                 android:textColor="@color/bg_missing_item_txt"
                 android:textSize="16sp">
 
@@ -638,7 +677,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/cardview_dealership"
-                android:backgroundTint="@color/blue"
+                android:backgroundTint="@color/black"
                 android:fontFamily="@font/zonapro_semibold"
                 android:gravity="center"
                 android:padding="12dp"
@@ -674,7 +713,7 @@
                 android:fontFamily="@font/zonapro_semibold"
                 android:gravity="center"
                 android:text="RESEND"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:visibility="gone">
 
@@ -691,7 +730,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/cardview_dealership"
-                android:backgroundTint="@color/blue"
+                android:backgroundTint="@color/black"
                 android:fontFamily="@font/zonapro_semibold"
                 android:gravity="center"
                 android:padding="12dp"

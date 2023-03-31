@@ -72,74 +72,75 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration{
             return;
         }
 
-        int itemCount = adapter.getItemCount();
+
+
+
+
+        int itemCount = parent.getAdapter().getItemCount();
 
         // center horizontally, calculate width and subtract half from center
-        float totalLength = this.radius * 2 * itemCount;
+        float totalLength = mIndicatorItemLength * itemCount;
         float paddingBetweenItems = Math.max(0, itemCount - 1) * indicatorItemPadding;
         float indicatorTotalWidth = totalLength + paddingBetweenItems;
-        float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2f;
+        float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2F;
 
         // center vertically in the allotted space
-        float indicatorPosY = parent.getHeight() - indicatorHeight / 2f;
+        float indicatorPosY = parent.getHeight() - indicatorHeight / 2F;
 
+        drawInactiveDots(c, indicatorStartX, indicatorPosY, itemCount);
 
-       // drawInactiveDots(c, indicatorStartX, indicatorPosY, itemCount);
+        final int activePosition;
 
+        if (parent.getLayoutManager() instanceof GridLayoutManager) {
+            activePosition = ((GridLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
+        } else if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+            activePosition = ((LinearLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
+        } else {
+            // not supported layout manager
+            return;
+        }
 
-//        int itemCount = parent.getAdapter().getItemCount();
-//
-//        // center horizontally, calculate width and subtract half from center
-//        float totalLength = mIndicatorItemLength * itemCount;
-//        float paddingBetweenItems = Math.max(0, itemCount - 1) * mIndicatorItemPadding;
-//        float indicatorTotalWidth = totalLength + paddingBetweenItems;
-//        float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2F;
-
-        // center vertically in the allotted space
-       // float indicatorPosY = parent.getHeight() - mIndicatorHeight / 2F;
-
-        drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount);
-
-//        final int activePosition;
-//
-//        if (parent.getLayoutManager() instanceof GridLayoutManager) {
-//            activePosition = ((GridLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
-//        } else if (parent.getLayoutManager() instanceof LinearLayoutManager) {
-//            activePosition = ((LinearLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
-//        } else {
-//            // not supported layout manager
-//            return;
-//        }
-//
-//        if (activePosition == RecyclerView.NO_POSITION) {
-//            return;
-//        }
-//
-//        // find offset of active page if the user is scrolling
-//        final View activeChild = parent.getLayoutManager().findViewByPosition(activePosition);
-//        if (activeChild == null) {
-//            return;
-//        }
-//
-//        drawActiveDot(c, indicatorStartX, indicatorPosY, activePosition);
-
-        // find active page (which should be highlighted)
-        LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-        int activePosition = layoutManager.findFirstVisibleItemPosition();
         if (activePosition == RecyclerView.NO_POSITION) {
             return;
         }
 
-        // find offset of active page (if the user is scrolling)
-        final View activeChild = layoutManager.findViewByPosition(activePosition);
-        int left = activeChild.getLeft();
-        int width = activeChild.getWidth();
+        // find offset of active page if the user is scrolling
+        final View activeChild = parent.getLayoutManager().findViewByPosition(activePosition);
+        if (activeChild == null) {
+            return;
+        }
 
-        // on swipe the active item will be positioned from [-width, 0]
-        // interpolate offset for smooth animation
-        float progress = mInterpolator.getInterpolation(left * -1 / (float) width);
+        drawActiveDot(c, indicatorStartX, indicatorPosY, activePosition);
 
-        drawHighlights(c, indicatorStartX, indicatorPosY, activePosition, progress, itemCount);
+
+        //Line indicator
+
+//        int itemCount = adapter.getItemCount();
+//        // center horizontally, calculate width and subtract half from center
+//        float totalLength = this.radius * 2 * itemCount;
+//        float paddingBetweenItems = Math.max(0, itemCount - 1) * indicatorItemPadding;
+//        float indicatorTotalWidth = totalLength + paddingBetweenItems;
+//        float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2f;
+//
+//        // center vertically in the allotted space
+//        float indicatorPosY = parent.getHeight() - indicatorHeight / 2f;
+//        drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount);
+//        // find active page (which should be highlighted)
+//        LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+//        int activePosition = layoutManager.findFirstVisibleItemPosition();
+//        if (activePosition == RecyclerView.NO_POSITION) {
+//            return;
+//        }
+//
+//        // find offset of active page (if the user is scrolling)
+//        final View activeChild = layoutManager.findViewByPosition(activePosition);
+//        int left = activeChild.getLeft();
+//        int width = activeChild.getWidth();
+//
+//        // on swipe the active item will be positioned from [-width, 0]
+//        // interpolate offset for smooth animation
+//        float progress = mInterpolator.getInterpolation(left * -1 / (float) width);
+//        drawHighlights(c, indicatorStartX, indicatorPosY, activePosition, progress, itemCount);
     }
 
     private void drawHighlights(Canvas c, float indicatorStartX, float indicatorPosY,
@@ -206,8 +207,8 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration{
         mPaint.setColor(colorInactive);
         final float itemWidth = this.radius * 2 + indicatorItemPadding;
         float highlightStart = indicatorStartX + radius + itemWidth * highlightPosition;
-       // c.drawCircle(highlightStart, indicatorPosY, radius, activePaint);
-        c.drawLine(highlightStart, indicatorPosY, highlightStart + itemWidth, indicatorPosY, mPaint);
+        c.drawCircle(highlightStart, indicatorPosY, radius, activePaint);
+       // c.drawLine(highlightStart, indicatorPosY, highlightStart + itemWidth, indicatorPosY, mPaint);
     }
 
     @Override

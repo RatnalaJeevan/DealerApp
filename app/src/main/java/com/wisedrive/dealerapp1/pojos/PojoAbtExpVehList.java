@@ -1,5 +1,6 @@
 package com.wisedrive.dealerapp1.pojos;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,11 +41,12 @@ public class PojoAbtExpVehList {
     private String sold_price;
     private String  inspection_warranty_status;
     private String  inspection_status_by_mechanic;
-    private String cooling_period_kms;
+    private String  cooling_period_kms;
     private String  is_with_cooling_period;
     private String  cooling_period_days;
     private String  inspection_comments;
     private String  insurance_policy;
+    private JSONArray VehicleImages=new JSONArray();
     public PojoAbtExpVehList() {
     }
     public PojoAbtExpVehList(JSONObject obj) throws JSONException
@@ -100,6 +102,7 @@ public class PojoAbtExpVehList {
                 inspection_comments=(obj.has("inspection_comments")? obj.getString("inspection_comments") : "");
                 insurance_policy=(obj.has("insurance_policy")? obj.getString("insurance_policy") : "");
                 inspection_date=(obj.has("inspection_date")? obj.getString("inspection_date") : "");
+                VehicleImages=(obj.has("VehicleImages")?(obj.getJSONArray("VehicleImages")):new JSONArray());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -107,6 +110,9 @@ public class PojoAbtExpVehList {
         }
     }
 
+    public JSONArray getVehicleImages() {
+        return VehicleImages;
+    }
     public String getInspection_date() {
         return inspection_date;
     }

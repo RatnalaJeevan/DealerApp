@@ -33,7 +33,7 @@ public class CheckEligibility extends AppCompatActivity {
     TextView heading1,label1;
     GifImageView iv_anim;
     RelativeLayout rl_check_status,rl_open_addcar,rl_checkstatus,rl_add_car,rl_buy_warranty,rl_req_insp,
-            rl_check_gain;
+            rl_check_gain,rl_go_back;
     Activity activity;
     ImageView back;
     private DealerApis apiInterface;
@@ -47,6 +47,7 @@ public class CheckEligibility extends AppCompatActivity {
         setContentView(R.layout.activity_check_eligibility);
         activity=CheckEligibility.this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        rl_go_back=findViewById(R.id.rl_go_back);
         rl_checkstatus=findViewById(R.id.rl_checkstatus);
         entered_vehno=findViewById(R.id.entered_vehno);
         label1=findViewById(R.id.label1);
@@ -62,7 +63,6 @@ public class CheckEligibility extends AppCompatActivity {
 
         //5 sec
         rl_check_status.setOnClickListener(view -> {
-
             //if vehno is not mi
             if(entered_vehno.getText().toString().equals("")){
                 Toast.makeText(activity,
@@ -76,7 +76,8 @@ public class CheckEligibility extends AppCompatActivity {
                 check_eligibility();
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
+
+        rl_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

@@ -53,22 +53,22 @@ public class AdapterExpVehList extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         final MyViewHolder holder = (MyViewHolder) holderView;
         PojoExpVehList recylerdata=pojoExpVehLists.get(position);
-        holder.content.setText("Inspections expring in "+recylerdata.getDay_count()+"days");
+        holder.content.setText("Inspections expiring in "+recylerdata.getDay_count()+"days");
         holder.tv_count_exp_veh_list.setText(recylerdata.getVehicle_count());
-        if(recylerdata.getExpiry_list_id().equals("1")||recylerdata.getExpiry_list_id().equals("3")){
-            holder.tv_count_exp_veh_list.setTextColor(Color.parseColor("#696df6"));
-            holder.tv_count_exp_veh_list.setBackground(context.getDrawable(R.drawable.circle_white));
-            holder.tv_count_exp_veh_list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.color1));
-            holder.rl_buy_requests.setBackground(context.getDrawable(R.drawable.cv_new_car));
-           // holder.rl_buy_requests.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.color2));
-
-        }else if(recylerdata.getExpiry_list_id().equals("2")){
-            holder.tv_count_exp_veh_list.setTextColor(Color.parseColor("#cc70d8"));
-            holder.tv_count_exp_veh_list.setBackground(context.getDrawable(R.drawable.circle_white));
-            holder.tv_count_exp_veh_list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.color3));
-            holder.rl_buy_requests.setBackground(context.getDrawable(R.drawable.cv_gradient1));
-            //holder.rl_buy_requests.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.color4));
-        }
+//        if(recylerdata.getExpiry_list_id().equals("1")||recylerdata.getExpiry_list_id().equals("3")){
+//            holder.tv_count_exp_veh_list.setTextColor(Color.parseColor("#696df6"));
+//            holder.tv_count_exp_veh_list.setBackground(context.getDrawable(R.drawable.circle_white));
+//            holder.tv_count_exp_veh_list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.color1));
+//            holder.rl_buy_requests.setBackground(context.getDrawable(R.drawable.cv_new_car));
+//           // holder.rl_buy_requests.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.color2));
+//
+//        }else if(recylerdata.getExpiry_list_id().equals("2")){
+//            holder.tv_count_exp_veh_list.setTextColor(Color.parseColor("#cc70d8"));
+//            holder.tv_count_exp_veh_list.setBackground(context.getDrawable(R.drawable.circle_white));
+//            holder.tv_count_exp_veh_list.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.color3));
+//            holder.rl_buy_requests.setBackground(context.getDrawable(R.drawable.cv_gradient1));
+//            //holder.rl_buy_requests.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.color4));
+//        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

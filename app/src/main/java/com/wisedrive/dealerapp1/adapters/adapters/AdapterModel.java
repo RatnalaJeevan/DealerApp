@@ -41,7 +41,7 @@ public class AdapterModel extends RecyclerView.Adapter<AdapterModel.RecyclerView
             holder.car_model.setTextColor(context.getColor(R.color.lightgrey));
             holder.rl_insp.setBackground(context.getDrawable(R.drawable.map_border));
         }else{
-            holder.car_model.setTextColor(context.getColor(R.color.blue));
+            holder.car_model.setTextColor(context.getColor(R.color.black));
             holder.rl_insp.setBackground(context.getDrawable(R.drawable.blue_border));
         }
         holder.rl_insp.setOnClickListener(view -> {

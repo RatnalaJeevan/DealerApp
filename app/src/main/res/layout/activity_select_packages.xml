@@ -20,30 +20,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:background="@drawable/cv_select_pack">
+        android:background="@drawable/cv_select_pack"
+        android:backgroundTint="@color/text_color1">
 
+        <RelativeLayout
+            android:id="@+id/rl_go_back"
+            android:layout_width="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back_arrow_black">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/back_white_arrow">
+            </ImageView>
 
-        </ImageView>
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/back"
-            android:layout_marginStart="15dp"
+            android:layout_below="@+id/rl_go_back"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="Select\nPackage"
-            android:textColor="@color/white"
+            android:text="Select Package"
+            android:textColor="@color/black"
             android:textSize="40dp">
 
         </TextView>
@@ -85,6 +92,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:background="@drawable/cv_req_insp"
+        android:backgroundTint="@color/black"
         >
 
         <TextView
@@ -105,7 +113,7 @@
         android:id="@+id/idPBLoading"
         android:layout_centerInParent="true"
         android:indeterminate="true"
-        android:indeterminateTint="@color/blue"
+        android:indeterminateTint="@color/black"
         android:layout_width="30dp"
         android:layout_height="30dp" />
 </RelativeLayout>

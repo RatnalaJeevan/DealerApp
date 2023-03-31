@@ -330,7 +330,7 @@ public class LoginPage extends AppCompatActivity
                     hideKeybaord();
                     tv_login.setVisibility(View.VISIBLE);
                     tv_login.setBackground(getApplicationContext().getDrawable(R.drawable.cardview_dealership));
-                    tv_login.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.blue));
+                    tv_login.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.black));
                     tv_login.setTextColor(Color.parseColor("#FFFFFFFF"));
                 }else{
                     tv_login.setBackground(getApplicationContext().getDrawable(R.drawable.cardview_dealership));
@@ -413,7 +413,8 @@ public class LoginPage extends AppCompatActivity
                         String response_code = appResponse.getResponseType();
                         if (response.body()!=null)
                         {
-                            if (response_code.equals("200")) {
+                            if (response_code.equals("200"))
+                            {
                                 progressDialog.dismiss();
                                 SPHelper.saveSPdata(LoginPage.this, SPHelper.dealerid, appResponse.getResponse().getDealerInfo().getDealer_id());
                                 SPHelper.saveSPdata(LoginPage.this, SPHelper.dealership_name, appResponse.getResponse().getDealerInfo().getDealership_name());

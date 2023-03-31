@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import com.cashfree.pg.ui.api.CFDropCheckoutPayment;
 //import com.payu.checkoutpro.utils.PayUCheckoutProConstants;
 //import com.payu.ui.model.listeners.PayUCheckoutProListener;
 //import com.payu.ui.model.listeners.PayUHashGenerationListener;
+import com.google.android.material.tabs.TabLayout;
 import com.wisedrive.dealerapp1.CongratulationsPage;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterAddOnList;
@@ -58,7 +60,7 @@ import retrofit2.Response;
 
 public class PackageFragment extends Fragment implements CFCheckoutResponseCallback {
     public ArrayList<PojoMainPackLists> pojoMainPackLists;
-    AdapterMainPackLists adapterMainPackLists;
+   public AdapterMainPackLists adapterMainPackLists;
     ArrayList<PojoAddOnLists> pojoAddOnLists;
     AdapterAddOnList adapterAddOnList;
     RecyclerView rv_main_pack_lists,rv_add_on_lists;
@@ -73,6 +75,8 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
     CFSession.Environment cfEnvironment = CFSession.Environment.SANDBOX;
     String payment_status="",cforderid="";
     public String  gateway_id="",pack_type="Bundle";
+    ViewPager view_pager_2;
+    TabLayout indicator1;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +85,8 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
         View rootView = inflater.inflate(R.layout.fragment_package, container, false);
         activity=getActivity();
         instance=this;
+        indicator1= rootView.findViewById(R.id.indicator1);
+        view_pager_2= rootView.findViewById(R.id.view_pager_2);
         try {
             CFPaymentGatewayService.getInstance().setCheckoutCallback(this);
         } catch (CFException e) {
@@ -143,7 +149,7 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
             }
         });
         get_package_type();
-        get_add_onlist();
+       // get_add_onlist();
         return  rootView;
     }
 
@@ -165,16 +171,18 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                         assert appResponse != null;
                         String response_code = appResponse.getResponseType();
                         if (response.body() != null) {
-                            if (response_code.equals("200")) {
+                            if (response_code.equals("200"))
+                            {
                                 idPBLoading.setVisibility(View.GONE);
                                 //bundl elist
 
                                 pojoMainPackLists=new ArrayList<>();
                                 pojoMainPackLists=appResponse.getResponse().getDealerPackageList();
-                                LinearLayoutManager layoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-                                rv_main_pack_lists.setLayoutManager(layoutManager);
                                 adapterMainPackLists=new AdapterMainPackLists(pojoMainPackLists,getContext());
-                                rv_main_pack_lists.setAdapter(adapterMainPackLists);
+                                view_pager_2.setCurrentItem(0);
+                                view_pager_2.setAdapter(adapterMainPackLists);
+                                indicator1.setupWithViewPager(view_pager_2, true);
+                               // rv_main_pack_lists.setAdapter(adapterMainPackLists);
                                 //subpackagelist
                                 activity.runOnUiThread(new Runnable() {
                                     @Override
@@ -182,7 +190,6 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                                         adapterMainPackLists.notifyDataSetChanged();
                                     }
                                 });
-
                                 gateway_id=pojoMainPackLists.get(0).getActivegateway().getPayment_gateway_id();
 
 
@@ -317,6 +324,7 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
             }
         }
     }
+
     public void generate_hash(){
 
     }

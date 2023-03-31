@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class AdapterCarImageList extends RecyclerView.Adapter<AdapterCarImageList.RecyclerViewHolder> {
     ArrayList<PojoCarImageList> carImageLists;
     Context context;
-
+    public int adapter_position=0;
     public AdapterCarImageList(ArrayList<PojoCarImageList> carImageLists, Context context) {
         this.carImageLists = carImageLists;
         this.context = context;
@@ -30,15 +30,17 @@ public class AdapterCarImageList extends RecyclerView.Adapter<AdapterCarImageLis
     @NonNull
     @Override
     public AdapterCarImageList.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_car_imagelist, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_car_imagelist, parent,false);
         return new RecyclerViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCarImageList.RecyclerViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.car_image_position_name.setText(carImageLists.get(position).getName());
-        if (carImageLists.get(position).getImage() == null) {
+        if (carImageLists.get(position).getImage() == null)
+        {
             //uploaded_image.setImageURI(carImageLists.get(i).getImage());
+            holder.car_image_position.setImageResource(R.drawable.add_car_icon);
         } else {
             holder.car_image_position.setImageURI(carImageLists.get(position).getImage());
         }
@@ -47,12 +49,15 @@ public class AdapterCarImageList extends RecyclerView.Adapter<AdapterCarImageLis
             @Override
             public void onClick(View view) {
                 AddNewCar.getInstance().selectedObject=position;
+                adapter_position=position;
                 if (carImageLists.get(position).getImage() == null)
                 {
                     AddNewCar.getInstance().finalids.add(carImageLists.get(position).getId());
                    AddNewCar.getInstance().rl_show_popup.setVisibility(View.VISIBLE);
+                   AddNewCar.getInstance().img1.setImageResource(R.drawable.add_car_icon);
 
                 } else{
+                    AddNewCar.getInstance().img1.setImageURI(carImageLists.get(position).getImage());
                     AddNewCar.getInstance().rl_show_popup.setVisibility(View.VISIBLE);
                 }
             }

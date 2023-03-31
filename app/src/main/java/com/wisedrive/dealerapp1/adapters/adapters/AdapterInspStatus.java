@@ -45,7 +45,7 @@ public class AdapterInspStatus extends RecyclerView.Adapter<AdapterInspStatus.Re
             holder.iv_tick.setVisibility(View.GONE);
             holder.rl_insp.setBackground(context.getDrawable(R.drawable.map_border));
         }else{
-            holder.status_name.setTextColor(context.getColor(R.color.blue));
+            holder.status_name.setTextColor(context.getColor(R.color.black));
             holder.iv_tick.setVisibility(View.VISIBLE);
             holder.rl_insp.setBackground(context.getDrawable(R.drawable.blue_border));
 

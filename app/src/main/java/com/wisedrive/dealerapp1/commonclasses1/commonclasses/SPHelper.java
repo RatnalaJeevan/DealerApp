@@ -159,6 +159,9 @@ public class SPHelper {
     public  static  ArrayList<PojoAllCarBrands> pojoAllCarBrands=new ArrayList();
     public static ArrayList<PojoSample> selected_insp_statuses=new ArrayList<>();
     public static String gateway_id="";
+    public static String lat="";
+    public static String lon="";
+    public static String fragment_is="";
 
     private  static String spName="DealerApp1";
 

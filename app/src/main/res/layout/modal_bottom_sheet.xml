@@ -14,24 +14,31 @@
         android:background="@color/text_color1">
 
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/back_arrow_black">
+        <RelativeLayout
+            android:id="@+id/rl_go_back"
+            android:layout_width="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="50dp">
 
-        </ImageView>
 
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back_arrow_black">
+
+            </ImageView>
+
+        </RelativeLayout>
         <TextView
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/back"
+            android:layout_below="@+id/rl_go_back"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/poppins_regular"
             android:gravity="end"
@@ -74,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Pre-Sale"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/black"
                         android:textSize="14dp">
 
                     </TextView>
@@ -84,7 +91,7 @@
                         android:layout_width="25dp"
                         android:layout_height="2dp"
                         android:layout_below="@+id/tv_presale"
-                        android:background="@color/blue">
+                        android:background="@color/black">
 
                     </View>
 
@@ -116,7 +123,7 @@
                         android:layout_width="25dp"
                         android:layout_height="2dp"
                         android:layout_below="@+id/tv_postsale"
-                        android:background="@color/blue">
+                        android:background="@color/black">
 
                     </View>
                 </RelativeLayout>
@@ -132,7 +139,7 @@
                     android:gravity="center"
                     android:maxLength="15"
                     android:text="KA00AA0000"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/black"
                     android:textSize="15dp">
 
                 </TextView>
@@ -199,8 +206,9 @@
                                 android:layout_height="40dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginTop="10dp"
+                                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                                 android:textColor="@color/black"
-                                android:maxLength="2"
+                                android:maxLength="3"
                                 android:inputType="number"
                                 android:digits="1234567890"
                                 android:textSize="15dp"
@@ -323,6 +331,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:layout_marginTop="15dp"
+                                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                                 android:layout_below="@+id/label_reg_no"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey"
@@ -417,6 +426,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/cv_new_car"
+                            android:backgroundTint="@color/black"
                             >
                             <TextView
                                 android:id="@+id/tv_add_thiscar"
@@ -627,6 +637,8 @@
                                     android:id="@+id/cust_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
+                                    android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                                     android:layout_marginTop="10dp"
                                     android:layout_marginStart="20dp"
                                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz  "
@@ -680,10 +692,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
                                     android:layout_marginTop="10dp"
+                                    android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                                     android:layout_marginStart="20dp"
                                     android:fontFamily="@font/poppins_semibold"
                                     android:gravity="center"
-                                    android:inputType="phone"
+                                    android:inputType="number"
                                     android:maxLength="10"
                                     android:textColor="@color/black"
                                     android:textSize="15dp"
@@ -731,6 +744,7 @@
                                     android:id="@+id/cust_location"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
+                                    android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginStart="20dp"
                                     android:fontFamily="@font/poppins_semibold"
@@ -786,6 +800,8 @@
                                     android:layout_height="70dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginStart="20dp"
+                                    android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
+
                                     android:fontFamily="@font/poppins_semibold"
                                     android:paddingStart="10dp"
                                     android:paddingTop="10dp"
@@ -814,14 +830,13 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="40dp"
                 android:paddingEnd="40dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="9dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/cv_new_car"
+                android:backgroundTint="@color/black"
                 >
                 <TextView
                     android:id="@+id/tv_submit_insp"

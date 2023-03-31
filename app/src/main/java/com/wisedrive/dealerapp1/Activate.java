@@ -83,6 +83,8 @@ public class Activate extends BottomSheetDialogFragment {
     public int general_count,cashback_count,add_on_count;
     String offer_paymemnt_id="",offer_id="";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
+    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     public int fromWhere=0;
     private ProgressDialog progressDialog;
     private BasicAWSCredentials credentials;
@@ -116,7 +118,7 @@ public class Activate extends BottomSheetDialogFragment {
     private static Activate instance;
     ArrayList<PojoOfferarray> pojoOfferarray=new ArrayList();
     public RelativeLayout rl_show_popup,rl_transparent,rl_ok;
-    EditText entered_fastag_no;
+    EditText entered_fastag_no,entered_mail;
     ImageView pan_img,fast_tag_img;
 
     @SuppressLint({"SetTextI18n", "MissingInflatedId"})
@@ -232,6 +234,7 @@ public class Activate extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 act_no++;
+                //validate_customer();
                 show_act_pages();
                 System.out.println("act_no"+act_no);
             }
@@ -376,7 +379,15 @@ public class Activate extends BottomSheetDialogFragment {
                             " Enter Valid Phone Number",
                             Toast.LENGTH_SHORT).show();
                 }
-
+                else   if(entered_mail.getText().toString().equals(""))
+                {
+                    Toast.makeText(activity,
+                            " Enter Email",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if(!entered_mail.getText().toString().matches(emailpattern)){
+                    Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
+                }
                  else   if(cust_adress.getText().toString().equals(""))
                  {
                         Toast.makeText(activity,
@@ -450,8 +461,6 @@ public class Activate extends BottomSheetDialogFragment {
         return v;
     }
 
-
-
     public void get_pincode_details() {
         if(!Connectivity.isNetworkConnected(activity))
         {
@@ -504,6 +513,7 @@ public class Activate extends BottomSheetDialogFragment {
             });
         }
     }
+
     private void hideKeybaord(){
 
         InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -512,6 +522,7 @@ public class Activate extends BottomSheetDialogFragment {
     }
     private void init_params(View v)
     {
+        entered_mail=v.findViewById(R.id.entered_mail);
         rl_ok=v.findViewById(R.id.rl_ok);
         rl_show_popup=v.findViewById(R.id.rl_show_popup);
         rl_transparent=v.findViewById(R.id.rl_transparent);
@@ -593,7 +604,7 @@ public class Activate extends BottomSheetDialogFragment {
             rl_pur_details.setVisibility(View.GONE);
             rl_veh_docs.setVisibility(View.GONE);
             rl_cust_details.setVisibility(View.VISIBLE);
-            tv_cust.setTextColor(Color.parseColor("#0619c3"));
+            tv_cust.setTextColor(Color.parseColor("#FF000000"));
             tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
             tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
             tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
@@ -605,105 +616,260 @@ public class Activate extends BottomSheetDialogFragment {
             rl_activate.setVisibility(View.INVISIBLE);
             rl_back1.setVisibility(View.GONE);
 
-        }else if(act_no==2){
-
-            //validate_customer();
-            rl_offer_module.setVisibility(View.GONE);
-            rl_pur_details.setVisibility(View.GONE);
-            rl_veh_docs.setVisibility(View.VISIBLE);
-            rl_cust_details.setVisibility(View.GONE);
-            tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_docs.setTextColor(Color.parseColor("#0619c3"));
-            tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
-            v_cust.setVisibility(View.GONE);
-            v_offers.setVisibility(View.GONE);
-            v_docs.setVisibility(View.VISIBLE);
-            v_purchase.setVisibility(View.GONE);
-            rl_next1.setVisibility(View.VISIBLE);
-            rl_activate.setVisibility(View.INVISIBLE);
-            rl_back1.setVisibility(View.VISIBLE);
-        }else if(act_no==3){
-            rl_offer_module.setVisibility(View.GONE);
-            rl_pur_details.setVisibility(View.VISIBLE);
-            rl_veh_docs.setVisibility(View.GONE);
-            rl_cust_details.setVisibility(View.GONE);
-            tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_purchase.setTextColor(Color.parseColor("#0619c3"));
-            tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
-            v_cust.setVisibility(View.GONE);
-            v_offers.setVisibility(View.GONE);
-            v_docs.setVisibility(View.GONE);
-            v_purchase.setVisibility(View.VISIBLE);
-            rl_next1.setVisibility(View.VISIBLE);
-            rl_activate.setVisibility(View.INVISIBLE);
-            rl_back1.setVisibility(View.VISIBLE);
-        }else if(act_no==4){
-            rl_offer_module.setVisibility(View.VISIBLE);
-            rl_pur_details.setVisibility(View.GONE);
-            rl_veh_docs.setVisibility(View.GONE);
-            rl_cust_details.setVisibility(View.GONE);
-            tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_offers.setTextColor(Color.parseColor("#0619c3"));
-            v_cust.setVisibility(View.GONE);
-            v_offers.setVisibility(View.VISIBLE);
-            v_docs.setVisibility(View.GONE);
-            v_purchase.setVisibility(View.GONE);
-            rl_next1.setVisibility(View.INVISIBLE);
-            rl_activate.setVisibility(View.VISIBLE);
-            rl_back1.setVisibility(View.VISIBLE);
         }
-    }
-
-    public void validate_customer(){
-        boolean isdone=false;
-        if(entered_name.getText().toString().trim().equals("")){
-            Toast.makeText(activity,
-                    " Enter Customer name",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else if(entered_no.getText().toString().equals("")){
-            Toast.makeText(activity,
-                    " Enter Customer PhoneNo",
-                    Toast.LENGTH_SHORT).show();
-        }else if(entered_no.getText().toString().length()<10){
-            Toast.makeText(activity,
-                    " Enter Valid Phone Number",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else if(!entered_no.getText().toString().matches(mobile_no_pattern)){
-            Toast.makeText(activity,
-                    " Enter Valid Phone Number",
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        else   if(cust_adress.getText().toString().equals(""))
+        else if(act_no==2)
         {
-            Toast.makeText(activity,
-                    " enter address",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else if(cust_location.getText().toString().equals("")){
-            Toast.makeText(activity,
-                    "Enter Location",
-                    Toast.LENGTH_SHORT).show();
-        }
+            //validate_customer();
+            if(entered_name.getText().toString().trim().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer name",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer PhoneNo",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().length()<10){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_no.getText().toString().matches(mobile_no_pattern)){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else   if(entered_mail.getText().toString().equals(""))
+            {
+                Toast.makeText(activity,
+                        " Enter Email",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_mail.getText().toString().matches(emailpattern)){
+                Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
+            }
+            else   if(cust_adress.getText().toString().equals(""))
+            {
+                act_no--;
+                Toast.makeText(activity,
+                        " enter address",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(cust_location.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        "Enter Location",
+                        Toast.LENGTH_SHORT).show();
+            }
 
-        else if(cust_pincode.getText().toString().length()<6
-                ||selected_city.getText().toString().equals("")
-                ||selected_state.getText().toString().equals("")){
-            Toast.makeText(activity,
-                    " Enter valid pincode",
-                    Toast.LENGTH_SHORT).show();
-        }else{
-            act_no=2;
-            show_act_pages();
+            else if(cust_pincode.getText().toString().length()<6
+                    ||selected_city.getText().toString().equals("")
+                    ||selected_state.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter valid pincode",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else {
+                rl_offer_module.setVisibility(View.GONE);
+                rl_pur_details.setVisibility(View.GONE);
+                rl_veh_docs.setVisibility(View.VISIBLE);
+                rl_cust_details.setVisibility(View.GONE);
+                tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_docs.setTextColor(Color.parseColor("#FF000000"));
+                tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
+                v_cust.setVisibility(View.GONE);
+                v_offers.setVisibility(View.GONE);
+                v_docs.setVisibility(View.VISIBLE);
+                v_purchase.setVisibility(View.GONE);
+                rl_next1.setVisibility(View.VISIBLE);
+                rl_activate.setVisibility(View.INVISIBLE);
+                rl_back1.setVisibility(View.VISIBLE);
+            }
         }
+        else if(act_no==3)
+        {
+            if(entered_name.getText().toString().trim().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer name",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer PhoneNo",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().length()<10){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_no.getText().toString().matches(mobile_no_pattern)){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else  if(entered_mail.getText().toString().equals(""))
+            {
+                Toast.makeText(activity,
+                        " Enter Email",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_mail.getText().toString().matches(emailpattern)){
+                Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
+            }
+            else   if(cust_adress.getText().toString().equals(""))
+            {
+                act_no--;
+                Toast.makeText(activity,
+                        " enter address",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(cust_location.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        "Enter Location",
+                        Toast.LENGTH_SHORT).show();
+            }
 
+            else if(cust_pincode.getText().toString().length()<6
+                    ||selected_city.getText().toString().equals("")
+                    ||selected_state.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter valid pincode",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(rcfronturl.equals("")||rcbackurl.equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " upload rc",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(aadharfronturl.equals("")||aadharbackurl.equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " upload aadhar ",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else {
+                rl_offer_module.setVisibility(View.GONE);
+                rl_pur_details.setVisibility(View.VISIBLE);
+                rl_veh_docs.setVisibility(View.GONE);
+                rl_cust_details.setVisibility(View.GONE);
+                tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_purchase.setTextColor(Color.parseColor("#FF000000"));
+                tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
+                v_cust.setVisibility(View.GONE);
+                v_offers.setVisibility(View.GONE);
+                v_docs.setVisibility(View.GONE);
+                v_purchase.setVisibility(View.VISIBLE);
+                rl_next1.setVisibility(View.VISIBLE);
+                rl_activate.setVisibility(View.INVISIBLE);
+                rl_back1.setVisibility(View.VISIBLE);
+            }
+        }
+        else if(act_no==4)
+        {
+            if(entered_name.getText().toString().trim().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer name",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Customer PhoneNo",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(entered_no.getText().toString().length()<10){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_no.getText().toString().matches(mobile_no_pattern)){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter Valid Phone Number",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else   if(entered_mail.getText().toString().equals(""))
+            {
+                Toast.makeText(activity,
+                        " enter mail",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(!entered_mail.getText().toString().matches(emailpattern)){
+                Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
+            }
+            else   if(cust_adress.getText().toString().equals(""))
+            {
+                act_no--;
+                Toast.makeText(activity,
+                        " enter address",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(cust_location.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        "Enter Location",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            else if(cust_pincode.getText().toString().length()<6
+                    ||selected_city.getText().toString().equals("")
+                    ||selected_state.getText().toString().equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " Enter valid pincode",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(rcfronturl.equals("")||rcbackurl.equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " upload rc",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(aadharfronturl.equals("")||aadharbackurl.equals("")){
+                act_no--;
+                Toast.makeText(activity,
+                        " upload aadhar ",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else {
+                rl_offer_module.setVisibility(View.VISIBLE);
+                rl_pur_details.setVisibility(View.GONE);
+                rl_veh_docs.setVisibility(View.GONE);
+                rl_cust_details.setVisibility(View.GONE);
+                tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
+                tv_offers.setTextColor(Color.parseColor("#FF000000"));
+                v_cust.setVisibility(View.GONE);
+                v_offers.setVisibility(View.VISIBLE);
+                v_docs.setVisibility(View.GONE);
+                v_purchase.setVisibility(View.GONE);
+                rl_next1.setVisibility(View.INVISIBLE);
+                rl_activate.setVisibility(View.VISIBLE);
+                rl_back1.setVisibility(View.VISIBLE);
+            }
+        }
     }
+
+
     public  void validate_parameters(){
 
         boolean isselcted=false;
@@ -3149,6 +3315,7 @@ public class Activate extends BottomSheetDialogFragment {
             });
         }
     }
+
     public  void buy_offer(){
         {
             if(!Connectivity.isNetworkConnected(activity))
@@ -3246,6 +3413,7 @@ public class Activate extends BottomSheetDialogFragment {
                                 startActivity(intent);*/
                                 SPHelper.cf_msg=appResponse.getResponse().getMessage();
                                 SPHelper.isSuccess="activate";
+                                SPHelper.camefrom="";
                                 SPHelper.comingfrom="activated";
                                 Intent intent=new Intent(activity,MainActivity.class);
                                 startActivity(intent);

@@ -153,7 +153,8 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             if(pojoNewVehImgs.size()==0){
                 //Toast.makeText(activity,"empty",Toast.LENGTH_SHORT).show();
                 holder.rl_photos.setVisibility(View.INVISIBLE);
-            }else{
+            }
+            else{
                 holder.rl_photos.setVisibility(View.VISIBLE);
                 if(pojoNewVehImgs.size()==1){
                     holder.iv1.setVisibility(View.VISIBLE);
@@ -237,23 +238,20 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.tv_last_insp.setText(Common.getDateFromString(recyclerdata.getPackage_sold_on()));
                 holder.iv_edit.setVisibility(View.INVISIBLE);
                 holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
+                holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.bg_location));
                 holder.rl_sold_label.setVisibility(View.VISIBLE);
-               // holder.tv_inspect_status.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cardview_act_code));
-                //holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.ab_green));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.ab_green));
+                holder.tv_inspect_status.setVisibility(View.GONE);
             }else if(SPHelper.comingfrom.equals("customer"))
             {
                 holder.tv_last_insp.setText(Common.getDateFromString(recyclerdata.getPackage_sold_on()));
                 holder.iv_edit.setVisibility(View.INVISIBLE);
                 holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
-                holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.text_color1));
+                holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.bg_location));
                 holder.tv_cust_name.setTextColor(ContextCompat.getColorStateList(activity, R.color.white));
                 holder.rl_sold_label.setVisibility(View.VISIBLE);
                 holder.rl_sold_label.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_soldcars));
                 holder.rl_sold_label.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.black));
-               // holder.tv_inspect_status.setBackground(activity.getDrawable(R.drawable.cardview_act_code));
-               // holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.ab_green));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.ab_green));
+                holder.tv_inspect_status.setVisibility(View.GONE);
             }
             else {
                 if(recyclerdata.getInspection_date()==null||recyclerdata.getInspection_date().equals("null")||
@@ -270,52 +268,62 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 if(SPHelper.title.equals("Repair Request"))
                 {
                     holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_allcars));
+                    holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.bg_location));
                     holder.rl_rep_req.setVisibility(View.VISIBLE);
                     }
-
                 else{
                     holder.rl_cv.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_all_cars));
+                    holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.bg_location));
                     holder.rl_rep_req.setVisibility(View.GONE);
                     }
+
+                if(SPHelper.title.equals("Expired Inspection List")){
+                    holder.tv_inspect_status.setVisibility(View.VISIBLE);
+                }else{
+                    holder.tv_inspect_status.setVisibility(View.GONE);
+                }
 
             }
             //insp status
           //  holder.tv_insp_on_date.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cardview_act_code));
-            if(holder.tv_insp_on_date.getText().equals("Requested")){
-                holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.req_clr));
-                holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
+            if(holder.tv_insp_on_date.getText().equals("Requested"))
+            {
+                holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.black));
+                holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.black));
+               // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
             }
             else if(holder.tv_insp_on_date.getText().equals("Not Inspected")){
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
+               // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
             }
             else if(holder.tv_insp_on_date.getText().equals("Reinspect")||holder.tv_insp_on_date.getText().equals("Reinspection")){
-                holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.re_insp_clr));
-                holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.re_insp_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.re_insp_clr));
-            }else if(holder.tv_insp_on_date.getText().equals("Repair Requested")){
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
+              //  holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.re_insp_clr));
+            }
+            else if(holder.tv_insp_on_date.getText().equals("Repair requested")){
+                holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
+                holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
+               // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
             }
             else if(holder.tv_insp_on_date.getText().equals("Expired")){
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
+              //  holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                 holder.tv_insp_on_date.setText("EXPIRED");
                 holder.tv_inspect_status.setText("Req. Inspection");
             }
             else if(holder.tv_insp_on_date.getText().equals("In Review")){
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.req_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
-            }else{
+               // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
+            }
+            else{
                 //approved
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.app_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.app_clr));
-                holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.app_clr));
+               // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.app_clr));
             }
 
             //edit
@@ -365,7 +373,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 double kmsdriven= Double.parseDouble(recyclerdata.getOdometer());
                 int y=(int)kmsdriven;
                 kdriven = IndianCurrencyFormat.format(y);
-                holder.tv_kmsdriven.setText(kdriven+" "+"km");
+                holder.tv_kmsdriven.setText(kdriven);
             }
             //fuel
             holder.tv_fueltype.setText(recyclerdata.getFuel_type());
@@ -414,11 +422,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 SPHelper.veh_ispublic=recyclerdata.getIs_vehicle_public();
             }
 
-            if(SPHelper.title.equals("Expired Inspection List")){
-                holder.tv_inspect_status.setVisibility(View.VISIBLE);
-            }else{
-                holder.tv_inspect_status.setVisibility(View.GONE);
-            }
+
             holder.rl_sold_label.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -489,7 +493,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             holder.rl_reasons.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    AllCarsPage.getInstance().comments.setText("");
+                    AllCarsPage.getInstance().comments.setText(recyclerdata.getInspection_comments());
                     AllCarsPage.getInstance().dialog.show();
                 }
             });

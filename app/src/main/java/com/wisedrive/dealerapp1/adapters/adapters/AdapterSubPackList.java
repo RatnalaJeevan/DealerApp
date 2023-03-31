@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -28,6 +29,7 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
     ArrayList<PojoSubPackList> subPackLists;
     private DecimalFormat IndianCurrencyFormat;
     AdapterMainPackLists adapterMainPackLists;
+
     public AdapterSubPackList(Context context, ArrayList<PojoSubPackList> subPackLists) {
         this.context = context;
         this.subPackLists = subPackLists;
@@ -54,13 +56,13 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
 
         }else if(!quant.equals("1") && subpack.equalsIgnoreCase("any car")){
             holder.tv_sub_pack_name.setText(quant+"\t Bundle"+"("+subpack+")");
-
         }else{
             holder.tv_sub_pack_name.setText(quant+subpack);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 SPHelper.selected_sub_packid=subPackLists.get(position).getSub_package_id();
                 SPHelper.selected_main_pack_id=subPackLists.get(position).getMain_package_id();
                 SPHelper.finalamount=Double.parseDouble(subPackLists.get(position).getFinal_price());
@@ -68,21 +70,71 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
                 System.out.println("id"+SPHelper.product_id+SPHelper.selected_main_pack_id+
                         SPHelper.selected_sub_packid+SPHelper.finalamount+"d_id"+
                         SPHelper.getSPData(context, SPHelper.dealerid, ""));
-                for (int i=0;i<subPackLists.size();i++)
+               // make for loop of main pack list and inisde sub pack list and make it unselcted
+
+//                for (int i=0;i<PackageFragment.getInstance().pojoMainPackLists.size();i++)
+//                {
+//                    for(int j=0;j<PackageFragment.getInstance().pojoMainPackLists.get(i).getPackCombList().size();j++)
+//                    {
+//                        if(PackageFragment.getInstance().pojoMainPackLists.get(i).getPackCombList().get(j).getIsSelected().equals("y"))
+//                        {
+//                            PackageFragment.getInstance().pojoMainPackLists.get(i).getPackCombList().get(j).setIsSelected("y");
+//                        }
+////                        else
+////                        {
+////                            if(j==position)
+////                            {
+////                                if (PackageFragment.getInstance().pojoMainPackLists.get(i).getPackCombList().get(j).getIsSelected().equals("n"))
+////                                {
+////                                    PackageFragment.getInstance().pojoMainPackLists.get(i).getPackCombList().get(j).setIsSelected("n");
+////                                 }
+////                            }
+////                        }
+//                    }
+//                   PackageFragment.getInstance().adapterMainPackLists.notifyDataSetChanged();
+//                   // notifyDataSetChanged();
+//                }
+               // notifyDataSetChanged();
+
+              //  PackageFragment.getInstance().adapterMainPackLists.notifyDataSetChanged();
+                System.out.println("position"+subPackLists.get(position).getIsSelected());
+               if(subPackLists.get(position).getIsSelected().equals("y"))
                 {
-                    if (i == position)
+                    //subPackLists.get(position).setIsSelected("n");
+                    for (int i=0;i<subPackLists.size();i++)
                     {
-                        subPackLists.get(i).setIsSelected("y");
-                    } else {
-                        subPackLists.get(i).setIsSelected("n");
+                        if (i == position)
+                        {
+                            subPackLists.get(i).setIsSelected("n");
+                        }
+                    }
+                    PackageFragment.getInstance().price.setText("0");
+                    PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+"0"+"%");
+                }
+                else {
+                   // subPackLists.get(position).setIsSelected("y");
+                    for (int i=0;i<subPackLists.size();i++)
+                    {
+                        if (i == position)
+                        {
+                            subPackLists.get(i).setIsSelected("y");
+                        }
+                        else {
+                            subPackLists.get(i).setIsSelected("n");
+                        }
+                    }
+                    int x=(int)Double.parseDouble(subPackLists.get(position).getFinal_price());
+                    String s = IndianCurrencyFormat.format(x);
+                    PackageFragment.getInstance().price.setText(s);
+                    if(subPackLists.get(position).getPercentage_amount_saved()==null){
+                        PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+"0%");
+                    }else{
+                        int saved=(int)Double.parseDouble(subPackLists.get(position).getPercentage_amount_saved());
+                        PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+saved+"%");
                     }
                 }
                 notifyDataSetChanged();
-                int x=(int)Double.parseDouble(subPackLists.get(position).getFinal_price());
-                String s = IndianCurrencyFormat.format(x);
-                PackageFragment.getInstance().price.setText(s);
-                int saved=(int)Double.parseDouble(subPackLists.get(position).getPercentage_amount_saved());
-                PackageFragment.getInstance().percentage_amount_saved.setText("You saved upto "+saved+"%");
+               // notifyDataSetChanged();
             }
         });
 
@@ -98,7 +150,6 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
             holder.tv_sub_pack_name.setTextColor(Color.parseColor("#FFFFFFFF"));
             holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.color.black));
         }
-
     }
 
     @Override

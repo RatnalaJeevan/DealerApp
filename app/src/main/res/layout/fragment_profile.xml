@@ -48,7 +48,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/cv_header">
+        android:layout_below="@+id/cv_header"
+        android:layout_above="@+id/rl_log_out">
 
         <RelativeLayout
             android:id="@+id/rl_profile_complete"
@@ -94,7 +95,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="10dp"
             android:paddingTop="6dp"
-            android:paddingBottom="6dp"
+            android:paddingBottom="4dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
@@ -437,59 +438,62 @@
                 </TextView>
             </RelativeLayout>
 
-            <RelativeLayout
 
-                android:id="@+id/rl_log_out"
-                android:layout_width="155dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/rl_hns"
-
-                >
-
-                <TextView
-                    android:id="@+id/tv_check_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="Logout"
-                    android:textColor="@color/red"
-                    android:textSize="17dp">
-
-                </TextView>
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_log_out"
-                android:layout_toRightOf="@+id/label_v"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/app_version_name"
-                android:textColor="@color/black"
-                android:textSize="14dp">
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/label_v"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_log_out"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/poppins_regular"
-                android:text="version  "
-                android:textColor="@color/black"
-                android:textSize="14dp">
-
-            </TextView>
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+
+        android:id="@+id/rl_log_out"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/label_v"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_check_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Logout"
+            android:textColor="@color/red"
+            android:textSize="17dp">
+
+        </TextView>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/label_v"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/app_version_name"
+        android:textColor="@color/black"
+        android:textSize="14dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/label_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="version  "
+        android:textColor="@color/black"
+        android:textSize="14dp">
+
+    </TextView>
 
     <ProgressBar
         android:visibility="gone"

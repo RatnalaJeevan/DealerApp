@@ -53,7 +53,7 @@ public class FilterPage extends AppCompatActivity {
     RangeSlider price_range,kms_range;
     ImageView iv_diesel,iv_petrol,iv_manual,iv_auto;
     DealerApis apiInterface;
-    TextView max_price,max_kms,reset,min_price,min_kms;
+    TextView max_price,max_kms,reset,min_price,min_kms,label_insp_status;
     RelativeLayout rl_apply,rl_back;
     private DecimalFormat IndianCurrencyFormat;
     String fuel_id="",trans_id="",kms_from="",kms_to="",price_from="",price_to="";
@@ -65,6 +65,7 @@ public class FilterPage extends AppCompatActivity {
         IndianCurrencyFormat = new DecimalFormat("##,##,###");
 
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        label_insp_status=findViewById(R.id.label_insp_status);
         reset=findViewById(R.id.reset);
         rl_apply=findViewById(R.id.rl_apply);
         rl_back=findViewById(R.id.rl_back);
@@ -85,13 +86,20 @@ public class FilterPage extends AppCompatActivity {
 //        selected_branndid=selected_branndid.replace(",","");
 
         get_carbrands_list();
-        get_warrantyList();
+        if(SPHelper.comingfrom.equals("all")){
+            label_insp_status.setVisibility(View.VISIBLE);
+            rv_insp_status.setVisibility(View.VISIBLE);
+            get_warrantyList();
 
+        }else{
+            label_insp_status.setVisibility(View.GONE);
+            rv_insp_status.setVisibility(View.GONE);
+        }
 
         price_range.setCustomThumbDrawable(R.drawable.circle_blue);
         kms_range.setCustomThumbDrawable(R.drawable.circle_blue);
-        price_range.setTrackActiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.blue));
-        kms_range.setTrackActiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.blue));
+        price_range.setTrackActiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.black));
+        kms_range.setTrackActiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.black));
         kms_range.setTrackInactiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.lightgrey));
         price_range.setTrackInactiveTintList(ContextCompat.getColorStateList(FilterPage.this, R.color.lightgrey));
        // kms_range.setTrackHeight(10);
@@ -109,15 +117,18 @@ public class FilterPage extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                if(SPHelper.comingfrom.equals("customer")){
-
-                    Intent intent=new Intent(FilterPage.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                else {
-                    Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
-                    startActivity(intent);
-                }
+//                if(SPHelper.comingfrom.equals("customer")){
+//
+//                    Intent intent=new Intent(FilterPage.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//                else {
+//                    Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+                finish();
             }
         });
         price_range.setLabelFormatter(new LabelFormatter() {
@@ -128,24 +139,24 @@ public class FilterPage extends AppCompatActivity {
             }
         });
         if(SPHelper.fuel_id.equals("1")){
-            iv_petrol.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+            iv_petrol.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
             iv_petrol.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
             iv_diesel.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_diesel.setImageDrawable(null);
         }else if(SPHelper.fuel_id.equals("2")){
-            iv_diesel.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+            iv_diesel.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
             iv_diesel.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
             iv_petrol.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_petrol.setImageDrawable(null);
         }
 
         if(SPHelper.trans_id.equals("1")){
-            iv_manual.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+            iv_manual.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
             iv_manual.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
             iv_auto.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_auto.setImageDrawable(null);
         }else if(SPHelper.trans_id.equals("2")){
-            iv_auto.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+            iv_auto.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
             iv_auto.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
             iv_manual.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_manual.setImageDrawable(null);
@@ -156,7 +167,7 @@ public class FilterPage extends AppCompatActivity {
             public void onClick(View view) {
                 //map border
                 fuel_id="2";
-                iv_diesel.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+                iv_diesel.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
                 iv_diesel.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
                 iv_petrol.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                 iv_petrol.setImageDrawable(null);
@@ -168,7 +179,7 @@ public class FilterPage extends AppCompatActivity {
             public void onClick(View view) {
 
                 fuel_id="1";
-                iv_petrol.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+                iv_petrol.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
                 iv_petrol.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
                 iv_diesel.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                 iv_diesel.setImageDrawable(null);
@@ -180,7 +191,7 @@ public class FilterPage extends AppCompatActivity {
             public void onClick(View view) {
                 //id=2
                 trans_id="2";
-                iv_auto.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+                iv_auto.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
                 iv_auto.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
                 iv_manual.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                 iv_manual.setImageDrawable(null);
@@ -191,7 +202,7 @@ public class FilterPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                trans_id="1";
-                iv_manual.setImageDrawable(FilterPage.this.getDrawable(R.drawable.blue_tick));
+                iv_manual.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
                 iv_manual.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
                 iv_auto.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                 iv_auto.setImageDrawable(null);
@@ -214,10 +225,12 @@ public class FilterPage extends AppCompatActivity {
                 if(SPHelper.comingfrom.equals("customer")){
                     Intent intent=new Intent(FilterPage.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -306,10 +319,12 @@ public class FilterPage extends AppCompatActivity {
 
                     Intent intent=new Intent(FilterPage.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -339,38 +354,45 @@ public class FilterPage extends AppCompatActivity {
                                 String max_odo=appResponse.getResponse().getPriceKmDetails().getMax_odometer();
                                 String min_sold=appResponse.getResponse().getPriceKmDetails().getMin_sold_price();
                                 double max_sold=appResponse.getResponse().getPriceKmDetails().getMax_sold_price();
+                                if(min_odo==null){
 
-                                double d2= Double.parseDouble(min_odo);
-                                int y1=(int)d2;
-                                String s3 = IndianCurrencyFormat.format(y1);
-                                min_kms.setText(s3);
-                                double d1= Double.parseDouble(max_odo);
-                                int y=(int)d1;
-                                String s1 = IndianCurrencyFormat.format(y);
-                                max_kms.setText(s1);
+                                }else {
+                                    double d2= Double.parseDouble(min_odo);
+                                    int y1=(int)d2;
+                                    String s3 = IndianCurrencyFormat.format(y1);
+                                    min_kms.setText(s3);
+                                }
 
+                                if(max_odo==null){
 
-                                double d3= Double.parseDouble(min_sold);
-                                int y3=(int)d3;
-                                String s4 = IndianCurrencyFormat.format(y3);
-                                min_price.setText(s4);
+                                }else {
+                                    double d1= Double.parseDouble(max_odo);
+                                    int y=(int)d1;
+                                    String s1 = IndianCurrencyFormat.format(y);
+                                    max_kms.setText(s1);
+                                }
 
-                               // int x=(int)max_sold;
-                               // String s2 = IndianCurrencyFormat.format(x);
-                                BigDecimal bigDecimal = new BigDecimal(max_sold);// form to BigDecimal
-                                String str=bigDecimal.toString();
-                                int str1=Integer.parseInt(str);
-                                //String final_price=String.format("%.0f",max_sold);
-                                max_price.setText(IndianCurrencyFormat.format(str1));
+                                if(min_sold==null){
 
-                                System.out.println("max_price"+max_price);
-                               // Double d = 1.1760481E7;
+                                }else {
+                                    double d3= Double.parseDouble(min_sold);
+                                    int y3=(int)d3;
+                                    String s4 = IndianCurrencyFormat.format(y3);
+                                    min_price.setText(s4);
+                                }
 
-                                //System.out.println(String.format("%.0f", d));
-//                                kms_range.setValues(0F,100000F);
-//                                price_range.setValues(0F, 10000000F);
-                               // kms_range.setValues(0F,Float.parseFloat(String.valueOf(y)));
-                                //price_range.setValues(0F, Float.parseFloat(str));
+                                if(String.valueOf(max_sold)==null){
+
+                                }else {
+                                    BigDecimal bigDecimal = new BigDecimal(max_sold);// form to BigDecimal
+                                    String str=bigDecimal.toString();
+                                    int str1=Integer.parseInt(str);
+                                    //String final_price=String.format("%.0f",max_sold);
+                                    max_price.setText(IndianCurrencyFormat.format(str1));
+
+                                    System.out.println("max_price"+max_price);
+                                }
+
                                 brandlogos=appResponse.getResponse().getDealerBrandList();
                                 if(SPHelper.pojoAllCarBrands.isEmpty()){
                                     SPHelper.pojoAllCarBrands=brandlogos;
@@ -467,14 +489,17 @@ public class FilterPage extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(SPHelper.comingfrom.equals("customer")){
-
-            Intent intent=new Intent(FilterPage.this, MainActivity.class);
-            startActivity(intent);
-        }
-        else {
-            Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
-            startActivity(intent);
-        }
+//        if(SPHelper.comingfrom.equals("customer")){
+//
+//            Intent intent=new Intent(FilterPage.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//        else {
+//            Intent intent=new Intent(FilterPage.this, AllCarsPage.class);
+//            startActivity(intent);
+//            finish();
+//        }
+        finish();
     }
 }

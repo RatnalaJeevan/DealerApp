@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout layout_1,layout_2,layout_3,layout_4;
     ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
     RelativeLayout rl_pack_selection,rl_single,rl_bundle;
+    int count1=0,count2=0,count3=0;
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         iv_profile=findViewById(R.id.iv_profile);
         iv_filter=findViewById(R.id.iv_filter);
 
-        if(SPHelper.camefrom.equals("filter")){
+        if(SPHelper.camefrom.equals("filter"))
+        {
+            count3=1;
             tv_home.setVisibility(View.GONE);
             tv_pack.setVisibility(View.GONE);
             tv_customer.setVisibility(View.VISIBLE);
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             iv_filter.setVisibility(View.VISIBLE);
         }
         else if(SPHelper.camefrom.equals("no_pack")){
+            count2=1;
             tv_home.setVisibility(View.GONE);
             tv_pack.setVisibility(View.VISIBLE);
             tv_customer.setVisibility(View.GONE);
@@ -117,14 +121,15 @@ public class MainActivity extends AppCompatActivity {
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
 
         }else if(SPHelper.comingfrom.equals("added")){
-
+            count1=1;
             iv_filter.setVisibility(View.GONE);
             replaceFragment(new HomeFragment());
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
         }
-        else if(SPHelper.comingfrom.equals("activated")){
-
+        else if(SPHelper.comingfrom.equals("activated"))
+        {
+            count1=1;
             iv_filter.setVisibility(View.GONE);
             replaceFragment(new HomeFragment());
             SoldVehDetails bottomSheetDialogFragment = new SoldVehDetails();
@@ -134,77 +139,100 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
+            count1=1;
+            SPHelper.fragment_is="home";
             iv_filter.setVisibility(View.GONE);
             replaceFragment(new HomeFragment());
 
         }
-        layout_1.setOnClickListener(new View.OnClickListener() {
+        layout_1.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                tv_home.setVisibility(View.VISIBLE);
-                tv_pack.setVisibility(View.GONE);
-                tv_customer.setVisibility(View.GONE);
-                tv_profile.setVisibility(View.GONE);
-                iv_filter.setVisibility(View.GONE);
-                rl_pack_selection.setVisibility(View.GONE);
-                iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.home_selected_black));
-                iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
-                iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
-                iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
-                replaceFragment(new HomeFragment());
-                SPHelper.camefrom="";
-                SPHelper.comingfrom="";
+                if(count1==0) {
+                    tv_home.setVisibility(View.VISIBLE);
+                    tv_pack.setVisibility(View.GONE);
+                    tv_customer.setVisibility(View.GONE);
+                    tv_profile.setVisibility(View.GONE);
+                    iv_filter.setVisibility(View.GONE);
+                    rl_pack_selection.setVisibility(View.GONE);
+                    iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.home_selected_black));
+                    iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
+                    iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
+                    iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
+                    replaceFragment(new HomeFragment());
+                    SPHelper.camefrom = "";
+                    SPHelper.comingfrom = "";
+                    SPHelper.fragment_is = "home";
+                    count1=1;
+                    count2=0;
+                    count3=0;
+                }
             }
         });
         layout_2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                tv_home.setVisibility(View.GONE);
-                tv_pack.setVisibility(View.VISIBLE);
-                tv_customer.setVisibility(View.GONE);
-                tv_profile.setVisibility(View.GONE);
-                iv_filter.setVisibility(View.GONE);
-                rl_pack_selection.setVisibility(View.VISIBLE);
-                iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
-                iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
-                iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
-                iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
-                SPHelper.camefrom="";
-                SPHelper.comingfrom="";
-                replaceFragment(new PackageFragment());
+            public void onClick(View view)
+            {
+               if(count2==0) {
+                   tv_home.setVisibility(View.GONE);
+                   tv_pack.setVisibility(View.VISIBLE);
+                   tv_customer.setVisibility(View.GONE);
+                   tv_profile.setVisibility(View.GONE);
+                   iv_filter.setVisibility(View.GONE);
+                   rl_pack_selection.setVisibility(View.VISIBLE);
+                   iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
+                   iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
+                   iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
+                   iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
+                   SPHelper.camefrom = "";
+                   SPHelper.comingfrom = "";
+                   SPHelper.fragment_is = "pack";
+                   replaceFragment(new PackageFragment());
+                   count2=1;
+                   count1=0;
+                   count3=0;
+               }
             }
         });
         layout_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv_home.setVisibility(View.GONE);
-                tv_pack.setVisibility(View.GONE);
-                tv_customer.setVisibility(View.VISIBLE);
-                tv_profile.setVisibility(View.GONE);
-                iv_filter.setVisibility(View.VISIBLE);
-                rl_pack_selection.setVisibility(View.GONE);
-                iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
-                iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
-                iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.customers_black));
-                iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
-                SPHelper.camefrom="";
-                SPHelper.comingfrom="";
-                SPHelper.pojoAllCarBrands=new ArrayList<>();
-                SPHelper.fuel_id="";
-                SPHelper.trans_id="";
-                SPHelper.price_from= "";
-                SPHelper.price_to= "";
-                SPHelper.kms_from="";
-                SPHelper.kms_to="";
-                SPHelper.selected_insp_status="";
-                SPHelper.selected_brandid="";
-                SPHelper.selected_insp_statuses=new ArrayList<>();
-                replaceFragment(new CustomerFragment());
+                if(count3==0) {
+                    tv_home.setVisibility(View.GONE);
+                    tv_pack.setVisibility(View.GONE);
+                    tv_customer.setVisibility(View.VISIBLE);
+                    tv_profile.setVisibility(View.GONE);
+                    iv_filter.setVisibility(View.VISIBLE);
+                    rl_pack_selection.setVisibility(View.GONE);
+                    iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
+                    iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
+                    iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.customers_black));
+                    iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
+                    SPHelper.fragment_is = "cust";
+                    SPHelper.camefrom = "";
+                    SPHelper.comingfrom = "";
+                    SPHelper.pojoAllCarBrands = new ArrayList<>();
+                    SPHelper.fuel_id = "";
+                    SPHelper.trans_id = "";
+                    SPHelper.price_from = "";
+                    SPHelper.price_to = "";
+                    SPHelper.kms_from = "";
+                    SPHelper.kms_to = "";
+                    SPHelper.selected_insp_status = "";
+                    SPHelper.selected_brandid = "";
+                    SPHelper.selected_insp_statuses = new ArrayList<>();
+                    replaceFragment(new CustomerFragment());
+                    count3=1;
+                    count2=0;
+                    count1=0;
+                }
             }
         });
         layout_4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 tv_home.setVisibility(View.GONE);
                 tv_pack.setVisibility(View.GONE);
                 tv_customer.setVisibility(View.GONE);
@@ -216,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
                 iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
                 SPHelper.camefrom="";
                 SPHelper.comingfrom="";
+                SPHelper.fragment_is="profile";
                 Intent intent=new Intent(MainActivity.this, ProfileFragment.class);
                 startActivity(intent);
             }

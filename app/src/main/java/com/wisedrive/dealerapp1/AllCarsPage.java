@@ -52,7 +52,8 @@ public class AllCarsPage extends AppCompatActivity {
     RecyclerView rv_veh_imgs;
     public RelativeLayout rl_transparent1,rl_show_veh_images;
     public Dialog dialog;
-   public TextView comments;
+   public TextView comments,tv_no_cars;
+    int count1=0,count2=0,count3=0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class AllCarsPage extends AppCompatActivity {
         iv_filter=findViewById(R.id.iv_filter);
         rv_all_cars=findViewById(R.id.rv_all_cars);
         rl_parent=findViewById(R.id.rl_parent);
+        tv_no_cars=findViewById(R.id.tv_no_cars);
         heading=findViewById(R.id.heading);
         rl_transparent1=findViewById(R.id.rl_transparent1);
         rl_show_veh_images=findViewById(R.id.rl_show_veh_images);
@@ -75,7 +77,7 @@ public class AllCarsPage extends AppCompatActivity {
         dialog.setContentView(R.layout.pop_up_comments);
         dialog.setCancelable(true);
         comments=dialog.findViewById(R.id.comments) ;
-        if(SPHelper.comingfrom.equals("edited")){
+        if(SPHelper.goneto.equals("edited")){
 
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
             bottomSheetDialogFragment.show(AllCarsPage.this.getSupportFragmentManager(), "CongratsPage");
@@ -94,6 +96,7 @@ public class AllCarsPage extends AppCompatActivity {
                 Intent intent=new Intent(AllCarsPage.this,FilterPage.class);
                 startActivity(intent);
                 overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup );
+               // finish();
             }
         });
 
@@ -101,34 +104,18 @@ public class AllCarsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SPHelper.camefrom="";
-                Intent intent=new Intent(AllCarsPage.this,MainActivity.class);
-                startActivity(intent);
+                if(SPHelper.fragment_is.equals("profile")){
+                    Intent intent=new Intent(AllCarsPage.this,ProfileFragment.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(AllCarsPage.this,MainActivity.class);
+                    startActivity(intent);
+                }
+               // finish();
             }
         });
         //if coming from sold
         heading.setText(SPHelper.title);
-        if(SPHelper.comingfrom.equals("sold")){
-            rl_parent.setBackground(AppCompatResources.getDrawable(AllCarsPage.this,R.drawable.cv_gradient_sold));
-        }else if(SPHelper.comingfrom.equals("insp_req")){
-
-        }
-        else if(SPHelper.comingfrom.equals("cool_per")){
-
-        }
-        else if(SPHelper.comingfrom.equals("app")){
-
-        }
-        else if(SPHelper.comingfrom.equals("re_insp")){
-
-        }
-        else if(SPHelper.comingfrom.equals("rep_req")){
-
-        }else if(SPHelper.comingfrom.equals("exp")){
-
-        }
-        else{
-           // rl_parent.setBackground(AppCompatResources.getDrawable(AllCarsPage.this,R.drawable.all_cars_bg));
-        }
     }
 
     public static AllCarsPage getInstance() {
@@ -181,16 +168,15 @@ public class AllCarsPage extends AppCompatActivity {
                             System.out.println(response);
                             JSONObject tktobj = response.getResponseObject();
                             try {
-
                                 customer_cars_list.clear();
                                 if (tktobj.getJSONArray("AllInspectedVehWithStatus").length() > 0)
                                 {
+                                    tv_no_cars.setVisibility(View.GONE);
                                     for (int i = 0; i < tktobj.getJSONArray("AllInspectedVehWithStatus").length(); i++) {
                                         JSONObject apartment = tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i);
                                         PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
                                         customer_cars_list.add(leadobj);
                                     }
-
                                     if (customer_cars_list.size() == 30 || customer_cars_list.size() > 30) {
                                         pageno++;
                                     }
@@ -200,6 +186,9 @@ public class AllCarsPage extends AppCompatActivity {
                                             adapterAllCarPage.notifyDataSetChanged();
                                         }
                                     });
+                                }
+                                else {
+                                    tv_no_cars.setVisibility(View.VISIBLE);
                                 }
                             }
                             catch (JSONException e) {
@@ -342,6 +331,7 @@ public class AllCarsPage extends AppCompatActivity {
                                 customer_cars_list.clear();
                                 if (tktobj.getJSONArray("AllcarList").length() > 0)
                                 {
+                                    tv_no_cars.setVisibility(View.GONE);
                                     for (int i = 0; i < tktobj.getJSONArray("AllcarList").length(); i++) {
                                         JSONObject apartment = tktobj.getJSONArray("AllcarList").getJSONObject(i);
                                         PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
@@ -358,6 +348,8 @@ public class AllCarsPage extends AppCompatActivity {
                                             adapterAllCarPage.notifyDataSetChanged();
                                         }
                                     });
+                                }else{
+                                    tv_no_cars.setVisibility(View.VISIBLE);
                                 }
 
                             } catch (JSONException e) {
@@ -412,10 +404,7 @@ public class AllCarsPage extends AppCompatActivity {
                             progress_bar.setVisibility(View.GONE);
                             JSONObject tktobj = response.getResponseObject();
                             try {
-//                        if (tktobj.getJSONArray("AllcarList").length()== 0)
-//                        {
-//                        }
-//                        else
+
                                 if (tktobj.getJSONArray("AllcarList").length() > 0)
                                 {
 
@@ -435,8 +424,6 @@ public class AllCarsPage extends AppCompatActivity {
                                         }
                                     });
                                 }
-
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -497,9 +484,19 @@ public class AllCarsPage extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
+
         SPHelper.camefrom="";
-        Intent intent=new Intent(AllCarsPage.this,MainActivity.class);
-        startActivity(intent);
+
+        if(SPHelper.fragment_is.equals("profile")){
+            Intent intent=new Intent(AllCarsPage.this,ProfileFragment.class);
+            startActivity(intent);
+        }else {
+            Intent intent=new Intent(AllCarsPage.this,MainActivity.class);
+            startActivity(intent);
+        }
+        finish();
+
     }
 }

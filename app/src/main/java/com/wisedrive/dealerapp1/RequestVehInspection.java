@@ -46,7 +46,7 @@ public class RequestVehInspection extends AppCompatActivity {
     String mobile_no_pattern="^[6-9][0-9]{9}$";
     DatePickerDialog date_picker;
     public RelativeLayout rl_req_insp,rl_presale,rl_postsale,rl_presale_details,rl_show_popup,rl_transparent,rl_check_status,
-            rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label;
+            rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label,rl_go_back;
     TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date;
     View v_postsale,v_presale;
     ImageView iv_cust_seleted,iv_dealer_selected,back,cancel_veh_info;
@@ -70,6 +70,7 @@ public class RequestVehInspection extends AppCompatActivity {
         activity=RequestVehInspection.this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         back=findViewById(R.id.back);
+        rl_go_back=findViewById(R.id.rl_go_back);
         cancel_veh_info=findViewById(R.id.cancel_veh_info);
         rl_check_status=findViewById(R.id.rl_check_status);
         rl_label=findViewById(R.id.rl_label);
@@ -101,7 +102,8 @@ public class RequestVehInspection extends AppCompatActivity {
         rl_transparent=findViewById(R.id.rl_transparent);
 
 
-        if(SPHelper.goneto.equals("repair")||SPHelper.goneto.equals("expired")){
+        if(SPHelper.goneto.equals("repair")||SPHelper.goneto.equals("expired"))
+        {
             selected_vehno.setText(SPHelper.vehno);
             selected_veh_no.setText(SPHelper.vehno);
             req_page=3;
@@ -120,6 +122,7 @@ public class RequestVehInspection extends AppCompatActivity {
             rl_postsale.setEnabled(false);
         }else{
             req_page=1;
+            selected_veh_no.setText("");
             show_req_insp();
             rl_presale.setEnabled(true);
             rl_postsale.setEnabled(true);
@@ -129,7 +132,7 @@ public class RequestVehInspection extends AppCompatActivity {
             public void onClick(View view) {
                 locationType="Customer";
                 rl_insp_cust_details.setVisibility(View.VISIBLE);
-                iv_cust_seleted.setImageDrawable(activity.getDrawable(R.drawable.blue_tick));
+                iv_cust_seleted.setImageDrawable(activity.getDrawable(R.drawable.black_tickmark));
                 iv_dealer_selected.setImageDrawable(null);
             }
         });
@@ -138,7 +141,7 @@ public class RequestVehInspection extends AppCompatActivity {
             public void onClick(View view) {
                 locationType="Dealership";
                 rl_insp_cust_details.setVisibility(View.GONE);
-                iv_dealer_selected.setImageDrawable(activity.getDrawable(R.drawable.blue_tick));
+                iv_dealer_selected.setImageDrawable(activity.getDrawable(R.drawable.black_tickmark));
                 iv_cust_seleted.setImageDrawable(null);
             }
         });
@@ -174,7 +177,13 @@ public class RequestVehInspection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 req_page=1;
+                selected_veh_no.setText("");
+                inspection_type="Presale";
+                locationType="";
+                et_no_cars.setText("");
                 selected_insp_date.setText("");
+                serverdate="";
+                postsale_insp_date.setText("");
                 show_req_insp();
             }
         });
@@ -182,8 +191,14 @@ public class RequestVehInspection extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 req_page=2;
+                et_no_cars.setText("");
+                selected_insp_date.setText("");
+                serverdate="";
                 postsale_insp_date.setText("");
                 inspection_type="Postsale";
+                rl_insp_cust_details.setVisibility(View.GONE);
+                iv_dealer_selected.setImageDrawable(null);
+                iv_cust_seleted.setImageDrawable(null);
                 show_req_insp();
             }
         });
@@ -191,6 +206,7 @@ public class RequestVehInspection extends AppCompatActivity {
         selected_insp_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 select_date();
             }
         });
@@ -237,7 +253,7 @@ public class RequestVehInspection extends AppCompatActivity {
             public void onClick(View view) {
                 if(locationType.equals("")){
                     Toast.makeText(activity,
-                            "Select Location Type",
+                            "Please Select Inspection Location ",
                             Toast.LENGTH_SHORT).show();
                 }
                 else if(locationType.equals("Dealership"))
@@ -296,7 +312,7 @@ public class RequestVehInspection extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        rl_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -355,7 +371,9 @@ public class RequestVehInspection extends AppCompatActivity {
         int month = cldr.get(Calendar.MONTH);
         int year = cldr.get(Calendar.YEAR);
         //Theme_Material3_Dark_Dialog_Alert
-        date_picker = new DatePickerDialog(activity,R.style.Theme_Material3_Light_Dialog_Alert,
+        //Theme_Material3_DayNight_DialogWhenLarge
+        //R.style.AppCompatDialogStyle
+        date_picker = new DatePickerDialog(activity,
                 new DatePickerDialog.OnDateSetListener()
                 {
                     @SuppressLint("SetTextI18n")
@@ -375,7 +393,7 @@ public class RequestVehInspection extends AppCompatActivity {
             rl_presale_details.setVisibility(View.VISIBLE);
             rl_postsale_details.setVisibility(View.GONE);
             rl_location_details.setVisibility(View.GONE);
-            tv_presale.setTextColor(Color.parseColor("#0619c3"));
+            tv_presale.setTextColor(Color.parseColor("#FF000000"));
             tv_postsale.setTextColor(Color.parseColor("#D3D3D3"));
             v_presale.setVisibility(View.VISIBLE);
             v_postsale.setVisibility(View.GONE);
@@ -388,7 +406,7 @@ public class RequestVehInspection extends AppCompatActivity {
             rl_postsale_details.setVisibility(View.VISIBLE);
             rl_location_details.setVisibility(View.GONE);
             tv_presale.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_postsale.setTextColor(Color.parseColor("#0619c3"));
+            tv_postsale.setTextColor(Color.parseColor("#FF000000"));
             v_presale.setVisibility(View.GONE);
             v_postsale.setVisibility(View.VISIBLE);
             rl_submit_insp.setVisibility(View.GONE);
@@ -399,7 +417,7 @@ public class RequestVehInspection extends AppCompatActivity {
             rl_postsale_details.setVisibility(View.GONE);
             rl_location_details.setVisibility(View.VISIBLE);
             tv_presale.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_postsale.setTextColor(Color.parseColor("#0619c3"));
+            tv_postsale.setTextColor(Color.parseColor("#FF000000"));
             v_presale.setVisibility(View.GONE);
             v_postsale.setVisibility(View.VISIBLE);
             rl_submit_insp.setVisibility(View.VISIBLE);

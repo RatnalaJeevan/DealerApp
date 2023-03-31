@@ -41,7 +41,8 @@ public class ProfileFragment extends AppCompatActivity {
     TextView yes,no;
     TextView dealer_name,dealer_phoneno;
     ImageView go_back_home,edit_dealer;
-    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars,rl_edit_dealer;
+
+    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars,rl_edit_dealer,rl_back;
     private  Dialog dialog;
     ProgressBar idPBLoading;
     private DealerApis apiInterface;
@@ -51,6 +52,7 @@ public class ProfileFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile);
         SPHelper.sharedPreferenceInitialization(ProfileFragment.this);
+        rl_back=findViewById(R.id.rl_back);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         rl_tnc=findViewById(R.id.rl_tnc);
         rl_wpol=findViewById(R.id.rl_wpol);
@@ -127,7 +129,7 @@ public class ProfileFragment extends AppCompatActivity {
             }
         });
 
-        go_back_home.setOnClickListener(new View.OnClickListener() {
+        rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileFragment.this, MainActivity.class);
@@ -147,6 +149,7 @@ public class ProfileFragment extends AppCompatActivity {
                 SPHelper.kms_to="";
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
+
                 Intent intent=new Intent(ProfileFragment.this, AllCarsPage.class);
                 startActivity(intent);
             }

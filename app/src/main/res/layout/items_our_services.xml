@@ -14,9 +14,9 @@
             android:id="@+id/label4"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
-            android:src="@drawable/services_tick">
+            android:layout_marginTop="2dp"
+            android:src="@drawable/tick_black">
 
         </ImageView>
 

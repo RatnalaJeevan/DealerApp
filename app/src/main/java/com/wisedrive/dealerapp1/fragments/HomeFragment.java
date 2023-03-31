@@ -110,10 +110,10 @@ public class HomeFragment extends Fragment {
         // final int radius = getResources().getDimensionPixelSize(R.dimen.radius);
         // final int dotsHeight = getResources().getDimensionPixelSize();
 
-        final int start_color = ContextCompat.getColor(getContext(), R.color.start_clr);
-        final int end_clr = ContextCompat.getColor(getContext(), R.color.end_clr);
-        rv_expiring_list.addItemDecoration(new LinePagerIndicatorDecoration( start_color, end_clr,getContext()));
-        new PagerSnapHelper().attachToRecyclerView(rv_expiring_list); //addContentView(rv_expiring_list);
+//        final int start_color = ContextCompat.getColor(getContext(), R.color.lightgrey);
+//        final int end_clr = ContextCompat.getColor(getContext(), R.color.dark_grey);
+//        rv_expiring_list.addItemDecoration(new LinePagerIndicatorDecoration( start_color, end_clr,getContext()));
+//        new PagerSnapHelper().attachToRecyclerView(rv_expiring_list); //addContentView(rv_expiring_list);
 
         rl_addcar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +176,7 @@ public class HomeFragment extends Fragment {
                     SPHelper.comingfrom="insp_req";
                     Intent intent=new Intent(activity, AllCarsPage.class);
                     startActivity(intent);
+
                 }
             }
         });
@@ -535,10 +536,10 @@ public class HomeFragment extends Fragment {
                                 pojoExpVehListArrayList=new ArrayList<>();
                                 pojoExpVehListArrayList=appResponse.getResponse().getExpVehicleCount();
                                 adapterExpVehList=new AdapterExpVehList(pojoExpVehListArrayList, getContext());
-                                rv_expiring_list.setNestedScrollingEnabled(false);
+                               // rv_expiring_list.setNestedScrollingEnabled(false);
                                 rv_expiring_list.setLayoutManager(new LinearLayoutManager(getContext(),
                                         LinearLayoutManager.HORIZONTAL, false));
-                                rv_expiring_list.setHasFixedSize(true);
+                               // rv_expiring_list.setHasFixedSize(true);
                                 rv_expiring_list.setAdapter(adapterExpVehList);
                             } else if (response_code.equals("300")) {
                                 progress_bar.setVisibility(View.GONE);

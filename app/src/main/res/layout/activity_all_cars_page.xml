@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/all_cars_bg"
+    android:background="@color/white"
     android:id="@+id/rl_parent"
     tools:context=".AllCarsPage">
 
@@ -16,19 +16,19 @@
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            >
+            android:layout_width="70dp"
+            android:layout_height="50dp">
+
 
             <ImageView
                 android:id="@+id/go_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/back_white_arrow">
+                android:src="@drawable/back_arrow_black">
 
             </ImageView>
+
         </RelativeLayout>
 
         <ImageView
@@ -38,7 +38,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/filter_icon"
+            android:src="@drawable/filter_black"
             >
 
         </ImageView>
@@ -54,7 +54,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:text="All Cars"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="17dp">
 
         </TextView>
@@ -62,15 +62,29 @@
 
     </RelativeLayout>
 
-
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_no_cars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl_header"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="No cars to show"
+        android:textColor="@color/white"
+        android:textSize="17dp">
+    </TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_cars"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rl_header"
-        android:layout_marginStart="20dp"
+        android:layout_below="@+id/tv_no_cars"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="25dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -1321,7 +1335,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="10dp"
         android:indeterminate="true"
-        android:indeterminateTint="@color/white"
+        android:indeterminateTint="@color/black"
         android:indeterminateTintMode="src_atop"
         android:visibility="gone">
 

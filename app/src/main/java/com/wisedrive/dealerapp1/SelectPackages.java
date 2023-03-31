@@ -35,7 +35,7 @@ import retrofit2.Response;
 
 public class   SelectPackages extends AppCompatActivity {
     private DealerApis apiInterface;
-    RelativeLayout rl_next;
+    RelativeLayout rl_next,rl_go_back;
     RecyclerView rv_select_packs;
     ArrayList<PojoSelectPack> pojoSelectPacks;
     AdapterSelectPack adapterSelectPack;
@@ -47,6 +47,7 @@ public class   SelectPackages extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_packages);
+        rl_go_back=findViewById(R.id.rl_go_back);
         idPBLoading=findViewById(R.id.idPBLoading);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         rl_next=findViewById(R.id.rl_next);
@@ -66,7 +67,7 @@ public class   SelectPackages extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        rl_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(SelectPackages.this,CheckEligibility.class);

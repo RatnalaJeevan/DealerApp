@@ -29,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +87,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -96,6 +98,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddNewCar extends AppCompatActivity {
+    YearPickerDialog pd1 ;
+    private DatePickerDialog.OnDateSetListener listener1;
+    private DecimalFormat IndianCurrencyFormat;
+    public TextView choose_year;
     String upload ="";
     String itis="";
     String final_year="";
@@ -129,14 +135,14 @@ public class AddNewCar extends AppCompatActivity {
     ArrayList<PojoSample> brandlogos;
     ArrayList<PojoSample> carmodel;
     AdapterModel adapterModel;
-    RelativeLayout rl_back,rl_next,rl_add_car_details,rl_basic_details,rl_car_imgs,rl_ins_details,rl_addcar,
+    RelativeLayout rl_back,rl_next,rl_add_car_details,rl_basic_details,rl_car_imgs,rl_ins_details,rl_addcar,rl_go_back,
             rl_make,rl_basic,rl_photos,rl_ins,rl_editcar;
     TextView tv_make,tv_basic,tv_photos,tv_ins;
     View v_make,v_basic,v_photos,v_ins,v_offers,v_cust,v_docs,v_purchase;
     public int cameto=1,act_no=1,req_page=1;
     public Activity activity;
     private DealerApis apiInterface;
-    ImageView iv_diesel,iv_petrol,iv_manual,iv_auto,img1,back,cancel_veh_info;
+    public ImageView iv_diesel,iv_petrol,iv_manual,iv_auto,img1,back,cancel_veh_info;
     EditText selected_year,selected_clr,selected_vehno,selected_kms,selected_owners,entered_pol_no,selected_sp;
     public RelativeLayout rl_exp_date,rl_show_popup,rl_transparent;
     Spinner entered_ins_type,entered_ins_provider;
@@ -145,8 +151,6 @@ public class AddNewCar extends AppCompatActivity {
     public String selectedbankid="",selectedbankname="",selectedinsurancetype="",server_exp_date="";
     ArrayList<String> bankname,bankid,insurancetype;
     public  static AddNewCar instance;
-    public  int cy,entered_year=0;
-    String currentyear;
     @SuppressLint("MissingInflatedId")
     @Nullable
 
@@ -156,46 +160,7 @@ public class AddNewCar extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_car);
 
         init_params();
-        Calendar cal = Calendar.getInstance();
-        cy=cal.get(Calendar.YEAR);
-        ArrayList<String> years = new ArrayList<String>();
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        years.add("Select year");
-        for (int i = 1996; i <= thisYear; i++) {
-            years.add(Integer.toString(i));
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
 
-        Spinner spinYear = (Spinner)findViewById(R.id.spinner_year);
-        spinYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                TextView tv = (TextView) view;
-                String item = parent.getItemAtPosition(position).toString();
-//                if (position == 0) {
-//                    tv.setTextColor(Color.rgb(191, 189, 184));
-//                    tv.setTextSize(15);
-//                    tv.setTypeface(Typeface.DEFAULT);
-//                } else {
-//                    tv.setTextColor(Color.rgb(0, 0, 0));
-//                    tv.setTextSize(15);
-//                    tv.setTypeface(Typeface.DEFAULT);
-//                }
-
-                if (spinYear.getSelectedItemPosition() >= 0) {
-
-                    selected_year.setText(years.get(position));
-                    final_year=years.get(position);
-                    System.out.println("year"+final_year);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        spinYear.setAdapter(adapter);
         capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,7 +216,7 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fuel_type="Diesel";
-                iv_diesel.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.blue_tick));
+                iv_diesel.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.black_tickmark));
                 iv_diesel.setBackground(AppCompatResources.getDrawable(activity,R.drawable.blue_border));
                 iv_petrol.setBackground(AppCompatResources.getDrawable(activity,R.drawable.map_border));
                 iv_petrol.setImageDrawable(null);
@@ -261,7 +226,7 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fuel_type="Petrol";
-                iv_petrol.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.blue_tick));
+                iv_petrol.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.black_tickmark));
                 iv_petrol.setBackground(AppCompatResources.getDrawable(activity,R.drawable.blue_border));
                 iv_diesel.setBackground(AppCompatResources.getDrawable(activity,R.drawable.map_border));
                 iv_diesel.setImageDrawable(null);
@@ -271,7 +236,7 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 trans_type="Automatic";
-                iv_auto.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.blue_tick));
+                iv_auto.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.black_tickmark));
                 iv_auto.setBackground(AppCompatResources.getDrawable(activity,R.drawable.blue_border));
                 iv_manual.setBackground(AppCompatResources.getDrawable(activity,R.drawable.map_border));
                 iv_manual.setImageDrawable(null);
@@ -281,7 +246,7 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 trans_type="Manual";
-                iv_manual.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.blue_tick));
+                iv_manual.setImageDrawable(AppCompatResources.getDrawable(activity,R.drawable.black_tickmark));
                 iv_manual.setBackground(AppCompatResources.getDrawable(activity,R.drawable.blue_border));
                 iv_auto.setBackground(AppCompatResources.getDrawable(activity,R.drawable.map_border));
                 iv_auto.setImageDrawable(null);
@@ -330,8 +295,7 @@ public class AddNewCar extends AppCompatActivity {
                             Common.CallToast(activity, "select fuel type", 1);
                         }else if(trans_type.equals("")){
                             Common.CallToast(activity, "select transmission type", 1);
-                        }else if(selected_year.getText().toString().equals("")||
-                                selected_year.getText().toString().equals("Select year")){
+                        }else if(choose_year.getText().toString().equals("")){
                             Common.CallToast(activity, "select Year", 1);
                         }else{
                             cameto=4;
@@ -340,7 +304,7 @@ public class AddNewCar extends AppCompatActivity {
                             rl_add_car_details.setVisibility(View.GONE);
                             rl_car_imgs.setVisibility(View.GONE);
                             rl_basic_details.setVisibility(View.VISIBLE);
-                            tv_basic.setTextColor(Color.parseColor("#0619c3"));
+                            tv_basic.setTextColor(Color.parseColor("#FF000000"));
                             tv_make.setTextColor(Color.parseColor("#D3D3D3"));
                             tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                             v_make.setVisibility(View.GONE);
@@ -374,12 +338,15 @@ public class AddNewCar extends AppCompatActivity {
                         Common.CallToast(activity, "select fuel type", 1);
                     }else if(trans_type.equals("")){
                         Common.CallToast(activity, "select transmission type", 1);
-                    }else if(selected_year.getText().toString().equals("")||
-                            selected_year.getText().toString().equals("Select year")){
+                    }else if(choose_year.getText().toString().equals("")){
                         Common.CallToast(activity, "select Year", 1);
                     }else if(selected_vehno.getText().toString().equals("")){
                         Common.CallToast(activity, "Enter a Vehicle Number", 1);
-                    }else if(selected_kms.getText().toString().equals("")){
+                    }
+                    else if(selected_vehno.getText().toString().startsWith("0")){
+                        Common.CallToast(activity, "Enter a valid Vehicle Number", 1);
+                    }
+                    else if(selected_kms.getText().toString().equals("")){
                         Common.CallToast(activity, "Enter  kms driven", 1);
                     }else if(selected_owners.getText().toString().equals("")){
                         Common.CallToast(activity, "Enter no.of owners", 1);
@@ -393,7 +360,7 @@ public class AddNewCar extends AppCompatActivity {
                         rl_basic_details.setVisibility(View.GONE);
                         rl_next.setVisibility(View.VISIBLE);
                         rl_addcar.setVisibility(View.GONE);
-                        tv_photos.setTextColor(Color.parseColor("#0619c3"));
+                        tv_photos.setTextColor(Color.parseColor("#FF000000"));
                         tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                         tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                         v_ins.setVisibility(View.GONE);
@@ -424,11 +391,13 @@ public class AddNewCar extends AppCompatActivity {
                         Common.CallToast(activity, "select fuel type", 1);
                     }else if(trans_type.equals("")){
                         Common.CallToast(activity, "select transmission type", 1);
-                    }else if(selected_year.getText().toString().equals("")||
-                            selected_year.getText().toString().equals("Select year")){
+                    }else if(choose_year.getText().toString().equals("")){
                         Common.CallToast(activity, "select Year", 1);
                     }else if(selected_vehno.getText().toString().equals("")){
                         Common.CallToast(activity, "Enter a Vehicle Number", 1);
+                    }
+                    else if(selected_vehno.getText().toString().startsWith("0")){
+                        Common.CallToast(activity, "Enter a valid Vehicle Number", 1);
                     }else if(selected_kms.getText().toString().equals("")){
                         Common.CallToast(activity, "Enter  kms driven", 1);
                     }else if(selected_owners.getText().toString().equals("")){
@@ -442,7 +411,7 @@ public class AddNewCar extends AppCompatActivity {
                         rl_car_imgs.setVisibility(View.GONE);
                         rl_ins_details.setVisibility(View.VISIBLE);
                         rl_addcar.setVisibility(View.VISIBLE);
-                        tv_ins.setTextColor(Color.parseColor("#0619c3"));
+                        tv_ins.setTextColor(Color.parseColor("#FF000000"));
                         tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                         v_ins.setVisibility(View.VISIBLE);
                         v_photos.setVisibility(View.GONE);
@@ -495,8 +464,7 @@ public class AddNewCar extends AppCompatActivity {
                     Toast.makeText(activity,
                             " select Transmission type",
                             Toast.LENGTH_SHORT).show();
-                }else if(selected_year.getText().toString().equals("")||
-                        selected_year.getText().toString().equals("Select year")){
+                }else if(choose_year.getText().toString().equals("")){
                     Toast.makeText(activity,
                             " Enter Manufaturinng year",
                             Toast.LENGTH_SHORT).show();
@@ -505,6 +473,9 @@ public class AddNewCar extends AppCompatActivity {
                     Toast.makeText(activity,
                             "Enter Vehicle Number",
                             Toast.LENGTH_SHORT).show();
+                }
+                else if(selected_vehno.getText().toString().startsWith("0")){
+                    Common.CallToast(activity, "Enter a valid Vehicle Number", 1);
                 }
                 else if(selected_vehno.getText().toString().length()<6){
                     Toast.makeText(activity,
@@ -609,7 +580,7 @@ public class AddNewCar extends AppCompatActivity {
 //                    tv.setTextSize(15);
 //                    tv.setTypeface(Typeface.DEFAULT);
 //                }
-                if(entered_ins_provider.getSelectedItemPosition()>=0){
+                if(entered_ins_provider.getSelectedItemPosition()>0){
                     selectedbankid=bankid.get(position);
                     selectedbankname=bankname.get(position);
                 }
@@ -634,7 +605,7 @@ public class AddNewCar extends AppCompatActivity {
 //                    tv.setTypeface(Typeface.DEFAULT);
 //                }
 
-                if (entered_ins_type.getSelectedItemPosition() >= 0) {
+                if (entered_ins_type.getSelectedItemPosition() > 0) {
                     selectedinsurancetype = insurancetype.get(position);
                 }
             }
@@ -651,7 +622,9 @@ public class AddNewCar extends AppCompatActivity {
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
-                date_picker = new DatePickerDialog(activity,R.style.Theme_Material3_Light_Dialog_Alert,
+                //Theme_Material3_Light_Dialog_Alert
+                //Theme_Material3_DayNight_DialogWhenLarge
+                date_picker = new DatePickerDialog(activity,
                         new DatePickerDialog.OnDateSetListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
@@ -667,16 +640,61 @@ public class AddNewCar extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        rl_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        if(SPHelper.camefrom.equals("edit")){
+        if(SPHelper.camefrom.equals("edit"))
+        {
             cameto=4;
-            heading1.setText("You are \nchanging the \ndetails of the car");
+            heading1.setText("You are changing the \ndetails of the car");
+            if(SPHelper.selling_price.equals("null")||SPHelper.selling_price.equals("")){
+                selected_sp.setText("");
+            }else{
+                double s_price= Double.parseDouble(SPHelper.selling_price);
+                int y=(int)s_price;
+                selected_sp.setText(String.valueOf(y));
+            }
+            if(SPHelper.kmsdriven.equals("null")){
+                selected_kms.setText("");
+            }else{
+                selected_kms.setText(SPHelper.kmsdriven);
+            }
+            if(SPHelper.no_owners.equals("null")||
+                    SPHelper.no_owners.equals("")){
+                // selected_owners.setText("");
+            }else{
+                selected_owners.setText(SPHelper.no_owners);
+            }
+            if(SPHelper.veh_color.equals("null")){
+                // selected_clr.setText("");
+            }else{
+                selected_clr.setText(SPHelper.veh_color);
+            }
+            if(SPHelper.insu_pol.equals("null")){
+                // entered_pol_no.setText("");
+            }else{
+                entered_pol_no.setText(SPHelper.insu_pol);
+            }
+            if(SPHelper.insurancetype.equals("null")||SPHelper.insurancetype.equals("")){
+                selectedinsurancetype="Select Insurance type";
+
+            }else{
+                selectedinsurancetype=SPHelper.insurancetype;
+            }
+            if(SPHelper.insurance_provider.equals("null")||SPHelper.insurancetype.equals("")){
+                selectedbankname="Select BankName";
+            }else{
+                selectedbankname=SPHelper.insurance_provider;
+            }
+            if(SPHelper.ins_exp_date.equals("null")){
+                SPHelper.ins_exp_date="";
+            }else{
+                ins_exp_date.setText(Common.getDateFromString(SPHelper.ins_exp_date));
+            }
             show_pages();
             get_veh_images_list();
         }else{
@@ -689,18 +707,32 @@ public class AddNewCar extends AppCompatActivity {
             SPHelper.insurance_provider="";
             SPHelper.insurancetype="";
             get_carbrands_list();
-            heading1.setText("You are \nadding a \nnew car...");
+            heading1.setText("You are adding a \nnew car...");
             get_carimage_list();
         }
+
+        choose_year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // createDialogWithoutDateField().show();
+                pd1.show(getSupportFragmentManager(), "MonthYearPicker");
+            }
+        });
     }
 
-    private void init_params() {
+    private void init_params()
+    {
+        pd1 = new YearPickerDialog();
+        pd1.setListener(listener1);
+        choose_year=findViewById(R.id.choose_year);
+        IndianCurrencyFormat = new DecimalFormat("##,##,###");
         activity=AddNewCar.this;
         instance=this;
         bankname = new ArrayList<>();
         bankid = new ArrayList<>();
         insurancetype = new ArrayList<>();
         SPHelper.sharedPreferenceInitialization(activity);
+        rl_go_back=findViewById(R.id.rl_go_back);
         cancel_veh_info=findViewById(R.id.cancel_veh_info);
         rv_model_logos=findViewById(R.id.rv_model_logos);
         heading1=findViewById(R.id.heading1);
@@ -780,62 +812,16 @@ public class AddNewCar extends AppCompatActivity {
 
         if(SPHelper.camefrom.equals("edit"))
         {
-
             rl_make.setVisibility(View.INVISIBLE);
-            rl_next.setVisibility(View.INVISIBLE);
-            rl_addcar.setVisibility(View.INVISIBLE);
-            rl_back.setVisibility(View.INVISIBLE);
             rl_basic_details.setVisibility(View.VISIBLE);
             rv_brand_logos.setVisibility(View.INVISIBLE);
             rv_model_logos.setVisibility(View.GONE);
             rl_add_car_details.setVisibility(View.INVISIBLE);
             selected_vehno.setText(SPHelper.vehno);
             selected_vehno.setFocusable(false);
-            selected_year.setText(SPHelper.manufacture_year);
-
-            if(SPHelper.selling_price.equals("null")||SPHelper.selling_price.equals("")){
-                selected_sp.setText("");
-            }else{
-
-                selected_sp.setText(SPHelper.selling_price);
-            }
-            if(SPHelper.kmsdriven.equals("null")){
-                selected_kms.setText("");
-            }else{
-                selected_kms.setText(SPHelper.kmsdriven);
-            }
-            if(SPHelper.no_owners.equals("null")||
-            SPHelper.no_owners.equals("")){
-               // selected_owners.setText("");
-            }else{
-                selected_owners.setText(SPHelper.no_owners);
-            }
-            if(SPHelper.veh_color.equals("null")){
-                selected_clr.setText("");
-            }else{
-                selected_clr.setText(SPHelper.veh_color);
-            }
-            if(SPHelper.insu_pol.equals("null")){
-               // entered_pol_no.setText("");
-            }else{
-                entered_pol_no.setText(SPHelper.insu_pol);
-            }
-            if(SPHelper.insurancetype.equals("null")||SPHelper.insurancetype.equals("")){
-                selectedinsurancetype="Select Insurance type";
-
-            }else{
-                selectedinsurancetype=SPHelper.insurancetype;
-            }
-            if(SPHelper.insurance_provider.equals("null")||SPHelper.insurancetype.equals("")){
-                 selectedbankname="Select BankName";
-            }else{
-                selectedbankname=SPHelper.insurance_provider;
-            }
-            ins_exp_date.setText(Common.getDateFromString(SPHelper.ins_exp_date));
 
             if(cameto==4){
-
-                tv_basic.setTextColor(Color.parseColor("#0619c3"));
+                tv_basic.setTextColor(Color.parseColor("#FF000000"));
                 tv_make.setTextColor(Color.parseColor("#D3D3D3"));
                 tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                 v_basic.setVisibility(View.VISIBLE);
@@ -846,15 +832,17 @@ public class AddNewCar extends AppCompatActivity {
                 tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                 v_photos.setVisibility(View.INVISIBLE);
                 v_ins.setVisibility(View.GONE);
+                rl_back.setVisibility(View.INVISIBLE);
             }
             //photos
             else if (cameto == 5) {
                 rl_ins_details.setVisibility(View.GONE);
                 rl_car_imgs.setVisibility(View.VISIBLE);
                 rl_basic_details.setVisibility(View.GONE);
+                rl_back.setVisibility(View.VISIBLE);
                 rl_next.setVisibility(View.VISIBLE);
                 rl_editcar.setVisibility(View.GONE);
-                tv_photos.setTextColor(Color.parseColor("#0619c3"));
+                tv_photos.setTextColor(Color.parseColor("#FF000000"));
                 tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                 tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                 v_ins.setVisibility(View.GONE);
@@ -867,12 +855,10 @@ public class AddNewCar extends AppCompatActivity {
             }
             //insuran
             else if (cameto == 6) {
-
-
                 rl_car_imgs.setVisibility(View.GONE);
                 rl_ins_details.setVisibility(View.VISIBLE);
                 rl_editcar.setVisibility(View.VISIBLE);
-                tv_ins.setTextColor(Color.parseColor("#0619c3"));
+                tv_ins.setTextColor(Color.parseColor("#FF000000"));
                 tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                 v_ins.setVisibility(View.VISIBLE);
                 v_photos.setVisibility(View.GONE);
@@ -882,13 +868,14 @@ public class AddNewCar extends AppCompatActivity {
                 tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                 v_make.setVisibility(View.GONE);
                 v_basic.setVisibility(View.GONE);
+                rl_back.setVisibility(View.VISIBLE);
+                rl_next.setVisibility(View.INVISIBLE);
 
             }
         }
 
         else if(SPHelper.camefrom.equals("add"))
         {
-
             //carmake
             if (cameto == 1 ) {
                 rl_next.setVisibility(View.VISIBLE);
@@ -898,7 +885,7 @@ public class AddNewCar extends AppCompatActivity {
                 rl_basic_details.setVisibility(View.GONE);
                 rl_car_imgs.setVisibility(View.GONE);
                 rl_ins_details.setVisibility(View.GONE);
-                tv_make.setTextColor(Color.parseColor("#0619c3"));
+                tv_make.setTextColor(Color.parseColor("#FF000000"));
                 tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                 tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                 tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
@@ -935,7 +922,7 @@ public class AddNewCar extends AppCompatActivity {
                     rl_basic_details.setVisibility(View.GONE);
                     rl_car_imgs.setVisibility(View.GONE);
                     rl_ins_details.setVisibility(View.GONE);
-                    tv_make.setTextColor(Color.parseColor("#0619c3"));
+                    tv_make.setTextColor(Color.parseColor("#FF000000"));
                     tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                     tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                     tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
@@ -957,7 +944,7 @@ public class AddNewCar extends AppCompatActivity {
                     rv_model_logos.setVisibility(View.GONE);
                     rl_add_car_details.setVisibility(View.VISIBLE);
                     rl_basic_details.setVisibility(View.GONE);
-                    tv_make.setTextColor(Color.parseColor("#0619c3"));
+                    tv_make.setTextColor(Color.parseColor("#FF000000"));
                     v_make.setVisibility(View.VISIBLE);
                     v_basic.setVisibility(View.GONE);
                     tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
@@ -987,8 +974,7 @@ public class AddNewCar extends AppCompatActivity {
                 }else if(trans_type.equals("")){
                     cameto--;
                     Common.CallToast(activity, "select transmission type", 1);
-                }else if(selected_year.getText().toString().equals("")||
-                        selected_year.getText().toString().equals("Select year")){
+                }else if(choose_year.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "select Year", 1);
                 }else{
@@ -997,7 +983,7 @@ public class AddNewCar extends AppCompatActivity {
                     rl_add_car_details.setVisibility(View.GONE);
                     rl_car_imgs.setVisibility(View.GONE);
                     rl_basic_details.setVisibility(View.VISIBLE);
-                    tv_basic.setTextColor(Color.parseColor("#0619c3"));
+                    tv_basic.setTextColor(Color.parseColor("#FF000000"));
                     tv_make.setTextColor(Color.parseColor("#D3D3D3"));
                     tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                     v_make.setVisibility(View.GONE);
@@ -1027,14 +1013,17 @@ public class AddNewCar extends AppCompatActivity {
                 }else if(trans_type.equals("")){
                     cameto--;
                     Common.CallToast(activity, "select transmission type", 1);
-                }else if(selected_year.getText().toString().equals("")||
-                        selected_year.getText().toString().equals("Select year")){
+                }else if(choose_year.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "select Year", 1);
                 }else if(selected_vehno.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "Enter a Vehicle Number", 1);
-                }else if(selected_kms.getText().toString().equals("")){
+                }
+                else if(selected_vehno.getText().toString().startsWith("0")){
+                    Common.CallToast(activity, "Enter a valid Vehicle Number", 1);
+                }
+                else if(selected_kms.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "Enter  kms driven", 1);
                 }else if(selected_owners.getText().toString().equals("")){
@@ -1049,7 +1038,7 @@ public class AddNewCar extends AppCompatActivity {
                     rl_basic_details.setVisibility(View.GONE);
                     rl_next.setVisibility(View.VISIBLE);
                     rl_addcar.setVisibility(View.GONE);
-                    tv_photos.setTextColor(Color.parseColor("#0619c3"));
+                    tv_photos.setTextColor(Color.parseColor("#FF000000"));
                     tv_basic.setTextColor(Color.parseColor("#D3D3D3"));
                     tv_ins.setTextColor(Color.parseColor("#D3D3D3"));
                     v_ins.setVisibility(View.GONE);
@@ -1076,17 +1065,19 @@ public class AddNewCar extends AppCompatActivity {
                 }else if(trans_type.equals("")){
                     cameto--;
                     Common.CallToast(activity, "select transmission type", 1);
-                }else if(selected_year.getText().toString().equals("")||
-                        selected_year.getText().toString().equals("Select year")){
+                }else if(choose_year.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "select Year", 1);
-                }else if(selected_vehno.equals("")){
+                }else if(selected_vehno.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "Enter a Vehicle Number", 1);
-                }else if(selected_kms.equals("")){
+                } else if(selected_vehno.getText().toString().startsWith("0")){
+                    Common.CallToast(activity, "Enter a valid Vehicle Number", 1);
+                }
+                else if(selected_kms.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "Enter  kms driven", 1);
-                }else if(selected_owners.equals("")){
+                }else if(selected_owners.getText().toString().equals("")){
                     cameto--;
                     Common.CallToast(activity, "Enter no.of owners", 1);
 
@@ -1098,7 +1089,7 @@ public class AddNewCar extends AppCompatActivity {
                     rl_car_imgs.setVisibility(View.GONE);
                     rl_ins_details.setVisibility(View.VISIBLE);
                     rl_addcar.setVisibility(View.VISIBLE);
-                    tv_ins.setTextColor(Color.parseColor("#0619c3"));
+                    tv_ins.setTextColor(Color.parseColor("#FF000000"));
                     tv_photos.setTextColor(Color.parseColor("#D3D3D3"));
                     v_ins.setVisibility(View.VISIBLE);
                     v_photos.setVisibility(View.GONE);
@@ -1251,7 +1242,7 @@ public class AddNewCar extends AppCompatActivity {
                                 carImageLists=new ArrayList<>();
                                 carImageLists=appResponse.getResponse().getGetvehicleimages();
                                 adapterCarImagesList = new AdapterCarImageList(carImageLists,activity);
-                                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
+                                GridLayoutManager linearLayoutManager=new GridLayoutManager(activity,4);
                                 rv_car_imagelist.setLayoutManager(linearLayoutManager);
                                 rv_car_imagelist.setAdapter(adapterCarImagesList);
                                 activity.runOnUiThread(new Runnable() {
@@ -1314,7 +1305,7 @@ public class AddNewCar extends AppCompatActivity {
                                 get_carimage_list();
                             }else {
                                 adapterVehicleImages = new AdapterEditedVehImgList(imageLists,activity);
-                                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
+                                GridLayoutManager linearLayoutManager=new GridLayoutManager(activity,4);
                                 rv_veh_imagelist.setLayoutManager(linearLayoutManager);
                                 rv_veh_imagelist.setAdapter(adapterVehicleImages);
                                 activity.runOnUiThread(new Runnable() {
@@ -1485,13 +1476,23 @@ public class AddNewCar extends AppCompatActivity {
                             BuildConfig.APPLICATION_ID + ".provider", new File(OriginalFileName));
                     img1.setImageURI(imageUri);
                     if(SPHelper.camefrom.equals("add")){
-                        carImageLists.get(requestCode).setImage(imageUri);
-                        carImageLists.get(requestCode).setFilename(OriginalFileName);
-                        adapterCarImagesList.notifyDataSetChanged();
+                        carImageLists.get(adapterCarImagesList.adapter_position).setImage(imageUri);
+                        carImageLists.get(adapterCarImagesList.adapter_position).setFilename(OriginalFileName);
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterCarImagesList.notifyDataSetChanged();
+                            }
+                        });
                     }else{
-                        imageLists.get(requestCode).setImage(imageUri);
-                        imageLists.get(requestCode).setFilename(OriginalFileName);
-                        adapterVehicleImages.notifyDataSetChanged();
+                        imageLists.get(adapterVehicleImages.adapter_position).setImage(imageUri);
+                        imageLists.get(adapterVehicleImages.adapter_position).setFilename(OriginalFileName);
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterVehicleImages.notifyDataSetChanged();
+                            }
+                        });
                     }
                     idPBLoading.setVisibility(View.GONE);
                 }
@@ -1514,13 +1515,23 @@ public class AddNewCar extends AppCompatActivity {
             }
             if(SPHelper.camefrom.equals("add"))
             {
-                carImageLists.get(selectedObject).setImage(imageUri);
-                carImageLists.get(selectedObject).setFilename(String.valueOf(OriginalFileName));
-                adapterCarImagesList.notifyDataSetChanged();
+                carImageLists.get(adapterCarImagesList.adapter_position).setImage(imageUri);
+                carImageLists.get(adapterCarImagesList.adapter_position).setFilename(String.valueOf(OriginalFileName));
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterCarImagesList.notifyDataSetChanged();
+                    }
+                });
             }else{
-                imageLists.get(selectedObject).setImage(imageUri);
-                imageLists.get(selectedObject).setFilename(String.valueOf(OriginalFileName));
-                adapterVehicleImages.notifyDataSetChanged();
+                imageLists.get(adapterVehicleImages.adapter_position).setImage(imageUri);
+                imageLists.get(adapterVehicleImages.adapter_position).setFilename(String.valueOf(OriginalFileName));
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapterVehicleImages.notifyDataSetChanged();
+                    }
+                });
             }
             img1.setImageURI(imageUri);
             idPBLoading.setVisibility(View.GONE);
@@ -1746,7 +1757,7 @@ public class AddNewCar extends AppCompatActivity {
             params.put("modelId",SPHelper.carmodelid);
             params.put("fuelType",fuel_type);
             params.put("transmissionType",trans_type);
-            params.put("year", selected_year.getText().toString());
+            params.put("year", choose_year.getText().toString());
             params.put("vehicleNo",selected_vehno.getText().toString().trim());
             params.put("sellingPrice",selected_sp.getText().toString());
             params.put("km",selected_kms.getText().toString());
@@ -1812,7 +1823,7 @@ public class AddNewCar extends AppCompatActivity {
             params.put("modelId",SPHelper.carmodelid);
             params.put("fuelType",fuel_type);
             params.put("transmissionType",trans_type);
-            params.put("year", selected_year.getText().toString());
+            params.put("year", choose_year.getText().toString());
             params.put("vehicleNo",selected_vehno.getText().toString().trim());
             params.put("sellingPrice",selected_sp.getText().toString());
             params.put("km",selected_kms.getText().toString());
@@ -1926,15 +1937,18 @@ public class AddNewCar extends AppCompatActivity {
                                 SPHelper.isSuccess="add";
                                 SPHelper.saveSPdata(activity, SPHelper.imagestaken, "");
                                 Toast.makeText(activity, "Car edited successfully", Toast.LENGTH_SHORT).show();
-                                if(SPHelper.comingfrom.equals("customer")){
-                                    SPHelper.comingfrom="edited";
+                                if(SPHelper.comingfrom.equals("customer"))
+                                {
+                                    SPHelper.goneto="edited";
                                     Intent intent=new Intent(AddNewCar.this, MainActivity.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                                 else {
-                                    SPHelper.comingfrom="edited";
+                                    SPHelper.goneto="edited";
                                     Intent intent=new Intent(AddNewCar.this, AllCarsPage.class);
                                     startActivity(intent);
+                                    finish();
                                 }
 
                                 //CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
@@ -1943,7 +1957,8 @@ public class AddNewCar extends AppCompatActivity {
                         } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                        } else {
+                        }
+                        else {
                             idPBLoading.setVisibility(View.GONE);
                             Toast.makeText(activity, response.getResponseMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -2018,14 +2033,16 @@ public class AddNewCar extends AppCompatActivity {
                         SPHelper.isSuccess="add";
                         SPHelper.saveSPdata(activity, SPHelper.imagestaken, "");
                         if(SPHelper.comingfrom.equals("customer")){
-                            SPHelper.comingfrom="edited";
+                            SPHelper.goneto="edited";
                             Intent intent=new Intent(AddNewCar.this, MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         else {
-                            SPHelper.comingfrom="edited";
+                            SPHelper.goneto="edited";
                             Intent intent=new Intent(AddNewCar.this, AllCarsPage.class);
                             startActivity(intent);
+                            finish();
                         }
                         //CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
                         //bottomSheetDialogFragment.show(AddNewCar.this.getSupportFragmentManager(), "CongratsPage");

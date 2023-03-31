@@ -7,15 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,6 +45,7 @@ import com.google.android.datatransport.backend.cct.BuildConfig;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.BitmapUtility;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.GeoCodeLocation;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.RequestPermissionHandler;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoDealerDetails;
@@ -65,6 +70,7 @@ import retrofit2.Response;
 
 public class SignUpPage extends AppCompatActivity
 {
+    RelativeLayout rl_go_back;
     String  d_city, d_state, d_pincode,isDealerCity="" ;
     private DealerApis apiInterface;
     private ProgressDialog progressDialog;
@@ -87,8 +93,10 @@ public class SignUpPage extends AppCompatActivity
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
     private RequestPermissionHandler mRequestPermissionHandler;
-
+    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -105,6 +113,7 @@ public class SignUpPage extends AppCompatActivity
         progressDialog = new ProgressDialog(SignUpPage.this);
         progressDialog.setMessage("Please wait...");
         progressDialog.setCancelable(false);
+        rl_go_back=findViewById(R.id.rl_go_back);
         timer=findViewById(R.id.timer);
         label_create=findViewById(R.id.label_create);
         selected_mail=findViewById(R.id.selected_mail);
@@ -129,7 +138,7 @@ public class SignUpPage extends AppCompatActivity
         tv_signup=findViewById(R.id.tv_signup);
         tv_sendotp=findViewById(R.id.tv_sendotp);
         go_back_home=findViewById(R.id.go_back_home);
-        go_back_home.setOnClickListener(new View.OnClickListener() {
+        rl_go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(SPHelper.camefrom.equals("edit_d")){
@@ -162,21 +171,24 @@ public class SignUpPage extends AppCompatActivity
             }
             selected_pincode.setEnabled(false);
             selected_pincode.setFocusable(false);
-            label_create.setText("Edit Your Account");
+            label_create.setText("Edit Your\nAccount");
         }else{
             tv_signup.setText("SIGNUP");
-            label_create.setText("Create Account");
+            label_create.setText("Create\nAccount");
         }
 
         tv_sendotp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-               // tv_sendotp.setVisibility(View.GONE);
+            public void onClick(View view)
+            {
+
+                tv_sendotp.setVisibility(View.GONE);
                 if(selected_phoneno.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),
                             "Please Enter your Phone Number",
                             Toast.LENGTH_SHORT).show();
-                }else if(selected_phoneno.getText().toString().length()<10){
+                }
+                else if(selected_phoneno.getText().toString().length()<10){
                     Toast.makeText(getApplicationContext(),
                             "Please Enter Valid Phone Number",
                             Toast.LENGTH_SHORT).show();
@@ -185,7 +197,8 @@ public class SignUpPage extends AppCompatActivity
                     Toast.makeText(getApplicationContext(),
                             "Please Enter Valid Phone Number",
                             Toast.LENGTH_SHORT).show();
-                }else{
+                }
+                else{
                     settimer();
                     if(SPHelper.camefrom.equals("edit_d")){
 
@@ -195,6 +208,7 @@ public class SignUpPage extends AppCompatActivity
                     }
 
                 }
+
             }
         });
         tv_resend.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +246,8 @@ public class SignUpPage extends AppCompatActivity
 
         tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 //Toast.makeText(SignUpPage.this, selectedcityname, Toast.LENGTH_SHORT).show();
                 if(selected_dealership_name.getText().toString().equals("")) {
@@ -240,7 +255,6 @@ public class SignUpPage extends AppCompatActivity
                             "Enter your Dealership name",
                             Toast.LENGTH_SHORT).show();
                 }
-
                 else if(selected_dealername.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),
                             "Enter Dealer name",
@@ -253,6 +267,11 @@ public class SignUpPage extends AppCompatActivity
                 }else if(selected_phoneno.getText().toString().length()<10){
                     Toast.makeText(getApplicationContext(),
                             "Enter Valid Phone Number",
+                            Toast.LENGTH_SHORT).show();
+                }
+               else if(!selected_mail.getText().toString().equals("")&&!selected_mail.getText().toString().matches(emailpattern)){
+                    Toast.makeText(getApplicationContext(),
+                            "Enter valid email",
                             Toast.LENGTH_SHORT).show();
                 }
                else if(selected_adres.getText().toString().equals("")){
@@ -275,11 +294,13 @@ public class SignUpPage extends AppCompatActivity
                 }
                else{
                     //if it comes fom edit
-                    if(SPHelper.camefrom.equals("edit_d")){
-                        edit_account();
-                    }else{
-                        create_account();
-                    }
+                    SPHelper.lon="";SPHelper.lat="";
+                    String address = selected_adres.getText().toString()+entered_location.getText().toString()+selected_city.getText().toString()
+                            +selected_state.getText().toString()+selected_pincode.getText().toString();
+                    GeoCodeLocation locationAddress = new GeoCodeLocation();
+                    locationAddress.getAddressFromLocation(address, getApplicationContext(), new
+                            GeoCoderHandler());
+
                 }
             }
         });
@@ -441,6 +462,8 @@ public class SignUpPage extends AppCompatActivity
             }
         });
     }
+
+
     public void opendialog(View view)
     {
         final Dialog dialog4 = new Dialog(SignUpPage.this);
@@ -518,7 +541,8 @@ public class SignUpPage extends AppCompatActivity
     void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+//        {
             // Create the File where the photo should go
             SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
             String fineName = dateFormat.format(new Date());
@@ -529,7 +553,7 @@ public class SignUpPage extends AppCompatActivity
             takePictureIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(takePictureIntent, 100);
-        }
+       // }
     }
 
     @Override
@@ -929,7 +953,7 @@ public class SignUpPage extends AppCompatActivity
                 PojoDealerDetails post=new PojoDealerDetails(selected_dealership_name.getText().toString().trim(),selected_dealername.getText().toString().trim(),
                         selected_phoneno.getText().toString().trim(),dealerlogourl,selected_adres.getText().toString().trim(),
                         selectedcityid,selected_pincode.getText().toString(),otps,entered_location.getText().toString().trim(),
-                        selected_mail.getText().toString(),"","");
+                        selected_mail.getText().toString(),SPHelper.lat,SPHelper.lon);
                 Call<AppResponse> call =  apiInterface.createaccount(post);
                 call.enqueue(new Callback<AppResponse>() {
                     @Override
@@ -1004,7 +1028,7 @@ public class SignUpPage extends AppCompatActivity
                 PojoEditDealer pojoEditDealer=new PojoEditDealer(SPHelper.getSPData(SignUpPage.this,SPHelper.dealerid,""),
                         selected_dealership_name.getText().toString().trim(),selected_dealername.getText().toString().trim(),selected_mail.getText().toString(),
                         entered_location.getText().toString().trim(),"",selected_adres.getText().toString().trim(),"",SPHelper.getSPData(SignUpPage.this,SPHelper.city_id,""),
-                        SPHelper.getSPData(SignUpPage.this,SPHelper.state_id,""),"","","",selected_phoneno.getText().toString().trim(),otps,
+                        SPHelper.getSPData(SignUpPage.this,SPHelper.state_id,""),SPHelper.lat,SPHelper.lon,"",selected_phoneno.getText().toString().trim(),otps,
                         dealerlogourl);
                 System.out.println(pojoEditDealer);
                 Call<AppResponse> call =  apiInterface.editDealer(pojoEditDealer);
@@ -1088,6 +1112,30 @@ public class SignUpPage extends AppCompatActivity
                 timer.setText("");
             }
         }.start();
+    }
+
+    private class GeoCoderHandler extends Handler
+    {
+        @Override
+        public void handleMessage(Message message) {
+            String locationAddress;
+            switch (message.what)
+            {
+                case 1:
+                    Bundle bundle = message.getData();
+                    locationAddress = bundle.getString("address");
+                    break;
+                default:
+                    locationAddress = null;
+            }
+            if(SPHelper.camefrom.equals("edit_d"))
+            {
+                edit_account();
+            }else{
+                create_account();
+            }
+            System.out.println("adress"+locationAddress);
+        }
     }
 
 }

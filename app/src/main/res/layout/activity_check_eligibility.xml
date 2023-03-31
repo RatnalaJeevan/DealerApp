@@ -21,31 +21,40 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
         android:paddingBottom="10dp"
-        android:background="@drawable/cv_req_insp">
+        android:background="@drawable/cv_req_insp"
+        android:backgroundTint="@color/text_color1">
+
+        <RelativeLayout
+            android:id="@+id/rl_go_back"
+            android:layout_width="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="50dp">
 
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/back_white_arrow">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back_arrow_black">
 
-        </ImageView>
+            </ImageView>
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/back"
-            android:layout_marginStart="10dp"
+            android:layout_below="@+id/rl_go_back"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Check vehicle status before activating warranty"
-            android:textColor="@color/white"
-            android:textSize="50dp">
+            android:textColor="@color/black"
+            android:textSize="25dp">
 
         </TextView>
     </RelativeLayout>
@@ -65,7 +74,7 @@
 
             android:id="@+id/rl_checkstatus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/label_reg_vehno"
                 android:layout_width="wrap_content"
@@ -75,7 +84,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Registration Number"
-                android:textColor="@color/cement"
+                android:textColor="@color/black"
                 android:textSize="15dp">
 
             </TextView>
@@ -84,13 +93,16 @@
                 android:id="@+id/entered_vehno"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                 android:background="@drawable/cv_new_car"
+                android:backgroundTint="@color/text_color1"
                 android:layout_below="@+id/label_reg_vehno"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:maxLength="15"
+
                 android:inputType="textCapCharacters"
                 android:hint="EX - KA00AB0000"
                 android:paddingStart="20dp"
@@ -98,7 +110,7 @@
                 android:paddingBottom="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textSize="19dp"
-                android:textColorHint="@color/lightgrey"
+                android:textColorHint="@color/cement"
                 >
 
             </EditText>
@@ -116,6 +128,7 @@
                 android:layout_below="@+id/entered_vehno"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
+                android:backgroundTint="@color/black"
                 >
 
                 <TextView
@@ -178,6 +191,7 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_new_car"
+                android:backgroundTint="@color/black"
                 >
 
                 <TextView
@@ -206,6 +220,7 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
+                android:backgroundTint="@color/black"
                 >
 
                 <TextView
@@ -235,6 +250,7 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
+                android:backgroundTint="@color/black"
                 >
 
                 <TextView
@@ -263,6 +279,7 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
+                android:backgroundTint="@color/black"
                 >
 
                 <TextView

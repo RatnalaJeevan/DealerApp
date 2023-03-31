@@ -288,7 +288,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
             rl_pur_details.setVisibility(View.GONE);
             rl_veh_docs.setVisibility(View.GONE);
             rl_cust_details.setVisibility(View.VISIBLE);
-            tv_cust.setTextColor(Color.parseColor("#0619c3"));
+            tv_cust.setTextColor(Color.parseColor("#FF000000"));
             tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
             tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
             tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
@@ -303,7 +303,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
             rl_veh_docs.setVisibility(View.VISIBLE);
             rl_cust_details.setVisibility(View.GONE);
             tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_docs.setTextColor(Color.parseColor("#0619c3"));
+            tv_docs.setTextColor(Color.parseColor("#FF000000"));
             tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
             tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
             v_cust.setVisibility(View.GONE);
@@ -317,7 +317,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
             rl_cust_details.setVisibility(View.GONE);
             tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
             tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_purchase.setTextColor(Color.parseColor("#0619c3"));
+            tv_purchase.setTextColor(Color.parseColor("#FF000000"));
             tv_offers.setTextColor(Color.parseColor("#D3D3D3"));
             v_cust.setVisibility(View.GONE);
             v_offers.setVisibility(View.GONE);
@@ -331,7 +331,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
             tv_cust.setTextColor(Color.parseColor("#D3D3D3"));
             tv_docs.setTextColor(Color.parseColor("#D3D3D3"));
             tv_purchase.setTextColor(Color.parseColor("#D3D3D3"));
-            tv_offers.setTextColor(Color.parseColor("#0619c3"));
+            tv_offers.setTextColor(Color.parseColor("#FF000000"));
             v_cust.setVisibility(View.GONE);
             v_offers.setVisibility(View.VISIBLE);
             v_docs.setVisibility(View.GONE);

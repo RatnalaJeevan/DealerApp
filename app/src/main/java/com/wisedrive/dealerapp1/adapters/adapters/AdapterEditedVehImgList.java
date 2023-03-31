@@ -23,7 +23,7 @@ public class AdapterEditedVehImgList extends RecyclerView.Adapter<AdapterEditedV
 
     ArrayList<PojoVehicleImageList> carImageLists;
     Context context;
-
+    public int adapter_position=0;
     public AdapterEditedVehImgList(ArrayList<PojoVehicleImageList> carImageLists, Context context) {
         this.carImageLists = carImageLists;
         this.context = context;
@@ -31,31 +31,46 @@ public class AdapterEditedVehImgList extends RecyclerView.Adapter<AdapterEditedV
     @NonNull
     @Override
     public AdapterEditedVehImgList.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_car_imagelist, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_car_imagelist, parent,false);
         return new RecyclerViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterEditedVehImgList.RecyclerViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.car_image_position_name.setText(carImageLists.get(position).getImage_name());
-        if (carImageLists.get(position).getImage() == null) {
+        if (carImageLists.get(position).getImage() == null)
+        {
             //uploaded_image.setImageURI(carImageLists.get(i).getImage());
+            if (carImageLists.get(position).getVehicle_images() != null && !carImageLists.get(position).getVehicle_images().isEmpty() && !carImageLists.get(position).getVehicle_images().equals("null")) {
+                Glide.with(context).load(carImageLists.get(position).getVehicle_images()).placeholder(R.drawable.add_car_icon).into(holder.car_image_position);
+            }else {
+
+                holder.car_image_position.setImageResource(R.drawable.add_car_icon);
+            }
         } else {
             holder.car_image_position.setImageURI(carImageLists.get(position).getImage());
+            AddNewCar.getInstance().img1.setImageURI(carImageLists.get(position).getImage());
         }
-        if (carImageLists.get(position).getVehicle_images() != null && !carImageLists.get(position).getVehicle_images().isEmpty() && !carImageLists.get(position).getVehicle_images().equals("null")) {
-            Glide.with(context).load(carImageLists.get(position).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.car_image_position);
-        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddNewCar.getInstance().selectedObject=position;
+                adapter_position=position;
                 if (carImageLists.get(position).getImage() == null)
                 {
                     AddNewCar.getInstance().finalids.add(carImageLists.get(position).getId());
                     AddNewCar.getInstance().rl_show_popup.setVisibility(View.VISIBLE);
 
+                  //  AddNewCar.getInstance().img1.setImageResource(R.drawable.add_car_icon);
+                    if (carImageLists.get(position).getVehicle_images() != null && !carImageLists.get(position).getVehicle_images().isEmpty() && !carImageLists.get(position).getVehicle_images().equals("null")) {
+                        Glide.with(context).load(carImageLists.get(position).getVehicle_images()).placeholder(R.drawable.add_car_icon).into(AddNewCar.getInstance().img1);                    }
+                    else {
+                        AddNewCar.getInstance().img1.setImageResource(R.drawable.add_car_icon);
+                    }
+
                 } else{
+                    AddNewCar.getInstance().img1.setImageURI(carImageLists.get(position).getImage());
                     AddNewCar.getInstance().rl_show_popup.setVisibility(View.VISIBLE);
                 }
             }

@@ -105,8 +105,7 @@ public interface DealerApis {
     Call<AppResponse> getPriceKmsDetails(@Query("dealerId") String dealerId);
 
     @GET("/DealerPackages/getPackageDetails")
-    Call<AppResponse> getpackage_type(@Query("dealerId") String dealerId,
-                                      @Query("type") String type);
+    Call<AppResponse> getpackage_type(@Query("dealerId") String dealerId,@Query("type") String type);
 
     @GET("/DealerPackages/GetAddonList")
     Call<AppResponse> getAddOnList(@Query("dealerId") String dealerId);

@@ -52,7 +52,7 @@ public class Common {
 
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             Date got = format.parse(dateStr);
-            format = new SimpleDateFormat("dd MMM yyyy");
+            format = new SimpleDateFormat("dd MMM,yyyy");
             return format.format(got);
         }
         catch (Exception e) {

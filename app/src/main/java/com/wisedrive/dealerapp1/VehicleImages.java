@@ -41,7 +41,6 @@ public class VehicleImages extends BottomSheetDialogFragment {
     Activity activity;
     private DealerApis apiInterface;
     //@SuppressLint("MissingInflatedId")
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -27,6 +27,7 @@
 
         </TextView>
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_inspect_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,14 +58,14 @@
             <RelativeLayout
                 android:id="@+id/rl_vehdetails"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="80dp"
                 android:layout_below="@+id/v1"
                >
 
                 <ImageView
                     android:id="@+id/brand_logo"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_centerVertical="true"
                     android:src="@drawable/bmw_icon">
 
@@ -108,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_make_model"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text=""
+                        android:text="Automatic"
                         android:textColor="@color/black"
                         android:textSize="14dp">
 
@@ -388,7 +389,7 @@
                         android:layout_toRightOf="@+id/iv3"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
-                        android:text="+2"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16dp">
 
@@ -419,10 +420,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/label_price"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text=""
                         android:layout_marginTop="-4dp"
-                        android:textColor="@color/exp_clr"
+                        android:textColor="@color/black"
                         android:textSize="15sp">
 
                     </TextView>
@@ -463,7 +464,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/label_cp_kms"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="75,000 "
                         android:layout_marginTop="-2dp"
                         android:textColor="@color/black"
@@ -498,7 +499,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/label_days"
                         android:layout_marginTop="-2dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_semibold"
                         android:gravity="center"
                         android:text="10"
                         android:textColor="@color/black"
@@ -533,7 +534,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/label_cp_comments"
-                    android:fontFamily="@font/poppins_bold"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text=""
                     android:layout_marginTop="-2dp"
                     android:textColor="@color/black"
@@ -546,13 +547,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:visibility="gone"
+
             android:id="@+id/rl_sold_label"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/rl_cv"
             android:background="@drawable/cv_soldcars"
-            android:backgroundTint="@color/v_light_green"
+            android:backgroundTint="@color/black"
             >
 
             <ImageView
@@ -573,10 +574,10 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/profile_icon"
                 android:fontFamily="@font/poppins_semibold"
-                android:text=""
+                android:text="Karan Singh"
                 android:layout_marginTop="-4dp"
-                android:textColor="@color/black"
-                android:textSize="17sp">
+                android:textColor="@color/white"
+                android:textSize="15sp">
 
             </TextView>
 
@@ -593,13 +594,13 @@
         </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="gone"
+        android:visibility="invisible"
         android:id="@+id/rl_rep_req"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_below="@+id/rl_cv"
         android:background="@drawable/cv_soldcars"
-        android:backgroundTint="@color/v_light_brown"
+        android:backgroundTint="@color/black"
         >
 
         <RelativeLayout
@@ -647,7 +648,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Repair Done"
                 android:textColor="@color/white"
-                android:textSize="15sp">
+                android:textSize="13sp">
 
             </TextView>
 
@@ -661,11 +662,11 @@
                 android:text="Request Inspection"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/white"
-                android:textSize="15sp">
+                android:textSize="13sp">
 
             </TextView>
             <ImageView
-                android:visibility="gone"
+
                 android:id="@+id/iv_arrow1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

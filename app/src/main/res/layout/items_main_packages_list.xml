@@ -13,12 +13,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:elevation="13dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
         android:background="@drawable/cv_gradient_main_pack"
-        android:backgroundTint="@color/text_color1"
+        android:backgroundTint="@color/bg_location"
         >
 
         <androidx.core.widget.NestedScrollView
@@ -53,6 +52,7 @@
 
         </TextView>
         <TextView
+            android:visibility="gone"
             android:id="@+id/label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
