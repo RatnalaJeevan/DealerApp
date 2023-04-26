@@ -489,9 +489,9 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                     .build();
 
             CFTheme cfTheme = new CFTheme.CFThemeBuilder()
-                    .setNavigationBarBackgroundColor("#0057CC")
+                    .setNavigationBarBackgroundColor("#000000")
                     .setNavigationBarTextColor("#ffffff")
-                    .setButtonBackgroundColor("#0057CC")
+                    .setButtonBackgroundColor("#000000")
                     .setButtonTextColor("#ffffff")
                     .setPrimaryTextColor("#000000")
                     .setSecondaryTextColor("#000000")

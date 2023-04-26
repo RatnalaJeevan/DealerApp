@@ -43,7 +43,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SoldVehDetails extends BottomSheetDialogFragment {
+public class SoldVehDetails extends BottomSheetDialogFragment
+{
     public int act_no=1;
     public RelativeLayout rl_offer_details,rl_pur_details,rl_veh_docs,rl_cust_details,rl_cust,rl_docs,rl_purchase,rl_offers;
     TextView tv_cust,tv_docs,tv_purchase,tv_offers,tv_veh_details,veh_no,no_cool_days,
@@ -121,7 +122,6 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
                 }else{
                     rl_show_popup.setVisibility(View.VISIBLE);
                     Glide.with(activity).load(adhr_frnt).placeholder(R.drawable.icon_noimage).into(doc_image);
-
                 }
             }
         });
@@ -428,7 +428,6 @@ public class SoldVehDetails extends BottomSheetDialogFragment {
                             }
 
                                 car_solddate.setText(Common.getDateFromString(solddate));
-
                                 //customer details
 
                                     cust_name.setText(customer_name);

@@ -79,6 +79,7 @@ dependencies {
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
     implementation "pl.droidsonroids.gif:android-gif-drawable:1.2.22"
 
+   // implementation 'com.borjabravo:readmoretextview:2.1.0'
     implementation 'com.cashfree.pg:android-sdk:1.7.15'
     implementation 'com.cashfree.pg:api:2.0.3'
    // implementation 'in.payu:payu-checkout-pro:1.8.2'

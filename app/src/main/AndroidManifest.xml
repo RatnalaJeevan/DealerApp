@@ -19,12 +19,17 @@
         android:icon="@drawable/wd_app"
         android:label="@string/app_name"
         android:roundIcon="@drawable/wd_app"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
         android:usesCleartextTraffic="true"
-        android:supportsRtl="true"
         tools:node="merge">
-
-
+        <activity
+            android:name=".ShowDocs"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".SelectPackages"
             android:exported="false"
@@ -81,7 +86,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".NotificationPage"
             android:exported="false"
@@ -116,8 +120,8 @@
         <activity
             android:name=".FilterPage"
             android:exported="false"
-            android:theme="@style/Theme.DealerApp1"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.DealerApp1">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -138,22 +142,16 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".ExpiringVehList"
             android:exported="false"
-            android:screenOrientation="portrait">
-
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ShowDocumentImages"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ShowVehicleImages"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".SplashScreen"
             android:configChanges="uiMode"
@@ -173,11 +171,10 @@
             android:name=".WebPages"
             android:configChanges="uiMode"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".SignUpPage"
             android:configChanges="uiMode"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -186,12 +183,11 @@
             android:name=".LoginPage"
             android:configChanges="uiMode"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".PayuCheckOutPage"
             android:configChanges="uiMode"
-
             android:screenOrientation="portrait" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

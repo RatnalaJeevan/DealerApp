@@ -630,7 +630,7 @@ public class AddNewCar extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
                             {
-                                ins_exp_date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                ins_exp_date.setText(Common.getDateFromString1(dayOfMonth + "-" + (monthOfYear + 1) + "-" +year));
                                 server_exp_date=year+"-"+(monthOfYear + 1)+"-"+dayOfMonth;
                                 SPHelper.ins_exp_date=server_exp_date;
                             }
@@ -693,7 +693,7 @@ public class AddNewCar extends AppCompatActivity {
             if(SPHelper.ins_exp_date.equals("null")){
                 SPHelper.ins_exp_date="";
             }else{
-                ins_exp_date.setText(Common.getDateFromString(SPHelper.ins_exp_date));
+                ins_exp_date.setText(Common.getDateFromString2(SPHelper.ins_exp_date));
             }
             show_pages();
             get_veh_images_list();

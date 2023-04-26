@@ -364,10 +364,60 @@
                             </RelativeLayout>
 
                             <RelativeLayout
-                                android:id="@+id/rl_cust_location"
+                                android:id="@+id/rl_cust_mail"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:layout_below="@+id/rl_cust_no"
+                                android:layout_marginTop="10dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_mail"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/c_mail"
+                                    android:padding="5dp">
+
+                                </ImageView>
+
+                                <TextView
+                                    android:id="@+id/label_cust_mail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_toRightOf="@+id/iv_mail"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:gravity="start"
+                                    android:text="Email"
+                                    android:textColor="@color/lightgrey"
+                                    android:textSize="15dp">
+
+                                </TextView>
+
+                                <TextView
+                                    android:id="@+id/cust_mail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="10dp"
+                                    android:gravity="end"
+                                    android:layout_toRightOf="@+id/label_cust_mail"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp">
+
+                                </TextView>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/rl_cust_location"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_below="@+id/rl_cust_mail"
                                 android:layout_marginTop="10dp">
 
                                 <ImageView
@@ -1091,13 +1141,22 @@
             android:layout_marginBottom="-10dp"
             app:cardCornerRadius="15dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
             <com.jsibbold.zoomage.ZoomageView
                 android:id="@+id/doc_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/add_copy">
 
             </com.jsibbold.zoomage.ZoomageView>
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 

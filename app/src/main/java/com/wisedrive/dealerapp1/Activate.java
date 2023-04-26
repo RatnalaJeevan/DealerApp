@@ -646,11 +646,13 @@ public class Activate extends BottomSheetDialogFragment {
             }
             else   if(entered_mail.getText().toString().equals(""))
             {
+                act_no--;
                 Toast.makeText(activity,
                         " Enter Email",
                         Toast.LENGTH_SHORT).show();
             }
             else if(!entered_mail.getText().toString().matches(emailpattern)){
+                act_no--;
                 Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
             }
             else   if(cust_adress.getText().toString().equals(""))
@@ -721,11 +723,13 @@ public class Activate extends BottomSheetDialogFragment {
             }
             else  if(entered_mail.getText().toString().equals(""))
             {
+                act_no--;
                 Toast.makeText(activity,
                         " Enter Email",
                         Toast.LENGTH_SHORT).show();
             }
             else if(!entered_mail.getText().toString().matches(emailpattern)){
+                act_no--;
                 Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
             }
             else   if(cust_adress.getText().toString().equals(""))
@@ -808,11 +812,13 @@ public class Activate extends BottomSheetDialogFragment {
             }
             else   if(entered_mail.getText().toString().equals(""))
             {
+                act_no--;
                 Toast.makeText(activity,
                         " enter mail",
                         Toast.LENGTH_SHORT).show();
             }
             else if(!entered_mail.getText().toString().matches(emailpattern)){
+                act_no--;
                 Toast.makeText(activity, "Enter valid email" , Toast.LENGTH_SHORT).show();
             }
             else   if(cust_adress.getText().toString().equals(""))

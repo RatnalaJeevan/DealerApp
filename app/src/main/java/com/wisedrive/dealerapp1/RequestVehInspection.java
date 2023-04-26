@@ -49,7 +49,7 @@ public class RequestVehInspection extends AppCompatActivity {
             rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label,rl_go_back;
     TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date;
     View v_postsale,v_presale;
-    ImageView iv_cust_seleted,iv_dealer_selected,back,cancel_veh_info;
+    ImageView iv_cust_seleted,iv_dealer_selected,back,cancel_veh_info,close;
     int req_page=1;
     EditText et_no_cars,selected_vehno,cust_adress,cust_name,cust_no,cust_location;
     TextView selected_insp_date;
@@ -70,6 +70,7 @@ public class RequestVehInspection extends AppCompatActivity {
         activity=RequestVehInspection.this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         back=findViewById(R.id.back);
+        close=findViewById(R.id.close);
         rl_go_back=findViewById(R.id.rl_go_back);
         cancel_veh_info=findViewById(R.id.cancel_veh_info);
         rl_check_status=findViewById(R.id.rl_check_status);
@@ -332,8 +333,17 @@ public class RequestVehInspection extends AppCompatActivity {
                 }else{
                     rl_label.setVisibility(View.GONE);
                     rl_add_car.setVisibility(View.GONE);
-                    Common.CallToast(RequestVehInspection.this,"VehNo. should be greater than 5",1);
+                    Common.CallToast(RequestVehInspection.this,"Enter valid vehicle number",1);
                 }
+            }
+        });
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selected_vehno.setText("");
+                close.setVisibility(View.GONE);
+                select_vehno();
             }
         });
     }
@@ -346,8 +356,12 @@ public class RequestVehInspection extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+                rl_add_car.setVisibility(View.GONE);
+                rl_check_status.setVisibility(View.VISIBLE);
+                rl_label.setVisibility(View.GONE);
+                close.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -359,6 +373,7 @@ public class RequestVehInspection extends AppCompatActivity {
                 }else{
                     rl_label.setVisibility(View.GONE);
                     rl_add_car.setVisibility(View.GONE);
+                    rl_check_status.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -380,8 +395,8 @@ public class RequestVehInspection extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         serverdate=year+"-"+(monthOfYear + 1) +"-"+dayOfMonth;
-                        selected_insp_date.setText(Common.getDateFromString(serverdate));
-                        postsale_insp_date.setText(Common.getDateFromString(serverdate));
+                        selected_insp_date.setText(Common.getDateFromString1(dayOfMonth + "-" + (monthOfYear + 1) + "-" +year));
+                        postsale_insp_date.setText(Common.getDateFromString1(dayOfMonth + "-" + (monthOfYear + 1) + "-" +year));
 
                     }
                 }, year, month, day);
@@ -482,6 +497,7 @@ public class RequestVehInspection extends AppCompatActivity {
                                     }else{
                                         rl_label.setVisibility(View.VISIBLE);
                                         rl_add_car.setVisibility(View.VISIBLE);
+                                        rl_check_status.setVisibility(View.GONE);
                                        // Toast.makeText(activity, appResponse.getResponse().getInspectionEligibility().getError_msg(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
