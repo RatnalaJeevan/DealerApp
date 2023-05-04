@@ -18,13 +18,12 @@
         android:background="@drawable/map_border">
 
 
-
         <TextView
             android:id="@+id/car_model"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Verna"
             android:textColor="@color/lightgrey"
             android:textSize="12dp">

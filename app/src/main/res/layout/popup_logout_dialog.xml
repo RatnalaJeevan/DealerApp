@@ -27,9 +27,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/zonapro_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:text="Are You Sure you want to logout?"
                     android:textSize="16dp">
 
@@ -54,7 +54,7 @@
                         android:gravity="center"
                         android:text="YES"
                         android:textSize="12dp"
-                        android:fontFamily="@font/zonapro_semibold"
+                        android:fontFamily="@font/semibold"
                         android:textColor="@color/white">
 
                     </TextView>
@@ -67,7 +67,7 @@
                         android:layout_toRightOf="@+id/yes"
                         android:background="@drawable/submit_cardview"
                         android:backgroundTint="@color/grey"
-                        android:fontFamily="@font/zonapro_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="NO"
                         android:textColor="@color/white"

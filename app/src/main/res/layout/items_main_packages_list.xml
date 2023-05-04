@@ -44,10 +44,10 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/iv_buy_warranty"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/bold"
             android:gravity="center"
             android:text="One Warranty"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="20dp">
 
         </TextView>
@@ -59,9 +59,9 @@
             android:layout_below="@+id/pack_name"
             android:layout_marginTop="-5dp"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Choose any car"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="15dp">
 
         </TextView>

@@ -20,7 +20,7 @@ public class WebPages extends AppCompatActivity {
         mWebview.getSettings().setLoadWithOverviewMode(true);
         mWebview.getSettings().setUseWideViewPort(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
-        mWebview.getSettings().setAppCacheEnabled(false);
+       // mWebview.getSettings().setAppCacheEnabled(false);
         mWebview.clearCache(true);
 
         if(SPHelper.comingfrom.equals("tnc"))

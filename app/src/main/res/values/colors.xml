@@ -90,4 +90,14 @@
     <color name="start_sold">#00B3CC</color>
     <color name="end_sold">#D6FF7F</color>
 
+    <color name="transperant">#80000000</color>
+    <color name="textcolour">#252A40</color>
+    <color name="sky_blue">#009AEE</color>
+    <color name="background">#f5f5f5</color>
+    <color name="background_page">#E6E9F6</color>
+    <color name="view_back">#9a9a9a</color>
+    <color name="green_light">#34C759</color>
+    <color name="violet">#9335fe</color>
+    <color name="dark_green">#436968</color>
+
 </resources>

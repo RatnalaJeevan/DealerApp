@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="1."
             android:textColor="@color/cement"
             android:textSize="25dp">
@@ -31,9 +31,9 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/label1"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/medium"
             android:text="Warranty"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="18dp">
 
         </TextView>
@@ -46,9 +46,9 @@
                android:layout_marginStart="10dp"
                android:layout_marginEnd="10dp"
                android:layout_toEndOf="@+id/label1"
-               android:fontFamily="@font/poppins_regular"
+               android:fontFamily="@font/regular"
                android:text="Warranty"
-               android:textColor="@color/black"
+               android:textColor="@color/textcolour"
                android:textSize="16dp">
 
            </TextView>
@@ -60,7 +60,7 @@
                android:layout_marginStart="10dp"
                android:layout_marginEnd="15dp"
                android:layout_toEndOf="@+id/label1"
-               android:fontFamily="@font/poppins_regular"
+               android:fontFamily="@font/regular"
                android:text="Pending :"
                android:textColor="@color/cement"
                android:textSize="16dp">
@@ -73,9 +73,9 @@
             android:layout_marginEnd="15dp"
             android:layout_toEndOf="@+id/label_pending"
             android:layout_below="@+id/sub_pack_name"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="0"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="18dp">
 
         </TextView>
@@ -89,7 +89,7 @@
                android:layout_marginStart="10dp"
                android:layout_toEndOf="@+id/label1"
                android:layout_below="@+id/label_pending"
-               android:fontFamily="@font/poppins_semibold"
+               android:fontFamily="@font/semibold"
                android:text="10 Nov"
                android:textColor="@color/ab_green"
                android:textSize="14dp">
@@ -124,7 +124,7 @@
 
                android:layout_toStartOf="@+id/exp_date"
                android:layout_below="@+id/paid_date"
-               android:fontFamily="@font/poppins_regular"
+               android:fontFamily="@font/regular"
                android:text="Expires in:"
                android:textColor="@color/red"
                android:textSize="14dp">
@@ -137,7 +137,7 @@
                android:layout_marginEnd="15dp"
                android:layout_alignParentEnd="true"
                android:layout_below="@+id/paid_date"
-               android:fontFamily="@font/poppins_semibold"
+               android:fontFamily="@font/semibold"
                android:text=""
                android:textColor="@color/red"
                android:textSize="16dp">

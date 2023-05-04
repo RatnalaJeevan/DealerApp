@@ -39,9 +39,9 @@
                 android:id="@+id/tv_veh_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/regular"
                 android:text="City Diesel 2019"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="16dp">
 
             </TextView>
@@ -51,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_veh_details"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:text="KA00AA0000"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="16dp">
 
             </TextView>
@@ -68,7 +68,7 @@
                 android:paddingStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/veh_no"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="11dp"
@@ -116,9 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="You are activating a new car ..."
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="21dp">
             </TextView>
 
@@ -141,9 +141,9 @@
                         android:id="@+id/tv_cust"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:text="Customer"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="14dp">
 
                     </TextView>
@@ -171,7 +171,7 @@
                         android:id="@+id/tv_docs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="Documents"
                         android:textColor="@color/cement"
@@ -201,7 +201,7 @@
                         android:id="@+id/tv_purchase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:text="Purchase"
                         android:textColor="@color/cement"
                         android:textSize="14dp">
@@ -230,7 +230,7 @@
                         android:id="@+id/tv_offers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:text="Offers"
                         android:textColor="@color/cement"
                         android:textSize="14dp">
@@ -294,10 +294,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_cust_name"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Name"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -311,9 +311,9 @@
                                 android:layout_centerVertical="true"
                                 android:paddingStart="8dp"
                                 android:textSize="16dp"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
 
@@ -346,10 +346,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_phone"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Phone"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -366,8 +366,8 @@
                                 android:maxLength="10"
                                 android:paddingStart="8dp"
                                 android:textSize="16dp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/black"
+                                android:fontFamily="@font/semibold"
+                                android:textColor="@color/textcolour"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
 
@@ -399,10 +399,10 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_cust_mail"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Email"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -421,7 +421,7 @@
                                 android:text=""
                                 android:hint="name@example.com"
                                 android:textColorHint="@color/cement"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
 
@@ -454,10 +454,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_cust_location"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Location"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -472,8 +472,8 @@
                                 android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                 android:paddingStart="8dp"
                                 android:textSize="16dp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/black"
+                                android:fontFamily="@font/semibold"
+                                android:textColor="@color/textcolour"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
 
@@ -506,10 +506,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_adress"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Address"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -527,8 +527,8 @@
                                 android:paddingTop="8dp"
                                 android:textSize="16dp"
                                 android:maxLength="100"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:textColor="@color/textcolour"
+                                android:fontFamily="@font/semibold"
                                 android:hint="Enter Dr-no, street, cross, main road"
                                 android:textColorHint="@color/cement"
                                 android:layout_below="@+id/iv_adress"
@@ -564,10 +564,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_pincode"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Pincode"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -582,8 +582,8 @@
 
                                 android:paddingStart="8dp"
                                 android:textSize="16dp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/black"
+                                android:fontFamily="@font/semibold"
+                                android:textColor="@color/textcolour"
                                 android:inputType="number"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
@@ -617,10 +617,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_city"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="City"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -632,9 +632,9 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:paddingStart="8dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="16dp"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
@@ -668,10 +668,10 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_state"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="State"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -683,9 +683,9 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
                                 android:paddingStart="8dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="16dp"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
@@ -717,7 +717,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Registration Card"
                             android:layout_marginBottom="10dp"
@@ -732,7 +732,7 @@
                             android:layout_toRightOf="@+id/v_c"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Aadhar Card"
                             android:layout_marginBottom="10dp"
@@ -817,7 +817,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginTop="20dp"
                             android:layout_below="@+id/ll_imgs1"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Sales Receipt"
                             android:layout_marginBottom="10dp"
@@ -834,7 +834,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Delivery Note"
                             android:layout_marginBottom="10dp"
@@ -880,7 +880,7 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginTop="20dp"
                             android:layout_below="@+id/iv_sa_re"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Insurance Copy"
                             android:layout_marginBottom="10dp"
@@ -955,7 +955,7 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_pur_price"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Purchase Price"
                                 android:textColor="@color/lightgrey"
@@ -974,8 +974,8 @@
                                 android:inputType="number"
                                 android:maxLines="1"
                                 android:maxLength="10"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/black"
+                                android:fontFamily="@font/semibold"
+                                android:textColor="@color/textcolour"
                                 android:paddingStart="5dp"
                                 android:layout_below="@+id/iv_pur_price"
                                 android:background="@drawable/cardview_act_code"
@@ -1009,7 +1009,7 @@
                                 android:layout_marginTop="12dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_toRightOf="@+id/iv_pur_from"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Purchase From"
                                 android:textColor="@color/lightgrey"
@@ -1025,8 +1025,8 @@
                                 android:layout_below="@+id/iv_pur_from"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="20dp"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/black"
+                                android:fontFamily="@font/semibold"
+                                android:textColor="@color/textcolour"
                                 android:paddingStart="5dp"
                                 android:background="@drawable/cardview_act_code"
                                 android:backgroundTint="@color/v_light_grey">
@@ -1076,9 +1076,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:text="CashBack"
-                            android:textColor="@color/black"
+                            android:textColor="@color/textcolour"
                             android:textSize="15dp">
 
                         </TextView>
@@ -1123,9 +1123,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:text="Add Ons"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -1193,9 +1193,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Next"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="15dp">
 
                 </TextView>
@@ -1232,7 +1232,7 @@
                     android:id="@+id/tv_activate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="ACTIVATE"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -1254,9 +1254,9 @@
                     android:id="@+id/tv_back1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Back"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="15dp">
 
                 </TextView>
@@ -1337,7 +1337,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="10dp"
                         android:layout_toRightOf="@+id/iv_ft_no"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text=" Fastag Number"
                         android:textColor="@color/cement"
@@ -1353,8 +1353,8 @@
                         android:layout_marginStart="20dp"
                         android:layout_below="@+id/iv_ft_no"
                         android:maxLength="16"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/semibold"
+                        android:textColor="@color/textcolour"
                         android:paddingStart="5dp"
                         android:background="@drawable/cardview_act_code"
                         android:backgroundTint="@color/v_light_grey">
@@ -1379,7 +1379,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/rl_ft_no"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="center"
                     android:text="PanCard Image"
                     android:layout_marginBottom="10dp"
@@ -1396,7 +1396,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="10dp"
                     android:layout_toRightOf="@+id/v_ft"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="center"
                     android:text="Fastag Image"
                     android:layout_marginBottom="10dp"
@@ -1453,7 +1453,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:text="OK"
                         android:textColor="@color/white"
                         android:textSize="15dp">

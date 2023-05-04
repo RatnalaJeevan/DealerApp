@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
 
     private String insp_veh_count,app_w_c,repair_count,app_w_o_c,re_insp_count,
             sold_cars_with_warr_count,expired_insp_count,s_w_o_warra_c,all_car_counnt;
+    RelativeLayout rl_sold_w_o_1,rl_approved_1,rl_exp_veh_1,rl_repair_req_1;
 
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
@@ -106,6 +107,10 @@ public class HomeFragment extends Fragment {
         rl_exp_veh=rootView.findViewById(R.id.rl_exp_veh);
         rl_app_cool_period=rootView.findViewById(R.id.rl_app_cool_period);
         rl_sold_w_o=rootView.findViewById(R.id.rl_sold_w_o);
+        rl_sold_w_o_1=rootView.findViewById(R.id.rl_sold_w_o_1);
+        rl_approved_1=rootView.findViewById(R.id.rl_approved_1);
+        rl_exp_veh_1=rootView.findViewById(R.id.rl_exp_veh_1);
+        rl_repair_req_1=rootView.findViewById(R.id.rl_repair_req_1);
 
         // final int radius = getResources().getDimensionPixelSize(R.dimen.radius);
         // final int dotsHeight = getResources().getDimensionPixelSize();
@@ -149,7 +154,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        rl_insp_req.setOnClickListener(new View.OnClickListener() {
+        rl_addcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SPHelper.is_sold="";
@@ -385,6 +390,101 @@ public class HomeFragment extends Fragment {
                     Intent intent = new Intent(getContext(), AllCarsPage.class);
                     startActivity(intent);
                 }
+            }
+        });
+        rl_sold_w_o_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPHelper.title="All Cars";
+                SPHelper.comingfrom="all";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                SPHelper.selected_insp_statuses=new ArrayList<>();
+                SPHelper.fuel_id="";
+                SPHelper.trans_id="";
+                SPHelper.price_from= "";
+                SPHelper.price_to= "";
+                SPHelper.kms_from="";
+                SPHelper.kms_to="";
+                SPHelper.selected_insp_status="";
+                SPHelper.selected_brandid="";
+                if(all_car_counnt==null||all_car_counnt.equals("0"))
+                {
+                    Toast.makeText(activity,
+                            "there are no cars to show",
+                            Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(getContext(), AllCarsPage.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+        rl_approved_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPHelper.is_sold="N";
+                SPHelper.with_cool="N";
+                SPHelper.with_pack="";
+                SPHelper.status_id="1";
+                SPHelper.title="Approved Vehicle List";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                SPHelper.selected_insp_statuses=new ArrayList<>();
+                SPHelper.fuel_id="";
+                SPHelper.trans_id="";
+                SPHelper.price_from= "";
+                SPHelper.price_to= "";
+                SPHelper.kms_from="";
+                SPHelper.kms_to="";
+                SPHelper.selected_insp_status="";
+                SPHelper.selected_brandid="";
+                if(app_w_o_c==null||app_w_o_c.equals("0"))
+                {
+                    Toast.makeText(activity,
+                            "there are no cars to show",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    SPHelper.comingfrom="app";
+                    Intent intent=new Intent(activity, AllCarsPage.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+        rl_exp_veh_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPHelper.is_sold="";
+                SPHelper.with_cool="";
+                SPHelper.with_pack="";
+                SPHelper.status_id="5";
+                SPHelper.title="Expired Inspection List";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                SPHelper.selected_insp_statuses=new ArrayList<>();
+                SPHelper.fuel_id="";
+                SPHelper.trans_id="";
+                SPHelper.price_from= "";
+                SPHelper.price_to= "";
+                SPHelper.kms_from="";
+                SPHelper.kms_to="";
+                SPHelper.selected_insp_status="";
+                SPHelper.selected_brandid="";
+                if(expired_insp_count==null||expired_insp_count.equals("0"))
+                {
+                    Toast.makeText(activity,
+                            "there are no cars to show",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    SPHelper.comingfrom="exp";
+                    Intent intent=new Intent(activity, AllCarsPage.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
+        rl_repair_req_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 

@@ -11,18 +11,26 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterAllCarPage;
+import com.wisedrive.dealerapp1.adapters.adapters.AdapterCarImageList;
+import com.wisedrive.dealerapp1.adapters.adapters.AdapterEditedVehImgList;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterNewVehImgs;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterCustomerCarsPage;
+import com.wisedrive.dealerapp1.adapters.adapters.Adapter_features;
+import com.wisedrive.dealerapp1.adapters.adapters.Adapter_static_images;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseExtension;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseListener;
@@ -30,6 +38,10 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.fragments.HomeFragment;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
+import com.wisedrive.dealerapp1.pojos.pojos.PojoCarImageList;
+import com.wisedrive.dealerapp1.pojos.pojos.PojoVehicleImageList;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_features;
+import com.wisedrive.dealerapp1.pojos.pojos.pojo_static_image_data;
 import com.wisedrive.dealerapp1.services1.services.ServiceURL;
 import com.wisedrive.dealerapp1.services1.services.WebService;
 
@@ -52,14 +64,54 @@ public class AllCarsPage extends AppCompatActivity {
     RecyclerView rv_veh_imgs;
     public RelativeLayout rl_transparent1,rl_show_veh_images;
     public Dialog dialog;
+  public RelativeLayout rl_transperant,rl_transperant_pop_up,rl_feature_pop_up,
+          rl_transperant_add_image,rl_transperant_add_image_pop_up,rl_add_image,
+          rl_car_imgs,rl_portal_transperant,rl_portal_menu,rl_list_in_portal,rl_mark_sold,
+          rl_showlistingprice, rl_showmarksold,rl_listing_price,rl_price_transperant;
    public TextView comments,tv_no_cars;
+   ImageView img1,imv_cross,check1,check2,image_popup_cross;
+   TextView heading_fratures;
+
+
     int count1=0,count2=0,count3=0;
+
+    ArrayList<pojo_static_image_data>pojo_static_image_dataArrayList;
+    Adapter_static_images adapter_static_images;
+    RecyclerView rv_car_imagelist,rv_car_imagelist_2;
+
+    ArrayList<Pojo_features>pojo_featuresArrayList;
+    Adapter_features adapter_features;
+    RecyclerView rv_features;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance=this;
         setContentView(R.layout.activity_all_cars_page);
+        heading_fratures=findViewById(R.id.heading_fratures);
+        imv_cross=findViewById(R.id.imv_cross);
+      //  heading_fratures.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        rl_transperant=findViewById(R.id.rl_transperant);
+        rl_feature_pop_up=findViewById(R.id.rl_feature_pop_up);
+        rl_transperant_add_image=findViewById(R.id.rl_transperant_add_image);
+        rl_transperant_add_image_pop_up=findViewById(R.id.rl_transperant_add_image_pop_up);
+        rl_add_image=findViewById(R.id.rl_add_image);
+        rl_car_imgs=findViewById(R.id.rl_car_imgs);
+        rl_portal_transperant=findViewById(R.id.rl_portal_transperant);
+        rl_portal_menu=findViewById(R.id.rl_portal_menu);
+        rl_list_in_portal=findViewById(R.id.rl_list_in_portal);
+        rl_mark_sold=findViewById(R.id.rl_mark_sold);
+        rl_showlistingprice=findViewById(R.id.rl_showlistingprice);
+        rl_showmarksold=findViewById(R.id.rl_showmarksold);
+        check1=findViewById(R.id.check1);
+        check2=findViewById(R.id.check2);
+        rl_listing_price=findViewById(R.id.rl_listing_price);
+        rl_price_transperant=findViewById(R.id.rl_price_transperant);
+        rv_features=findViewById(R.id.rv_features);
+        img1=findViewById(R.id.img1);
+        rv_car_imagelist=findViewById(R.id.rv_car_imagelist);
         progress_bar=findViewById(R.id.progress_bar);
         go_back=findViewById(R.id.go_back);
         rl_header=findViewById(R.id.rl_header);
@@ -71,6 +123,7 @@ public class AllCarsPage extends AppCompatActivity {
         rl_transparent1=findViewById(R.id.rl_transparent1);
         rl_show_veh_images=findViewById(R.id.rl_show_veh_images);
         rv_veh_imgs=findViewById(R.id.rv_veh_imgs);
+        image_popup_cross=findViewById(R.id.image_popup_cross);
 
         dialog = new Dialog(AllCarsPage.this);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -89,6 +142,76 @@ public class AllCarsPage extends AppCompatActivity {
             }
         });
         customer_cars_list=new ArrayList<>();
+
+        rl_transperant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_transperant.setEnabled(true);
+                rl_transperant.setVisibility(View.INVISIBLE);
+                rl_feature_pop_up.setVisibility(View.INVISIBLE);
+            }
+        });
+        imv_cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_transperant.setVisibility(View.INVISIBLE);
+                rl_feature_pop_up.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        rl_transperant_add_image_pop_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_transperant_add_image_pop_up.setEnabled(true);
+                rl_transperant_add_image.setVisibility(View.INVISIBLE);
+                rl_add_image.setVisibility(View.INVISIBLE);
+            }
+        });
+        image_popup_cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_transperant_add_image.setVisibility(View.INVISIBLE);
+                rl_add_image.setVisibility(View.INVISIBLE);
+
+            }
+        });
+        rl_portal_transperant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_portal_transperant.setEnabled(true);
+                rl_portal_menu.setVisibility(View.INVISIBLE);
+                rl_portal_transperant.setVisibility(View.INVISIBLE);
+            }
+        });
+        rl_list_in_portal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                        if (check1.getVisibility() == View.VISIBLE) {
+                            // i1 is currently visible, so hide it and l1
+                            check1.setVisibility(View.GONE);
+                            rl_showlistingprice.setVisibility(View.GONE);
+                        } else {
+                            // i1 is currently hidden, so show it and l1
+                            check1.setVisibility(View.VISIBLE);
+                            rl_showlistingprice.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
+        rl_mark_sold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (check2.getVisibility() == View.VISIBLE) {
+                    // i1 is currently visible, so hide it and l1
+                    check2.setVisibility(View.GONE);
+                    rl_showmarksold.setVisibility(View.GONE);
+                } else {
+                    // i1 is currently hidden, so show it and l1
+                    check2.setVisibility(View.VISIBLE);
+                    rl_showmarksold.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         iv_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +239,35 @@ public class AllCarsPage extends AppCompatActivity {
         });
         //if coming from sold
         heading.setText(SPHelper.title);
+
+
+        pojo_static_image_dataArrayList = new ArrayList<>();
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Front Side ",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Back Side",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Left Side",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Right Side",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Dashboard",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Interior-First line",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Interior-Second line",R.drawable.upload_symbol));
+        pojo_static_image_dataArrayList.add(new pojo_static_image_data("Tail Space",R.drawable.upload_symbol));
+        adapter_static_images = new  Adapter_static_images(this, pojo_static_image_dataArrayList);
+        GridLayoutManager layoutManager = new GridLayoutManager(AllCarsPage.this, 2);
+        rv_car_imagelist.setLayoutManager(layoutManager);
+        rv_car_imagelist.setAdapter(adapter_static_images);
+
+
+        pojo_featuresArrayList= new ArrayList<>();
+        pojo_featuresArrayList.add(new Pojo_features("Comfort & Convenience"));
+        pojo_featuresArrayList.add(new Pojo_features("Exteriors"));
+        pojo_featuresArrayList.add(new Pojo_features("Interiors"));
+        pojo_featuresArrayList.add(new Pojo_features("Safety"));
+        pojo_featuresArrayList.add(new Pojo_features("Vehicle Condition"));
+        pojo_featuresArrayList.add(new Pojo_features("Services Offered"));
+        adapter_features = new  Adapter_features(this,pojo_featuresArrayList);
+        GridLayoutManager layoutManager2 = new GridLayoutManager(AllCarsPage.this, 1);
+        rv_features.setLayoutManager(layoutManager2);
+        rv_features.setAdapter(adapter_features);
+
     }
 
     public static AllCarsPage getInstance() {
@@ -499,4 +651,6 @@ public class AllCarsPage extends AppCompatActivity {
         finish();
 
     }
+
+
 }

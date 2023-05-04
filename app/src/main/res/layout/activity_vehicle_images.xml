@@ -21,9 +21,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Vehicle Images..."
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="21dp">
                 </TextView>
                 <androidx.recyclerview.widget.RecyclerView

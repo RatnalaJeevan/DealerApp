@@ -35,7 +35,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/rl_back"
-            android:fontFamily="@font/zonapro_regular"
+            android:fontFamily="@font/regular"
             android:gravity="center"
             android:text="Service Requests"
             android:textColor="@color/white"

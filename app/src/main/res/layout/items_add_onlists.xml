@@ -40,7 +40,7 @@
             android:layout_below="@+id/add_onlogo"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="ShowRoom\nWarranty"
             android:lineSpacingExtra="-10dp"
             android:textColor="@color/white"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addon_name"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Starts From"
             android:textColor="@color/white"
             android:textSize="16dp">
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/label_starts1"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="3,456"
             android:textColor="@color/white"
             android:textSize="16dp">
@@ -78,7 +78,7 @@
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@+id/final_price"
             android:layout_below="@+id/label_starts1"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="INR"
             android:textColor="@color/white"
             android:textSize="12dp">
@@ -90,7 +90,7 @@
             android:layout_toRightOf="@+id/label_starts1"
             android:layout_marginStart="30dp"
             android:layout_below="@+id/addon_name"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Valid For"
             android:textColor="@color/white"
             android:textSize="16dp">
@@ -104,7 +104,7 @@
             android:layout_below="@+id/label_starts1"
             android:layout_marginStart="30dp"
             android:layout_toRightOf="@+id/label_starts1"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="365 days"
             android:textColor="@color/white"
             android:textSize="16dp">

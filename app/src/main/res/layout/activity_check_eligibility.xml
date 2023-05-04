@@ -51,9 +51,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Check vehicle status before activating warranty"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="25dp">
 
         </TextView>
@@ -82,9 +82,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="Registration Number"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="15dp">
 
             </TextView>
@@ -100,7 +100,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:maxLength="15"
 
                 android:inputType="textCapCharacters"
@@ -108,7 +108,7 @@
                 android:paddingStart="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:textSize="19dp"
                 android:textColorHint="@color/cement"
                 >
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Check Status"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -171,9 +171,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="Vehicle doesnot exists with this number. please add vehicle and request for Inspection"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="17dp">
 
             </TextView>
@@ -191,15 +191,14 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_new_car"
-                android:backgroundTint="@color/black"
-                >
+                android:backgroundTint="@color/black">
 
                 <TextView
                     android:id="@+id/tv_add_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Add Car"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -220,15 +219,14 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
-                android:backgroundTint="@color/black"
-                >
+                android:backgroundTint="@color/black">
 
                 <TextView
                     android:id="@+id/tv_req_insp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Request Inspection"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -250,15 +248,14 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
-                android:backgroundTint="@color/black"
-                >
+                android:backgroundTint="@color/black">
 
                 <TextView
                     android:id="@+id/tv_buy_warranty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Buy Warranty"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -279,15 +276,14 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
-                android:backgroundTint="@color/black"
-                >
+                android:backgroundTint="@color/black">
 
                 <TextView
                     android:id="@+id/tv_check_again"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Check Again"
                     android:textColor="@color/white"
                     android:textSize="17dp">

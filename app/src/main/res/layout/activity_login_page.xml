@@ -35,10 +35,10 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Mobile Number"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
             </TextView>
 
@@ -50,12 +50,12 @@
                 android:layout_marginTop="20dp"
                 android:background="@null"
                 android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="90000 9000"
                 android:inputType="number"
                 android:maxLength="10"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -81,10 +81,10 @@
                 android:layout_below="@+id/rl_mobileno"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="OTP"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -112,12 +112,12 @@
                         android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp"
 
                         >
@@ -142,13 +142,15 @@
                         android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
 
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="1"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"></EditText>
+                        android:textColor="@color/textcolour"
+                        android:textSize="20dp">
+
+                    </EditText>
 
                 </RelativeLayout>
 
@@ -167,12 +169,12 @@
 
                         android:layout_weight="0.5"
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp">
 
                     </EditText>
@@ -193,12 +195,14 @@
                         android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
 
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="1"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"></EditText>
+                        android:textColor="@color/textcolour"
+                        android:textSize="20dp">
+
+                    </EditText>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -221,7 +225,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@+id/tv_resend"
-                android:fontFamily="@font/zonapro_bold"
+                android:fontFamily="@font/bold"
                 android:text=" 30"
                 android:textColor="@color/grey"
                 android:textSize="18dp"
@@ -234,9 +238,9 @@
                 android:layout_below="@+id/otp_ll"
                 android:layout_marginTop="15dp"
                 android:layout_toLeftOf="@+id/view1"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="RESEND"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="16dp">
 
             </TextView>
@@ -256,7 +260,7 @@
             android:padding="10dp"
             android:backgroundTint="@color/black"
             android:background="@drawable/cardview_dealership"
-            android:fontFamily="@font/zonapro_semibold"
+            android:fontFamily="@font/semibold"
             android:gravity="center"
             android:text="SEND OTP"
             android:textColor="@color/white"
@@ -276,7 +280,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cardview_dealership"
                 android:backgroundTint="@color/black"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Login"
@@ -299,10 +303,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/zonapro_regular"
+            android:fontFamily="@font/regular"
             android:gravity="center"
             android:text="Don't have an account?"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="16dp">
 
         </TextView>
@@ -313,11 +317,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/tv_label_sample"
-            android:fontFamily="@font/zonapro_semibold"
+            android:fontFamily="@font/semibold"
             android:gravity="center"
             android:text="Sign Up"
-            android:textColor="@color/black"
-            android:textSize="16dp"></TextView>
+            android:textColor="@color/textcolour"
+            android:textSize="16dp">
+
+        </TextView>
     </RelativeLayout>
     </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

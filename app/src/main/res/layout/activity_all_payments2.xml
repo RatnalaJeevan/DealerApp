@@ -34,9 +34,9 @@
                 android:layout_toEndOf="@+id/go_back_home"
                 android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="All Payments"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="17dp">
 
             </TextView>

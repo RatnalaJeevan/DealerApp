@@ -2,6 +2,7 @@ package com.wisedrive.dealerapp1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.cashfree.pg.ui.hidden.checkout.subview.payment.CardView;
 import com.google.android.material.tabs.TabLayout;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterBrandLogos;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterModel;
@@ -40,6 +42,7 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.GifImageView;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.fragments.CustomerFragment;
 import com.wisedrive.dealerapp1.fragments.HomeFragment;
+import com.wisedrive.dealerapp1.fragments.Home_fragment_2;
 import com.wisedrive.dealerapp1.fragments.PackageFragment;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSample;
@@ -64,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
     RelativeLayout rl_pack_selection,rl_single,rl_bundle;
     int count1=0,count2=0,count3=0;
+    AppCompatButton add_new_car;
+    RelativeLayout rl_transperant,rl_new_car,new_inspection,rl_newdetails_adding;
+    View card_btm_nav;
+    LinearLayout l_bottom;
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
         iv_customer=findViewById(R.id.iv_customer);
         iv_profile=findViewById(R.id.iv_profile);
         iv_filter=findViewById(R.id.iv_filter);
+        add_new_car=findViewById(R.id.add_new_car);
+        rl_transperant=findViewById(R.id. rl_transperant);
+        rl_new_car=findViewById(R.id.rl_new_car);
+        new_inspection=findViewById(R.id.new_inspection);
+        rl_newdetails_adding=findViewById(R.id.rl_newdetails_adding);
+        l_bottom=findViewById(R.id.l_bottom);
+        card_btm_nav=findViewById(R.id.card_btm_nav);
 
         if(SPHelper.camefrom.equals("filter"))
         {
@@ -123,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
         }else if(SPHelper.comingfrom.equals("added")){
             count1=1;
             iv_filter.setVisibility(View.GONE);
-            replaceFragment(new HomeFragment());
+           // replaceFragment(new HomeFragment());
+            replaceFragment(new Home_fragment_2());
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
         }
@@ -131,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
         {
             count1=1;
             iv_filter.setVisibility(View.GONE);
-            replaceFragment(new HomeFragment());
+           // replaceFragment(new HomeFragment());
+            replaceFragment(new Home_fragment_2());
             SoldVehDetails bottomSheetDialogFragment = new SoldVehDetails();
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
             CongratulationsPage bottomSheetDialogFragment1 = new CongratulationsPage();
@@ -142,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
             count1=1;
             SPHelper.fragment_is="home";
             iv_filter.setVisibility(View.GONE);
-            replaceFragment(new HomeFragment());
+           // replaceFragment(new HomeFragment());
+            replaceFragment(new Home_fragment_2());
 
         }
         layout_1.setOnClickListener(new View.OnClickListener()
@@ -160,7 +177,8 @@ public class MainActivity extends AppCompatActivity {
                     iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
                     iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
                     iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
-                    replaceFragment(new HomeFragment());
+                   // replaceFragment(new HomeFragment());
+                    replaceFragment(new Home_fragment_2());
                     SPHelper.camefrom = "";
                     SPHelper.comingfrom = "";
                     SPHelper.fragment_is = "home";
@@ -285,6 +303,45 @@ public class MainActivity extends AppCompatActivity {
                 PackageFragment.getInstance().price.setText("0");
                 PackageFragment.getInstance().pack_type="Bundle";
                 PackageFragment.getInstance().get_package_type();
+            }
+        });
+        add_new_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_transperant.setVisibility(View.VISIBLE);
+                l_bottom.setVisibility(View.GONE);
+                card_btm_nav.setVisibility(View.GONE);
+            }
+        });
+        rl_transperant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_transperant.setEnabled(true);
+                rl_transperant.setVisibility(View.GONE);
+
+            }
+        });
+        rl_new_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPHelper.carmodelid="";
+                SPHelper.carbrandid="";
+                SPHelper.camefrom="add";
+                SPHelper.vehno="";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                Intent intent=new Intent(MainActivity.this, AddNewCar.class);
+                startActivity(intent);
+                MainActivity.this.overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup);
+            }
+        });
+        new_inspection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPHelper.vehno="";
+                SPHelper.goneto="";
+                Intent intent=new Intent(MainActivity.this, RequestVehInspection.class);
+                startActivity(intent);
+                MainActivity.this.overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup);
             }
         });
     }
