@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="AddOn"
             android:textColor="@color/orange"
             android:textSize="13sp">
@@ -43,7 +43,7 @@
                     android:id="@+id/label_pack_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="start"
                     android:text="Package Name"
                     android:textColor="@color/lightgrey"
@@ -57,9 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_below="@+id/label_pack_name"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="15dp">
 
                 </TextView>
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pack_name"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="start"
                     android:text="Activation Code"
                     android:textColor="@color/lightgrey"
@@ -85,10 +85,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/label_act_code"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:layout_marginTop="5dp"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="14dp">
 
                 </TextView>
@@ -115,7 +115,7 @@
                     android:id="@+id/label_act_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Activated Date"
                     android:textColor="@color/lightgrey"
                     android:textSize="15dp">
@@ -129,8 +129,8 @@
                     android:layout_below="@+id/label_act_date"
                     android:layout_marginTop="5dp"
                     android:text=""
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textColor="@color/black"
+                    android:fontFamily="@font/semibold"
+                    android:textColor="@color/textcolour"
                     android:textSize="15dp">
 
                 </TextView>
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_act_date"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="start"
                     android:text="Sold Date"
                     android:textColor="@color/lightgrey"
@@ -155,9 +155,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_below="@+id/label_sold_date"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="15dp">
 
                 </TextView>

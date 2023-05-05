@@ -43,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="Filters"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="21dp">
 
         </TextView>
@@ -56,10 +56,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:text="Reset"
             android:layout_marginEnd="30dp"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="16dp">
 
         </TextView>
@@ -81,7 +81,7 @@
         android:layout_below="@+id/v1"
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:textSize="15dp"
         android:text="By Brand">
@@ -105,7 +105,7 @@
         android:layout_below="@+id/rv_brand_logos"
         android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:textSize="15dp"
         android:text="By Price">
@@ -119,10 +119,10 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/label_byprice"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/regular"
         android:text="0"
         android:layout_marginEnd="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="16dp">
 
     </TextView>
@@ -133,10 +133,10 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/label_byprice"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/regular"
         android:text="10,00,000"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="16dp">
 
     </TextView>
@@ -159,7 +159,7 @@
         android:layout_below="@+id/price_range"
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:textSize="15dp"
         android:text="By Kms">
@@ -172,10 +172,10 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/label_bykms"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/regular"
         android:text="0"
         android:layout_marginEnd="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="16dp">
 
     </TextView>
@@ -186,10 +186,10 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/label_bykms"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/regular"
         android:text="1,00,000"
         android:layout_marginEnd="20dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="16dp">
 
     </TextView>
@@ -215,7 +215,7 @@
         android:layout_below="@+id/kms_range"
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:textSize="15dp"
         android:text="Fuel">
@@ -243,10 +243,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/label_fuel"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:gravity="center"
         android:text="Diesel"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="15dp">
 
     </TextView>
@@ -271,10 +271,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/label_fuel"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:gravity="center"
         android:text="Petrol"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="15dp">
 
     </TextView>
@@ -286,7 +286,7 @@
         android:layout_below="@+id/label_petrol"
         android:layout_marginTop="15dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:text="Transmission">
 
@@ -313,10 +313,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/label_trans"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:gravity="center"
         android:text="Manual"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="15dp">
 
     </TextView>
@@ -341,10 +341,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/label_trans"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:gravity="center"
         android:text="Automatic"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="15dp">
 
     </TextView>
@@ -356,7 +356,7 @@
         android:layout_below="@+id/label_auto"
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:textColor="@color/cement"
         android:textSize="15dp"
         android:text="Inspection Status">
@@ -385,8 +385,7 @@
            android:layout_below="@+id/rv_insp_status"
             android:layout_centerHorizontal="true"
             android:background="@drawable/cv_gradient3"
-            android:backgroundTint="@color/black"
-            >
+            android:backgroundTint="@color/black">
 
             <ImageView
                 android:id="@+id/iv1"
@@ -400,7 +399,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/medium"
                 android:layout_toEndOf="@+id/iv1"
                 android:layout_centerVertical="true"
                 android:gravity="start"

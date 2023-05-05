@@ -35,7 +35,7 @@
                 android:layout_toEndOf="@+id/go_back_home"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="Menu"
                 android:textColor="@color/text_profile"
                 android:textSize="17dp">
@@ -66,9 +66,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/dealer_logo"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="Sagar Cars"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dealer_name"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text="9018243262"
                 android:textColor="@color/cement"
                 android:textSize="18dp">
@@ -118,9 +118,9 @@
                     android:id="@+id/tv_allpayments"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="All Payments"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="18dp">
 
                 </TextView>
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_allpayments"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/regular"
                     android:text="@string/payment_expl"
                     android:textColor="@color/cement"
                     android:textSize="13dp">
@@ -150,9 +150,9 @@
                     android:id="@+id/tv_sold_cars"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Sold Cars"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="16dp">
 
                 </TextView>
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_sold_cars"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/regular"
                     android:text="@string/sold_cars_exp"
                     android:textColor="@color/cement"
                     android:textSize="13dp">
@@ -183,9 +183,9 @@
                     android:id="@+id/tv_alloffers"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Offers"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="18dp">
 
                 </TextView>
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_alloffers"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/regular"
                     android:text="@string/offers_exp"
                     android:textColor="@color/cement"
                     android:textSize="13dp">
@@ -214,9 +214,9 @@
                     android:id="@+id/tv_allclaims"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Notifications"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="18dp">
 
                 </TextView>
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_allclaims"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/regular"
                     android:text="@string/notification_exp"
                     android:textColor="@color/cement"
                     android:textSize="13dp">
@@ -268,8 +268,8 @@
                     android:layout_marginStart="20dp"
                     android:text="Terms &amp; Conditions"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold">
+                    android:textColor="@color/textcolour"
+                    android:fontFamily="@font/semibold">
 
                 </TextView>
             </RelativeLayout>
@@ -298,8 +298,8 @@
                     android:layout_centerVertical="true"
                     android:text="Warranty Policy"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold">
+                    android:textColor="@color/textcolour"
+                    android:fontFamily="@font/semibold">
 
                 </TextView>
             </RelativeLayout>
@@ -327,8 +327,8 @@
                     android:layout_toEndOf="@+id/iv_pr_pol"
                     android:text="Privacy Policy"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold">
+                    android:textColor="@color/textcolour"
+                    android:fontFamily="@font/semibold">
 
                 </TextView>
             </RelativeLayout>
@@ -356,8 +356,8 @@
                     android:layout_toEndOf="@+id/iv_hns"
                     android:text="Help &amp; Support"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_semibold">
+                    android:textColor="@color/textcolour"
+                    android:fontFamily="@font/semibold">
 
                 </TextView>
             </RelativeLayout>
@@ -383,7 +383,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Logout"
                     android:textColor="@color/white"
                     android:textSize="17dp">
@@ -398,9 +398,9 @@
                 android:layout_below="@+id/rl_log_out"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/label_v"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/regular"
                 android:text="@string/app_version_name"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="14dp">
 
             </TextView>
@@ -413,9 +413,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/regular"
                 android:text="version  "
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="14dp">
 
             </TextView>

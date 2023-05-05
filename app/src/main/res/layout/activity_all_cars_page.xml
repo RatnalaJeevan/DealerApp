@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background_page"
     android:id="@+id/rl_parent"
     tools:context=".AllCarsPage">
 
@@ -51,10 +51,10 @@
             android:layout_toStartOf="@+id/iv_filter"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/rl_back"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:gravity="center"
             android:text="All Cars"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="17dp">
 
         </TextView>
@@ -71,7 +71,7 @@
         android:layout_below="@+id/rl_header"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/regular"
         android:gravity="center"
         android:text="No cars to show"
         android:textColor="@color/white"
@@ -135,7 +135,7 @@
                     android:id="@+id/tv_veh_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
+                    android:fontFamily="@font/regular"
                     android:text="City Diesel 2019"
                     android:textColor="@color/white"
                     android:textSize="16dp">
@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_veh_details"
-                    android:fontFamily="@font/zonapro_regular"
+                    android:fontFamily="@font/regular"
                     android:text="KA00AA0000"
                     android:textColor="@color/white"
                     android:textSize="16dp">
@@ -163,7 +163,7 @@
                     android:paddingStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_below="@+id/veh_no"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="45 days &amp; 1000 kms Cooling Period"
                     android:textColor="@color/white"
                     android:textSize="11dp"
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="You are activating a new car ..."
                     android:textColor="@color/blue"
                     android:textSize="21dp">
@@ -236,7 +236,7 @@
                             android:id="@+id/tv_cust"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:text="Customer"
                             android:textColor="@color/blue"
                             android:textSize="14dp">
@@ -266,7 +266,7 @@
                             android:id="@+id/tv_docs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:gravity="center"
                             android:text="Documents"
                             android:textColor="@color/cement"
@@ -296,7 +296,7 @@
                             android:id="@+id/tv_purchase"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:text="Warranty"
                             android:textColor="@color/cement"
                             android:textSize="14dp">
@@ -325,7 +325,7 @@
                             android:id="@+id/tv_offers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/semibold"
                             android:text="Offers"
                             android:textColor="@color/cement"
                             android:textSize="14dp">
@@ -388,7 +388,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_cust_name"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Name"
                                     android:textColor="@color/lightgrey"
@@ -401,9 +401,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="Rahul"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -435,7 +435,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_phone"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Phone"
                                     android:textColor="@color/lightgrey"
@@ -448,9 +448,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="900011000"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -482,7 +482,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_cust_location"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Location"
                                     android:textColor="@color/lightgrey"
@@ -495,9 +495,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="Jaya Nagar"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -529,7 +529,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_adress"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Address"
                                     android:textColor="@color/lightgrey"
@@ -543,9 +543,9 @@
                                     android:layout_marginStart="20dp"
                                     android:layout_marginTop="10dp"
                                     android:layout_below="@+id/iv_adress"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="1/31,Sri Nagar,Jaya nagar,4th phase"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -577,7 +577,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_pincode"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Pincode"
                                     android:textColor="@color/lightgrey"
@@ -590,9 +590,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="536619"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -624,7 +624,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_city"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="City"
                                     android:textColor="@color/lightgrey"
@@ -637,9 +637,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="Bangalore"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -671,7 +671,7 @@
                                     android:layout_marginTop="12dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_state"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="State"
                                     android:textColor="@color/lightgrey"
@@ -684,9 +684,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="Karnataka"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -716,7 +716,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="10dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Registration Card"
                                 android:layout_marginBottom="10dp"
@@ -731,7 +731,7 @@
                                 android:layout_toRightOf="@+id/v_c"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="10dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Aadhar Card"
                                 android:layout_marginBottom="10dp"
@@ -798,7 +798,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_below="@+id/ll_imgs1"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Sales Receipt"
                                 android:layout_marginBottom="10dp"
@@ -815,7 +815,7 @@
                                 android:layout_marginTop="20dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="10dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Delivery Note"
                                 android:layout_marginBottom="10dp"
@@ -854,7 +854,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_below="@+id/iv_sa_re"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:gravity="center"
                                 android:text="Insurance Copy"
                                 android:layout_marginBottom="10dp"
@@ -926,7 +926,7 @@
                                     android:layout_centerVertical="true"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_pur_price"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Activation Date"
                                     android:textColor="@color/lightgrey"
@@ -939,9 +939,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_alignParentEnd="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="30 NOV 2022"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -972,7 +972,7 @@
                                     android:layout_centerVertical="true"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_pur_from"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Activation Code"
                                     android:textColor="@color/lightgrey"
@@ -985,9 +985,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_alignParentEnd="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="AWS11000"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -1018,7 +1018,7 @@
                                     android:layout_centerVertical="true"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_wa_type"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Warranty Type"
                                     android:textColor="@color/lightgrey"
@@ -1031,9 +1031,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_alignParentEnd="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="Doorstep"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -1064,7 +1064,7 @@
                                    android:layout_centerVertical="true"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/iv_sold_date"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Sold Date"
                                     android:textColor="@color/lightgrey"
@@ -1077,9 +1077,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:layout_alignParentEnd="true"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:text="1 DEC 2022"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/textcolour"
                                     android:textSize="16dp">
 
                                 </TextView>
@@ -1106,9 +1106,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/semibold"
                                 android:text="Fastag"
-                                android:textColor="@color/black"
+                                android:textColor="@color/textcolour"
                                 android:textSize="15dp">
 
                             </TextView>
@@ -1161,7 +1161,7 @@
                                         android:layout_marginTop="12dp"
                                         android:layout_marginEnd="10dp"
                                         android:layout_toRightOf="@+id/iv_ft_no"
-                                        android:fontFamily="@font/poppins_semibold"
+                                        android:fontFamily="@font/semibold"
                                         android:gravity="center"
                                         android:text=" Fastag Number"
                                         android:textColor="@color/cement"
@@ -1174,9 +1174,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="10dp"
                                         android:layout_marginStart="20dp"
-                                        android:fontFamily="@font/poppins_semibold"
+                                        android:fontFamily="@font/semibold"
                                         android:text="100011000"
-                                        android:textColor="@color/black"
+                                        android:textColor="@color/textcolour"
                                         android:textSize="15dp"
                                         android:layout_below="@+id/iv_ft_no"
                                        >
@@ -1190,7 +1190,7 @@
                                         android:layout_marginTop="10dp"
                                         android:layout_marginStart="20dp"
                                         android:layout_below="@+id/iv_ft_no"
-                                        android:fontFamily="@font/poppins_semibold"
+                                        android:fontFamily="@font/semibold"
                                         android:textColor="@color/black"
                                         android:textSize="15dp"
                                         android:background="@drawable/cardview_act_code"
@@ -1217,7 +1217,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginTop="20dp"
                                     android:layout_below="@+id/rl_ft_no"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Pan Card"
                                     android:layout_marginBottom="10dp"
@@ -1234,7 +1234,7 @@
                                     android:layout_marginStart="20dp"
                                     android:layout_marginEnd="10dp"
                                     android:layout_toRightOf="@+id/v_ft"
-                                    android:fontFamily="@font/poppins_semibold"
+                                    android:fontFamily="@font/semibold"
                                     android:gravity="center"
                                     android:text="Fastag Image"
                                     android:layout_marginBottom="10dp"
@@ -1299,8 +1299,7 @@
             android:layout_height="500dp"
             android:layout_marginBottom="-10dp"
             android:layout_alignParentBottom="true"
-            app:cardCornerRadius="15dp"
-            >
+            app:cardCornerRadius="15dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -1310,7 +1309,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Vehicle Images..."
                     android:textColor="@color/blue"
                     android:textSize="21dp">
@@ -1340,4 +1339,468 @@
         android:visibility="gone">
 
     </ProgressBar>
-</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_transperant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transperant"
+        android:visibility="gone">
+
+           <RelativeLayout
+            android:id="@+id/rl_feature_pop_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/rl_feature_pop_up">
+
+               <RelativeLayout
+                   android:id="@+id/rl_heading"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginLeft="30dp">
+
+                   <TextView
+                       android:id="@+id/heading_fratures"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Features"
+                       android:textSize="20dp"
+                       android:layout_centerHorizontal="true"
+                       android:textColor="@color/textcolour"
+                       android:fontFamily="@font/medium"/>
+
+                   <ImageView
+                       android:id="@+id/imv_cross"
+                       android:layout_width="30dp"
+                       android:layout_height="30dp"
+                       android:src="@drawable/wrong"
+                       android:layout_marginBottom="10dp"
+                       android:layout_alignParentEnd="true"
+                       android:layout_marginRight="20dp"/>
+               </RelativeLayout>
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_heading">
+
+                <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_features"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            </androidx.core.widget.NestedScrollView>
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/features_submit"
+                   android:layout_width="120dp"
+                   android:layout_height="40dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_below="@id/scroll_view"
+                   android:layout_marginTop="15dp"
+                   android:text="SUBMIT"
+                   android:textSize="14dp"
+                   android:textColor="@color/white"
+                   android:layout_marginBottom="20dp"
+                   android:layout_marginRight="20dp"
+                   android:background="@drawable/add_features"/>
+
+
+          </RelativeLayout>
+      </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_transperant_add_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transperant"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rl_transperant_add_image_pop_up"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+           <RelativeLayout
+            android:id="@+id/rl_add_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rl_feature_pop_up"
+            android:layout_below="@id/rl_transperant_add_image_pop_up">
+
+            <RelativeLayout
+                android:id="@+id/rl_car_imgs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/text_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Car Images"
+                    android:textColor="@color/grey"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"/>
+                <ImageView
+                    android:id="@+id/image_popup_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wrong"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentEnd="true"/>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/image_popup_cross">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_car_imagelist"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                           android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_centerHorizontal="true">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/add_feature_button"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="15dp"
+                            android:text="ADD IMAGE"
+                            android:textSize="14dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_below="@id/rv_car_imagelist"
+                            android:textColor="@color/white"
+                            android:background="@drawable/add_features"/>
+                    </RelativeLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_portal_transperant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transperant"
+        android:visibility="gone">
+
+        <RelativeLayout
+        android:id="@+id/rl_portal_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rl_background">
+
+            <ImageView
+                android:id="@+id/portal_popup_cross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wrong"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentEnd="true"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/portal_popup_cross"
+            android:background="@drawable/rl_background">
+
+            <RelativeLayout
+                android:id="@+id/rl_list_in_portal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rl_back_portal">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="List In Portal"
+                    android:textColor="@color/textcolour"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_price_uncheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/uncheck">
+
+                    <ImageView
+                        android:id="@+id/check1"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/black_check"
+                        android:layout_centerInParent="true"
+                        android:visibility="invisible"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_showlistingprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text1"
+                    android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/listing_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Enter Listing Price"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/ed_listingprice"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/listing_price"
+                    android:backgroundTint="@color/lightgrey"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/price_submit"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/ed_listingprice"
+                    android:text="SUBMIT"
+                    android:textSize="14dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/add_features"/>
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_mark_sold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_list_in_portal"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rl_back_portal">
+
+                <RelativeLayout
+                    android:id="@+id/rl_sold_uncheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/uncheck">
+
+                    <ImageView
+                        android:id="@+id/check2"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/black_check"
+                        android:layout_centerInParent="true"
+                        android:visibility="invisible"/>
+                </RelativeLayout>
+
+
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="Mark As Sold"
+                    android:textColor="@color/textcolour"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_showmarksold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text2"
+                    android:visibility="gone">
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Customer Name "
+                        android:textColor="@color/grey"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/ed_name"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:backgroundTint="@color/lightgrey"
+                        android:layout_below="@id/name"
+                        android:layout_marginTop="10dp"
+                       android:layout_marginLeft="10dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Customer Number"
+                        android:textColor="@color/grey"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/ed_number"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/number"
+                        android:backgroundTint="@color/lightgrey"/>
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/mark_assold"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@id/rl_number"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/add_features"
+                    android:text="SUBMIT"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_price_transperant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transperant"
+        android:visibility="gone">
+
+    <RelativeLayout
+        android:id="@+id/rl_listing_price"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/listing_price_back">
+
+        <TextView
+            android:id="@+id/text_enter_price_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Listing Price"
+            android:textSize="18dp"
+            android:textColor="@color/textcolour"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/regular"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/text_enter_price_label">
+
+            <EditText
+                android:id="@+id/et_listing_price"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/background_edit_listing_price"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/price_button_submit"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:text="SUBMIT"
+            android:textSize="14dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/add_features"/>
+    </RelativeLayout>
+    </RelativeLayout>
+
+
+    </RelativeLayout>

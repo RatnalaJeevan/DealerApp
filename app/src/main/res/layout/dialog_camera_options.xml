@@ -8,7 +8,7 @@
 
     <!--<TextView
         android:id="@+id/tv_selectimage"
-        android:fontFamily="@font/zonapro_semibold"
+        android:fontFamily="@font/semibold"
         android:text="Select your Image"
         android:gravity="center"
         android:textSize="16sp"
@@ -19,7 +19,7 @@
         android:id="@+id/view_line"
         android:layout_marginTop="10dp"
         android:layout_below="@id/tv_selectimage"
-        android:background="@color/black"
+        android:background="@color/textcolour"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"/>-->
     <LinearLayout
@@ -46,8 +46,8 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/zonapro_semibold"
-                android:textColor="@color/black"
+                android:fontFamily="@font/semibold"
+                android:textColor="@color/textcolour"
                 android:text="Camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -70,8 +70,8 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
-                android:fontFamily="@font/zonapro_semibold"
-                android:textColor="@color/black"
+                android:fontFamily="@font/semibold"
+                android:textColor="@color/textcolour"
                 android:text="Gallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

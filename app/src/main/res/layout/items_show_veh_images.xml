@@ -29,10 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/zonapro_regular"
+            android:fontFamily="@font/regular"
             android:gravity="center"
             android:text="Dashboard"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="30dp">
 
         </TextView>

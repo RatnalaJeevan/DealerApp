@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_features"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/text_feature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comfort and Convenience"
+        android:textSize="18dp"
+        android:textColor="@color/textcolour"
+        android:fontFamily="@font/regular"
+        android:layout_marginLeft="20dp"/>
+
+        <ImageView
+            android:id="@+id/down_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/down_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"/>
+
+        <ImageView
+            android:id="@+id/up_arrow_button"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/up_arrow_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_feature"
+            android:layout_marginTop="13dp"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_feature_list1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_1"
+            android:layout_marginTop="13dp"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_feature_list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/lightgrey"
+            android:layout_below="@id/rl_2">
+        </View>
+
+
+
+    </RelativeLayout>
+
+   </RelativeLayout>

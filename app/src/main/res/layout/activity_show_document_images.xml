@@ -54,8 +54,8 @@
             android:layout_margin="10dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/zonapro_regular"
-            android:textColor="@color/black"
+            android:fontFamily="@font/regular"
+            android:textColor="@color/textcolour"
             android:textSize="30dp"
             android:text="Dashboard"
             >

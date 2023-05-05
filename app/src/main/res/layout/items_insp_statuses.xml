@@ -32,7 +32,7 @@
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_tick"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Repair Request"
             android:maxLines="1"
             android:ellipsize="end"

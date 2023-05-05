@@ -63,10 +63,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/iv_appicon"
-            android:fontFamily="@font/zonapro_bold"
+            android:fontFamily="@font/bold"
             android:gravity="start"
             android:text="Create\nAccount"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="40dp">
 
         </TextView>
@@ -84,10 +84,10 @@
                 android:id="@+id/tv_dealership_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Dealership Name"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -101,12 +101,12 @@
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 "
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="abc cars"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -128,10 +128,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_1"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Dealer Name"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -146,12 +146,12 @@
 
                 android:background="@null"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="John"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -173,10 +173,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_3"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Phone Number"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -190,14 +190,14 @@
 
                 android:layout_marginTop="10dp"
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="90000 9000"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="10"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -219,10 +219,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_4"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Email"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -236,12 +236,12 @@
                 android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
 
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="eg@example.com"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -263,10 +263,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_mail"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="OTP"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp"
                 android:visibility="gone">
 
@@ -295,12 +295,12 @@
                         android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
 
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp"
 
                         >
@@ -325,12 +325,12 @@
 
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp">
 
                     </EditText>
@@ -352,12 +352,12 @@
 
                         android:layout_weight="0.5"
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp">
 
                     </EditText>
@@ -378,11 +378,11 @@
 
                         android:layout_weight="1"
                         android:background="@null"
-                        android:fontFamily="@font/zonapro_bold"
+                        android:fontFamily="@font/bold"
                         android:gravity="center"
                         android:inputType="phone"
                         android:maxLength="1"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="20dp">
 
                     </EditText>
@@ -397,10 +397,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_resend"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Dealer Logo"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -429,10 +429,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_dealerlogo"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text=" Address"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -445,7 +445,7 @@
                 android:textCursorDrawable="@drawable/my_custom_cursor_drawable"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/cardview_lightgrey_margined"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="Enter your address here"
                 android:imeOptions="actionDone"
@@ -453,7 +453,7 @@
                 android:maxLength="250"
                 android:maxLines="5"
                 android:padding="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -465,10 +465,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/selected_adres"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Location"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -482,12 +482,12 @@
 
                 android:layout_marginTop="10dp"
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="JP Nagar"
                 android:imeOptions="actionDone"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="18dp">
 
@@ -521,10 +521,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_10"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="Pincode"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -540,14 +540,14 @@
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/cancel_btn"
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="560066"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="6"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textColorHint="@color/lightgrey"
                 android:textSize="16dp">
 
@@ -587,10 +587,10 @@
                 android:layout_below="@+id/line_2"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/centreline"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="State"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -604,7 +604,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/centreline"
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="state"
                 android:textColor="@color/bg_missing_item_txt"
@@ -629,10 +629,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line_2"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="City"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="18dp">
 
             </TextView>
@@ -646,7 +646,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/centreline"
                 android:background="@null"
-                android:fontFamily="@font/zonapro_regular"
+                android:fontFamily="@font/regular"
                 android:gravity="start"
                 android:hint="city"
                 android:textColor="@color/bg_missing_item_txt"
@@ -678,7 +678,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/cardview_dealership"
                 android:backgroundTint="@color/black"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:padding="12dp"
                 android:text="SEND OTP"
@@ -696,7 +696,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_toLeftOf="@+id/tv_resend"
-                android:fontFamily="@font/zonapro_bold"
+                android:fontFamily="@font/bold"
                 android:text=" 30"
                 android:textColor="@color/grey"
                 android:textSize="18dp"
@@ -710,10 +710,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:text="RESEND"
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="16dp"
                 android:visibility="gone">
 
@@ -731,7 +731,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/cardview_dealership"
                 android:backgroundTint="@color/black"
-                android:fontFamily="@font/zonapro_semibold"
+                android:fontFamily="@font/semibold"
                 android:gravity="center"
                 android:padding="12dp"
                 android:text="SIGNUP"

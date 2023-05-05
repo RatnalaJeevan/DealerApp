@@ -7,8 +7,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,9 +58,9 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="30"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="35dp">
 
                 </TextView>
@@ -73,10 +72,10 @@
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/count_pending"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/medium"
                     android:gravity="start"
                     android:text="Activation\nPending"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="11dp">
 
                 </TextView>
@@ -107,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/medium"
                         android:lineSpacingExtra="3dp"
                         android:text="Activate"
                         android:textColor="@color/white"
@@ -163,7 +162,7 @@
                     android:layout_below="@+id/iv_buy_warranty"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="15dp"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/medium"
                     android:text="Buy\nWarranty"
                     android:textColor="@color/white"
                     android:textSize="16dp">
@@ -176,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/label_buy"
                     android:layout_marginLeft="15dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:lineSpacingExtra="3dp"
                     android:text="Warranty"
                     android:textColor="@color/white"
@@ -197,7 +196,7 @@
                 android:layout_toLeftOf="@+id/v1"
                 android:background="@drawable/cv_new_car"
                 android:backgroundTint="@color/text_color1"
-                >
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_addcar"
@@ -217,14 +216,37 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/medium"
                     android:gravity="start"
                     android:text="Add \nNew Car"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="18dp">
 
                 </TextView>
             </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_add_car"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/rl_warranty"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            android:layout_toLeftOf="@+id/v1"
+            android:background="@drawable/cv_new_car"
+            android:backgroundTint="@color/text_color1">
+
+            <TextView
+                android:id="@+id/text_add_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/medium"
+                android:text="New Car" />
+        </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_req_for_inspection"
@@ -238,7 +260,7 @@
                 android:layout_toRightOf="@+id/v1"
                 android:background="@drawable/cv_req_insp"
                 android:backgroundTint="@color/text_color1"
-                >
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_req_inspection"
@@ -260,23 +282,45 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/poppins_medium"
+                    android:fontFamily="@font/medium"
                     android:gravity="start"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:textSize="18dp"
                     android:text="Request \nInspection"
                     >
 
                 </TextView>
             </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_req_inspection"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/rl_warranty"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="24dp"
+            android:layout_toRightOf="@+id/v1"
+            android:background="@drawable/cv_req_insp"
+            android:backgroundTint="@color/text_color1">
+
+            <TextView
+                android:id="@+id/text_req_ins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Inspection"
+                android:fontFamily="@font/medium"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"/>
+        </RelativeLayout>
 
             <TextView
                 android:id="@+id/label_insp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_below="@+id/rl_addcar"
-                android:fontFamily="@font/poppins_semibold"
+                android:layout_below="@+id/rl_add_car"
+                android:fontFamily="@font/semibold"
                 android:gravity="start"
                 android:text="My Inventory"
                 android:textColor="@color/lightgrey"
@@ -292,16 +336,15 @@
                 android:layout_below="@+id/label_insp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/rl_insp_req"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/text_color1"
-
-                    >
+                    android:backgroundTint="@color/text_color1">
 
                     <TextView
                         android:id="@+id/tv_count_insp_req"
@@ -309,10 +352,10 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:paddingTop="3dp"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="22dp">
 
                     </TextView>
@@ -324,9 +367,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_insp_req"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:text="Inspection\nRequested"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="13dp">
 
                     </TextView>
@@ -347,10 +390,10 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:paddingTop="3dp"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="22dp">
 
                     </TextView>
@@ -362,10 +405,10 @@
                         android:layout_marginTop="12dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_re_insp"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:lineSpacingExtra="4dp"
                         android:text="@string/re_inspect"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="13dp">
 
                     </TextView>
@@ -387,7 +430,7 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:paddingTop="3dp"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="00"
                         android:textColor="@color/light_red"
@@ -402,7 +445,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_rep_req"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:gravity="start"
                         android:text="Repair\nRequested"
                         android:textColor="@color/light_red"
@@ -417,9 +460,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="#ffcccb"
-
-                    >
+                    android:backgroundTint="#ffcccb">
 
                     <TextView
                         android:id="@+id/tv_count_exp_insp"
@@ -427,7 +468,7 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:paddingTop="3dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/medium"
                         android:gravity="center"
                         android:text="00"
                         android:textColor="@color/light_red"
@@ -441,7 +482,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_exp_insp"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:lineSpacingExtra="4dp"
                         android:text="Expired"
                         android:textColor="@color/light_red"
@@ -460,22 +501,21 @@
                 android:layout_toRightOf="@+id/v1"
                 android:layout_marginRight="24dp"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
                 <RelativeLayout
                     android:id="@+id/rl_approved"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/v_light_green"
-
-                    >
+                    android:backgroundTint="@color/v_light_green">
 
                     <TextView
                         android:id="@+id/tv_count_app_w_o_c"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:paddingTop="3dp"
                         android:text="00"
@@ -490,7 +530,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_app_w_o_c"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/approved"
                         android:textColor="@color/ab_green"
                         android:textSize="13dp">
@@ -505,9 +545,7 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/v_light_green"
-
-                    >
+                    android:backgroundTint="@color/v_light_green">
 
                     <TextView
                         android:id="@+id/tv_count_app_w_c"
@@ -517,7 +555,7 @@
                         android:paddingTop="3dp"
                         android:background="@drawable/circle_white"
                         android:backgroundTint="@color/v_light_green"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="00"
                         android:textColor="@color/ab_green"
@@ -531,7 +569,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_app_w_c"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:text="@string/cooling_nperiod"
                         android:textColor="@color/ab_green"
                         android:textSize="13dp">
@@ -558,10 +596,10 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:text="00"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="22dp">
 
                     </TextView>
@@ -572,9 +610,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_sold"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:text="Sold With\nWarranty"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="11dp">
 
                     </TextView>
@@ -587,20 +625,18 @@
                     android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/text_color1"
-
-                    >
+                    android:backgroundTint="@color/text_color1">
 
                     <TextView
                         android:id="@+id/tv_count_sold_w_o"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
                         android:paddingTop="3dp"
                         android:text="00"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="22dp">
 
                     </TextView>
@@ -612,16 +648,181 @@
                         android:layout_marginTop="10dp"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/tv_count_sold_w_o"
-                        android:fontFamily="@font/poppins_regular"
+                        android:fontFamily="@font/regular"
                         android:text="All Cars"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textcolour"
                         android:textSize="13dp">
+                    </TextView>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/l3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/label_insp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_sold_w_o_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/text_color1">
+
+                    <TextView
+                        android:id="@+id/tv_count_sold_w_o_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:text="00"
+                        android:textColor="@color/textcolour"
+                        android:textSize="22dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_exp_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/medium"
+                        android:text="All Cars"
+                        android:textColor="@color/textcolour"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="14dp">
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_approved_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/v_light_green"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_count_app_w_o_c_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/semibold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:text="00"
+                        android:textColor="@color/ab_green"
+                        android:textSize="22dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_allpayments_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/medium"
+                        android:text="Inspection Approved"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/ab_green"
+                        android:textSize="14dp">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_exp_veh_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="#ffcccb">
+
+                    <TextView
+                        android:id="@+id/tv_count_exp_insp_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="3dp"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:text="00"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/light_red"
+                        android:textSize="22dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_req_c_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/medium"
+                        android:lineSpacingExtra="4dp"
+                        android:text="Inspection Expired"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/light_red"
+                        android:textSize="14dp">
+
+                    </TextView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_repair_req_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="#ffcccb">
+
+                    <TextView
+                        android:id="@+id/tv_count_rep_req_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="3dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:text="00"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/light_red"
+                        android:textSize="22dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_rep_req_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/medium"
+                        android:gravity="start"
+                        android:text="Repair Request"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/light_red"
+                        android:textSize="14dp">
 
                     </TextView>
 
                 </RelativeLayout>
 
-            </LinearLayout>
+              </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_expiring_list"
@@ -630,7 +831,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_below="@+id/l2">
+                android:layout_below="@+id/l3">
             </androidx.recyclerview.widget.RecyclerView>
 
         </RelativeLayout>

@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/poppins_semibold"
         android:text=""
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="12dp">
 
     </TextView>
@@ -49,9 +49,9 @@
         android:layout_below="@+id/veh_no"
 
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/semibold"
         android:text="25 Nov"
-        android:textColor="@color/black"
+        android:textColor="@color/textcolour"
         android:textSize="16dp">
 
     </TextView>

@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Home_fragment_2">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_activation_pending_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/text_pending_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24/30"
+                    android:fontFamily="@font/bold"
+                    android:textColor="@color/textcolour"
+                    android:textSize="25dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Activation pending"
+                    android:layout_below="@id/text_pending_count"
+                    android:textSize="12dp"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/textcolour"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_live_cars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rel_activation_pending_no"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/cv_new_car"
+                android:backgroundTint="@color/very_very_light_grey">
+
+                <TextView
+                    android:id="@+id/tv_live_cars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="20 Cars Live"
+                    android:textColor="@color/dark_green"
+                    android:textSize="16dp" />
+
+                <com.jjoe64.graphview.GraphView
+                    android:id="@+id/graphView"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@id/tv_live_cars"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/graphView"
+                    android:layout_marginTop="-10dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/customer"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/text_new_leads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 New Leads"
+                    android:textColor="@color/dark_green"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/regular"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/rl_image"/>
+            </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/label_insp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_below="@+id/rl_live_cars"
+                android:fontFamily="@font/bold"
+                android:gravity="start"
+                android:text="My Inventory"
+                android:textColor="@color/dark_green"
+                android:textSize="16dp">
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/l3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/label_insp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:id="@+id/rl_sold_w_o_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/very_very_light_grey">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_all_car_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/customer" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_count_sold_w_o_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:text="00"
+                        android:textColor="@color/dark_green"
+                        android:textSize="22dp">
+
+                    </TextView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/rl_all_car_image">
+
+                    <TextView
+                        android:id="@+id/tv_all_cars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/bold"
+                        android:text="All Cars"
+                        android:textColor="@color/dark_green"
+                        android:textSize="14dp">
+                    </TextView>
+                        <TextView
+                            android:id="@+id/tv_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_all_cars"
+                            android:fontFamily="@font/medium"
+                            android:text="Total number of cars "
+                            android:textColor="@color/dark_green"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_approved_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/very_very_light_grey"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_count_app_w_o_c_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/semibold"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:text="00"
+                        android:textColor="@color/dark_green"
+                        android:textSize="22dp">
+
+                    </TextView>
+                    <RelativeLayout
+                        android:id="@+id/rl_approved_car_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/customer" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/rl_approved_car_image">
+
+                        <TextView
+                            android:id="@+id/tv_approved_cars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/bold"
+                            android:text="Inspection Approved"
+                            android:textColor="@color/dark_green"
+                            android:textSize="14dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/tv_approve_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_approved_cars"
+                            android:fontFamily="@font/medium"
+                            android:text="Total number approved cars "
+                            android:textColor="@color/dark_green"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_exp_veh_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/very_very_light_grey">
+
+                    <TextView
+                        android:id="@+id/tv_count_exp_insp_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="3dp"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="00"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/dark_green"
+                        android:textSize="22dp">
+                    </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_expired_car_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/customer" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/rl_expired_car_image">
+
+                        <TextView
+                            android:id="@+id/tv_expired_cars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/bold"
+                            android:text="Inspection Expired"
+                            android:textColor="@color/dark_green"
+                            android:textSize="14dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/tv_expired_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_expired_cars"
+                            android:fontFamily="@font/medium"
+                            android:text="Total number Expired cars "
+                            android:textColor="@color/dark_green"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_repair_req_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:padding="10dp"
+                    android:background="@drawable/cv_new_car"
+                    android:backgroundTint="@color/very_very_light_grey">
+
+                    <TextView
+                        android:id="@+id/tv_count_rep_req_1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="3dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:text="00"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/dark_green"
+                        android:textSize="22dp">
+                     </TextView>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_repair_request_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/customer" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/rl_repair_request_image">
+
+                        <TextView
+                            android:id="@+id/tv_repair_request_cars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/bold"
+                            android:text="Repair Request"
+                            android:textColor="@color/dark_green"
+                            android:textSize="14dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/tv_repair_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_repair_request_cars"
+                            android:fontFamily="@font/medium"
+                            android:text="Total number repair requested cars "
+                            android:textColor="@color/dark_green"
+                            android:textSize="12dp"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/activate_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/cv_new_car"
+            android:backgroundTint="@color/textcolour"
+            android:layout_below="@id/l3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activate"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:textSize="18dp"
+                android:fontFamily="@font/semibold"/>
+        </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</RelativeLayout>

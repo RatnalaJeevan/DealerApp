@@ -41,9 +41,9 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="40dp"
                 android:gravity="center"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/semibold"
                 android:text=""
-                android:textColor="@color/black"
+                android:textColor="@color/textcolour"
                 android:textSize="17dp">
 
             </TextView>
@@ -62,15 +62,14 @@
                 android:layout_below="@+id/label1"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/cv_req_insp"
-                android:backgroundTint="@color/black"
-                >
+                android:backgroundTint="@color/black">
 
                 <TextView
                     android:id="@+id/tv_retry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/semibold"
                     android:text="Retry"
                     android:textColor="@color/white"
                     android:textSize="17dp">

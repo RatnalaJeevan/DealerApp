@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,12 +30,14 @@ import com.bumptech.glide.Glide;
 import com.google.gson.JsonArray;
 import com.wisedrive.dealerapp1.AddNewCar;
 import com.wisedrive.dealerapp1.AllCarsPage;
+import com.wisedrive.dealerapp1.Leads_page;
 import com.wisedrive.dealerapp1.OnLoadMoreListener;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.RequestVehInspection;
 import com.wisedrive.dealerapp1.SoldVehDetails;
 import com.wisedrive.dealerapp1.VehicleImages;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.GifImageView;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoActVehlist;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
@@ -85,6 +89,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
         });
     }
 
+
     private class LoadingViewHolder extends RecyclerView.ViewHolder {
         public ProgressBar progressBar;
 
@@ -134,6 +139,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             IndianCurrencyFormat=new DecimalFormat("##,##,###");
             PojoAllCarsList recyclerdata=allCarsPages.get(position);
 
+
             pojoNewVehImgs.clear();
 
             for (int i = 0; i < recyclerdata.getVehicleImages().length(); i++) {
@@ -150,49 +156,89 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
             }
 
-            if(pojoNewVehImgs.size()==0){
-                //Toast.makeText(activity,"empty",Toast.LENGTH_SHORT).show();
+            if(position==0){
+
+
                 holder.rl_photos.setVisibility(View.INVISIBLE);
-            }
-            else{
-                holder.rl_photos.setVisibility(View.VISIBLE);
-                if(pojoNewVehImgs.size()==1){
-                    holder.iv1.setVisibility(View.VISIBLE);
-                    Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
+                holder.text_add_images.setVisibility(View.VISIBLE);
+
+
+            }else {
+                holder.text_add_images.setVisibility(View.INVISIBLE);
+                if(pojoNewVehImgs.size()==0){
+                    //Toast.makeText(activity,"empty",Toast.LENGTH_SHORT).show();
+                    holder.rl_photos.setVisibility(View.INVISIBLE);
+                    holder.iv1.setVisibility(View.GONE);
                     holder.iv2.setVisibility(View.GONE);
                     holder.iv3.setVisibility(View.GONE);
                     holder.tv_exta_img.setVisibility(View.GONE);
-                }else{
-                    if(pojoNewVehImgs.size()==2){
+                    holder.label_photos.setVisibility(View.INVISIBLE);
+
+
+                }
+                else{
+                    holder.rl_photos.setVisibility(View.VISIBLE);
+                    if(pojoNewVehImgs.size()==1){
                         holder.iv1.setVisibility(View.VISIBLE);
-                        holder.iv2.setVisibility(View.VISIBLE);
                         Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
-                        Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
+                        holder.iv2.setVisibility(View.GONE);
                         holder.iv3.setVisibility(View.GONE);
                         holder.tv_exta_img.setVisibility(View.GONE);
-                    }
-                    else if(pojoNewVehImgs.size()==3){
-                        holder.iv1.setVisibility(View.VISIBLE);
-                        holder.iv2.setVisibility(View.VISIBLE);
-                        holder.iv3.setVisibility(View.VISIBLE);
-                        Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
-                        Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
-                        Glide.with(activity).load(pojoNewVehImgs.get(2).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv3);
-                        holder.tv_exta_img.setVisibility(View.GONE);
+
                     }else{
-                        holder.iv1.setVisibility(View.VISIBLE);
-                        holder.iv2.setVisibility(View.VISIBLE);
-                        holder.iv3.setVisibility(View.VISIBLE);
-                        Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
-                        Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
-                        Glide.with(activity).load(pojoNewVehImgs.get(2).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv3);
-                        holder.tv_exta_img.setVisibility(View.VISIBLE);
-                        holder.tv_exta_img.setText("+"+(pojoNewVehImgs.size()-3));
+                        if(pojoNewVehImgs.size()==2){
+                            holder.iv1.setVisibility(View.VISIBLE);
+                            holder.iv2.setVisibility(View.VISIBLE);
+                            Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
+                            Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
+                            holder.iv3.setVisibility(View.GONE);
+                            holder.tv_exta_img.setVisibility(View.GONE);
+
+                        }
+                        else if(pojoNewVehImgs.size()==3){
+                            holder.iv1.setVisibility(View.VISIBLE);
+                            holder.iv2.setVisibility(View.VISIBLE);
+                            holder.iv3.setVisibility(View.VISIBLE);
+                            Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
+                            Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
+                            Glide.with(activity).load(pojoNewVehImgs.get(2).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv3);
+                            holder.tv_exta_img.setVisibility(View.GONE);
+
+
+                        }else{
+                            holder.iv1.setVisibility(View.VISIBLE);
+                            holder.iv2.setVisibility(View.VISIBLE);
+                            holder.iv3.setVisibility(View.VISIBLE);
+                            Glide.with(activity).load(pojoNewVehImgs.get(0).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv1);
+                            Glide.with(activity).load(pojoNewVehImgs.get(1).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv2);
+                            Glide.with(activity).load(pojoNewVehImgs.get(2).getVehicle_images()).placeholder(R.drawable.icon_noimage).into(holder.iv3);
+                            holder.tv_exta_img.setVisibility(View.VISIBLE);
+                            holder.tv_exta_img.setText("+"+(pojoNewVehImgs.size()-3));
+                        }
                     }
+                    //if size of that array is equals to 1
+                    //
                 }
-                //if size of that array is equals to 1
-                //
             }
+            if(position==0){
+                holder.live.setVisibility(View.VISIBLE);
+                holder.imv_menu.setVisibility(View.GONE);
+
+            }else{
+                holder.imv_menu.setVisibility(View.VISIBLE);
+                holder.live.setVisibility(View.GONE);
+
+            }
+            if(SPHelper.title.equals("Approved Vehicle List")){
+                holder.rl_customer.setVisibility(View.VISIBLE);
+
+            }else{
+                holder.rl_customer.setVisibility(View.GONE);
+
+
+            }
+
+
 
             if(SPHelper.title.equals("Approved Vehicles With Cooling Period")){
                 holder.linear_cp.setVisibility(View.VISIBLE);
@@ -249,6 +295,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.rl_cv.setBackgroundTintList(AppCompatResources.getColorStateList(activity,R.color.bg_location));
                 holder.tv_cust_name.setTextColor(ContextCompat.getColorStateList(activity, R.color.white));
                 holder.rl_sold_label.setVisibility(View.VISIBLE);
+                holder.rl_customer.setVisibility(View.GONE);
                 holder.rl_sold_label.setBackground(AppCompatResources.getDrawable(activity,R.drawable.cv_soldcars));
                 holder.rl_sold_label.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.black));
                 holder.tv_inspect_status.setVisibility(View.GONE);
@@ -346,6 +393,18 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                     Intent intent=new Intent(activity, AddNewCar.class);
                     activity.startActivity(intent);
                     activity.overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup);
+                }
+            });
+            holder.text_add_images.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            holder.text_add_images.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AllCarsPage.getInstance(). rl_transperant_add_image.setVisibility(View.VISIBLE);
+                    AllCarsPage.getInstance().rl_transperant_add_image_pop_up.setVisibility(View.VISIBLE);
+                    AllCarsPage.getInstance().rl_add_image.setVisibility(View.VISIBLE);
+                    AllCarsPage.getInstance().rl_car_imgs.setVisibility(View.VISIBLE);
+                   
+
                 }
             });
             //insp date
@@ -517,11 +576,47 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                       }
                 }
             });
+            holder.text_add_features.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            holder.text_add_features.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   AllCarsPage.getInstance().rl_transperant.setVisibility(View.VISIBLE);
+                   AllCarsPage.getInstance().rl_feature_pop_up.setVisibility(View.VISIBLE);
+
+                }
+            });
+            holder.imv_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AllCarsPage.getInstance().rl_portal_transperant.setVisibility(View.VISIBLE);
+                    AllCarsPage.getInstance().rl_portal_menu.setVisibility(View.VISIBLE);
+                }
+            });
+            holder.live.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AllCarsPage.getInstance().rl_portal_transperant.setVisibility(View.VISIBLE);
+                    AllCarsPage.getInstance().rl_portal_menu.setVisibility(View.VISIBLE);
+
+
+                }
+            });
+            holder.rl_customer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(activity, Leads_page.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity.startActivity(intent);
+
+                }
+            });
         }
         else if (holderView instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holderView;
             loadingViewHolder.progressBar.setIndeterminate(true);
         }
+
+
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder
@@ -536,6 +631,11 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 label_listingprice, tv_last_insp,tv_label_transmissiontype;
         RelativeLayout rl_reasons,rl_insp_status,rl_cp_comments,rl_last_insp;
         LinearLayout linear_cp;
+        AppCompatButton add_feature_button,live_button;
+        TextView label_photos,text_add_images,text_add_features;
+        ImageView imv_menu,live;
+        RelativeLayout rl_customer;
+        pl.droidsonroids.gif.GifImageView live_gif;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             rl_last_insp=itemView.findViewById(R.id.rl_last_insp);
@@ -568,6 +668,14 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             tv_cp_days=itemView.findViewById(R.id.tv_cp_days);
             rl_cp_comments=itemView.findViewById(R.id.rl_cp_comments);
             tv_cp_comments=itemView.findViewById(R.id.tv_cp_comments);
+            add_feature_button=itemView.findViewById(R.id.add_feature_button);
+            label_photos=itemView.findViewById(R.id.label_photos);
+            text_add_images=itemView.findViewById(R.id.text_add_images);
+            imv_menu=itemView.findViewById(R.id.imv_menu);
+            text_add_features=itemView.findViewById(R.id.text_add_features);
+            rl_customer=itemView.findViewById(R.id.rl_customer);
+            live=itemView.findViewById(R.id.live);
+
         }
     }
 

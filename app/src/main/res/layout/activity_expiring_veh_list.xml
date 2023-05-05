@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/rl_back"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/semibold"
             android:gravity="center"
             android:text="Expiring Vehicle List"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="17dp">
 
         </TextView>

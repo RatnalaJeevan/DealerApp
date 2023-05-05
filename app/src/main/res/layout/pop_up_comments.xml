@@ -24,9 +24,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/zonapro_semibold"
+                    android:fontFamily="@font/semibold"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textcolour"
                     android:text=""
                     android:textSize="16dp">
 

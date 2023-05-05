@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/label4"
             android:layout_marginStart="12dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:text="Showoom Service"
-            android:textColor="@color/black"
+            android:textColor="@color/textcolour"
             android:textSize="13sp">
 
         </TextView>
@@ -50,7 +50,7 @@
 <!--            android:layout_below="@+id/label_showroom"-->
 <!--            android:layout_toEndOf="@+id/label4"-->
 <!--            android:layout_marginStart="12dp"-->
-<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:fontFamily="@font/regular"-->
 <!--            android:text="RoadSide Assistance"-->
 <!--            android:textColor="@color/white"-->
 <!--            android:textSize="13sp">-->
@@ -74,7 +74,7 @@
 <!--            android:layout_below="@+id/label_rsa"-->
 <!--            android:layout_toEndOf="@+id/label4"-->
 <!--            android:layout_marginStart="12dp"-->
-<!--            android:fontFamily="@font/poppins_regular"-->
+<!--            android:fontFamily="@font/regular"-->
 <!--            android:text="Upto 5L Extended Warranty"-->
 <!--            android:textColor="@color/white"-->
 <!--            android:textSize="13sp">-->

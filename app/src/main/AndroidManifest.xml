@@ -24,6 +24,13 @@
         android:usesCleartextTraffic="true"
         tools:node="merge">
         <activity
+            android:name=".Leads_page"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ShowDocs"
             android:exported="false">
             <meta-data
@@ -145,7 +152,7 @@
         <activity
             android:name=".ExpiringVehList"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowDocumentImages"
             android:screenOrientation="portrait" />

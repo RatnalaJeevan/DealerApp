@@ -28,7 +28,7 @@
             android:gravity="center"
             android:layout_below="@+id/car_image_position"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/regular"
             android:textColor="@color/cement"
             android:textSize="10dp"
             android:text="Dashboard"
