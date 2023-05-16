@@ -44,6 +44,7 @@ public class PojoCustomerVehicleInfo {
     private String leadcomment;
     private String isWithOffer;
     private String dppId;
+    private String emailId;
     private ArrayList<PojoOfferarray> offerArr;
 
     public PojoCustomerVehicleInfo(String dealer_id, String vehicle_id, String serviceTypeId,
@@ -57,7 +58,7 @@ public class PojoCustomerVehicleInfo {
                                    String lead_type, String delivery_note, String sales_receipt,
                                    String insurance_status, String insurance_provider, String insurance_type,
                                    String insurance_policy, String veh_frontimage, String dealerNo, String leadId, String leadcomment,
-                                   String isWithOffer,String dppId,
+                                   String isWithOffer,String dppId,String emailId,
                                    ArrayList<PojoOfferarray> offerArr) {
         this.dealer_id = dealer_id;
         this.vehicle_id = vehicle_id;
@@ -98,6 +99,7 @@ public class PojoCustomerVehicleInfo {
         this.leadcomment = leadcomment;
         this.isWithOffer = isWithOffer;
         this.dppId=dppId;
+        this.emailId=emailId;
         this.offerArr=offerArr;
     }
 }

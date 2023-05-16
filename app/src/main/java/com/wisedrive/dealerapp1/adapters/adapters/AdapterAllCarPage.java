@@ -23,6 +23,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,15 +40,24 @@ import com.wisedrive.dealerapp1.VehicleImages;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.GifImageView;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
+import com.wisedrive.dealerapp1.pojos.pojos.LeadCount;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoActVehlist;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoNewVehImgs;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_lead_count;
+import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
+import com.wisedrive.dealerapp1.services1.services.ApiClient;
+import com.wisedrive.dealerapp1.services1.services.DealerApis;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
@@ -61,6 +71,8 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
     private int lastVisibleItem, totalItemCount;
     private boolean isLoading;
     private Activity activity;
+    private DealerApis apiInterface;
+    String vehicle_id="";
     public ProgressBar progressBar;
     ArrayList<PojoNewVehImgs> pojoNewVehImgs=new ArrayList<>();
     private OnLoadMoreListener onLoadMoreListener;
@@ -138,6 +150,8 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             final RecyclerViewHolder holder = (RecyclerViewHolder) holderView;
             IndianCurrencyFormat=new DecimalFormat("##,##,###");
             PojoAllCarsList recyclerdata=allCarsPages.get(position);
+            SPHelper.vehid=allCarsPages.get(position).getVehicle_id();
+
 
 
             pojoNewVehImgs.clear();
@@ -157,13 +171,15 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
 
             if(position==0){
-
-
                 holder.rl_photos.setVisibility(View.INVISIBLE);
                 holder.text_add_images.setVisibility(View.VISIBLE);
+              //  holder.iv1.setVisibility(View.GONE);
+              //  holder.iv2.setVisibility(View.GONE);
+              //  holder.iv3.setVisibility(View.GONE);
+              //  holder.label_photos.setVisibility(View.INVISIBLE);
 
 
-            }else {
+           }else {
                 holder.text_add_images.setVisibility(View.INVISIBLE);
                 if(pojoNewVehImgs.size()==0){
                     //Toast.makeText(activity,"empty",Toast.LENGTH_SHORT).show();
@@ -231,16 +247,71 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             }
             if(SPHelper.title.equals("Approved Vehicle List")){
                 holder.rl_customer.setVisibility(View.VISIBLE);
+               // holder.live.setVisibility(View.VISIBLE);
+                holder.text_add_features.setVisibility(View.VISIBLE);
+               // holder.imv_menu.setVisibility(View.VISIBLE);
+                holder.text_add_images.setVisibility(View.VISIBLE);
+                holder.tv_insp_on_date.setVisibility(View.GONE);
+                holder.rl_photos.setVisibility(View.GONE);
+                holder.label_last_inspected_on.setVisibility(View.GONE);
+                holder.tv_last_insp.setVisibility(View.GONE);
+                holder.expire_date_label.setVisibility(View.VISIBLE);
+                holder.expiry_date.setVisibility(View.VISIBLE);
+                // Display the count in the TextView
+
+             /*   if(recyclerdata.getLeadCount()!=null){
+                    holder.total_leadno.setText(recyclerdata.getLeadCount().getCount());
+
+                }else{
+                    holder.total_leadno.setText("0");
+                } */
+
+
+
 
             }else{
                 holder.rl_customer.setVisibility(View.GONE);
-
-
+                holder.live.setVisibility(View.GONE);
+                holder.text_add_features.setVisibility(View.GONE);
+                holder.imv_menu.setVisibility(View.GONE);
+                holder.text_add_images.setVisibility(View.GONE);
+                holder.tv_insp_on_date.setVisibility(View.VISIBLE);
+                holder.rl_photos.setVisibility(View.VISIBLE);
+                holder.label_last_inspected_on.setVisibility(View.VISIBLE);
+                holder.tv_last_insp.setVisibility(View.VISIBLE);
+                holder.expire_date_label.setVisibility(View.INVISIBLE);
+                holder.expiry_date.setVisibility(View.INVISIBLE);
             }
 
 
+            if(SPHelper.title == "Expired Inspection List"){
+                holder.tv_insp_on_date.setVisibility(View.INVISIBLE);
+                holder.expired_date_label.setVisibility(View.VISIBLE);
+                holder.expired_date.setVisibility(View.VISIBLE);
 
-            if(SPHelper.title.equals("Approved Vehicles With Cooling Period")){
+
+            }else{
+                holder. expired_date_label.setVisibility(View.GONE);
+                holder.expired_date.setVisibility(View.GONE);
+
+            }
+            if (SPHelper.comingfrom == "customer"){
+                holder.rl_customer.setVisibility(View.INVISIBLE);
+                 holder.live.setVisibility(View.INVISIBLE);
+                holder.text_add_features.setVisibility(View.INVISIBLE);
+                 holder.imv_menu.setVisibility(View.INVISIBLE);
+                holder.text_add_images.setVisibility(View.INVISIBLE);
+                holder.tv_insp_on_date.setVisibility(View.VISIBLE);
+                holder.rl_photos.setVisibility(View.VISIBLE);
+                holder.label_last_inspected_on.setVisibility(View.VISIBLE);
+                holder.tv_last_insp.setVisibility(View.VISIBLE);
+                holder.expire_date_label.setVisibility(View.INVISIBLE);
+                holder.expiry_date.setVisibility(View.INVISIBLE);
+                holder.expired_date_label.setVisibility(View.INVISIBLE);
+                holder.expired_date.setVisibility(View.INVISIBLE);
+            }
+
+               if(SPHelper.title.equals("Approved Vehicles With Cooling Period")){
                 holder.linear_cp.setVisibility(View.VISIBLE);
                 holder.rl_cp_comments.setVisibility(View.VISIBLE);
                 holder.tv_cp_days.setText(recyclerdata.getCooling_period_days());
@@ -399,11 +470,15 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             holder.text_add_images.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                   // SPHelper.vehid=recyclerdata.getVehicle_id();
+                    System.out.println("veh_id"+SPHelper.vehid);
+                    SPHelper.vehid=allCarsPages.get(position).getVehicle_id();
+                    AllCarsPage.getInstance().getimage_part_list();
                     AllCarsPage.getInstance(). rl_transperant_add_image.setVisibility(View.VISIBLE);
                     AllCarsPage.getInstance().rl_transperant_add_image_pop_up.setVisibility(View.VISIBLE);
                     AllCarsPage.getInstance().rl_add_image.setVisibility(View.VISIBLE);
                     AllCarsPage.getInstance().rl_car_imgs.setVisibility(View.VISIBLE);
-                   
+
 
                 }
             });
@@ -580,6 +655,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             holder.text_add_features.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SPHelper.vehid=allCarsPages.get(position).getVehicle_id();
                    AllCarsPage.getInstance().rl_transperant.setVisibility(View.VISIBLE);
                    AllCarsPage.getInstance().rl_feature_pop_up.setVisibility(View.VISIBLE);
 
@@ -632,7 +708,8 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
         RelativeLayout rl_reasons,rl_insp_status,rl_cp_comments,rl_last_insp;
         LinearLayout linear_cp;
         AppCompatButton add_feature_button,live_button;
-        TextView label_photos,text_add_images,text_add_features;
+        TextView label_photos,text_add_images,text_add_features,label_last_inspected_on,
+                expire_date_label,expiry_date,expired_date_label,expired_date,total_leadno;
         ImageView imv_menu,live;
         RelativeLayout rl_customer;
         pl.droidsonroids.gif.GifImageView live_gif;
@@ -675,6 +752,14 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             text_add_features=itemView.findViewById(R.id.text_add_features);
             rl_customer=itemView.findViewById(R.id.rl_customer);
             live=itemView.findViewById(R.id.live);
+            label_last_inspected_on=itemView.findViewById(R.id.label_last_inspected_on);
+            expire_date_label=itemView.findViewById(R.id.expire_date_label);
+            expiry_date=itemView.findViewById(R.id.expiry_date);
+            expired_date_label=itemView.findViewById(R.id.expired_date_label);
+            expired_date=itemView.findViewById(R.id.expired_date);
+            total_leadno=itemView.findViewById(R.id.total_leadno);
+            apiInterface = ApiClient.getClient().create(DealerApis.class);
+
 
         }
     }
@@ -692,4 +777,5 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
     }
+
 }

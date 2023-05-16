@@ -3396,7 +3396,7 @@ public class Activate extends BottomSheetDialogFragment {
                                 SPHelper.getSPData(activity,SPHelper.dealerid,""),"3",is_with_ft,cust_location.getText().toString(),
                                 entered_pufr.getText().toString(),entered_price.getText().toString(),"",del_note_url,sale_re_url
                                 ,ins_stat,ins_pro,ins_type,ins_pol,ext_frnt,SPHelper.getSPData(activity,SPHelper.dealerno,""),
-                                "","",isWithOffer,SPHelper.dpp_id,pojoOfferarray);
+                                "","",isWithOffer,SPHelper.dpp_id,entered_mail.getText().toString(),pojoOfferarray);
                 Call<AppResponse> call =  apiInterface.sell_veh_tocustomer(post);
                 call.enqueue(new Callback<AppResponse>() {
                     @Override

@@ -24,6 +24,13 @@
         android:usesCleartextTraffic="true"
         tools:node="merge">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Leads_page"
             android:exported="false">
             <meta-data

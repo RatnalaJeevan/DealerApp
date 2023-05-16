@@ -50,11 +50,13 @@ public class PojoAllCarsList
     private String  inspection_date;
     private String  package_sold_on;
     private  String brnad_id;
+    private LeadCount leadCount; // new member variable
+
+
     private String cooling_period_comments;
    // private ArrayList<PojoNewVehImgs>VehicleImages=new ArrayList<>();
 
     private JSONArray VehicleImages=new JSONArray();
-
 
     public PojoAllCarsList(JSONObject obj) throws JSONException
     {
@@ -101,6 +103,8 @@ public class PojoAllCarsList
                 package_sold_on=(obj.has("package_sold_on")? obj.getString("package_sold_on") : "");
                 VehicleImages=(obj.has("VehicleImages")?(obj.getJSONArray("VehicleImages")):new JSONArray());
                 cooling_period_comments=(obj.has("cooling_period_comments")? obj.getString("cooling_period_comments") : "");
+                
+
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -108,9 +112,7 @@ public class PojoAllCarsList
         }
     }
 
-    public PojoAllCarsList() {
 
-    }
 
     public String getCooling_period_comments() {
         return cooling_period_comments;

@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
+import com.wisedrive.dealerapp1.fragments.ProfileFragment;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Dealer_status;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.services1.services.ApiClient;
 import com.wisedrive.dealerapp1.services1.services.DealerApis;
@@ -114,19 +116,82 @@ public class SplashScreen extends AppCompatActivity {
                     {
                         Intent intent=new Intent(SplashScreen.this,LoginPage.class);
                         startActivity(intent);
-                   /* intent.setClass(SplashScreen.this,
-                            LoginPage.class);
-                    SplashScreen.this.startActivity(intent);*/
                         SplashScreen.this.finish();
+
                     }else {
-                        Intent intent1=new Intent(SplashScreen.this,
+                        /*Intent intent1=new Intent(SplashScreen.this,
                                 MainActivity.class);
                         startActivity(intent1);
-                        SplashScreen.this.finish();
+                        SplashScreen.this.finish();*/
+                        get_dealer_statust_update();
+
+
                     }
                 }
             }
         }, SPLASH_DISPLAY_TIME);
     }
+    public void get_dealer_statust_update(){
+        Call<AppResponse>call=apiInterface.dealer_status(SPHelper.getSPData(SplashScreen.this,SPHelper.dealerid,""));
+        call.enqueue(new Callback<AppResponse>() {
+            @Override
+            public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
+                AppResponse appResponse = response.body();
+                assert appResponse != null;
+                String response_code = appResponse.getResponseType();
+                if (response.body() != null) {
+                    if (response_code.equals("200")) {
+                        Pojo_Dealer_status dealerStatus = appResponse.getResponse().getDealerStatus();
+                        if (dealerStatus != null) {
+                            if (dealerStatus.getIs_active().equals("Y")) {
+
+
+                                Intent intent1=new Intent(SplashScreen.this,
+                                        MainActivity.class);
+                                startActivity(intent1);
+                                SplashScreen.this.finish();
+
+                            } else if (dealerStatus.getIs_active().equals("N")){
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.dealership_name, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.d_email, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.d_adress, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.d_location, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.d_city, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.d_state, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.city_id,"");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.state_id, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.pincode, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.dealerid, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.dealerno, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.dealername, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.dealerlogo, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.imagestaken, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.helplineno, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.awssecret, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.awskey, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.comet_authkey, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.comet_region, "");
+                                SPHelper.saveSPdata(SplashScreen.this, SPHelper.comet_appid, "");
+                                Intent i = new Intent(SplashScreen.this, LoginPage.class);
+                                startActivity(i);
+                                finish();
+
+                            }
+
+
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AppResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 
 }

@@ -162,6 +162,9 @@ public class SPHelper {
     public static String lat="";
     public static String lon="";
     public static String fragment_is="";
+    public static String module_id="";
+    public static String part_id="";
+    public static String leadcount="";
 
     private  static String spName="DealerApp1";
 

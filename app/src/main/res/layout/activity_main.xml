@@ -39,7 +39,7 @@
 
         </ImageView>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/add_new_car"
+            android:id="@+id/add_new_car_button"
             android:layout_width="40dp"
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"

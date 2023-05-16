@@ -592,7 +592,7 @@
                     >
 
                     <TextView
-                        android:id="@+id/tv_count_sold"
+                        android:id="@+id/tv_count_lsold"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
@@ -609,7 +609,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/tv_count_sold"
                         android:fontFamily="@font/regular"
                         android:text="Sold With\nWarranty"
                         android:textColor="@color/textcolour"

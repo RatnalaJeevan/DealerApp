@@ -69,6 +69,7 @@ public class CustomerFragment extends Fragment
         tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
         rv_all_cars=rootView.findViewById(R.id.rv_all_cars);
         progress_bar=rootView.findViewById(R.id.progress_bar);
+
         return rootView;
     }
 
