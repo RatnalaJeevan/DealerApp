@@ -4,7 +4,7 @@ public class Pojo_features {
     String text_feature;
     public boolean isVisible;
 
-    public boolean isVisible() {
+    public boolean isVisible(){
         return isVisible;
     }
 

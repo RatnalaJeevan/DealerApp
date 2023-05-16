@@ -9,6 +9,10 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoCustomerVehicleInfo;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoDeviceDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoEditDealer;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoVehInspectEligible;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Update_list;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_listin_portal;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_mark_assold;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_post_feature;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoDealerDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoRequestInspectionDetails;
@@ -157,7 +161,7 @@ public interface DealerApis {
     Call<AppResponse> purchaseOffer(@Body PojoBuyOffer pojoBuyOffer);
 
     //with warranty
-    @POST("/sell/Package/to/customer")
+    @POST("/sell/Package/to/customerNew")
     Call<AppResponse> sell_veh_tocustomer(@Body PojoCustomerVehicleInfo pojoCustomerVehicleInfo);
 
     @GET("/DealerPackages/checkAddonEligibility")
@@ -177,6 +181,60 @@ public interface DealerApis {
 
     @GET("/DealershipMenu/getPaymentHistoryNew")
     Call<AppResponse> getPaymentHistory(@Query("dealerId") String dealerId,@Query("pageNo") String pageNo);
+
+    @GET("/WarrantyVehicleList/getPartDetails")
+    Call<AppResponse> part_list(@Query("vehicleId") String vehicleId,@Query("moduleId") String moduleId);
+
+
+    @POST("/WarrantyVehicleList/updateImages")
+    Call<AppResponse> update_image(@Body Pojo_Update_list pojo_update_list);
+
+    @GET("/WarrantyVehicleList/getModuleist")
+    Call<AppResponse> get_module_list();
+
+    @GET("/WarrantyVehicleList/getCount")
+    Call<AppResponse> lead_count(@Query("vehicleId") String vehicleId);
+
+    @POST("/WarrantyVehicleList/updateVehSoldStatus")
+    Call<AppResponse> mark_as_sold(@Body Pojo_mark_assold pojo_mark_assold);
+
+    @POST("/WarrantyVehicleList/updateVehSoldStatus")
+    Call<AppResponse> list_in_portal(@Body Pojo_listin_portal pojo_listin_portal);
+
+    @POST("/WarrantyVehicleList/updateVehListingFeatures")
+    Call<AppResponse> post_features(@Body Pojo_post_feature pojo_post_feature);
+
+
+    @GET("/getdealerStatus")
+    Call<AppResponse> dealer_status(@Query("dealerId") String dealerId);
+
+
+  /*  {
+        "vehicleId":12,
+            "featureArr": [{"moduleId":2,"part_id":2,"isPresent":"Y"}]
+    } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    @POST("/api/v2/cftoken/order")

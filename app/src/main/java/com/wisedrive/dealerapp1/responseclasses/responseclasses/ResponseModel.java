@@ -34,6 +34,10 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoVehicleImageList;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoVehicleWEInfo;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoWarrantyDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoWebLinks;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Dealer_status;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_lead_count;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
 import java.util.ArrayList;
 
@@ -492,6 +496,60 @@ public class ResponseModel {
     @SerializedName("activegateway")
     PojOurServices activegateway;
 
+    @SerializedName("PartDetails")
+    private ArrayList <Pojo_part_list>PartDetails;
+
+    public ArrayList<Pojo_part_list> getPartDetails() {
+        return PartDetails;
+    }
+
+    public void setPartDetails(ArrayList<Pojo_part_list> partDetails) {
+        PartDetails = partDetails;
+    }
+
+    @SerializedName("ModuleList")
+    private ArrayList <Pojo_Module_list>ModuleList;
+
+    public ArrayList<Pojo_Module_list> getModuleList() {
+        return ModuleList;
+    }
+
+    public void setModuleList(ArrayList<Pojo_Module_list> moduleList) {
+        ModuleList = moduleList;
+    }
+
+    @SerializedName("ViewCount")
+    private  PojoAllCarsList ViewCount;
+
+    public PojoAllCarsList getViewCount() {
+        return ViewCount;
+    }
+
+    public void setViewCount(PojoAllCarsList viewCount) {
+        ViewCount = viewCount;
+    }
+
+    @SerializedName("LeadCount")
+    private PojoAllCarsList LeadCount;
+
+    public PojoAllCarsList getLeadCount() {
+        return LeadCount;
+    }
+
+    public void setLeadCount(PojoAllCarsList leadCount) {
+        LeadCount = leadCount;
+    }
+
+    @SerializedName("dealerStatus")
+    private Pojo_Dealer_status dealerStatus;
+
+    public Pojo_Dealer_status getDealerStatus() {
+        return dealerStatus;
+    }
+
+    public void setDealerStatus(Pojo_Dealer_status dealerStatus) {
+        this.dealerStatus = dealerStatus;
+    }
 
     public PojOurServices getActivegateway() {
         return activegateway;

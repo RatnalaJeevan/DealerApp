@@ -56,8 +56,10 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
 
         }else if(!quant.equals("1") && subpack.equalsIgnoreCase("any car")){
             holder.tv_sub_pack_name.setText(quant+"\t Bundle"+"("+subpack+")");
+
         }else{
             holder.tv_sub_pack_name.setText(quant+subpack);
+
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,13 +144,15 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
             holder.tv_select.setVisibility(View.VISIBLE);
             holder.iv_buy_warranty.setVisibility(View.GONE);
             holder.tv_sub_pack_name.setTextColor(Color.parseColor("#FF000000"));
+            holder.any_brand.setTextColor(Color.parseColor("#FF000000"));
             holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.drawable.cv_black_border));
 
         }else{
             holder.tv_select.setVisibility(View.GONE);
             holder.iv_buy_warranty.setVisibility(View.VISIBLE);
             holder.tv_sub_pack_name.setTextColor(Color.parseColor("#FFFFFFFF"));
-            holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.color.black));
+             holder.any_brand.setTextColor(Color.parseColor("#FFFFFFFF"));
+             holder.rl_whole.setBackground(AppCompatResources.getDrawable(context,R.color.black));
         }
     }
 
@@ -159,7 +163,7 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_sub_pack_name,tv_select;
+        TextView tv_sub_pack_name,tv_select,any_brand;
         ImageView iv_buy_warranty;
         RelativeLayout rl_whole;
         public RecyclerViewHolder(@NonNull View itemView) {
@@ -168,6 +172,7 @@ public class AdapterSubPackList extends RecyclerView.Adapter<AdapterSubPackList.
             tv_select=itemView.findViewById(R.id.tv_select);
             iv_buy_warranty=itemView.findViewById(R.id.iv_buy_warranty);
             rl_whole=itemView.findViewById(R.id.rl_whole);
+            any_brand=itemView.findViewById(R.id.any_brand);
         }
     }
 }

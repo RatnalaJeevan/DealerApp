@@ -85,8 +85,25 @@ dependencies {
     implementation 'com.cashfree.pg:api:2.0.3'
    // implementation 'in.payu:payu-checkout-pro:1.8.2'
     //graph dependencies.
-    implementation 'com.jjoe64:graphview:4.2.2'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
+    implementation 'com.github.highcharts:highcharts-android:10.2.0'
+    //implementation (name: 'highcharts-release', ext:'aar')
+   // implementation 'com.google.code.gson:gson:2.8.1'
+
+  //  compile (name: 'highcharts-release', ext:'aar')
+  //  compile 'com.google.code.gson:gson:2.8.1'
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

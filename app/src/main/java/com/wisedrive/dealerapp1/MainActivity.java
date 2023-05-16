@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
     RelativeLayout rl_pack_selection,rl_single,rl_bundle;
     int count1=0,count2=0,count3=0;
-    AppCompatButton add_new_car;
+    AppCompatButton add_new_car_button;
     RelativeLayout rl_transperant,rl_new_car,new_inspection,rl_newdetails_adding;
     View card_btm_nav;
     LinearLayout l_bottom;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         iv_customer=findViewById(R.id.iv_customer);
         iv_profile=findViewById(R.id.iv_profile);
         iv_filter=findViewById(R.id.iv_filter);
-        add_new_car=findViewById(R.id.add_new_car);
+        add_new_car_button=findViewById(R.id.add_new_car_button);
         rl_transperant=findViewById(R.id. rl_transperant);
         rl_new_car=findViewById(R.id.rl_new_car);
         new_inspection=findViewById(R.id.new_inspection);
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             tv_customer.setVisibility(View.GONE);
             tv_profile.setVisibility(View.GONE);
             iv_filter.setVisibility(View.GONE);
+            add_new_car_button.setVisibility(View.GONE);
             iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
             iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
             iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_customer.setVisibility(View.GONE);
                     tv_profile.setVisibility(View.GONE);
                     iv_filter.setVisibility(View.GONE);
+                    add_new_car_button.setVisibility(View.VISIBLE);
                     rl_pack_selection.setVisibility(View.GONE);
                     iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.home_selected_black));
                     iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
@@ -198,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                    tv_customer.setVisibility(View.GONE);
                    tv_profile.setVisibility(View.GONE);
                    iv_filter.setVisibility(View.GONE);
+                   add_new_car_button.setVisibility(View.GONE);
                    rl_pack_selection.setVisibility(View.VISIBLE);
                    iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                    iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
@@ -222,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_customer.setVisibility(View.VISIBLE);
                     tv_profile.setVisibility(View.GONE);
                     iv_filter.setVisibility(View.VISIBLE);
+                    add_new_car_button.setVisibility(View.GONE);
                     rl_pack_selection.setVisibility(View.GONE);
                     iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
                     iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
@@ -255,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_pack.setVisibility(View.GONE);
                 tv_customer.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
+                add_new_car_button.setVisibility(View.GONE);
                 tv_profile.setVisibility(View.VISIBLE);
                 rl_pack_selection.setVisibility(View.GONE);
                 iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
@@ -305,22 +310,23 @@ public class MainActivity extends AppCompatActivity {
                 PackageFragment.getInstance().get_package_type();
             }
         });
-        add_new_car.setOnClickListener(new View.OnClickListener() {
+        add_new_car_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rl_transperant.setVisibility(View.VISIBLE);
-                l_bottom.setVisibility(View.GONE);
                 card_btm_nav.setVisibility(View.GONE);
             }
         });
+
         rl_transperant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rl_transperant.setEnabled(true);
                 rl_transperant.setVisibility(View.GONE);
-
+                card_btm_nav.setVisibility(View.VISIBLE);
             }
         });
+
         rl_new_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
