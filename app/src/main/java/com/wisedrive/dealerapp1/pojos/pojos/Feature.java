@@ -5,14 +5,10 @@ import java.util.List;
 
 public class Feature {
     private String moduleId;
-    private String partId;
+    private String part_id;
     private String isPresent;
 
-    public Feature(String moduleId, String partId, String isPresent) {
-        this.moduleId = moduleId;
-        this.partId = partId;
-        this.isPresent = isPresent;
-    }
+
 
     public String getModuleId() {
         return moduleId;
@@ -22,12 +18,12 @@ public class Feature {
         this.moduleId = moduleId;
     }
 
-    public String getPartId() {
-        return partId;
+    public String getPart_id() {
+        return part_id;
     }
 
-    public void setPartId(String partId) {
-        this.partId = partId;
+    public void setPart_id(String part_id) {
+        this.part_id = part_id;
     }
 
     public String getIsPresent() {

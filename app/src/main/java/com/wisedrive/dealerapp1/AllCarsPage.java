@@ -1,64 +1,62 @@
 package com.wisedrive.dealerapp1;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Gravity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Pair;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterAllCarPage;
-import com.wisedrive.dealerapp1.adapters.adapters.AdapterCarImageList;
-import com.wisedrive.dealerapp1.adapters.adapters.AdapterEditedVehImgList;
-import com.wisedrive.dealerapp1.adapters.adapters.AdapterNewVehImgs;
-import com.wisedrive.dealerapp1.adapters.adapters.AdapterCustomerCarsPage;
 import com.wisedrive.dealerapp1.adapters.adapters.Adapter_feature_list;
 import com.wisedrive.dealerapp1.adapters.adapters.Adapter_features;
 import com.wisedrive.dealerapp1.adapters.adapters.Adapter_static_images;
-import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.BitmapUtility;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.RequestPermissionHandler;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseExtension;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseListener;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
-import com.wisedrive.dealerapp1.fragments.HomeFragment;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 import com.wisedrive.dealerapp1.pojos.pojos.Feature;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
-import com.wisedrive.dealerapp1.pojos.pojos.PojoCarImageList;
-import com.wisedrive.dealerapp1.pojos.pojos.PojoOfferarray;
-import com.wisedrive.dealerapp1.pojos.pojos.PojoVehicleImageList;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Update_list;
-import com.wisedrive.dealerapp1.pojos.pojos.Pojo_features;
-import com.wisedrive.dealerapp1.pojos.pojos.Pojo_lead_count;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_imagearray;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_listin_portal;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_mark_assold;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_post_feature;
-import com.wisedrive.dealerapp1.pojos.pojos.pojo_static_image_data;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_static_image_data;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.services1.services.ApiClient;
 import com.wisedrive.dealerapp1.services1.services.DealerApis;
@@ -69,25 +67,37 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AllCarsPage extends AppCompatActivity {
+    String mobile_no_pattern="^[6-9][0-9]{9}$";
+    ArrayList<String> final_imgs=new ArrayList<>();
+    ArrayList<String> final_ids=new ArrayList<>();
+    ProgressDialog dialog1;
+    Uri cam_uri;
+    String it_is="",filename,doc_url="";
+    public int selectedObject=0;
+    private RequestPermissionHandler mRequestPermissionHandler;
     public  String KEY = "",onclick="";
     public  String SECRET = "";
     private BasicAWSCredentials credentials;
     private AmazonS3Client s3Client;
     ProgressBar progress_bar;
     public  int pageno=0;
-    ArrayList<PojoAllCarsList> customer_cars_list;
+    ArrayList<PojoAllCarsList> customer_cars_list=new ArrayList<>();
     ArrayList<PojoAllCarsList> allCarsPages = new ArrayList();
     AdapterAllCarPage adapterAllCarPage;
     RecyclerView rv_all_cars;
-    ImageView iv_filter,go_back;
+    ImageView iv_filter,go_back,iv_search;
     RelativeLayout rl_parent,rl_header;
     private DealerApis apiInterface;
     TextView heading;
@@ -95,32 +105,30 @@ public class AllCarsPage extends AppCompatActivity {
     private static AllCarsPage instance;
     RecyclerView rv_veh_imgs;
     public RelativeLayout rl_transparent1,rl_show_veh_images;
-    public Dialog dialog;
-  public RelativeLayout rl_transperant,rl_transperant_pop_up,rl_feature_pop_up,
+    public Dialog dialog,dialog_cp;
+    public TextView tv_cp_days,tv_cp_kms,cp_comments;
+    public RelativeLayout rl_transperant,rl_transperant_pop_up,rl_feature_pop_up,
           rl_transperant_add_image,rl_transperant_add_image_pop_up,rl_add_image,
           rl_car_imgs,rl_portal_transperant,rl_portal_menu,rl_list_in_portal,rl_mark_sold,
-          rl_showlistingprice, rl_showmarksold,rl_listing_price,rl_price_transperant;
-   public TextView comments,tv_no_cars;
-   ImageView img1,imv_cross,check1,check2,image_popup_cross;
-   TextView heading_fratures;
-   EditText ed_name,ed_number,ed_listingprice;
-   AppCompatButton mark_assold,price_submit,features_submit;
+          rl_showlistingprice, rl_showmarksold,rl_listing_price,rl_price_transperant,rl_search;
+    public TextView comments,tv_no_cars;
+    ImageView img1,imv_cross,check1,check2,image_popup_cross;
+    TextView heading_fratures;
+    EditText ed_name,ed_number,ed_listingprice;
+    AppCompatButton mark_assold,price_submit,features_submit;
     public static final int GALLERY_REQ_CODE = 1000;
     public static final int CAMERA_REQ_CODE = 100;
-    String module_id;
-
-
-    int count1=0,count2=0,count3=0;
-
-    ArrayList<Pojo_part_list>pojo_part_listArrayList=new ArrayList<>();
+    EditText search_veh;
+    ArrayList<Pojo_part_list> pojo_part_listArrayList=new ArrayList<>();
     Adapter_static_images adapter_static_images;
     RecyclerView rv_car_imagelist;
 
     ArrayList<Pojo_Module_list>pojo_module_listArrayList;
-    Adapter_features adapter_features;
+    public Adapter_features adapter_features;
     RecyclerView rv_features;
-
-
+    ArrayList<Pojo_imagearray> pojo_imagearrayArrayList;
+    AppCompatButton add_feature_button;
+    ArrayList<Feature> featureArr;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -129,10 +137,20 @@ public class AllCarsPage extends AppCompatActivity {
         instance=this;
         customer_cars_list=new ArrayList<>();
         setContentView(R.layout.activity_all_cars_page);
+
+        AWSMobileClient.getInstance().initialize(this).execute();
+        credentials = new BasicAWSCredentials(SPHelper.getSPData(this,SPHelper.awskey,""),
+                SPHelper.getSPData(this,SPHelper.awssecret,""));
+        s3Client = new AmazonS3Client(credentials);
+        mRequestPermissionHandler = new RequestPermissionHandler();
+        iv_search=findViewById(R.id.iv_search);
+        rl_search=findViewById(R.id.rl_search);
+        search_veh=findViewById(R.id.search_veh);
         heading_fratures=findViewById(R.id.heading_fratures);
         imv_cross=findViewById(R.id.imv_cross);
+        add_feature_button=findViewById(R.id.add_feature_button);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
-        //  heading_fratures.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
         rl_transperant=findViewById(R.id.rl_transperant);
         rl_feature_pop_up=findViewById(R.id.rl_feature_pop_up);
         rl_transperant_add_image=findViewById(R.id.rl_transperant_add_image);
@@ -176,12 +194,21 @@ public class AllCarsPage extends AppCompatActivity {
         dialog.setContentView(R.layout.pop_up_comments);
         dialog.setCancelable(true);
         comments=dialog.findViewById(R.id.comments) ;
+
+        dialog_cp= new Dialog(AllCarsPage.this);
+        dialog_cp.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog_cp.setContentView(R.layout.popup_cp);
+        dialog_cp.setCancelable(true);
+        tv_cp_days=dialog_cp.findViewById(R.id.tv_cp_days) ;
+        tv_cp_kms=dialog_cp.findViewById(R.id.tv_cp_kms) ;
+        cp_comments=dialog_cp.findViewById(R.id.cp_comments) ;
         if(SPHelper.goneto.equals("edited")){
 
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
             bottomSheetDialogFragment.show(AllCarsPage.this.getSupportFragmentManager(), "CongratsPage");
         }
-        rl_transparent1.setOnClickListener(new View.OnClickListener() {
+        rl_transparent1.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 rl_show_veh_images.setVisibility(View.GONE);
@@ -231,16 +258,31 @@ public class AllCarsPage extends AppCompatActivity {
         });
         rl_list_in_portal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                        if (check1.getVisibility() == View.VISIBLE) {
-                            // i1 is currently visible, so hide it and l1
-                            check1.setVisibility(View.GONE);
-                            rl_showlistingprice.setVisibility(View.GONE);
-                        } else {
-                            // i1 is currently hidden, so show it and l1
-                            check1.setVisibility(View.VISIBLE);
-                            rl_showlistingprice.setVisibility(View.VISIBLE);
-                        }
+            public void onClick(View view)
+            {
+                if(adapterAllCarPage.is_img_present.equalsIgnoreCase("y")&&
+                        adapterAllCarPage.is_feat_present.equalsIgnoreCase("y")){
+                    if (check1.getVisibility() == View.VISIBLE) {
+                        // i1 is currently visible, so hide it and l1
+                        check1.setVisibility(View.GONE);
+                        rl_showlistingprice.setVisibility(View.GONE);
+                    } else {
+                        // i1 is currently hidden, so show it and l1
+                        check1.setVisibility(View.VISIBLE);
+                        rl_showlistingprice.setVisibility(View.VISIBLE);
+                    }
+                }else if(adapterAllCarPage.is_img_present.equalsIgnoreCase("n"))
+                {
+                    Toast.makeText(AllCarsPage.this,
+                            " Please add vehicle images",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if(adapterAllCarPage.is_feat_present.equalsIgnoreCase("n"))
+                {
+                    Toast.makeText(AllCarsPage.this,
+                            " Please add vehicle features",
+                            Toast.LENGTH_SHORT).show();
+                }
                     }
                 });
 
@@ -261,20 +303,35 @@ public class AllCarsPage extends AppCompatActivity {
         mark_assold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                post_marked_as_sold();
+
+
+                if(!ed_number.getText().toString().equals("")&&!ed_number.getText().toString().matches(mobile_no_pattern)){
+                    Toast.makeText(AllCarsPage.this,
+                            " Enter Valid Phone Number",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                    post_marked_as_sold();
             }
         });
         price_submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                post_list_in_portal();
-
+            public void onClick(View v)
+            {
+                if(ed_listingprice.getText().toString().isEmpty()){
+                    Toast.makeText(AllCarsPage.this, "Enter price", Toast.LENGTH_SHORT).show();
+                }else if(ed_listingprice.getText().toString().startsWith("0")){
+                    Toast.makeText(AllCarsPage.this, "Enter valid price", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    post_list_in_portal();
+                }
             }
         });
         features_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                post_add_features();
+                    get_updated_features();
             }
         });
 
@@ -288,6 +345,13 @@ public class AllCarsPage extends AppCompatActivity {
             }
         });
 
+        iv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rl_search.setVisibility(View.VISIBLE);
+                search();
+            }
+        });
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -308,23 +372,63 @@ public class AllCarsPage extends AppCompatActivity {
 
 
 
-        get_module_list();
+        add_feature_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                get_updated_imgs();
+            }
+        });
 
+        search();
 
     }
 
+    public void search(){
+
+        search_veh.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(search_veh.getText().toString().length()>2)
+                {
+                    if(SPHelper.comingfrom.equals("all"))
+                    {
+                        get_all_vehiclelist();
+                    }else{
+                        get_insp_veh_list();
+                    }
+                }
+                else if(search_veh.getText().toString().length()==0){
+                    hideKeybaord();
+                }
+                else {
+                    if(SPHelper.comingfrom.equals("all"))
+                    {
+                        get_all_vehiclelist();
+                    }else{
+                        get_insp_veh_list();
+                    }
+                }
+
+            }
+        });
+
+    }
     public static AllCarsPage getInstance() {
         return instance;
     }
 
-    //insp_req_vehicle,approved veh,re-insp,repair-req,sold cars with warranty
-    /*if(search_foryourcars.getText().toString().equals("")){
-            progress_bar.setVisibility(View.GONE);
-            idPBLoading.setVisibility(View.VISIBLE);
-        }else{
-            progress_bar.setVisibility(View.VISIBLE);
-            idPBLoading.setVisibility(View.GONE);
-        }*/
+
     public void get_insp_veh_list() {
         progress_bar.setVisibility(View.VISIBLE);
         pageno = 1;
@@ -334,7 +438,7 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("dealerId",SPHelper.getSPData(AllCarsPage.this,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
             params.put("isSold",SPHelper.is_sold);
             params.put("withCooling",SPHelper.with_cool);
@@ -412,7 +516,7 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("dealerId",SPHelper.getSPData(AllCarsPage.this,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
             params.put("isSold",SPHelper.is_sold);
             params.put("withCooling",SPHelper.with_cool);
@@ -485,13 +589,6 @@ public class AllCarsPage extends AppCompatActivity {
     //all cars list,sold cars,public,private
     public void get_all_vehiclelist()
     {
-       /* if(search_foryourcars.getText().toString().equals("")){
-            progress_bar.setVisibility(View.GONE);
-            idPBLoading.setVisibility(View.VISIBLE);
-        }else{
-            progress_bar.setVisibility(View.VISIBLE);
-            idPBLoading.setVisibility(View.GONE);
-        }*/
         progress_bar.setVisibility(View.VISIBLE);
         pageno = 1;
         JSONObject params = new JSONObject();
@@ -499,9 +596,9 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("dealerId", SPHelper.getSPData(AllCarsPage.this,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
-            params.put("isSold","n");
+            params.put("isSold",SPHelper.is_sold);
             params.put("priceFrom",SPHelper.price_from);
             params.put("priceTo",SPHelper.price_to);
             params.put("kmFrom",SPHelper.kms_from);
@@ -509,7 +606,10 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("fuelId",SPHelper.fuel_id);
             params.put("transmissionId",SPHelper.trans_id);
             params.put("warrantyStatusId",SPHelper.selected_insp_status);
-            System.out.print("params"+params);
+            params.put("isWithPack",SPHelper.is_with_pack);
+
+            System.out.print(params);
+            System.out.print("url"+ServiceURL.allcarurl);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -573,9 +673,9 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("dealerId", SPHelper.getSPData(AllCarsPage.this,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
-            params.put("isSold","n");
+            params.put("isSold",SPHelper.is_sold);
             params.put("priceFrom",SPHelper.price_from);
             params.put("priceTo",SPHelper.price_to);
             params.put("kmFrom",SPHelper.kms_from);
@@ -583,6 +683,7 @@ public class AllCarsPage extends AppCompatActivity {
             params.put("fuelId",SPHelper.fuel_id);
             params.put("transmissionId",SPHelper.trans_id);
             params.put("warrantyStatusId",SPHelper.selected_insp_status);
+            params.put("isWithPack",SPHelper.is_with_pack);
             System.out.print("params"+params);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -639,29 +740,6 @@ public class AllCarsPage extends AppCompatActivity {
                 });
 
     }
-   /* public void update_image(){
-        Pojo_Update_list pojo_update_list=new Pojo_Update_list("","");
-        Call<AppResponse> call =  apiInterface.update_image(pojo_update_list);
-        call.enqueue(new Callback<AppResponse>() {
-            @Override
-            public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
-                AppResponse appResponse = response.body();
-                assert appResponse != null;
-                String response_code = appResponse.getResponseType();
-                if (response.body() != null) {
-                    if (response_code.equals("200")) {
-
-                    }
-
-                }
-            }
-
-                @Override
-                public void onFailure(@NotNull Call<AppResponse> call, @NotNull Throwable t) {
-
-                }
-            });
-        }  */
 
     public void getimage_part_list(){
         System.out.println("vehid"+SPHelper.vehid);
@@ -676,17 +754,13 @@ public class AllCarsPage extends AppCompatActivity {
                     if (response_code.equals("200")) {
                          pojo_part_listArrayList= new ArrayList<>();
                          pojo_part_listArrayList=appResponse.getResponse().getPartDetails();
-                adapter_static_images = new Adapter_static_images(AllCarsPage.this,pojo_part_listArrayList);
-                GridLayoutManager layoutManager = new GridLayoutManager(AllCarsPage.this, 2);
-                rv_car_imagelist.setLayoutManager(layoutManager);
-                rv_car_imagelist.setAdapter(adapter_static_images);
+                         adapter_static_images = new Adapter_static_images(AllCarsPage.this,pojo_part_listArrayList);
+                         GridLayoutManager layoutManager = new GridLayoutManager(AllCarsPage.this, 2);
+                         rv_car_imagelist.setLayoutManager(layoutManager);
+                         rv_car_imagelist.setAdapter(adapter_static_images);
 
                     }
                 }
-
-
-
-
             }
 
             @Override
@@ -694,10 +768,6 @@ public class AllCarsPage extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
     public void get_module_list(){
         Call<AppResponse>call=apiInterface.get_module_list();
@@ -731,40 +801,6 @@ public class AllCarsPage extends AppCompatActivity {
         });
     }
 
-    public void lead_view_count(){
-        Call<AppResponse> call =apiInterface.lead_count("961");
-        call.enqueue(new Callback<AppResponse>() {
-            @Override
-            public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
-                AppResponse appResponse = response.body();
-                assert appResponse != null;
-                String response_code = appResponse.getResponseType();
-                if (response.body() != null) {
-                    if (response_code.equals("200")) {
-                        customer_cars_list = new ArrayList<>();
-                        PojoAllCarsList leadCount = appResponse.getResponse().getLeadCount();
-                        if (leadCount != null) {
-                          /*  customer_cars_list.add(leadCount);
-                            customer_cars_list=appResponse.getResponse().getLeadCount();
-                            adapterAllCarPage = new  AdapterAllCarPage(AllCarsPage.this, customer_cars_list);
-                            GridLayoutManager layoutManager = new GridLayoutManager(AllCarsPage.this, 2);
-                            rv_car_imagelist.setLayoutManager(layoutManager);
-                            rv_car_imagelist.setAdapter(adapterAllCarPage); */
-                        }
-
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<AppResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
     public void post_list_in_portal(){
         Pojo_listin_portal pojo_listin_portal=new Pojo_listin_portal(SPHelper.vehid,ed_listingprice.getText().toString().trim());
         Call<AppResponse> call =  apiInterface.list_in_portal(pojo_listin_portal);
@@ -776,12 +812,10 @@ public class AllCarsPage extends AppCompatActivity {
                 String response_code = appResponse.getResponseType();
                 if (response.body() != null) {
                     if (response_code.equals("200")) {
-                        Toast.makeText(AllCarsPage.this, "Added successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
                         rl_portal_transperant.setVisibility(View.GONE);
+                        rl_portal_menu.setVisibility(View.GONE);
                         get_insp_veh_list();
-
-
-
 
                     }
 
@@ -794,8 +828,10 @@ public class AllCarsPage extends AppCompatActivity {
             }
         });
     }
-    public void post_marked_as_sold(){
-        Pojo_mark_assold pojo_mark_assold=new Pojo_mark_assold(SPHelper.vehid,ed_name.getText().toString().trim(),ed_number.getText().toString().trim());
+    public void post_marked_as_sold()
+    {
+        Pojo_mark_assold pojo_mark_assold=new Pojo_mark_assold(SPHelper.vehid,ed_name.getText().toString().trim(),
+                ed_number.getText().toString().trim());
         Call<AppResponse> call =  apiInterface.mark_as_sold(pojo_mark_assold);
         call.enqueue(new Callback<AppResponse>() {
             @Override
@@ -805,11 +841,10 @@ public class AllCarsPage extends AppCompatActivity {
                 String response_code = appResponse.getResponseType();
                 if (response.body() != null) {
                     if (response_code.equals("200")) {
-                        Toast.makeText(AllCarsPage.this, "Added successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
                         rl_portal_transperant.setVisibility(View.GONE);
+                        rl_portal_menu.setVisibility(View.GONE);
                         get_insp_veh_list();
-
-
 
                     }
 
@@ -823,25 +858,48 @@ public class AllCarsPage extends AppCompatActivity {
         });
     }
 
-    public void post_add_features() {
-        ArrayList<Feature> featureArr = new ArrayList<>();
-        for (int i = 0; i < pojo_module_listArrayList.size(); i++) {
-            if (pojo_module_listArrayList.get(i).getIsSelected().equalsIgnoreCase("Y")) {
-                String moduleId = pojo_module_listArrayList.get(i).getModule_id();
-                for (int j = 0; j < pojo_part_listArrayList.size(); j++) {
-                    if (pojo_part_listArrayList.get(j).getIsSelected().equalsIgnoreCase("Y")) {
-                        String partId = pojo_part_listArrayList.get(j).getPart_id();
-                        Feature obj = new Feature(moduleId, partId, "Y");
+    public  void get_updated_features()
+    {
+        featureArr = new ArrayList<>();
+        for (int i = 0; i < pojo_module_listArrayList.size(); i++)
+        {
+//            if (pojo_module_listArrayList.get(i).isVisible())
+//            {
+               // String moduleId = pojo_module_listArrayList.get(i).getModule_id();
+                for (int j = 0; j < adapter_features.pojo_part_listArrayList.size(); j++)
+                {
+
+                    if (adapter_features.pojo_part_listArrayList.get(j).isSelected())
+                    {
+                        Feature obj = new Feature();
+                        obj.setModuleId(adapter_features.pojo_part_listArrayList.get(j).getModule_id());
+                        obj.setPart_id(adapter_features.pojo_part_listArrayList.get(j).getPart_id());
+                        obj.setIsPresent("Y");
+                        featureArr.add(obj);
+                    }else {
+                        Feature obj = new Feature();
+                        obj.setModuleId(adapter_features.pojo_part_listArrayList.get(j).getModule_id());
+                        obj.setPart_id(adapter_features.pojo_part_listArrayList.get(j).getPart_id());
+                        obj.setIsPresent("N");
                         featureArr.add(obj);
                     }
-                }
+            //    }
             }
         }
+
+        if(featureArr.isEmpty()){
+            Toast.makeText(AllCarsPage.this, "Please select atleast one feature", Toast.LENGTH_SHORT).show();
+        }else {
+            post_add_features();
+        }
+
+
+    }
+    public void post_add_features()
+    {
+
         Pojo_post_feature pojo_post_feature = new Pojo_post_feature(SPHelper.vehid, featureArr);
         Call<AppResponse> call = apiInterface.post_features(pojo_post_feature);
-        ArrayList<Pojo_part_list> pojo_part_listArrayList = new ArrayList<>();
-        Adapter_feature_list adapter_feature_list = new Adapter_feature_list(AllCarsPage.this, pojo_part_listArrayList);
-
 
         call.enqueue(new Callback<AppResponse>() {
             @Override
@@ -849,11 +907,19 @@ public class AllCarsPage extends AppCompatActivity {
                 AppResponse appResponse = response.body();
                 assert appResponse != null;
                 String response_code = appResponse.getResponseType();
-                if (response.body() != null) {
-                    if (response_code.equals("200")) {
-                        Toast.makeText(AllCarsPage.this, "Added successfully.", Toast.LENGTH_SHORT).show();
-                        rl_portal_transperant.setVisibility(View.GONE);
+                if (response.body() != null)
+                {
+                    if (response_code.equals("200"))
+                    {
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+                        rl_transperant.setVisibility(View.GONE);
+                        rl_feature_pop_up.setVisibility(View.VISIBLE);
+                        get_module_list();
+                        featureArr=new ArrayList<>();
                         get_insp_veh_list();
+                    }else {
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
@@ -922,37 +988,362 @@ public class AllCarsPage extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == GALLERY_REQ_CODE) {
-                int position = adapter_static_images.getSelectedPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    Uri selectedImage = data.getData();
-                    String path = selectedImage.toString(); // Get the path of the selected image
-                    Pojo_part_list list = pojo_part_listArrayList.get(position);
-                    list.setImage(path); // Update the path in the object
-                    adapter_static_images.notifyItemChanged(position);
-                }
-            } else if (requestCode == CAMERA_REQ_CODE) {
-                int position = adapter_static_images.getSelectedPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                    String path = MediaStore.Images.Media.insertImage(AllCarsPage.this.getContentResolver(), photo, "Title", null);
-                    Pojo_part_list list = pojo_part_listArrayList.get(position);
-                    list.setImage(path); // Update the path in the object
-                    adapter_static_images.notifyItemChanged(position);
-                }
+
+    public void showPhotoDialog()
+    {
+        final Dialog dialog = new Dialog(AllCarsPage.this);
+        dialog.setContentView(R.layout.image_upload_options_pop);
+        TextView cancel = dialog.findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
             }
+        });
+
+        TextView textView1 = dialog.findViewById(R.id.takefromgallery);
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                open_gallery();
+                dialog.cancel();
+            }
+        });
+
+        TextView textView = dialog.findViewById(R.id.Recapture);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opencamera();
+                dialog.cancel();
+            }
+        });
+
+
+        dialog.show();
+    }
+
+    public void opencamera(){
+        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
+                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
+            @Override
+            public void onSuccess()
+            {
+                System.out.println("Succeed");
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    // pickCamera();
+                    it_is = "c";
+                    CallCamera();
+
+            }
+            @Override
+            public void onFailed() {
+                System.out.println("denied");
+            }
+        });
+
+    }
+
+    public void open_gallery(){
+
+        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]
+                {
+                        android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, selectedObject, new RequestPermissionHandler.RequestPermissionListener()
+        {
+            @Override
+            public void onSuccess() {
+                it_is = "g";
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                String[] mimeTypes = {"image/*", "application/pdf"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(intent,selectedObject);
+            }
+
+            @Override
+            public void onFailed() {
+                System.out.println("denied");
+            }
+        });
+    }
+
+    public void CallCamera() {
+
+        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
+                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
+            @Override
+            public void onSuccess() {
+                System.out.println("Succeed");
+                open_Camera();
+            }
+            @Override
+            public void onFailed() {
+                System.out.println("denied");
+            }
+        });
+    }
+    public void open_Camera()
+    {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
+            String fineName = dateFormat.format(new Date());
+            filename = BitmapUtility.PictUtil.getSavePath().getPath() + "/" + fineName;
+            cam_uri = FileProvider.getUriForFile(AllCarsPage.this,
+                    BuildConfig.APPLICATION_ID + ".provider", new File(filename));
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, cam_uri);
+            startActivityForResult(takePictureIntent, 123);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == selectedObject && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            Uri uri = data.getData();
+            // Handle the selected PDF file here
+            String type = getContentResolver().getType(uri);
+
+            if (type != null && type.startsWith("image/"))
+            {
+                // Handle the selected image file here
+
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("-dd_MMM_yyyy_HH_mm_ss_SSSSSS'.jpg'");
+                String fineName = dateFormat.format(new Date());
+                filename = BitmapUtility.PictUtil.getSavePath1().getPath() + "/" + "Wisedrive" + fineName;
+                String OriginalFileName = null;
+                try {
+                    OriginalFileName = BitmapUtility.PictUtil.saveImageasThumbs4(AllCarsPage.this, uri, filename, new Pair<Integer, Integer>(800, 800), "/");
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                pojo_part_listArrayList.get(adapter_static_images.adapter_position).setTaken_img(uri);
+                pojo_part_listArrayList.get(adapter_static_images.adapter_position).setFilename(OriginalFileName);
+                if(final_ids.size()>0)
+                {
+                    for(int i=0;i<final_ids.size();i++)
+                    {
+                        if (pojo_part_listArrayList.get(adapter_static_images.adapter_position).getPart_id().equalsIgnoreCase(final_ids.get(i))) {
+                            final_imgs.remove(i);
+                            final_ids.remove(pojo_part_listArrayList.get(i).getPart_id());
+                            break;
+                        }else {
+                        }
+                    }
+                }
+                final_ids.add(pojo_part_listArrayList.get(adapter_static_images.adapter_position).getPart_id());
+                //  iv_ins_copy.setImageURI(uri);
+                upload_to_s3(uri);
+            }
+
+        }
+        else if(resultCode==RESULT_OK&&it_is.equals("c"))
+        {
+
+            AllCarsPage.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    String OriginalFileName = BitmapUtility.PictUtil.saveImageasThumbs(filename, new Pair<Integer, Integer>(2040, 1080), "/");
+                    cam_uri = FileProvider.getUriForFile(AllCarsPage.this,
+                            BuildConfig.APPLICATION_ID + ".provider", new File(OriginalFileName));
+                    filename = OriginalFileName;
+                    //setimageuri
+
+                    if (!Connectivity.isNetworkConnected(AllCarsPage.this)) {
+
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(AllCarsPage.this);
+                        builder1.setMessage("Please retry to Submit your Details");
+                        builder1.setCancelable(true);
+                        builder1.setPositiveButton(
+                                "RETRY",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        validate();
+                                    }
+                                });
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                        return;
+                    }
+
+                    pojo_part_listArrayList.get(adapter_static_images.adapter_position).setTaken_img(cam_uri);
+                    pojo_part_listArrayList.get(adapter_static_images.adapter_position).setFilename(OriginalFileName);
+                    if(final_ids.size()>0)
+                    {
+                        for(int i=0;i<final_ids.size();i++)
+                        {
+                            if (pojo_part_listArrayList.get(adapter_static_images.adapter_position).getPart_id().equalsIgnoreCase(final_ids.get(i))) {
+                                final_imgs.remove(i);
+                                final_ids.remove(pojo_part_listArrayList.get(i).getPart_id());
+                                break;
+                            }else {
+                            }
+                        }
+                    }
+                    final_ids.add(pojo_part_listArrayList.get(adapter_static_images.adapter_position).getPart_id());
+
+                    upload_to_s3(cam_uri);
+                }
+            });
         }
     }
 
 
+    private void validate(){}
+    public  void upload_to_s3(Uri imageUri){
+        try {
+            // idPBLoading.setVisibility(View.VISIBLE);
+            final TransferUtility transferUtility =
+                    TransferUtility.builder()
+                            .context(AllCarsPage.this)
+                            .awsConfiguration(AWSMobileClient.getInstance().getConfiguration())
+                            .s3Client(s3Client)
+                            .build();
+            final String key =  SPHelper.doc_name+"/" + imageUri.getLastPathSegment();
+            final TransferObserver uploadObserver =
+                    transferUtility.upload(key, new File(filename));
+            uploadObserver.setTransferListener(new TransferListener() {
+                @Override
+                public void onStateChanged(int id, TransferState state) {
+                    if (TransferState.COMPLETED == state) {
+                        // Toast.makeText(AllCarsPage.this,  SPHelper.doc_name+"\tuploaded!", Toast.LENGTH_SHORT).show();
+                        String finalurl = s3Client.getResourceUrl("ab-prod-container", key);
+                        System.out.print("doc_url"+finalurl);
+                        AllCarsPage.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progress_bar.setVisibility(View.GONE);
+                                // progressDialog.cancel();
+                            }
+                        });
+                        adapter_static_images.notifyDataSetChanged();
+
+                       // doc_url=finalurl;
+                        final_imgs.add(finalurl);
+                        //update_images();
+
+                    } else if (TransferState.FAILED == state) {
+
+                        AllCarsPage.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progress_bar.setVisibility(View.GONE);
+                                // progressDialog.cancel();
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                    float percentDonef = ((float) bytesCurrent / (float) bytesTotal) * 100;
+                    int percentDone = (int) percentDonef;
+
+                }
+
+                @Override
+                public void onError(int id, Exception ex) {
+                    ex.printStackTrace();
+                    AllCarsPage.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress_bar.setVisibility(View.GONE);
+                            // progressDialog.cancel();
+                        }
+                    });
+                }
+
+            });
+        } catch (Exception je) {
+
+            je.printStackTrace();
+        }
+    }
+
+    public void get_updated_imgs(){
+        pojo_imagearrayArrayList=new ArrayList<>();
+        for (int i = 0; i <final_ids.size(); i++) {
+            Pojo_imagearray imageobj=new Pojo_imagearray();
+            imageobj.setImage(final_imgs.get(i));
+            imageobj.setImage_type_id(final_ids.get(i));
+            pojo_imagearrayArrayList.add(imageobj);
+        }
+
+        if(pojo_imagearrayArrayList.isEmpty()){
+            Toast.makeText(AllCarsPage.this,
+                    "Please upload atleast one image",
+                    Toast.LENGTH_SHORT).show();
+        }else {
+            System.out.println("imgarray"+pojo_imagearrayArrayList);
+           update_images();
+        }
+    }
+
+    public void update_images() {
+        {
+            if (!Connectivity.isNetworkConnected(AllCarsPage.this)) {
+                Toast.makeText(AllCarsPage.this,
+                        "Please Check Your Internet",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                progress_bar.setVisibility(View.VISIBLE);
 
 
+                Pojo_Update_list pojo_update_list=new Pojo_Update_list(SPHelper.vehid,pojo_imagearrayArrayList);
+                Call<AppResponse> call = apiInterface.update_image(pojo_update_list);
+                call.enqueue(new Callback<AppResponse>() {
+                    @Override
+                    public void onResponse(@NotNull Call<AppResponse> call, @NotNull Response<AppResponse> response) {
+                        AppResponse appResponse = response.body();
+                        assert appResponse != null;
+                        String response_code = appResponse.getResponseType();
+                        if (response.body() != null) {
+                            if (response_code.equals("200")) {
+                                progress_bar.setVisibility(View.GONE);
+                                rl_transperant_add_image.setVisibility(View.INVISIBLE);
+                                rl_add_image.setVisibility(View.INVISIBLE);
+                                Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+                                get_insp_veh_list();
+                                 final_imgs=new ArrayList<>();
+                                 final_ids=new ArrayList<>();
+                                 pojo_imagearrayArrayList=new ArrayList<>();
+                            } else if (response_code.equals("300")) {
+                                progress_bar.setVisibility(View.GONE);
+                                Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            progress_bar.setVisibility(View.GONE);
+                            Toast.makeText(AllCarsPage.this, "internal server error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(@NotNull Call<AppResponse> call, @NotNull Throwable t) {
+                        Toast.makeText(AllCarsPage.this,
+                                t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                        progress_bar.setVisibility(View.GONE);
+                    }
+                });
+            }
+        }
+    }
+
+    private void hideKeybaord() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+        }
+    }
 
 }

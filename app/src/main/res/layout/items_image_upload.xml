@@ -25,6 +25,16 @@
 
         </ImageView>
 
+            <ImageView
+                android:id="@+id/taken_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:elevation="5dp"
+               >
+
+            </ImageView>
         <TextView
             android:id="@+id/text_takephoto"
             android:layout_width="wrap_content"

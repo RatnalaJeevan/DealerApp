@@ -79,6 +79,7 @@
         <activity
             android:name=".CheckEligibility"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"

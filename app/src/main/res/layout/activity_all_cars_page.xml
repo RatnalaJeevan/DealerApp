@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/iv_filter"
+            android:layout_toStartOf="@+id/iv_search"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/rl_back"
             android:fontFamily="@font/semibold"
@@ -59,6 +59,18 @@
 
         </TextView>
 
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/iv_filter"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/search_car"
+            >
+
+        </ImageView>
+
 
     </RelativeLayout>
 
@@ -68,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/rl_header"
+        android:layout_below="@+id/rl_search"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/regular"
@@ -77,6 +89,38 @@
         android:textColor="@color/white"
         android:textSize="17dp">
     </TextView>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/rl_header">
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/search_car"
+            >
+        </ImageView>
+        <EditText
+            android:id="@+id/search_veh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_1"
+            android:hint="Search here.."
+            android:background="@null"
+            android:fontFamily="@font/semibold"
+            android:textSize="15dp"
+            android:textColor="@color/black">
+
+        </EditText>
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_cars"
         android:layout_width="match_parent"
@@ -1345,12 +1389,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transperant"
-        android:visibility="gone">
+        android:visibility="gone"
+       >
 
            <RelativeLayout
             android:id="@+id/rl_feature_pop_up"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/rl_feature_pop_up">
 
@@ -1384,7 +1429,8 @@
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/features_submit"
                 android:layout_below="@id/rl_heading">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -1401,7 +1447,7 @@
                    android:layout_width="120dp"
                    android:layout_height="40dp"
                    android:layout_alignParentEnd="true"
-                   android:layout_below="@id/scroll_view"
+                   android:layout_alignParentBottom="true"
                    android:layout_marginTop="15dp"
                    android:text="SUBMIT"
                    android:textSize="14dp"
@@ -1507,7 +1553,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transperant"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <RelativeLayout
         android:id="@+id/rl_portal_menu"
@@ -1532,6 +1579,7 @@
             android:background="@drawable/rl_background">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_list_in_portal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1599,6 +1647,9 @@
                     android:backgroundTint="@color/lightgrey"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:maxLength="7"
                     />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -1679,6 +1730,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:text="Customer Name "
                         android:textColor="@color/grey"
                         android:textSize="14dp" />
@@ -1714,6 +1766,8 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
+                        android:maxLength="10"
+                        android:inputType="number"
                         android:layout_below="@id/number"
                         android:backgroundTint="@color/lightgrey"/>
                 </RelativeLayout>
@@ -1801,6 +1855,5 @@
             android:background="@drawable/add_features"/>
     </RelativeLayout>
     </RelativeLayout>
-
 
     </RelativeLayout>

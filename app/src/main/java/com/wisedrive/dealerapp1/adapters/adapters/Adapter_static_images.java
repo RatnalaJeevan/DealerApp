@@ -1,11 +1,7 @@
 package com.wisedrive.dealerapp1.adapters.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,26 +9,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.wisedrive.dealerapp1.AllCarsPage;
 import com.wisedrive.dealerapp1.R;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
-import com.wisedrive.dealerapp1.pojos.pojos.pojo_static_image_data;
 
 import java.util.ArrayList;
 
 public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_images.MyViewHolder> {
+    public int adapter_position=0;
     Context context;
     private final int GALLERY_REQ_CODE = 1000;
     private final int CAMERA_REQ_CODE = 100;
     int selectedPosition = RecyclerView.NO_POSITION;
     View view;
     ArrayList<Pojo_part_list> pojo_part_listArrayList;
+
 
     public Adapter_static_images(Context context, ArrayList<Pojo_part_list>pojo_part_listArrayList) {
         this.context = context;
@@ -54,10 +52,27 @@ public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_i
         holder.rl_car_images.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SPHelper.doc_name=list.getPart_name();
                 selectedPosition = position;
-                showPhotoDialog();
+                adapter_position=position;
+                AllCarsPage.getInstance().showPhotoDialog();
             }
         });
+
+        if (pojo_part_listArrayList.get(position).getTaken_img() == null)
+        {
+            holder.text_takephoto.setVisibility(View.VISIBLE);
+            holder.car_image_position.setVisibility(View.VISIBLE);
+            holder.taken_img.setVisibility(View.GONE);
+            Glide.with(context).load(pojo_part_listArrayList.get(position).getImage()).placeholder(R.drawable.icon_noimage).into(holder.car_image_position);
+
+        } else {
+            holder.taken_img.setVisibility(View.VISIBLE);
+            holder.taken_img.setImageURI(pojo_part_listArrayList.get(position).getTaken_img());
+            holder.text_takephoto.setVisibility(View.GONE);
+            holder.car_image_position.setVisibility(View.GONE);
+
+        }
     }
 
     @Override
@@ -65,13 +80,11 @@ public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_i
         return pojo_part_listArrayList.size();
     }
 
-    public int getSelectedPosition() {
-        return selectedPosition;
-    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public ImageView car_image_position;
-        TextView car_image_position_name;
+        public ImageView car_image_position,taken_img;
+        TextView car_image_position_name,text_takephoto;
         RelativeLayout rl_car_images;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -79,6 +92,8 @@ public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_i
             car_image_position = itemView.findViewById(R.id.car_image_position);
             car_image_position_name = itemView.findViewById(R.id.car_image_position_name);
             rl_car_images = itemView.findViewById(R.id.rl_car_images);
+            text_takephoto=itemView.findViewById(R.id.text_takephoto);
+            taken_img=itemView.findViewById(R.id.taken_img);
         }
 
         public void setCar_image_position(String car_image_position_path) {
@@ -95,54 +110,7 @@ public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_i
                 car_image_position.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.upload_symbol));
             }
         }
-
     }
-
-    public void showPhotoDialog() {
-        final Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.image_upload_options_pop);
-        TextView cancel = dialog.findViewById(R.id.cancel);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        TextView textView1 = dialog.findViewById(R.id.takefromgallery);
-        textView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takePictureFromGallery();
-                dialog.cancel();
-            }
-        });
-
-        TextView textView = dialog.findViewById(R.id.Recapture);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                takePictureFromCamera();
-                dialog.cancel();
-            }
-        });
-
-
-        dialog.show();
-    }
-
-    private void takePictureFromGallery() {
-        Intent picphoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        ((Activity) context).startActivityForResult(picphoto, GALLERY_REQ_CODE);
-    }
-
-    private void takePictureFromCamera() {
-        Intent takepicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        ((Activity) context).startActivityForResult(takepicture, CAMERA_REQ_CODE);
-    }
-
-
 
    }
 

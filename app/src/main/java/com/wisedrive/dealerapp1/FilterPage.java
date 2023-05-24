@@ -51,12 +51,13 @@ public class FilterPage extends AppCompatActivity {
     AdapterBrandLogos adapterBrandLogos;
     AdapterInspStatus adapterInspStatus;
     RangeSlider price_range,kms_range;
-    ImageView iv_diesel,iv_petrol,iv_manual,iv_auto;
+    ImageView iv_diesel,iv_petrol,iv_manual,iv_auto,iv_w_pack,iv_w_o_pack;
     DealerApis apiInterface;
     TextView max_price,max_kms,reset,min_price,min_kms,label_insp_status;
-    RelativeLayout rl_apply,rl_back;
+    RelativeLayout rl_apply,rl_back,rl_sold;
     private DecimalFormat IndianCurrencyFormat;
-    String fuel_id="",trans_id="",kms_from="",kms_to="",price_from="",price_to="";
+    String fuel_id="",trans_id="",kms_from="",kms_to="",price_from="",price_to="",is_with_pack="n",is_w_o_pack="n";
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,9 @@ public class FilterPage extends AppCompatActivity {
         IndianCurrencyFormat = new DecimalFormat("##,##,###");
 
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        iv_w_pack=findViewById(R.id.iv_w_pack);
+        iv_w_o_pack=findViewById(R.id.iv_w_o_pack);
+        rl_sold=findViewById(R.id.rl_sold);
         label_insp_status=findViewById(R.id.label_insp_status);
         reset=findViewById(R.id.reset);
         rl_apply=findViewById(R.id.rl_apply);
@@ -89,11 +93,13 @@ public class FilterPage extends AppCompatActivity {
         if(SPHelper.comingfrom.equals("all")){
             label_insp_status.setVisibility(View.VISIBLE);
             rv_insp_status.setVisibility(View.VISIBLE);
+            rl_sold.setVisibility(View.VISIBLE);
             get_warrantyList();
 
         }else{
             label_insp_status.setVisibility(View.GONE);
             rv_insp_status.setVisibility(View.GONE);
+            rl_sold.setVisibility(View.GONE);
         }
 
         price_range.setCustomThumbDrawable(R.drawable.circle_blue);
@@ -161,6 +167,9 @@ public class FilterPage extends AppCompatActivity {
             iv_manual.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_manual.setImageDrawable(null);
         }
+
+
+
         iv_diesel.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
@@ -209,6 +218,70 @@ public class FilterPage extends AppCompatActivity {
             }
         });
 
+        if(SPHelper.is_with_pack.equalsIgnoreCase("y")){
+            iv_w_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
+            iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
+            iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+            iv_w_o_pack.setImageDrawable(null);
+            is_with_pack="y";
+        }
+        else if(SPHelper.is_with_pack.equalsIgnoreCase("n")){
+            iv_w_o_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
+            iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
+            iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+            iv_w_pack.setImageDrawable(null);
+            is_w_o_pack="y";
+        }
+        else {
+            iv_w_o_pack.setImageDrawable(null);
+            iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+            iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+            iv_w_pack.setImageDrawable(null);
+            is_w_o_pack="";
+            is_with_pack="";
+
+        }
+        iv_w_pack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                if(is_with_pack.equals("n")){
+                    iv_w_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
+                    iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
+                    iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+                    iv_w_o_pack.setImageDrawable(null);
+                    is_with_pack="y";
+                    SPHelper.is_with_pack="y";
+                }else {
+                    is_with_pack="n";
+                    SPHelper.is_with_pack="";
+                    iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+                    iv_w_pack.setImageDrawable(null);
+                }
+
+            }
+        });
+        iv_w_o_pack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(is_w_o_pack.equals("n"))
+                {
+                    iv_w_o_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
+                    iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
+                    iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+                    iv_w_pack.setImageDrawable(null);
+                    is_w_o_pack="y";
+                    SPHelper.is_with_pack="n";
+                }else {
+                    is_w_o_pack="n";
+                    SPHelper.is_with_pack="";
+                    iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
+                    iv_w_o_pack.setImageDrawable(null);
+                }
+
+            }
+        });
+
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,6 +293,7 @@ public class FilterPage extends AppCompatActivity {
                 SPHelper.kms_to="";
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
+                SPHelper.is_with_pack="";
                 SPHelper.pojoAllCarBrands=new ArrayList<>();
                 SPHelper.selected_insp_statuses=new ArrayList<>();
                 if(SPHelper.comingfrom.equals("customer")){

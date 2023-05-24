@@ -1152,7 +1152,6 @@ public class Activate extends BottomSheetDialogFragment {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
             // Create the File where the photo should go
             SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
             String fineName = dateFormat.format(new Date());
@@ -1189,7 +1188,6 @@ public class Activate extends BottomSheetDialogFragment {
                 startActivityForResult(takePictureIntent, 1700);
             }
 
-        }
     }
 
     @Override

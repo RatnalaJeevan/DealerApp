@@ -8,11 +8,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.CustomerFragment">
 
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/search_car"
+            >
+        </ImageView>
+        <EditText
+            android:id="@+id/search_veh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_1"
+            android:hint="Search here.."
+            android:background="@null"
+            android:fontFamily="@font/semibold"
+            android:textSize="15dp"
+            android:textColor="@color/black">
+
+        </EditText>
+    </RelativeLayout>
     <TextView
         android:visibility="gone"
         android:id="@+id/tv_no_cars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_search"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
@@ -26,6 +58,7 @@
         android:id="@+id/rv_all_cars"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tv_no_cars"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp">

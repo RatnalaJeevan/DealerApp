@@ -275,7 +275,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 SPHelper.is_sold="N";
-                SPHelper.with_cool="N";
+                SPHelper.with_cool="";
                 SPHelper.with_pack="";
                 SPHelper.status_id="1";
                 SPHelper.title="Approved Vehicle List";

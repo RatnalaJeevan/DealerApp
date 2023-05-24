@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Pojo_Update_list {
     String vehicleId;
-    ArrayList<Pojo_imagearray> pojo_imagearrayArrayList;
+    ArrayList<Pojo_imagearray> imagesArr;
 
-    public Pojo_Update_list(String vehicleId, ArrayList<Pojo_imagearray> pojo_imagearrayArrayList) {
+    public Pojo_Update_list(String vehicleId, ArrayList<Pojo_imagearray> imagesArr) {
         this.vehicleId = vehicleId;
-        this.pojo_imagearrayArrayList = pojo_imagearrayArrayList;
+        this.imagesArr = imagesArr;
     }
 }

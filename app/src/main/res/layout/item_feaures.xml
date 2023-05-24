@@ -47,10 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/rl1"
             android:layout_marginTop="13dp"
-
            >
-
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_feature_list1"
@@ -65,8 +62,6 @@
             android:layout_below="@+id/rl_1"
             android:visibility="gone"
             android:text="testing /this text is just for testing"/>
-
-
 
 
         <View

@@ -28,12 +28,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.highsoft.highcharts.common.hichartsclasses.HIChart;
-import com.highsoft.highcharts.common.hichartsclasses.HIColumn;
-import com.highsoft.highcharts.common.hichartsclasses.HIOptions;
-import com.highsoft.highcharts.common.hichartsclasses.HISeries;
-import com.highsoft.highcharts.common.hichartsclasses.HITitle;
-import com.highsoft.highcharts.core.HIChartView;
+
 import com.wisedrive.dealerapp1.AllCarsPage;
 import com.wisedrive.dealerapp1.CheckEligibility;
 import com.wisedrive.dealerapp1.R;
@@ -65,7 +60,7 @@ public class Home_fragment_2 extends Fragment {
     public TextView tv_allcar_count,tv_count_approved_count,tv_count_exp_insp,tv_count_rep_req;
     RelativeLayout activate_button;
     Activity activity;
-    TextView text_pending_count;
+    TextView text_pending_count,tv_live_cars,text_new_leads;
 
 
 
@@ -83,6 +78,8 @@ public class Home_fragment_2 extends Fragment {
         SPHelper.kms_to="";
         SPHelper.selected_insp_status="";
         SPHelper.selected_insp_statuses=new ArrayList<>();
+        text_new_leads=rootView.findViewById(R.id.text_new_leads);
+        tv_live_cars=rootView.findViewById(R.id.tv_live_cars);
         progress_bar=rootView.findViewById(R.id.progress_bar);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         progress_bar=rootView.findViewById(R.id.progress_bar);
@@ -109,7 +106,7 @@ public class Home_fragment_2 extends Fragment {
             @Override
             public void onClick(View view) {
                 SPHelper.is_sold="N";
-                SPHelper.with_cool="N";
+                SPHelper.with_cool="";
                 SPHelper.with_pack="";
                 SPHelper.status_id="1";
                 SPHelper.title="Approved Vehicle List";
@@ -123,6 +120,7 @@ public class Home_fragment_2 extends Fragment {
                 SPHelper.kms_to="";
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
+
                 if(app_w_o_c==null||app_w_o_c.equals("0"))
                 {
                     Toast.makeText(activity,
@@ -144,6 +142,7 @@ public class Home_fragment_2 extends Fragment {
 
                 SPHelper.title="All Cars";
                 SPHelper.comingfrom="all";
+                SPHelper.is_sold="";
                 SPHelper.pojoAllCarBrands=new ArrayList<>();
                 SPHelper.selected_insp_statuses=new ArrayList<>();
                 SPHelper.fuel_id="";
@@ -154,6 +153,7 @@ public class Home_fragment_2 extends Fragment {
                 SPHelper.kms_to="";
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
+                SPHelper.is_with_pack="";
                 if(all_car_counnt==null||all_car_counnt.equals("0"))
                 {
                     Toast.makeText(activity,
@@ -347,15 +347,21 @@ public class Home_fragment_2 extends Fragment {
                     assert appResponse != null;
                     String response_code = appResponse.getResponseType();
                     if (response.body() != null) {
-                        if (response_code.equals("200")) {
+                        if (response_code.equals("200"))
+                        {
                             String no_of_warranties_left = appResponse.getResponse().getDealerWarrantyInfo().getNo_of_warranties_left();
-                            // Assuming you have the following variables:
-                            int totalWarranties = 30; // Total number of warranties
+                            String live_cars=appResponse.getResponse().getLiveCarCount().getTotal_live_cars();
+                            String msg=appResponse.getResponse().getLiveCarCount().getMsg();
+                            String total=appResponse.getResponse().getDealerWarrantyInfo().getNo_of_warranties_left_from();
 
-                            //set text of text_pending_count
                             int warrantiesLeft = Integer.parseInt(no_of_warranties_left != null ? no_of_warranties_left : "0");
-                            String text = warrantiesLeft + "/" + totalWarranties;
+                            if(total==null||total.equals("null")||total.equals("0")){
+                                total="0";
+                            }
+                            String text = warrantiesLeft + "/" + total;
                             text_pending_count.setText(text);
+                            tv_live_cars.setText(live_cars+" Car(s) Live");
+                            text_new_leads.setText(msg);
                         } else if (response_code.equals("300")) {
                             // handle response code 300
                         }
