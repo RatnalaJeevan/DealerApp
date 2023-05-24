@@ -44,15 +44,22 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
         holder.rl_check_box.setVisibility(list.isSelected() ? View.VISIBLE : View.INVISIBLE);
         holder.rl_uncheck_box.setVisibility(list.isSelected() ? View.INVISIBLE : View.VISIBLE);
 
+        if(list.getIs_feature_present()==null||list.getIs_feature_present().equalsIgnoreCase("n")||
+        list.getIs_feature_present().equals("")){
+            holder.rl_check_box.setVisibility(View.INVISIBLE);
+        }else {
+            holder.rl_check_box.setVisibility(View.VISIBLE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 list.setSelected(!list.isSelected());
                 holder.rl_check_box.setVisibility(list.isSelected() ? View.VISIBLE : View.INVISIBLE);
                 holder.rl_uncheck_box.setVisibility(list.isSelected() ? View.INVISIBLE : View.VISIBLE);
 
                 // Update the is_feature_present value based on the selection
-                list.setIs_feature_present(list.isSelected() ? "y" : "n");
+               // list.setIs_feature_present(list.isSelected() ? "y" : "n");
                 SPHelper.part_id=pojo_part_listArrayList.get(position).getPart_id();
                 SPHelper.module_id=pojo_part_listArrayList.get(position).getModule_id();
             }
@@ -80,8 +87,6 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
         for (Pojo_part_list partList : pojo_part_listArrayList) {
             if (partList.isSelected()) {
                 // Create a new Feature object and add it to the list
-                Feature feature = new Feature(partList.getModule_id(), partList.getPart_id(), "Y");
-                selectedFeatures.add(feature);
             }
         }
         return selectedFeatures;

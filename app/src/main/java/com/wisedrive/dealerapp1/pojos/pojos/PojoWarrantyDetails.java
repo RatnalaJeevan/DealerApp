@@ -17,6 +17,9 @@ public class PojoWarrantyDetails {
     String name;
     @SerializedName("number")
     String number;
+    @SerializedName("email_id")
+    String email_id;
+
     @SerializedName("customer_id")
     String customer_id;
 
@@ -55,6 +58,9 @@ public class PojoWarrantyDetails {
     @SerializedName("sales_receipt")
     String sales_receipt;
 
+    public String getEmail_id() {
+        return email_id;
+    }
 
     public String getPackage_activated_on() {
         return package_activated_on;
@@ -112,26 +118,6 @@ public class PojoWarrantyDetails {
         return customer_id;
     }
 
-    public String getFastag_validity() {
-        return fastag_validity;
-    }
-
-    public String getFastag_availability() {
-        return fastag_availability;
-    }
-
-
-    public String getFastag_number() {
-        return fastag_number;
-    }
-
-    public String getPancard_image() {
-        return pancard_image;
-    }
-
-    public String getFastag_iamge() {
-        return fastag_iamge;
-    }
 
 
     public String getPackage_activation_code() {

@@ -1,5 +1,7 @@
 package com.wisedrive.dealerapp1.fragments;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,9 +16,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -46,11 +52,13 @@ public class CustomerFragment extends Fragment
 {
     public  int pageno=0;
     ProgressBar progress_bar;
-    Activity activity;
+    public Activity activity;
     TextView tv_no_cars;
     ArrayList<PojoAllCarsList> customer_cars_list=new ArrayList<>();
     AdapterAllCarPage adapterAllCarPage;
     RecyclerView rv_all_cars;
+   public RelativeLayout rl_search;
+   public EditText search_veh;
     private static CustomerFragment instance;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -66,13 +74,47 @@ public class CustomerFragment extends Fragment
         SPHelper.status_id="99";
         SPHelper.comingfrom="customer";
         //SPHelper.selected_brandid="";
+        rl_search=rootView.findViewById(R.id.rl_search);
+        search_veh=rootView.findViewById(R.id.search_veh);
         tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
         rv_all_cars=rootView.findViewById(R.id.rv_all_cars);
         progress_bar=rootView.findViewById(R.id.progress_bar);
 
+        search();
+
         return rootView;
     }
 
+    public void search(){
+
+        search_veh.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(search_veh.getText().toString().length()>2)
+                {
+                        get_insp_veh_list();
+                }else if(search_veh.getText().toString().length()==0){
+                    hideKeybaord();
+                }
+                else {
+                    get_insp_veh_list();
+                }
+
+            }
+        });
+
+    }
     public static CustomerFragment getInstance() {
         return instance;
     }
@@ -268,5 +310,13 @@ public class CustomerFragment extends Fragment
 
         get_insp_veh_list();
 
+    }
+
+    private void hideKeybaord() {
+        View view = activity.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+        }
     }
 }

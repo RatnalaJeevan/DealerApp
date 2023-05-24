@@ -51,6 +51,7 @@
     <string name="sold_cars_exp">Check status of your cars</string>
     <string name="offers_exp">Customised offers for you</string>
     <string name="notification_exp">Manage how you want to be notified</string>
+    <string name="cool_period"><u>Cool Period</u></string>
 
     <string-array name="pricerangeSlider">
         <item>0</item>

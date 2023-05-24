@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:contentPadding="10dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/label_cp_days"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/medium"
+            android:text="Days :"
+            android:textColor="@color/textcolour"
+            android:textSize="18dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_cp_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/label_cp_days"
+            android:fontFamily="@font/semibold"
+            android:text="10"
+            android:textColor="@color/black"
+            android:textSize="18dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/label_cp_kms"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cp_days"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/medium"
+            android:text="Kms :"
+            android:textColor="@color/textcolour"
+            android:textSize="18dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_cp_kms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cp_days"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/label_cp_kms"
+            android:fontFamily="@font/semibold"
+            android:text="10,000"
+            android:textColor="@color/black"
+            android:textSize="18dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/cp_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cp_kms"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/semibold"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/textcolour"
+            android:textSize="16dp">
+
+        </TextView>
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

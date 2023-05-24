@@ -1,7 +1,28 @@
 package com.wisedrive.dealerapp1.pojos.pojos;
 
+import android.net.Uri;
+
 public class Pojo_part_list {
     String sample_image,image,module_id,part_id,part_name,is_feature_present;
+
+    private Uri taken_img = null;
+    private String filename = "";
+
+    public Uri getTaken_img() {
+        return taken_img;
+    }
+
+    public void setTaken_img(Uri taken_img) {
+        this.taken_img = taken_img;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public String getIs_feature_present() {
         return is_feature_present;
@@ -52,11 +73,8 @@ public class Pojo_part_list {
     }
 
 
-    private boolean isSelected; // Updated isSelected property
+    private boolean isSelected=false; // Updated isSelected property
 
-    public Pojo_part_list() {
-        isSelected = false; // Initialize isSelected to false by default
-    }
 
     public boolean isSelected() {
         return isSelected;

@@ -371,7 +371,38 @@
                             </RelativeLayout>
 
 
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_veh_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/rl_samp">
+                                <androidx.recyclerview.widget.RecyclerView
 
+                                    android:id="@+id/rv_search_results"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginEnd="30dp"
+                                    >
+
+                                </androidx.recyclerview.widget.RecyclerView>
+                            </RelativeLayout>
+                            <TextView
+                                android:visibility="gone"
+                                android:id="@+id/label_no_results"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/rl_veh_list"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/semibold"
+                                android:text="No Vehicles found"
+                                android:textColor="@color/grey"
+                                android:textSize="15dp">
+
+                            </TextView>
                             <RelativeLayout
 
                                 android:id="@+id/rl_check_status"
@@ -383,7 +414,7 @@
                                 android:paddingBottom="7dp"
                                 android:layout_marginTop="40dp"
                                 android:layout_centerHorizontal="true"
-                                android:layout_below="@+id/rl_samp"
+                                android:layout_below="@+id/label_no_results"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/cv_req_insp"
@@ -801,7 +832,7 @@
                                     android:layout_toRightOf="@+id/iv_insp_cust_adress"
                                     android:fontFamily="@font/semibold"
                                     android:gravity="center"
-                                    android:text="Adress"
+                                    android:text="Address"
                                     android:textColor="@color/cement"
                                     android:textSize="15dp">
 

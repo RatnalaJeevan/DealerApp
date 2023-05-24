@@ -349,11 +349,91 @@
 
     </TextView>
 
+
+            <RelativeLayout
+                android:id="@+id/rl_sold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_auto">
+                <TextView
+                    android:id="@+id/label_sold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/semibold"
+                    android:textColor="@color/cement"
+                    android:text="Sold">
+
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/iv_w_pack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="30dp"
+                    android:padding="5dp"
+                    android:layout_below="@+id/label_sold"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/map_border">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/label_w_pack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_w_pack"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@+id/label_sold"
+                    android:fontFamily="@font/semibold"
+                    android:gravity="center"
+                    android:text="With Pack"
+                    android:textColor="@color/textcolour"
+                    android:textSize="15dp">
+
+                </TextView>
+                <ImageView
+                    android:id="@+id/iv_w_o_pack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@+id/label_w_pack"
+                    android:padding="5dp"
+                    android:layout_below="@+id/label_sold"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/map_border">
+
+                </ImageView>
+                <TextView
+                    android:id="@+id/label_w_o_pack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_w_o_pack"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@+id/label_sold"
+                    android:fontFamily="@font/semibold"
+                    android:gravity="center"
+                    android:text="Without Pack"
+                    android:textColor="@color/textcolour"
+                    android:textSize="15dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+
+
     <TextView
         android:id="@+id/label_insp_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label_auto"
+        android:layout_below="@+id/rl_sold"
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
         android:fontFamily="@font/semibold"

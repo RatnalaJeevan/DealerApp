@@ -3,6 +3,8 @@ package com.wisedrive.dealerapp1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,9 +26,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.wisedrive.dealerapp1.adapters.adapters.AdapterSearchResults;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
+import com.wisedrive.dealerapp1.pojos.PojoSearchResults;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoRequestInspectionDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoVehInspectEligible;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
@@ -35,23 +39,28 @@ import com.wisedrive.dealerapp1.services1.services.DealerApis;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RequestVehInspection extends AppCompatActivity {
-
+public class RequestVehInspection extends AppCompatActivity
+{
+    ArrayList<PojoSearchResults> pojoSearchResults;
+    AdapterSearchResults adapterSearchResults;
+    RecyclerView rv_search_results;
     String mobile_no_pattern="^[6-9][0-9]{9}$";
     DatePickerDialog date_picker;
     public RelativeLayout rl_req_insp,rl_presale,rl_postsale,rl_presale_details,rl_show_popup,rl_transparent,rl_check_status,
-            rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label,rl_go_back;
-    TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date;
+            rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label,rl_go_back,
+            rl_veh_list;
+    TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date,label_no_results;
     View v_postsale,v_presale;
     ImageView iv_cust_seleted,iv_dealer_selected,back,cancel_veh_info,close;
     int req_page=1;
-    EditText et_no_cars,selected_vehno,cust_adress,cust_name,cust_no,cust_location;
+    public EditText et_no_cars,selected_vehno,cust_adress,cust_name,cust_no,cust_location;
     TextView selected_insp_date;
     Activity activity;
     private DealerApis apiInterface;
@@ -64,9 +73,11 @@ public class RequestVehInspection extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modal_bottom_sheet);
-
+        SPHelper.it_is="req";
         //req insp
-        // rl_show_req_insp_page=v.findViewById(R.id.rl_show_req_insp_page);
+        rv_search_results=findViewById(R.id.rv_search_results);
+        label_no_results=findViewById(R.id.label_no_results);
+        rl_veh_list=findViewById(R.id.rl_veh_list);
         activity=RequestVehInspection.this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         back=findViewById(R.id.back);
@@ -218,7 +229,7 @@ public class RequestVehInspection extends AppCompatActivity {
             }
         });
 
-        select_vehno();
+        //select_vehno();
 
         rl_req_insp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,12 +354,26 @@ public class RequestVehInspection extends AppCompatActivity {
             public void onClick(View view) {
                 selected_vehno.setText("");
                 close.setVisibility(View.GONE);
-                select_vehno();
+            }
+        });
+
+        onfocuschage();
+    }
+
+    public  void onfocuschage()
+    {
+        selected_vehno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b)
+            {
+                SPHelper.veh_sel="";
+                search();
             }
         });
     }
 
-    private void select_vehno() {
+    private void select_vehno()
+    {
         selected_vehno.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -358,10 +383,7 @@ public class RequestVehInspection extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
             {
-                rl_add_car.setVisibility(View.GONE);
-                rl_check_status.setVisibility(View.VISIBLE);
-                rl_label.setVisibility(View.GONE);
-                close.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -371,14 +393,128 @@ public class RequestVehInspection extends AppCompatActivity {
                 {
 
                 }else{
-                    rl_label.setVisibility(View.GONE);
-                    rl_add_car.setVisibility(View.GONE);
-                    rl_check_status.setVisibility(View.VISIBLE);
+
                 }
             }
         });
 
     }
+    public void search()
+    {
+        selected_vehno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                close.setVisibility(View.VISIBLE);
+                if(selected_vehno.getText().toString().trim().length()>4)
+                {
+                    // SPHelper.dealerselected="";
+                    search_results();
+                    rl_veh_list.setVisibility(View.VISIBLE);
+                    rl_label.setVisibility(View.GONE);
+                    rl_add_car.setVisibility(View.GONE);
+                    rl_check_status.setVisibility(View.VISIBLE);
+
+                }else{
+                    SPHelper.veh_sel="";
+                    rl_veh_list.setVisibility(View.GONE);
+                    label_no_results.setVisibility(View.GONE);
+                }
+                if(SPHelper.veh_sel.equals("y")){
+                    rv_search_results.setVisibility(View.GONE);
+                }else {
+
+                    rv_search_results.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(SPHelper.veh_sel.equals("y")){
+                    rv_search_results.setVisibility(View.GONE);
+                }else {
+                    rv_search_results.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    public void search_results()
+    {
+        if(!Connectivity.isNetworkConnected(activity))
+        {
+            Toast.makeText(activity,
+                    "Plaese Check Your Internet",
+                    Toast.LENGTH_LONG).show();
+        }else
+        {
+            //idPBLoading.setVisibility(View.VISIBLE);
+            Call<AppResponse> call =  apiInterface.get_searh_results(
+                    SPHelper.getSPData(activity,SPHelper.dealerid,""),selected_vehno.getText().toString());
+            call.enqueue(new Callback<AppResponse>() {
+                @Override
+                public void onResponse(@NotNull Call<AppResponse> call, @NotNull Response<AppResponse> response)
+                {
+                    AppResponse appResponse = response.body();
+                    assert appResponse != null;
+                    String response_code = appResponse.getResponseType();
+                    if (response.body()!=null)
+                    {
+
+                        if (response_code.equals("200"))
+                        {
+                            pojoSearchResults=new ArrayList<>();
+                            pojoSearchResults=appResponse.getResponse().getSearchResultList();
+                            //  SPHelper.veh_sel="n";
+                            if(pojoSearchResults.isEmpty()){
+                                rl_veh_list.setVisibility(View.GONE);
+                                label_no_results.setVisibility(View.VISIBLE);
+                            }else {
+                                rl_veh_list.setVisibility(View.VISIBLE);
+                                label_no_results.setVisibility(View.GONE);
+                            }
+                            LinearLayoutManager l1=new LinearLayoutManager(RequestVehInspection.this,RecyclerView.VERTICAL,false);
+                            adapterSearchResults=new AdapterSearchResults(pojoSearchResults,RequestVehInspection.this);
+                            rv_search_results.setLayoutManager(l1);
+                            rv_search_results.setAdapter(adapterSearchResults);
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapterSearchResults.notifyDataSetChanged();
+                                }
+                            });
+                            selected_vehno.setSelection(selected_vehno.getText().length());
+                        }
+                        else if (response_code.equals("300"))
+                        {
+                            Toast.makeText(activity, appResponse.getResponse().getMessage() , Toast.LENGTH_SHORT).show();
+
+                        }
+                    } else{
+                        // idPBLoading.setVisibility(View.GONE);
+                        Toast.makeText(activity, "internal server error" , Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<AppResponse> call, @NotNull Throwable t) {
+                    Toast.makeText(activity,
+                            t.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                    //idPBLoading.setVisibility(View.GONE);
+                }
+            });
+        }
+    }
+
+
 
     public  void select_date(){
         final Calendar cldr = Calendar.getInstance();
