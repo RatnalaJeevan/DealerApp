@@ -64,7 +64,8 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
             public void onClick(View v) {
                 String module_id = pojo_module_listArrayList.get(position).getModule_id();
 
-                if (list.isVisible()) {
+                if (list.isVisible())
+                {
                     holder.rl_1.setVisibility(View.GONE);
                     list.isVisible = false;
                     holder.down_arrow.setVisibility(View.VISIBLE);
@@ -77,6 +78,8 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
 
                     feature_questions(holder.rv_feature_list1, module_id);
                 }
+
+                System.out.println("isvisible"+list.isVisible);
             }
         });
     }

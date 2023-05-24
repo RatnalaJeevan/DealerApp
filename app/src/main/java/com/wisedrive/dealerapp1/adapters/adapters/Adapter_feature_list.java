@@ -55,6 +55,7 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
                 list.setIs_feature_present(list.isSelected() ? "y" : "n");
                 SPHelper.part_id=pojo_part_listArrayList.get(position).getPart_id();
                 SPHelper.module_id=pojo_part_listArrayList.get(position).getModule_id();
+                System.out.println("list_iselected"+list.isSelected());
             }
         });
     }
@@ -80,8 +81,8 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
         for (Pojo_part_list partList : pojo_part_listArrayList) {
             if (partList.isSelected()) {
                 // Create a new Feature object and add it to the list
-                Feature feature = new Feature(partList.getModule_id(), partList.getPart_id(), "Y");
-                selectedFeatures.add(feature);
+               // Feature feature = new Feature(partList.getModule_id(), partList.getPart_id(), "Y");
+               // selectedFeatures.add(feature);
             }
         }
         return selectedFeatures;

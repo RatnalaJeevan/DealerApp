@@ -684,9 +684,6 @@ public class AllCarsPage extends AppCompatActivity {
                     }
                 }
 
-
-
-
             }
 
             @Override
@@ -823,15 +820,27 @@ public class AllCarsPage extends AppCompatActivity {
         });
     }
 
-    public void post_add_features() {
+    public void post_add_features()
+    {
         ArrayList<Feature> featureArr = new ArrayList<>();
-        for (int i = 0; i < pojo_module_listArrayList.size(); i++) {
-            if (pojo_module_listArrayList.get(i).getIsSelected().equalsIgnoreCase("Y")) {
+        for (int i = 0; i < pojo_module_listArrayList.size(); i++)
+        {
+            if (pojo_module_listArrayList.get(i).isVisible())
+            {
+                Toast.makeText(AllCarsPage.this,"isvisible true",Toast.LENGTH_SHORT).show();
                 String moduleId = pojo_module_listArrayList.get(i).getModule_id();
-                for (int j = 0; j < pojo_part_listArrayList.size(); j++) {
-                    if (pojo_part_listArrayList.get(j).getIsSelected().equalsIgnoreCase("Y")) {
+                System.out.println("pojo"+pojo_part_listArrayList);
+                for (int j = 0; j < pojo_part_listArrayList.size(); j++)
+                {
+                    if (pojo_part_listArrayList.get(j).isSelected())
+                    {
+                        Toast.makeText(AllCarsPage.this,"isselected true",Toast.LENGTH_SHORT).show();
+
                         String partId = pojo_part_listArrayList.get(j).getPart_id();
-                        Feature obj = new Feature(moduleId, partId, "Y");
+                        Feature obj = new Feature();
+                        obj.setModuleId(moduleId);
+                        obj.setPartId(partId);
+                        obj.setIsPresent("Y");
                         featureArr.add(obj);
                     }
                 }
@@ -839,8 +848,6 @@ public class AllCarsPage extends AppCompatActivity {
         }
         Pojo_post_feature pojo_post_feature = new Pojo_post_feature(SPHelper.vehid, featureArr);
         Call<AppResponse> call = apiInterface.post_features(pojo_post_feature);
-        ArrayList<Pojo_part_list> pojo_part_listArrayList = new ArrayList<>();
-        Adapter_feature_list adapter_feature_list = new Adapter_feature_list(AllCarsPage.this, pojo_part_listArrayList);
 
 
         call.enqueue(new Callback<AppResponse>() {

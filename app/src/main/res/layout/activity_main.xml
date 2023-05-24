@@ -257,8 +257,7 @@
             android:id="@+id/rl_transperant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transperant"
-            android:visibility="gone">
+            android:background="@color/transperant">
 
 
             <RelativeLayout
@@ -266,6 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_alignParentBottom="true"
+                android:visibility="gone"
                 android:background="@drawable/rl_feature_pop_up">
                 <View
                     android:layout_width="match_parent"

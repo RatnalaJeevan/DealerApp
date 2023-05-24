@@ -54,9 +54,7 @@ public class Pojo_part_list {
 
     private boolean isSelected; // Updated isSelected property
 
-    public Pojo_part_list() {
-        isSelected = false; // Initialize isSelected to false by default
-    }
+
 
     public boolean isSelected() {
         return isSelected;
