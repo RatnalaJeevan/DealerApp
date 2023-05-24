@@ -49,8 +49,14 @@ public class PojoAllCarsList
     private String  customer_name;
     private String  inspection_date;
     private String  package_sold_on;
-    private  String brnad_id;
-    private LeadCount leadCount; // new member variable
+    private  String inspection_expires_on;
+    private  String is_vehicle_present_in_portal;
+    private String is_images_present_in_portal;
+    private String is_features_present_in_portal;
+    private String status_id;
+    private String is_with_package;
+    private JSONObject LeadCount;
+    private JSONObject ViewCount;
 
 
     private String cooling_period_comments;
@@ -101,10 +107,16 @@ public class PojoAllCarsList
                 customer_name=(obj.has("customer_name")? obj.getString("customer_name") : "");
                 inspection_date=(obj.has("inspection_date")? obj.getString("inspection_date") : "");
                 package_sold_on=(obj.has("package_sold_on")? obj.getString("package_sold_on") : "");
+                inspection_expires_on=(obj.has("inspection_expires_on")? obj.getString("inspection_expires_on") : "");
                 VehicleImages=(obj.has("VehicleImages")?(obj.getJSONArray("VehicleImages")):new JSONArray());
                 cooling_period_comments=(obj.has("cooling_period_comments")? obj.getString("cooling_period_comments") : "");
-                
-
+                is_vehicle_present_in_portal=(obj.has("is_vehicle_present_in_portal")? obj.getString("is_vehicle_present_in_portal") : "");
+                is_images_present_in_portal=(obj.has("is_images_present_in_portal")? obj.getString("is_images_present_in_portal") : "");
+                is_features_present_in_portal=(obj.has("is_features_present_in_portal")? obj.getString("is_features_present_in_portal") : "");
+                status_id=(obj.has("status_id")? obj.getString("status_id") : "");
+                is_with_package=(obj.has("is_with_package")? obj.getString("is_with_package") : "");
+                LeadCount=(obj.has("LeadCount")?(obj.getJSONObject("LeadCount")):new JSONObject());
+                ViewCount=(obj.has("ViewCount")?(obj.getJSONObject("ViewCount")):new JSONObject());
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -112,19 +124,42 @@ public class PojoAllCarsList
         }
     }
 
+    public String getIs_with_package() {
+        return is_with_package;
+    }
 
+    public String getStatus_id() {
+        return status_id;
+    }
+
+    public String getIs_images_present_in_portal() {
+        return is_images_present_in_portal;
+    }
+
+    public String getIs_features_present_in_portal() {
+        return is_features_present_in_portal;
+    }
+
+    public String getInspection_expires_on() {
+        return inspection_expires_on;
+    }
+
+    public JSONObject getLeadCount() {
+        return LeadCount;
+    }
+
+    public JSONObject getViewCount() {
+        return ViewCount;
+    }
+
+    public String getIs_vehicle_present_in_portal() {
+        return is_vehicle_present_in_portal;
+    }
 
     public String getCooling_period_comments() {
         return cooling_period_comments;
     }
 
-    public String getVehicle_make() {
-        return vehicle_make;
-    }
-
-    public String getWarranty_status() {
-        return warranty_status;
-    }
 
     public String getInsurance_validity() {
         return insurance_validity;
@@ -148,10 +183,6 @@ public class PojoAllCarsList
 
     public String getInsurance_policy() {
         return insurance_policy;
-    }
-
-    public String getIs_with_cooling_period() {
-        return is_with_cooling_period;
     }
 
 
@@ -224,9 +255,6 @@ public class PojoAllCarsList
         return vehicle_id;
     }
 
-    public String getInsurance_status() {
-        return insurance_status;
-    }
 
     public String getBrand_icon() {
         return brand_icon;
@@ -234,10 +262,6 @@ public class PojoAllCarsList
 
     public String getInsurance_type() {
         return insurance_type;
-    }
-
-    public void setInsurance_type(String insurance_type) {
-        this.insurance_type = insurance_type;
     }
 
     public String getVehicle_model() {
@@ -249,11 +273,9 @@ public class PojoAllCarsList
         return manufacturing_year;
     }
 
-
-    public String getIs_insurance_update() {
-        return is_insurance_update;
+    public String getIs_with_cooling_period() {
+        return is_with_cooling_period;
     }
-
 
     public String getTransmission_type() {
         return transmission_type;
@@ -263,49 +285,10 @@ public class PojoAllCarsList
         return is_vehicle_public;
     }
 
-    public String getOdometer_from() {
-        return odometer_from;
-    }
 
-    public void setOdometer_from(String odometer_from) {
-        this.odometer_from = odometer_from;
-    }
-
-    public String getOdometer_to() {
-        return odometer_to;
-    }
-
-    public void setOdometer_to(String odometer_to) {
-        this.odometer_to = odometer_to;
-    }
-
-    public String getManufacturing_year_from() {
-        return manufacturing_year_from;
-    }
-
-
-    public String getManufacturing_year_to() {
-        return manufacturing_year_to;
-    }
-
-    public String getPrice_from() {
-        return price_from;
-
-    }
 
     public JSONArray getVehicleImages() {
         return VehicleImages;
     }
 
-    public void setPrice_from(String price_from) {
-        this.price_from = price_from;
-    }
-
-    public String getPrice_to() {
-        return price_to;
-    }
-
-    public void setPrice_to(String price_to) {
-        this.price_to = price_to;
-    }
 }

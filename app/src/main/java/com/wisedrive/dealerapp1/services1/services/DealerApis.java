@@ -198,7 +198,7 @@ public interface DealerApis {
     @POST("/WarrantyVehicleList/updateVehSoldStatus")
     Call<AppResponse> mark_as_sold(@Body Pojo_mark_assold pojo_mark_assold);
 
-    @POST("/WarrantyVehicleList/updateVehSoldStatus")
+    @POST("/WarrantyVehicleList/updateVehListingStatus")
     Call<AppResponse> list_in_portal(@Body Pojo_listin_portal pojo_listin_portal);
 
     @POST("/WarrantyVehicleList/updateVehListingFeatures")
@@ -208,11 +208,14 @@ public interface DealerApis {
     @GET("/getdealerStatus")
     Call<AppResponse> dealer_status(@Query("dealerId") String dealerId);
 
+    @GET("/WarrantyVehicleList/getLeadList")
+    Call<AppResponse> get_leads_list(@Query("vehicleId") String vehicleId,@Query("pageNo") String pageNo);
 
-  /*  {
-        "vehicleId":12,
-            "featureArr": [{"moduleId":2,"part_id":2,"isPresent":"Y"}]
-    } */
+    @GET("/VehicleList/getSearchVehicle")
+    Call<AppResponse> get_searh_results(@Query("dealerId") String dealerId,@Query("search") String search);
+
+
+
 
 
 

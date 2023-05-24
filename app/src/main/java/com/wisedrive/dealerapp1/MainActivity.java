@@ -64,13 +64,14 @@ public class MainActivity extends AppCompatActivity {
     private DealerApis apiInterface;
     TextView tv_profile,tv_home,tv_pack,tv_customer,bundle_label,label_single;
     LinearLayout layout_1,layout_2,layout_3,layout_4;
-    ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter;
+    ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter,iv_search;
     RelativeLayout rl_pack_selection,rl_single,rl_bundle;
     int count1=0,count2=0,count3=0;
     AppCompatButton add_new_car_button;
     RelativeLayout rl_transperant,rl_new_car,new_inspection,rl_newdetails_adding;
     View card_btm_nav;
     LinearLayout l_bottom;
+    CustomerFragment fragment;
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance=this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        iv_search=findViewById(R.id.iv_search);
         bundle_label=findViewById(R.id.bundle_label);
         label_single=findViewById(R.id.label_single);
         rl_single=findViewById(R.id.rl_single);
@@ -112,12 +114,13 @@ public class MainActivity extends AppCompatActivity {
             tv_customer.setVisibility(View.VISIBLE);
             tv_profile.setVisibility(View.GONE);
             iv_filter.setVisibility(View.VISIBLE);
+            iv_search.setVisibility(View.VISIBLE);
             iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
             iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_pack));
             iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.customers_black));
             iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
             replaceFragment(new CustomerFragment());
-            iv_filter.setVisibility(View.VISIBLE);
+            add_new_car_button.setVisibility(View.GONE);
         }
         else if(SPHelper.camefrom.equals("no_pack")){
             count2=1;
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             tv_customer.setVisibility(View.GONE);
             tv_profile.setVisibility(View.GONE);
             iv_filter.setVisibility(View.GONE);
+            iv_search.setVisibility(View.GONE);
             add_new_car_button.setVisibility(View.GONE);
             iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
             iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
@@ -138,7 +142,9 @@ public class MainActivity extends AppCompatActivity {
         }else if(SPHelper.comingfrom.equals("added")){
             count1=1;
             iv_filter.setVisibility(View.GONE);
+            iv_search.setVisibility(View.GONE);
            // replaceFragment(new HomeFragment());
+            add_new_car_button.setVisibility(View.VISIBLE);
             replaceFragment(new Home_fragment_2());
             CongratulationsPage bottomSheetDialogFragment = new CongratulationsPage();
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
@@ -147,7 +153,9 @@ public class MainActivity extends AppCompatActivity {
         {
             count1=1;
             iv_filter.setVisibility(View.GONE);
+            iv_search.setVisibility(View.GONE);
            // replaceFragment(new HomeFragment());
+            add_new_car_button.setVisibility(View.VISIBLE);
             replaceFragment(new Home_fragment_2());
             SoldVehDetails bottomSheetDialogFragment = new SoldVehDetails();
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
@@ -159,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
             count1=1;
             SPHelper.fragment_is="home";
             iv_filter.setVisibility(View.GONE);
+            iv_search.setVisibility(View.GONE);
            // replaceFragment(new HomeFragment());
+            add_new_car_button.setVisibility(View.VISIBLE);
             replaceFragment(new Home_fragment_2());
 
         }
@@ -173,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_customer.setVisibility(View.GONE);
                     tv_profile.setVisibility(View.GONE);
                     iv_filter.setVisibility(View.GONE);
+                    iv_search.setVisibility(View.GONE);
                     add_new_car_button.setVisibility(View.VISIBLE);
                     rl_pack_selection.setVisibility(View.GONE);
                     iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.home_selected_black));
@@ -200,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                    tv_customer.setVisibility(View.GONE);
                    tv_profile.setVisibility(View.GONE);
                    iv_filter.setVisibility(View.GONE);
+                   iv_search.setVisibility(View.GONE);
                    add_new_car_button.setVisibility(View.GONE);
                    rl_pack_selection.setVisibility(View.VISIBLE);
                    iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
@@ -225,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_customer.setVisibility(View.VISIBLE);
                     tv_profile.setVisibility(View.GONE);
                     iv_filter.setVisibility(View.VISIBLE);
+                    iv_search.setVisibility(View.VISIBLE);
                     add_new_car_button.setVisibility(View.GONE);
                     rl_pack_selection.setVisibility(View.GONE);
                     iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
@@ -259,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
                 tv_pack.setVisibility(View.GONE);
                 tv_customer.setVisibility(View.GONE);
                 iv_filter.setVisibility(View.GONE);
+                iv_search.setVisibility(View.GONE);
                 add_new_car_button.setVisibility(View.GONE);
                 tv_profile.setVisibility(View.VISIBLE);
                 rl_pack_selection.setVisibility(View.GONE);
@@ -279,6 +293,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MainActivity.this,FilterPage.class);
                 startActivity(intent);
                 overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup );
+            }
+        });
+
+        iv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                fragment=new CustomerFragment();
+//                fragment.search();
+
+                CustomerFragment.getInstance().rl_search.setVisibility(View.VISIBLE);
             }
         });
 

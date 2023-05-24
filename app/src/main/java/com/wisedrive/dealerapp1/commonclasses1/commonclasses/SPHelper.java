@@ -12,6 +12,7 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoOfferarray;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoPackageDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSample;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSelectPack;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +166,10 @@ public class SPHelper {
     public static String module_id="";
     public static String part_id="";
     public static String leadcount="";
+    public static String veh_sel="";
+    public static String it_is="";
+    public static ArrayList<Pojo_part_list> part_list=new ArrayList<>();
+    public static String is_with_pack="";
 
     private  static String spName="DealerApp1";
 

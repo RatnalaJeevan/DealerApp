@@ -13,15 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wisedrive.dealerapp1.AllCarsPage;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
-import com.wisedrive.dealerapp1.pojos.pojos.Pojo_feature_list;
-import com.wisedrive.dealerapp1.pojos.pojos.Pojo_feature_list_2;
-import com.wisedrive.dealerapp1.pojos.pojos.Pojo_features;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
-import com.wisedrive.dealerapp1.pojos.pojos.pojo_static_image_data;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.services1.services.ApiClient;
 import com.wisedrive.dealerapp1.services1.services.DealerApis;
@@ -38,7 +33,7 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
     ArrayList<Pojo_Module_list> pojo_module_listArrayList;
     private DealerApis apiInterface;
     RelativeLayout rl_1;
-
+   public ArrayList<Pojo_part_list> pojo_part_listArrayList;
     public Adapter_features(Context context, ArrayList<Pojo_Module_list> pojo_module_listArrayList) {
         this.context = context;
         this.pojo_module_listArrayList = pojo_module_listArrayList;
@@ -105,7 +100,8 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
         }
     }
 
-    private void feature_questions(RecyclerView recyclerView, String module_id) {
+    private void feature_questions(RecyclerView recyclerView, String module_id)
+    {
         Call<AppResponse> call = apiInterface.part_list(SPHelper.vehid, module_id);
         call.enqueue(new Callback<AppResponse>() {
             @Override
@@ -114,7 +110,10 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
                 if (appResponse != null) {
                     String response_code = appResponse.getResponseType();
                     if (response_code.equals("200")) {
-                        ArrayList<Pojo_part_list> pojo_part_listArrayList = appResponse.getResponse().getPartDetails();
+                         pojo_part_listArrayList=new ArrayList<>();
+                         pojo_part_listArrayList = appResponse.getResponse().getPartDetails();
+
+                         //SPHelper.part_list=pojo_part_listArrayList;
                         Adapter_feature_list adapter_feature_list = new Adapter_feature_list(context, pojo_part_listArrayList);
                         GridLayoutManager layoutManager1 = new GridLayoutManager(context, 1);
                         recyclerView.setLayoutManager(layoutManager1);

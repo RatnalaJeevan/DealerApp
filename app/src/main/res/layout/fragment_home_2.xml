@@ -35,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_pending_count"
                     android:layout_centerInParent="true"
+                    android:fontFamily="@font/regular"
                     android:text="Activation pending"
                     android:textColor="@color/textcolour"
                     android:textSize="12dp" />
@@ -51,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:padding="10dp"
                 android:background="@drawable/cv_new_car"
-                android:backgroundTint="@color/very_very_light_grey">
+                android:backgroundTint="@color/bg_location">
 
                 <TextView
                     android:id="@+id/tv_live_cars"
@@ -136,7 +137,7 @@
                     android:layout_marginTop="10dp"
                     android:padding="7dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/text_color1">
+                    android:backgroundTint="@color/bg_location">
 
                     <RelativeLayout
                         android:id="@+id/rl_all_car_image"
@@ -246,7 +247,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/bold"
-                            android:text="Inspection Approved"
+                            android:text="Approved"
                             android:textColor="@color/ab_green"
                             android:textSize="14dp">
                         </TextView>
@@ -313,7 +314,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/bold"
-                            android:text="Inspection Expired"
+                            android:text="Expired"
                             android:textColor="@color/light_red"
                             android:textSize="14dp">
                         </TextView>

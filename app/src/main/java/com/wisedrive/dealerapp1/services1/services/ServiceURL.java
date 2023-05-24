@@ -6,7 +6,7 @@
          //test
         public final static String BASEURL = "http://164.52.217.96:30025/";
 
-        public final static String allcarurl = "VehicleList/getAllVehicleListNew";
+        public final static String allcarurl = "VehicleList/getVehicleListAll";
         public static String addcarurl="DealershipVehicle/addCarNew";
         public static String editcarurl="DealershipVehicle/editCarNew";
         public static String insp_veh_list_url="VehicleList/getAllVehicleWithInspectionStatus";

@@ -1,8 +1,11 @@
 package com.wisedrive.dealerapp1.pojos.pojos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Feature {
     private String moduleId;
-    private String partId;
+    private String part_id;
     private String isPresent;
 
 
@@ -15,12 +18,12 @@ public class Feature {
         this.moduleId = moduleId;
     }
 
-    public String getPartId(String partId) {
-        return this.partId;
+    public String getPart_id() {
+        return part_id;
     }
 
-    public void setPartId(String partId) {
-        this.partId = partId;
+    public void setPart_id(String part_id) {
+        this.part_id = part_id;
     }
 
     public String getIsPresent() {

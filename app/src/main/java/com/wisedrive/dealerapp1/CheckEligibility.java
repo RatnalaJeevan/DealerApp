@@ -3,26 +3,37 @@ package com.wisedrive.dealerapp1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.wisedrive.dealerapp1.adapters.adapters.AdapterSearchResults;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
+import com.wisedrive.dealerapp1.pojos.PojoSearchResults;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.services1.services.ApiClient;
 import com.wisedrive.dealerapp1.services1.services.DealerApis;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
@@ -30,23 +41,33 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CheckEligibility extends AppCompatActivity {
-    TextView heading1,label1;
+    TextView heading1,label1,label_no_results;
     GifImageView iv_anim;
-    RelativeLayout rl_check_status,rl_open_addcar,rl_checkstatus,rl_add_car,rl_buy_warranty,rl_req_insp,
+    RelativeLayout rl_check_status,rl_open_addcar,rl_checkstatus,rl_add_car,rl_buy_warranty,rl_req_insp,rl_veh_list,
             rl_check_gain,rl_go_back;
     Activity activity;
     ImageView back;
     private DealerApis apiInterface;
-    EditText entered_vehno;
-    public  String  vehid="",category_id="",setimage ,entered_price="",ins_stat="",ins_pro="",ins_type="",ins_pol="",ext_frnt="";
+    public EditText entered_vehno;
+    public  String  vehid="",category_id="",setimage,
+            entered_price="",ins_stat="",ins_pro="",ins_type="",ins_pol="",ext_frnt="";
+    ArrayList<PojoSearchResults> pojoSearchResults;
+    AdapterSearchResults adapterSearchResults;
+    RecyclerView rv_search_results;
+    NestedScrollView nsv;
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_eligibility);
+        SPHelper.it_is="check";
         activity=CheckEligibility.this;
         apiInterface = ApiClient.getClient().create(DealerApis.class);
+        nsv=findViewById(R.id.nsv);
+        rl_veh_list=findViewById(R.id.rl_veh_list);
+        label_no_results=findViewById(R.id.label_no_results);
+        rv_search_results=findViewById(R.id.rv_search_results);
         rl_go_back=findViewById(R.id.rl_go_back);
         rl_checkstatus=findViewById(R.id.rl_checkstatus);
         entered_vehno=findViewById(R.id.entered_vehno);
@@ -118,6 +139,9 @@ public class CheckEligibility extends AppCompatActivity {
                 rl_checkstatus.setVisibility(View.VISIBLE);
             }
         });
+
+
+       onfocuschage();
 
     }
 
@@ -313,7 +337,159 @@ public class CheckEligibility extends AppCompatActivity {
         }
     }
 
+    public void search()
+    {
+        entered_vehno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(entered_vehno.getText().toString().equals("")){
+                    hideKeybaord();
+                }
+                else if(entered_vehno.getText().toString().trim().length()>4)
+                {
+                    // SPHelper.dealerselected="";
+                    search_results();
+                    rl_veh_list.setVisibility(View.VISIBLE);
+
+                }else{
+                    SPHelper.veh_sel="";
+                    rl_veh_list.setVisibility(View.GONE);
+                    label_no_results.setVisibility(View.GONE);
+
+                }
+                if(SPHelper.veh_sel.equals("y")){
+                    rv_search_results.setVisibility(View.GONE);
+                }else {
+
+                    rv_search_results.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(SPHelper.veh_sel.equals("y")){
+                    rv_search_results.setVisibility(View.GONE);
+                }else {
+                    rv_search_results.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+    }
+
+    public void search_results()
+    {
+        if(!Connectivity.isNetworkConnected(activity))
+        {
+            Toast.makeText(activity,
+                    "Plaese Check Your Internet",
+                    Toast.LENGTH_LONG).show();
+        }else
+        {
+            //idPBLoading.setVisibility(View.VISIBLE);
+            Call<AppResponse> call =  apiInterface.get_searh_results(
+                    SPHelper.getSPData(activity,SPHelper.dealerid,""),entered_vehno.getText().toString());
+            call.enqueue(new Callback<AppResponse>() {
+                @Override
+                public void onResponse(@NotNull Call<AppResponse> call, @NotNull Response<AppResponse> response)
+                {
+                    AppResponse appResponse = response.body();
+                    assert appResponse != null;
+                    String response_code = appResponse.getResponseType();
+                    if (response.body()!=null)
+                    {
+
+                        if (response_code.equals("200"))
+                        {
+                            pojoSearchResults=new ArrayList<>();
+                            pojoSearchResults=appResponse.getResponse().getSearchResultList();
+                          //  SPHelper.veh_sel="n";
+                            if(pojoSearchResults.isEmpty()){
+                                rl_veh_list.setVisibility(View.GONE);
+                                label_no_results.setVisibility(View.VISIBLE);
+                            }else {
+                                rl_veh_list.setVisibility(View.VISIBLE);
+                                label_no_results.setVisibility(View.GONE);
+                            }
+                            LinearLayoutManager l1=new LinearLayoutManager(CheckEligibility.this,RecyclerView.VERTICAL,false);
+                            adapterSearchResults=new AdapterSearchResults(pojoSearchResults,CheckEligibility.this);
+                            rv_search_results.setLayoutManager(l1);
+                            rv_search_results.setAdapter(adapterSearchResults);
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapterSearchResults.notifyDataSetChanged();
+                                }
+                            });
+
+                            entered_vehno.setSelection(entered_vehno.getText().length());
+                        }
+                        else if (response_code.equals("300"))
+                        {
+                            Toast.makeText(activity, appResponse.getResponse().getMessage() , Toast.LENGTH_SHORT).show();
+
+                        }
+                    } else{
+                        // idPBLoading.setVisibility(View.GONE);
+                        Toast.makeText(activity, "internal server error" , Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<AppResponse> call, @NotNull Throwable t) {
+                    Toast.makeText(activity,
+                            t.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                    //idPBLoading.setVisibility(View.GONE);
+                }
+            });
+        }
+    }
+
+    public  void onfocuschage()
+    {
+        entered_vehno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b)
+            {
+
+                if (b) {
+                    nsv.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            nsv.smoothScrollTo(0, entered_vehno.getBottom()+20);
+                        }
+                    });
+                }
+                SPHelper.veh_sel="";
+                search();
+            }
+        });
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onfocuschage();
+    }
+
+    public void hideKeybaord() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+        }
+    }
     //     new Handle().postDelayed(new Runnable(
 //            @Override
 //            public void run() {

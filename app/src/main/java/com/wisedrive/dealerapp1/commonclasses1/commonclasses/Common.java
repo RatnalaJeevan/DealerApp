@@ -48,61 +48,80 @@ public class Common {
     }
     public static String getDateFromString(String dateStr) {
 
-        try {
+        if(dateStr==null||dateStr.equals("null")||dateStr.equals("")){
+            return "";
+        }else {
+            try {
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date got = format.parse(dateStr);
-            format = new SimpleDateFormat("dd MMM,yyyy");
-            return format.format(got);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date got = format.parse(dateStr);
+                format = new SimpleDateFormat("dd MMM,yyyy");
+                return format.format(got);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+
     }
 
     public static String getDateFromString1(String dateStr) {
 
-        try {
+        if(dateStr==null||dateStr.equals("null")||dateStr.equals("")){
+            return "";
+        }else {
+            try {
 
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            Date got = format.parse(dateStr);
-            format = new SimpleDateFormat("dd-MMM-yyyy");
-            return format.format(got);
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                Date got = format.parse(dateStr);
+                format = new SimpleDateFormat("dd-MMM-yyyy");
+                return format.format(got);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+
     }
 
     public static String getDateFromString2(String dateStr) {
 
-        try {
+        if(dateStr==null||dateStr.equals("null")||dateStr.equals("")){
+            return "";
+        }else {
+            try {
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date got = format.parse(dateStr);
-            format = new SimpleDateFormat("dd-MMM-yyyy");
-            return format.format(got);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date got = format.parse(dateStr);
+                format = new SimpleDateFormat("dd-MMM-yyyy");
+                return format.format(got);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+
     }
     public static String getDateMonth(String dateStr) {
+        if(dateStr==null||dateStr.equals("null")||dateStr.equals("")){
+            return "";
+        }else {
+            try {
 
-        try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date got = format.parse(dateStr);
+                format = new SimpleDateFormat("dd MMM");
+                return format.format(got);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date got = format.parse(dateStr);
-            format = new SimpleDateFormat("dd MMM");
-            return format.format(got);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
 

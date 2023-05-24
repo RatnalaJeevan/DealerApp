@@ -1,6 +1,7 @@
 package com.wisedrive.dealerapp1.responseclasses.responseclasses;
 
 import com.google.gson.annotations.SerializedName;
+import com.wisedrive.dealerapp1.pojos.PojoSearchResults;
 import com.wisedrive.dealerapp1.pojos.pojos.PojOurServices;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoActVehlist;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAddOnComboList;
@@ -37,6 +38,7 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoWebLinks;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Dealer_status;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_lead_count;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_leads_page;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
 import java.util.ArrayList;
@@ -148,9 +150,14 @@ public class ResponseModel {
     @SerializedName("dealerWarrantyInfo")
     PojoDealerWarrantyInfo dealerWarrantyInfo;
 
-
+    @SerializedName("liveCarCount")
+    PojoDealerWarrantyInfo liveCarCount;
     public PojoDealerWarrantyInfo getDealerWarrantyInfo() {
         return dealerWarrantyInfo;
+    }
+
+    public PojoDealerWarrantyInfo getLiveCarCount() {
+        return liveCarCount;
     }
 
     //getvehiclewarranty eligible info
@@ -489,6 +496,13 @@ public class ResponseModel {
     @SerializedName("activatedVehicleList")
     ArrayList<PojoActVehlist> activatedVehicleList;
 
+    @SerializedName("searchResultList")
+    ArrayList<PojoSearchResults> searchResultList;
+
+    public ArrayList<PojoSearchResults> getSearchResultList() {
+        return searchResultList;
+    }
+
     public ArrayList<PojoActVehlist> getActivatedVehicleList() {
         return activatedVehicleList;
     }
@@ -542,6 +556,13 @@ public class ResponseModel {
 
     @SerializedName("dealerStatus")
     private Pojo_Dealer_status dealerStatus;
+
+    @SerializedName("LeadList")
+    ArrayList<Pojo_leads_page> LeadList;
+
+    public ArrayList<Pojo_leads_page> getLeadList() {
+        return LeadList;
+    }
 
     public Pojo_Dealer_status getDealerStatus() {
         return dealerStatus;

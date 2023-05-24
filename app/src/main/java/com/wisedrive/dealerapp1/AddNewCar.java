@@ -1439,7 +1439,6 @@ public class AddNewCar extends AppCompatActivity {
     void openCamera()
     {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
             is_from="c";
             SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
             String fineName = dateFormat.format(new Date());
@@ -1448,7 +1447,6 @@ public class AddNewCar extends AppCompatActivity {
                     BuildConfig.APPLICATION_ID + ".provider", new File(filename));
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(takePictureIntent, selectedObject);
-        }
     }
 
     @Override

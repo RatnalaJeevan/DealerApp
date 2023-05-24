@@ -49,7 +49,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment
     public RelativeLayout rl_offer_details,rl_pur_details,rl_veh_docs,rl_cust_details,rl_cust,rl_docs,rl_purchase,rl_offers;
     TextView tv_cust,tv_docs,tv_purchase,tv_offers,tv_veh_details,veh_no,no_cool_days,
             cust_name,cust_no,cust_state,cust_city,cust_pincode,cust_adress,cust_location,act_date,
-            activation_code,warrantytype,car_solddate;
+            activation_code,warrantytype,car_solddate,cust_mail;
     View v_offers,v_cust,v_docs,v_purchase;
     ImageView car_logo,iv_aadhar_front,iv_aadhar_back,iv_rc_front,iv_rc_back,iv_insurance_1,iv_pan_card
             ,iv_de_note,iv_sa_re;
@@ -233,6 +233,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment
     }
 
     private void init_params(View v) {
+        cust_mail=v.findViewById(R.id.cust_mail);
         rv_veh_packlist=v.findViewById(R.id.rv_veh_packlist);
         rl_show_popup=v.findViewById(R.id.rl_show_popup);
         rl_transparent=v.findViewById(R.id.rl_transparent);
@@ -367,17 +368,10 @@ public class SoldVehDetails extends BottomSheetDialogFragment
                            // progress_bar.setVisibility(View.GONE);
                             String est_cost=appResponse.getResponse().getInspectionDetails().getEstimated_cost();
                             SPHelper.inspectionreport=appResponse.getResponse().getInspectionDetails().getInspection_report_image();
-                            //fast tag validity
-                            String  status=appResponse.getResponse().getWarrantyDetails().getFastag_status();
-                            String customer_id=appResponse.getResponse().getWarrantyDetails().getCustomer_id();
-                            String panimg = appResponse.getResponse().getWarrantyDetails().getPancard_image();
-                            String ftimg = appResponse.getResponse().getWarrantyDetails().getFastag_iamge();
-                            String ft_no = appResponse.getResponse().getWarrantyDetails().getFastag_number();
-                            String ft_available = appResponse.getResponse().getWarrantyDetails().getFastag_availability();
-                            String ft_validity = appResponse.getResponse().getWarrantyDetails().getFastag_validity();
 
                             String customer_name=appResponse.getResponse().getWarrantyDetails().getName();
                             String customer_no=appResponse.getResponse().getWarrantyDetails().getNumber();
+                            String customeer_mail=appResponse.getResponse().getWarrantyDetails().getEmail_id();
                             String location=appResponse.getResponse().getWarrantyDetails().getLocation();
                             String adress=appResponse.getResponse().getWarrantyDetails().getCustomer_full_address();
                             String pincode=appResponse.getResponse().getWarrantyDetails().getPincode();
@@ -390,29 +384,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment
                             String solddate=appResponse.getResponse().getWarrantyDetails().getSold_date();
                             String package_act_date=appResponse.getResponse().getWarrantyDetails().getPackage_activated_on();
 
-                            //ft details
-//                            if ((ftimg == null && panimg == null && ft_no == null))
-//                            {
-//                                if(ft_available==null||ft_validity==null){
-//                                }else
-//                                {
-//                                    if (ft_available.equalsIgnoreCase("n") || ft_validity.equalsIgnoreCase("n")
-//                                    ) {
-//                                       // req_for_fasttag.setVisibility(View.GONE);
-//                                    } else if (ft_available.equalsIgnoreCase("y") && ft_validity.equalsIgnoreCase("y")) {
-//                                       // req_for_fasttag.setVisibility(View.VISIBLE);
-//                                    }
-//                                }
-//                            }
-//                            else
-//                            {
-//
-//                                Glide.with(activity).load(panimg).placeholder(R.drawable.icon_noimage).into(iv_pan_card);
-//                                Glide.with(activity).load(ftimg).placeholder(R.drawable.icon_noimage).into(ft_img);
-//                                fastag_no.setText(ft_no);
-//                            }
 
-                            //warranty deatils
 
 
                                 act_date.setText(Common.getDateFromString(package_act_date));
@@ -427,6 +399,7 @@ public class SoldVehDetails extends BottomSheetDialogFragment
                                 warrantytype.setText(warranty_type.toUpperCase());
                             }
 
+
                                 car_solddate.setText(Common.getDateFromString(solddate));
                                 //customer details
 
@@ -437,6 +410,12 @@ public class SoldVehDetails extends BottomSheetDialogFragment
                                     cust_pincode.setText(pincode);
                                     cust_city.setText(city);
                                     cust_state.setText(state);
+
+                            if(customeer_mail==null){
+                                cust_mail.setText("");
+                            }else{
+                                cust_mail.setText(customeer_mail);
+                            }
                                     //location adress state city pinncode ?
 
                             //get document details
