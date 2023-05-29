@@ -31,7 +31,8 @@ public class RequestPermissionHandler {
         private boolean needRequestRuntimePermissions() {
             return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
         }
-        private void requestUnGrantedPermissions(String[] permissions, int requestCode) {
+        private void requestUnGrantedPermissions(String[] permissions, int requestCode)
+        {
             String[] unGrantedPermissions = findUnGrantedPermissions(permissions);
             if (unGrantedPermissions.length == 0) {
                 mRequestPermissionListener.onSuccess();

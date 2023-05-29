@@ -1,9 +1,11 @@
 package com.wisedrive.dealerapp1;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
@@ -13,6 +15,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
@@ -70,8 +73,9 @@ import retrofit2.Response;
 
 public class SignUpPage extends AppCompatActivity
 {
+    public int selectedObject=0;
     RelativeLayout rl_go_back;
-    String  d_city, d_state, d_pincode,isDealerCity="" ;
+    String  d_city, d_state, d_pincode,isDealerCity="",it_is="" ;
     private DealerApis apiInterface;
     private ProgressDialog progressDialog;
     ImageView go_back_home,cancel_btn;
@@ -475,10 +479,27 @@ public class SignUpPage extends AppCompatActivity
 
         rl_camera4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    
-                    getCameraPermissions(1);
+            public void onClick(View v)
+            {
+                it_is="c";
+                if (shouldShowCameraPermissionRationale())
+                {
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpPage.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
                 }
                 dialog4.dismiss();
             }
@@ -486,15 +507,69 @@ public class SignUpPage extends AppCompatActivity
         rl_gallery4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    
-                    getCameraPermissions(10);
+                it_is="g";
+                if (shouldShowCameraPermissionRationale())
+                {
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpPage.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
                 }
                 dialog4.dismiss();
             }
         });
         dialog4.show();
     }
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                selectedObject);
+    }
+
+    private boolean shouldShowCameraPermissionRationale() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == selectedObject)
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Camera permission granted, proceed with camera functionality
+               // Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show();
+                if(it_is.equals("c")){
+                    openCamera();
+                }
+                else {
+                    // open_gallery();
+
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivityForResult(pickPhoto,selectedObject);
+
+                }
+
+            } else {
+
+                // Camera permission denied, handle accordingly
+                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void getCameraPermissions( int fromWhere)
     {
@@ -560,7 +635,7 @@ public class SignUpPage extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 100 && resultCode == RESULT_OK )
+        if (it_is.equals("c") && resultCode == RESULT_OK )
         {
             runOnUiThread(new Runnable() {
                 @Override
@@ -661,7 +736,7 @@ public class SignUpPage extends AppCompatActivity
                 }
             });
         }
-        else if (requestCode == 200 && data!=null)
+        else if (it_is.equals("g") && data!=null)
         {
             runOnUiThread(new Runnable() {
                 @Override

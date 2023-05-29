@@ -1,8 +1,10 @@
 package com.wisedrive.dealerapp1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +16,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -78,11 +81,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AllCarsPage extends AppCompatActivity {
+public class AllCarsPage extends AppCompatActivity
+{
     String mobile_no_pattern = "^[6-9][0-9]{9}$";
     ArrayList<String> final_imgs = new ArrayList<>();
     ArrayList<String> final_ids = new ArrayList<>();
     ProgressDialog dialog1;
+    Dialog dialog_upload;
     Uri cam_uri;
     String it_is = "", filename, doc_url = "";
     public int selectedObject = 0;
@@ -100,7 +105,7 @@ public class AllCarsPage extends AppCompatActivity {
     ImageView iv_filter, go_back, iv_search;
     RelativeLayout rl_parent, rl_header;
     private DealerApis apiInterface;
-    TextView heading;
+    TextView heading,cancel,takefromgallery,Recapture;
     public RelativeLayout rl_cust_details, rl_cust, rl_purchase, rl_offers;
     public static AllCarsPage instance;
     RecyclerView rv_veh_imgs;
@@ -122,8 +127,6 @@ public class AllCarsPage extends AppCompatActivity {
     ArrayList<Pojo_part_list> pojo_part_listArrayList = new ArrayList<>();
     Adapter_static_images adapter_static_images;
     RecyclerView rv_car_imagelist;
-
-
     ArrayList<Pojo_Module_list> pojo_module_listArrayList;
     public Adapter_features adapter_features;
     RecyclerView rv_features;
@@ -151,7 +154,6 @@ public class AllCarsPage extends AppCompatActivity {
         imv_cross = findViewById(R.id.imv_cross);
         add_feature_button = findViewById(R.id.add_feature_button);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
-
         rl_transperant = findViewById(R.id.rl_transperant);
         rl_feature_pop_up = findViewById(R.id.rl_feature_pop_up);
         rl_transperant_add_image = findViewById(R.id.rl_transperant_add_image);
@@ -259,7 +261,8 @@ public class AllCarsPage extends AppCompatActivity {
         });
         rl_list_in_portal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                /* if (adapterAllCarPage.is_img_present.equalsIgnoreCase("y") &&
                         adapterAllCarPage.is_feat_present.equalsIgnoreCase("y")) {
                     if (check1.getVisibility() == View.VISIBLE) {
@@ -279,9 +282,32 @@ public class AllCarsPage extends AppCompatActivity {
                    Toast.makeText(AllCarsPage.this,
                             " Please add vehicle features",
                             Toast.LENGTH_SHORT).show(); */
-                check1.setVisibility(View.VISIBLE);
-                rl_showlistingprice.setVisibility(View.VISIBLE);
+
+
+                if (adapterAllCarPage.is_img_present.equalsIgnoreCase("y") &&
+                        adapterAllCarPage.is_feat_present.equalsIgnoreCase("y")) {
+                    if (check1.getVisibility() == View.VISIBLE) {
+                        // i1 is currently visible, so hide it and l1
+                        check1.setVisibility(View.GONE);
+                        rl_showlistingprice.setVisibility(View.GONE);
+                    } else {
+                        // i1 is currently hidden, so show it and l1
+                        check1.setVisibility(View.VISIBLE);
+                        rl_showlistingprice.setVisibility(View.VISIBLE);
+                    }
+                } else if (adapterAllCarPage.is_img_present.equalsIgnoreCase("n")) {
+                    Toast.makeText(AllCarsPage.this,
+                            " Please add vehicle images",
+                            Toast.LENGTH_SHORT).show();
+                }else if (adapterAllCarPage.is_feat_present.equalsIgnoreCase("n")) {
+                    Toast.makeText(AllCarsPage.this,
+                            " Please add vehicle features",
+                            Toast.LENGTH_SHORT).show();
                 }
+//                check1.setVisibility(View.VISIBLE);
+//                rl_showlistingprice.setVisibility(View.VISIBLE);
+
+             }
 
         });
 
@@ -374,11 +400,13 @@ public class AllCarsPage extends AppCompatActivity {
             }
         });
 
-
         search();
 
     }
 
+    private boolean shouldShowCameraPermissionRationale() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA);
+    }
     public void search() {
 
         search_veh.addTextChangedListener(new TextWatcher() {
@@ -472,7 +500,8 @@ public class AllCarsPage extends AppCompatActivity {
                                     }
                                     AllCarsPage.this.runOnUiThread(new Runnable() {
                                         @Override
-                                        public void run() {
+                                        public void run()
+                                        {
                                             adapterAllCarPage.notifyDataSetChanged();
                                         }
                                     });
@@ -902,7 +931,6 @@ public class AllCarsPage extends AppCompatActivity {
         });
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -936,6 +964,8 @@ public class AllCarsPage extends AppCompatActivity {
             get_insp_veh_list();
         }
 
+
+
     }
 
     @Override
@@ -955,10 +985,13 @@ public class AllCarsPage extends AppCompatActivity {
     }
 
 
-    public void showPhotoDialog() {
+    public void showPhotoDialog()
+    {
         final Dialog dialog = new Dialog(AllCarsPage.this);
         dialog.setContentView(R.layout.image_upload_options_pop);
-        TextView cancel = dialog.findViewById(R.id.cancel);
+        cancel = dialog.findViewById(R.id.cancel);
+        Recapture = dialog.findViewById(R.id.Recapture);
+        takefromgallery = dialog.findViewById(R.id.takefromgallery);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -967,93 +1000,100 @@ public class AllCarsPage extends AppCompatActivity {
             }
         });
 
-        TextView textView1 = dialog.findViewById(R.id.takefromgallery);
-        textView1.setOnClickListener(new View.OnClickListener() {
+        takefromgallery.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                open_gallery();
+                it_is="g";
+               // open_gallery();
+
+                if (shouldShowCameraPermissionRationale())
+                {
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AllCarsPage.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
+                }
                 dialog.cancel();
             }
         });
 
-        TextView textView = dialog.findViewById(R.id.Recapture);
-        textView.setOnClickListener(new View.OnClickListener() {
+
+        Recapture.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                opencamera();
+            public void onClick(View view)
+            {
+                it_is="c";
+                if (shouldShowCameraPermissionRationale())
+                {
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AllCarsPage.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
+                }
                 dialog.cancel();
+//                mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
+//                        Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                }, 123, new RequestPermissionHandler.RequestPermissionListener()
+//                {
+//                    @Override
+//                    public void onSuccess()
+//                    {
+//                        System.out.println("Succeed");
+//                        it_is = "c";
+//                        Toast.makeText(AllCarsPage.this,  "call camera", Toast.LENGTH_SHORT).show();
+//                        CallCamera();
+//
+//                    }
+//                    @Override
+//                    public void onFailed() {
+//                        Toast.makeText(AllCarsPage.this,  "call camera denied", Toast.LENGTH_SHORT).show();
+//                        System.out.println("denied");
+//                    }
+//                });
+
             }
         });
-
 
         dialog.show();
     }
 
-    public void opencamera() {
-        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
-                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                // pickCamera();
-                it_is = "c";
-                CallCamera();
-
-            }
-
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                selectedObject);
     }
 
-    public void open_gallery() {
+    public void open_Camera()
+    {
+        it_is="c";
+        // Toast.makeText(AllCarsPage.this,  "opoen camera", Toast.LENGTH_SHORT).show();
 
-        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]
-                {
-                        android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, selectedObject, new RequestPermissionHandler.RequestPermissionListener() {
-            @Override
-            public void onSuccess() {
-                it_is = "g";
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                String[] mimeTypes = {"image/*", "application/pdf"};
-                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivityForResult(intent, selectedObject);
-            }
-
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-    }
-
-    public void CallCamera() {
-
-        mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
-                Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
-                open_Camera();
-            }
-
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-    }
-
-    public void open_Camera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
         String fineName = dateFormat.format(new Date());
@@ -1061,13 +1101,44 @@ public class AllCarsPage extends AppCompatActivity {
         cam_uri = FileProvider.getUriForFile(AllCarsPage.this,
                 BuildConfig.APPLICATION_ID + ".provider", new File(filename));
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, cam_uri);
-        startActivityForResult(takePictureIntent, 123);
+        startActivityForResult(takePictureIntent, selectedObject);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == selectedObject)
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Camera permission granted, proceed with camera functionality
+               // Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show();
+                if(it_is.equals("c")){
+                    open_Camera();
+                }
+                else {
+                   // open_gallery();
+
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("*/*");
+                    String[] mimeTypes = {"image/*", "application/pdf"};
+                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    startActivityForResult(intent, selectedObject);
+                }
+
+            } else {
+
+                // Camera permission denied, handle accordingly
+                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == selectedObject && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (resultCode == RESULT_OK && it_is.equals("g"))
+        {
             Uri uri = data.getData();
             // Handle the selected PDF file here
             String type = getContentResolver().getType(uri);
@@ -1105,7 +1176,8 @@ public class AllCarsPage extends AppCompatActivity {
                 upload_to_s3(uri);
             }
 
-        } else if (resultCode == RESULT_OK && it_is.equals("c")) {
+        }
+        else if (resultCode == RESULT_OK && it_is.equals("c")) {
 
             AllCarsPage.this.runOnUiThread(new Runnable() {
                 @Override
@@ -1157,9 +1229,11 @@ public class AllCarsPage extends AppCompatActivity {
     private void validate() {
     }
 
-    public void upload_to_s3(Uri imageUri) {
+    public void upload_to_s3(Uri imageUri)
+    {
         try {
-            // idPBLoading.setVisibility(View.VISIBLE);
+            dialog_upload = ProgressDialog.show(
+                    AllCarsPage.this, "", "Uploading...");
             final TransferUtility transferUtility =
                     TransferUtility.builder()
                             .context(AllCarsPage.this)
@@ -1179,7 +1253,7 @@ public class AllCarsPage extends AppCompatActivity {
                         AllCarsPage.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                progress_bar.setVisibility(View.GONE);
+                                dialog_upload.dismiss();
                                 // progressDialog.cancel();
                             }
                         });
@@ -1194,7 +1268,7 @@ public class AllCarsPage extends AppCompatActivity {
                         AllCarsPage.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                progress_bar.setVisibility(View.GONE);
+                                dialog_upload.dismiss();
                                 // progressDialog.cancel();
                             }
                         });
@@ -1202,9 +1276,11 @@ public class AllCarsPage extends AppCompatActivity {
                 }
 
                 @Override
-                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal)
+                {
                     float percentDonef = ((float) bytesCurrent / (float) bytesTotal) * 100;
                     int percentDone = (int) percentDonef;
+                    progress_bar.setVisibility(View.VISIBLE);
 
                 }
 

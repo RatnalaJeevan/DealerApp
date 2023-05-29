@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -165,7 +167,26 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rl_show_popup.setVisibility(View.GONE);
-                CallCamera();
+                is_from="c";
+                if (shouldShowCameraPermissionRationale())
+                {
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AddNewCar.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
+                }
             }
         });
         takefromgallery.setOnClickListener(new View.OnClickListener() {
@@ -173,24 +194,26 @@ public class AddNewCar extends AppCompatActivity {
             public void onClick(View v)
             {
                 rl_show_popup.setVisibility(View.GONE);
-                mRequestPermissionHandler.requestPermission(activity, new String[]
-                        {
-                                android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        }, selectedObject, new RequestPermissionHandler.RequestPermissionListener()
+                is_from="g";
+                if (shouldShowCameraPermissionRationale())
                 {
-                    @Override
-                    public void onSuccess() {
-                        is_from="g";
-                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivityForResult(pickPhoto,selectedObject);
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        System.out.println("denied");
-                    }
-                });
+                    // Show a dialog or message explaining why the camera permission is needed
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AddNewCar.this);
+                    builder.setTitle("Camera Permission Required")
+                            .setMessage("This app needs access to your camera to capture photos.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Request the camera permission
+                                    requestCameraPermission();
+                                }
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .show();
+                } else {
+                    // Request the camera permission directly
+                    requestCameraPermission();
+                }
             }
         });
         cancelTxt.setOnClickListener(new View.OnClickListener() {
@@ -1420,6 +1443,9 @@ public class AddNewCar extends AppCompatActivity {
         entered_ins_provider.setAdapter(dataAdapter3);
     }
 
+    private boolean shouldShowCameraPermissionRationale() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA);
+    }
     void CallCamera() {
 
         mRequestPermissionHandler.requestPermission(activity, new String[]{
@@ -1449,12 +1475,39 @@ public class AddNewCar extends AppCompatActivity {
             startActivityForResult(takePictureIntent, selectedObject);
     }
 
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                selectedObject);
+    }
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-        mRequestPermissionHandler.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == selectedObject)
+        {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Camera permission granted, proceed with camera functionality
+              //  Toast.makeText(this, "Camera permission granted", Toast.LENGTH_SHORT).show();
+                if(is_from.equals("c")){
+                    openCamera();
+                }
+                else {
+                    // open_gallery();
+
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    startActivityForResult(pickPhoto,selectedObject);
+
+                }
+
+            } else {
+
+                // Camera permission denied, handle accordingly
+                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
