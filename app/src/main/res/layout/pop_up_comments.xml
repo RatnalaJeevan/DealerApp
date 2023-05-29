@@ -29,7 +29,6 @@
                     android:textColor="@color/textcolour"
                     android:text=""
                     android:textSize="16dp">
-
                 </TextView>
 
             </RelativeLayout>

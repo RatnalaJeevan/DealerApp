@@ -1389,8 +1389,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transperant"
-        android:visibility="gone"
-       >
+        android:visibility="gone">
 
            <RelativeLayout
             android:id="@+id/rl_feature_pop_up"
@@ -1426,12 +1425,40 @@
                        android:layout_alignParentEnd="true"
                        android:layout_marginRight="20dp"/>
                </RelativeLayout>
+
+               <RelativeLayout
+                   android:id="@+id/rl_description"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/rl_heading">
+
+                   <TextView
+                       android:id="@+id/tv_description"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Description :"
+                       android:layout_marginLeft="20dp"
+                       android:textColor="@color/textcolour"
+                       android:fontFamily="@font/semibold"
+                       android:textSize="16dp" />
+
+                   <EditText
+                       android:layout_width="match_parent"
+                       android:layout_height="100dp"
+                       android:layout_below="@id/tv_description"
+                       android:background="@drawable/cv_new_car"
+                       android:backgroundTint="@color/bg_location"
+                       android:layout_margin="20dp"
+                       android:gravity="left"
+                       android:paddingLeft="10dp"
+                       android:layout_marginLeft="20dp"/>
+               </RelativeLayout>
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/features_submit"
-                android:layout_below="@id/rl_heading">
+                android:layout_below="@id/rl_description">
 
                 <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_features"
@@ -1553,8 +1580,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transperant"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <RelativeLayout
         android:id="@+id/rl_portal_menu"
@@ -1617,9 +1643,9 @@
                         android:id="@+id/check1"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@drawable/black_check"
                         android:layout_centerInParent="true"
-                        android:visibility="invisible"/>
+                        android:src="@drawable/black_check"
+                        android:visibility="invisible" />
                 </RelativeLayout>
 
 
@@ -1805,7 +1831,6 @@
         android:id="@+id/rl_listing_price"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:background="@drawable/listing_price_back">
 

@@ -31,7 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wisedrive.dealerapp1.AllCarsPage;
+import com.wisedrive.dealerapp1.Customer_page_activity;
 import com.wisedrive.dealerapp1.FilterPage;
+import com.wisedrive.dealerapp1.MainActivity;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterAllCarPage;
 import com.wisedrive.dealerapp1.adapters.adapters.AdapterNewVehImgs;
@@ -59,6 +61,7 @@ public class CustomerFragment extends Fragment
     RecyclerView rv_all_cars;
    public RelativeLayout rl_search;
    public EditText search_veh;
+
     private static CustomerFragment instance;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -113,6 +116,7 @@ public class CustomerFragment extends Fragment
 
             }
         });
+
 
     }
     public static CustomerFragment getInstance() {
@@ -173,7 +177,6 @@ public class CustomerFragment extends Fragment
                                         PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
                                         customer_cars_list.add(leadobj);
                                     }
-
                                     if (customer_cars_list.size() == 30 || customer_cars_list.size() > 30) {
                                         pageno++;
                                     }
@@ -185,6 +188,8 @@ public class CustomerFragment extends Fragment
                                     });
                                 }else {
                                     tv_no_cars.setVisibility(View.VISIBLE);
+                                    Customer_page_activity.getInstance().iv_search.setVisibility(View.GONE);
+                                    Customer_page_activity.getInstance().iv_filter.setVisibility(View.GONE);
                                 }
                             }
                             catch (JSONException e) {

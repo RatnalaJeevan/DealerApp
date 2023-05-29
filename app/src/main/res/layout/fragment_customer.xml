@@ -50,6 +50,7 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/regular"
         android:gravity="center"
+        android:layout_centerInParent="true"
         android:text="No cars to show"
         android:textColor="@color/textcolour"
         android:textSize="17dp">

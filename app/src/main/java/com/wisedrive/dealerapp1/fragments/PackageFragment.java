@@ -2,6 +2,7 @@ package com.wisedrive.dealerapp1.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -77,12 +78,15 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
     public String  gateway_id="",pack_type="Bundle";
     ViewPager view_pager_2;
     TabLayout indicator1;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_package, container, false);
+
         activity=getActivity();
         instance=this;
         indicator1= rootView.findViewById(R.id.indicator1);

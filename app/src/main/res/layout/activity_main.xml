@@ -229,7 +229,7 @@
                     android:id="@+id/tv_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Customer"
+                    android:text="Requirement"
                     android:textSize="12dp"
                     android:textColor="@color/textcolour"
                     android:layout_marginLeft="10dp"
@@ -271,15 +271,14 @@
             android:id="@+id/rl_transperant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transperant">
-
+            android:background="@color/transperant"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:id="@+id/rl_newdetails_adding"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_alignParentBottom="true"
-                android:visibility="gone"
                 android:background="@drawable/rl_feature_pop_up">
                 <View
                     android:layout_width="match_parent"
@@ -334,7 +333,552 @@
                 </RelativeLayout>
             </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_transperant_cars_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
 
+            <RelativeLayout
+                android:id="@+id/rl_cars_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_feature_pop_up">
+
+                <RelativeLayout
+                    android:id="@+id/rl_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp">
+
+                    <ImageView
+                        android:id="@+id/cross_matched_veh"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/wrong"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Matched Vehicles"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/textcolour"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="18dp"/>
+                </RelativeLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_vehicle_status_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/rl_heading"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_car_button"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Add Car"
+                    android:textSize="14dp"
+                    android:layout_below="@id/rv_vehicle_status_list"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/add_features"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_transperant_listed_cars"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_listed_cars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_feature_pop_up">
+                <RelativeLayout
+                    android:id="@+id/rl_heading_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp">
+
+                    <ImageView
+                        android:id="@+id/imv_listedcars_cross"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/wrong"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Listed Vehicles"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/textcolour"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="18dp"/>
+                </RelativeLayout>
+
+                 <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_listed_vehicle_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                     android:layout_below="@id/rl_heading_2"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_trans_alert_pop_up"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_alert"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_background">
+
+                <ImageView
+                    android:id="@+id/alert_popup_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wrong"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentEnd="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/alert_popup_cross"
+                    android:text="Are you sure you want to remove KA1234 from warranty portal and add KA6789"
+                    android:textSize="18dp"
+                   android:layout_margin="20dp"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/textcolour"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_confirm_button"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:text="Confirm"
+                    android:textSize="14dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/add_features"/>
+
+            </RelativeLayout>
+
+                    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_color_popup_transperant"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_pop_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_feature_pop_up">
+                <RelativeLayout
+                    android:id="@+id/rl_heading_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp">
+
+                    <ImageView
+                        android:id="@+id/imv_colorpopup_cross"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/wrong"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Colours"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/textcolour"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="18dp"/>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_colors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@id/rl_heading_color"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_portal_transperant"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_portal_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_background">
+
+                <ImageView
+                    android:id="@+id/portal_popup_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wrong"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentEnd="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KA123456"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/textcolour"
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/medium"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/portal_popup_cross"
+                    android:background="@drawable/rl_background">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_list_in_portal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/rl_back_portal">
+
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/semibold"
+                            android:text="List In Portal"
+                            android:textColor="@color/textcolour"
+                            android:textSize="18dp"
+                            android:visibility="gone"/>
+                        <TextView
+                            android:id="@+id/text_add_images"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="ADD IMAGES"
+                            android:textColor="@color/textcolour"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                           android:layout_below="@id/text1" />
+
+                        <TextView
+                            android:id="@+id/text_add_features"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="ADD FEATURES"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/textcolour"
+                            android:layout_below="@id/text1"
+                            android:textSize="16dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="20dp"/>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_showlistingprice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@id/text_add_images">
+
+                            <TextView
+                                android:id="@+id/listing_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="Enter Listing Price"
+                                android:textColor="@color/grey"
+                                android:textSize="15dp" />
+
+                            <EditText
+                                android:id="@+id/ed_listingprice"
+                                android:layout_width="150dp"
+                                android:layout_height="40dp"
+                                android:layout_below="@id/listing_price"
+                                android:backgroundTint="@color/lightgrey"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:maxLength="7"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/price_submit"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_below="@id/ed_listingprice"
+                                android:text="SUBMIT"
+                                android:textSize="14dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginRight="20dp"
+                                android:textColor="@color/white"
+                                android:background="@drawable/add_features"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
     </RelativeLayout>
 
+    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_transperant_pop_feature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_feature_pop_up"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rl_feature_pop_up">
+
+                <RelativeLayout
+                    android:id="@+id/rl_heading1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp">
+
+                    <TextView
+                        android:id="@+id/heading_fratures"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Features"
+                        android:textSize="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/textcolour"
+                        android:fontFamily="@font/medium"/>
+
+                    <ImageView
+                        android:id="@+id/imv_featurecross_button"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/wrong"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="20dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rl_heading1">
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description :"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/textcolour"
+                        android:fontFamily="@font/semibold"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_below="@id/tv_description"
+                        android:background="@drawable/cv_new_car"
+                        android:backgroundTint="@color/bg_location"
+                        android:layout_margin="20dp"
+                        android:gravity="left"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="20dp"/>
+                </RelativeLayout>
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/features_submit"
+                    android:layout_below="@id/rl_description">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_features"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                </androidx.core.widget.NestedScrollView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/features_submit"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="15dp"
+                    android:text="SUBMIT"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/add_features"/>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_transperant_add_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transperant"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/rl_transperant_add_image_pop_up"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <RelativeLayout
+                android:id="@+id/rl_add_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rl_feature_pop_up"
+                android:layout_below="@id/rl_transperant_add_image_pop_up">
+
+                <RelativeLayout
+                    android:id="@+id/rl_car_imgs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/text_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Car Images"
+                        android:textColor="@color/grey"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/regular"/>
+                    <ImageView
+                        android:id="@+id/image_popup_cross"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/wrong"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentEnd="true"/>
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/image_popup_cross">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_car_imagelist"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_centerHorizontal="true">
+                            </androidx.recyclerview.widget.RecyclerView>
+
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/add_feature_button"
+                                android:layout_width="120dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="15dp"
+                                android:text="ADD IMAGE"
+                                android:textSize="14dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_below="@id/rv_car_imagelist"
+                                android:textColor="@color/white"
+                                android:background="@drawable/add_features"/>
+                        </RelativeLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

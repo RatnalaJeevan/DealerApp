@@ -33,6 +33,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.wisedrive.dealerapp1'
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets', 'src\\res\\assets\\2', 'src\\main\\assets\\2', 'src\\res\\assets'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -87,11 +94,19 @@ dependencies {
     //graph dependencies.
     implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
     implementation 'com.github.highcharts:highcharts-android:10.2.0'
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
     //implementation (name: 'highcharts-release', ext:'aar')
    // implementation 'com.google.code.gson:gson:2.8.1'
 
   //  compile (name: 'highcharts-release', ext:'aar')
   //  compile 'com.google.code.gson:gson:2.8.1'
+
+
+
+
+
+
 
 
 

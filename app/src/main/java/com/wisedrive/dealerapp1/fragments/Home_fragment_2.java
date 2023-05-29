@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,6 +13,11 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +41,7 @@ import com.wisedrive.dealerapp1.CheckEligibility;
 import com.wisedrive.dealerapp1.R;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Connectivity;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
+import com.wisedrive.dealerapp1.pojos.pojos.CustomTypefaceSpan;
 import com.wisedrive.dealerapp1.responseclasses.responseclasses.AppResponse;
 import com.wisedrive.dealerapp1.services1.services.ApiClient;
 import com.wisedrive.dealerapp1.services1.services.DealerApis;
@@ -61,6 +69,7 @@ public class Home_fragment_2 extends Fragment {
     RelativeLayout activate_button;
     Activity activity;
     TextView text_pending_count,tv_live_cars,text_new_leads;
+    RelativeLayout rl_live_cars;
 
 
 
@@ -93,12 +102,52 @@ public class Home_fragment_2 extends Fragment {
         tv_count_rep_req=rootView.findViewById(R.id.tv_count_rep_req);
         activate_button=rootView.findViewById(R.id.activate_button);
         text_pending_count=rootView.findViewById(R.id.text_pending_count);
+        rl_live_cars=rootView.findViewById(R.id.rl_live_cars);
+        tv_live_cars.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
-     /*   String backendData = "30/40";
-        text_pending_count.setText(backendData);
-        String[] numbers = backendData.split("/");
-        String firstNumber = numbers[0];
-        text_pending_count.setText(firstNumber + "/" + numbers[1]);*/
+
+        String text = getResources().getString(R.string.text_to_style);
+        Typeface boldTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/bold.ttf");
+        Typeface mediumTypeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/medium.ttf");
+
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new CustomTypefaceSpan( boldTypeface), 0, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new CustomTypefaceSpan( mediumTypeface), 7, 22, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text_new_leads.setText(spannableString);
+
+        rl_live_cars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SPHelper.is_sold="N";
+                SPHelper.with_cool="";
+                SPHelper.with_pack="";
+                SPHelper.status_id="1";
+                SPHelper.title="Approved Vehicle List";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                SPHelper.selected_insp_statuses=new ArrayList<>();
+                SPHelper.fuel_id="";
+                SPHelper.trans_id="";
+                SPHelper.price_from= "";
+                SPHelper.price_to= "";
+                SPHelper.kms_from="";
+                SPHelper.kms_to="";
+                SPHelper.selected_insp_status="";
+                SPHelper.selected_brandid="";
+
+                if(app_w_o_c==null||app_w_o_c.equals("0"))
+                {
+                    Toast.makeText(activity,
+                            "there are no cars to show",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    SPHelper.comingfrom="app";
+                    Intent intent=new Intent(activity, AllCarsPage.class);
+                    startActivity(intent);
+                }
+
+
+            }
+        });
 
 
 
@@ -435,7 +484,7 @@ public class Home_fragment_2 extends Fragment {
                         Toast.makeText(getContext(),
                                 t.getMessage(),
                                 Toast.LENGTH_SHORT).show();
-                        progress_bar.setVisibility(View.GONE);
+//                        progress_bar.setVisibility(View.GONE);
                     }
                 });
             }

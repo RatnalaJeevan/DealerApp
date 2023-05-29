@@ -20,6 +20,16 @@ public class PojoNewVehImgs {
     public String getImage_name() {
         return image_name;
     }
+    private int position;
+    // Other fields and methods
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public PojoNewVehImgs(JSONObject obj) throws JSONException {
         {
