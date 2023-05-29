@@ -99,5 +99,6 @@
     <color name="green_light">#34C759</color>
     <color name="violet">#9335fe</color>
     <color name="dark_green">#436968</color>
+    <color name="matching_count">#5E33C5</color>
 
 </resources>

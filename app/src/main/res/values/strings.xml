@@ -61,4 +61,6 @@
         <item>0</item>
         <item>100000</item>
     </string-array>
+    <string name="text_to_style">4 New Lead From 3 Cars</string>
+
 </resources>

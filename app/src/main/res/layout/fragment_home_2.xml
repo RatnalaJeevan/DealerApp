@@ -27,7 +27,7 @@
                     android:text="24/30"
                     android:fontFamily="@font/bold"
                     android:textColor="@color/textcolour"
-                    android:textSize="25dp"
+                    android:textSize="28dp"
                     android:layout_centerHorizontal="true"/>
 
                 <TextView
@@ -63,7 +63,7 @@
                     android:fontFamily="@font/semibold"
                     android:text="20 Cars Live"
                     android:textColor="@color/textcolour"
-                    android:textSize="16dp" />
+                    android:textSize="19dp" />
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/bar_chart"
@@ -93,17 +93,29 @@
                         android:src="@drawable/customer"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tv_newcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 New"
+                        android:fontFamily="@font/bold"
+                        android:textSize="15dp"
+                        android:visibility="gone"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/textcolour"
+                        android:layout_toRightOf="@id/rl_image"/>
 
                 <TextView
                     android:id="@+id/text_new_leads"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4 New Leads From 6 Cars"
+                    android:text="@string/text_to_style"
                     android:textColor="@color/textcolour"
                     android:textSize="15dp"
                     android:fontFamily="@font/medium"
+                    android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/rl_image"/>
+                    android:layout_toRightOf="@id/tv_newcount"/>
             </RelativeLayout>
             </RelativeLayout>
 
@@ -149,10 +161,10 @@
                         android:layout_marginBottom="10dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/customer" />
+                            android:src="@drawable/all_car_bg" />
                     </RelativeLayout>
 
 
@@ -168,13 +180,14 @@
                         android:paddingTop="3dp"
                         android:text="00"
                         android:textColor="@color/textcolour"
-                        android:textSize="22dp">
+                        android:textSize="24dp">
 
                     </TextView>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rl_all_car_image">
+                        android:layout_toRightOf="@id/rl_all_car_image"
+                        android:layout_toLeftOf="@id/tv_allcar_count">
 
                     <TextView
                         android:id="@+id/tv_all_cars"
@@ -184,7 +197,7 @@
                         android:fontFamily="@font/bold"
                         android:text="All Cars"
                         android:textColor="@color/textcolour"
-                        android:textSize="14dp">
+                        android:textSize="16dp">
                     </TextView>
                         <TextView
                             android:id="@+id/tv_description"
@@ -192,9 +205,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_all_cars"
                             android:fontFamily="@font/medium"
-                            android:text="Total number of cars "
+                            android:text="All cars added for your dealership till date. You can filter cars by status. "
                             android:textColor="@color/textcolour"
-                            android:textSize="12dp"/>
+                            android:textSize="14dp"
+                            android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -218,7 +232,7 @@
                         android:paddingTop="3dp"
                         android:text="00"
                         android:textColor="@color/ab_green"
-                        android:textSize="22dp">
+                        android:textSize="24dp">
 
                     </TextView>
                     <RelativeLayout
@@ -231,15 +245,16 @@
                         android:layout_marginBottom="10dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/customer" />
+                            android:src="@drawable/approved_icon_1" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rl_approved_car_image">
+                        android:layout_toRightOf="@id/rl_approved_car_image"
+                        android:layout_toLeftOf="@+id/tv_count_approved_count">
 
                         <TextView
                             android:id="@+id/tv_approved_cars"
@@ -249,7 +264,7 @@
                             android:fontFamily="@font/bold"
                             android:text="Approved"
                             android:textColor="@color/ab_green"
-                            android:textSize="14dp">
+                            android:textSize="16dp">
                         </TextView>
                         <TextView
                             android:id="@+id/tv_approve_description"
@@ -257,9 +272,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_approved_cars"
                             android:fontFamily="@font/medium"
-                            android:text="Total number approved cars "
+                            android:text="Cars approved for warranty which can be activated with warranty. "
                             android:textColor="@color/ab_green"
-                            android:textSize="12dp"/>
+                            android:textSize="14dp"
+                            android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -284,7 +300,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/light_red"
-                        android:textSize="22dp">
+                        android:textSize="24dp">
                     </TextView>
 
                     <RelativeLayout
@@ -297,16 +313,17 @@
                         android:layout_marginBottom="10dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/customer" />
+                            android:src="@drawable/expired_icon" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rl_expired_car_image">
+                        android:layout_toRightOf="@id/rl_expired_car_image"
+                        android:layout_toLeftOf="@+id/tv_count_exp_insp">
 
                         <TextView
                             android:id="@+id/tv_expired_cars"
@@ -316,7 +333,7 @@
                             android:fontFamily="@font/bold"
                             android:text="Expired"
                             android:textColor="@color/light_red"
-                            android:textSize="14dp">
+                            android:textSize="16dp">
                         </TextView>
                         <TextView
                             android:id="@+id/tv_expired_description"
@@ -324,9 +341,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_expired_cars"
                             android:fontFamily="@font/medium"
-                            android:text="Total number Expired cars "
+                            android:text="These cars are inspected but expired as the inspection has crossed 45 days. These cars cannot be activated with Warranty unless reinspected."
                             android:textColor="@color/light_red"
-                            android:textSize="12dp"/>
+                            android:textSize="14dp"
+                            android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
                 <RelativeLayout
@@ -350,7 +368,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/light_red"
-                        android:textSize="22dp">
+                        android:textSize="24dp">
                      </TextView>
 
                     <RelativeLayout
@@ -363,15 +381,16 @@
                         android:layout_marginBottom="10dp">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/customer" />
+                            android:src="@drawable/repair_request_icon" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/rl_repair_request_image">
+                        android:layout_toRightOf="@id/rl_repair_request_image"
+                        android:layout_toLeftOf="@+id/tv_count_rep_req">
 
                         <TextView
                             android:id="@+id/tv_repair_request_cars"
@@ -381,7 +400,7 @@
                             android:fontFamily="@font/bold"
                             android:text="Repair Request"
                             android:textColor="@color/light_red"
-                            android:textSize="14dp">
+                            android:textSize="16dp">
                         </TextView>
                         <TextView
                             android:id="@+id/tv_repair_description"
@@ -389,9 +408,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_repair_request_cars"
                             android:fontFamily="@font/medium"
-                            android:text="Total number repair requested cars "
+                            android:text="These cars are requested to be repaired. once repaired you can request for reinspection. These cars cannot be activated with Warranty unless reinspected."
                             android:textColor="@color/light_red"
-                            android:textSize="12dp"/>
+                            android:textSize="14dp"
+                            android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>

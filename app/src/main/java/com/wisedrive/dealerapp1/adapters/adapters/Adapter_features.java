@@ -73,6 +73,8 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
 
                     feature_questions(holder.rv_feature_list1, module_id);
                 }
+
+                System.out.println("isvisible"+list.isVisible);
             }
         });
     }

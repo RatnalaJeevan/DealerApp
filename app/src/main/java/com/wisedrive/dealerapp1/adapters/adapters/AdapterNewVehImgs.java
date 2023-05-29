@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wisedrive.dealerapp1.R;
+import com.wisedrive.dealerapp1.VehicleImages;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoNewVehImgs;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoVehicleImageList;
 
@@ -36,6 +37,10 @@ public class AdapterNewVehImgs extends RecyclerView.Adapter<AdapterNewVehImgs.Re
     @Override
     public void onBindViewHolder(@NonNull AdapterNewVehImgs.RecyclerViewHolder holder, int position) {
         Glide.with(context).load(pojoNewVehImg.get(position).getVehicle_images()).placeholder(R.drawable.add_copy).into(holder.car_image_position);
+      //  int displayPosition = holder.getAdapterPosition() + 1; // Calculate the position to display
+      //  VehicleImages.getInstance().text_pending_count.setText(String.valueOf(displayPosition) + "/" + String.valueOf(pojoNewVehImg.size()));
+
+
     }
 
     @Override
@@ -50,4 +55,5 @@ public class AdapterNewVehImgs extends RecyclerView.Adapter<AdapterNewVehImgs.Re
             car_image_position=itemView.findViewById(R.id.car_image_position);
         }
     }
+
 }

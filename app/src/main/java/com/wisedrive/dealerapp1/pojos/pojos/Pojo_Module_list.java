@@ -3,9 +3,7 @@ package com.wisedrive.dealerapp1.pojos.pojos;
 public class Pojo_Module_list {
     String module_id,module_name;
     public boolean isVisible;
-    public Pojo_Module_list(boolean isVisible) {
-        this.isVisible = false;
-    }
+
 
     public boolean isVisible() {
         return isVisible;

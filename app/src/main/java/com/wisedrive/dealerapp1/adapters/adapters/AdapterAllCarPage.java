@@ -275,7 +275,6 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             }else{
                 holder.imv_menu.setVisibility(View.VISIBLE);
                 holder.live.setVisibility(View.GONE);
-
             }
             if(SPHelper.title.equals("Approved Vehicle List")){
                 holder.rl_customer.setVisibility(View.VISIBLE);

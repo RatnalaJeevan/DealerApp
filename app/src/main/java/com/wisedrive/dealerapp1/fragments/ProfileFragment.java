@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.wisedrive.dealerapp1.AllCarsPage;
 import com.wisedrive.dealerapp1.AllPayments;
+import com.wisedrive.dealerapp1.Customer_page_activity;
 import com.wisedrive.dealerapp1.HelpSupportPage;
 import com.wisedrive.dealerapp1.LoginPage;
 import com.wisedrive.dealerapp1.MainActivity;
@@ -42,7 +43,7 @@ public class ProfileFragment extends AppCompatActivity {
     TextView dealer_name,dealer_phoneno;
     ImageView go_back_home,edit_dealer;
 
-    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars,rl_edit_dealer,rl_back;
+    RelativeLayout rl_all_payments,rl_log_out,rl_all_cars,rl_edit_dealer,rl_back,rl_my_customers;
     private  Dialog dialog;
     ProgressBar idPBLoading;
     private DealerApis apiInterface;
@@ -67,6 +68,7 @@ public class ProfileFragment extends AppCompatActivity {
         dealer_phoneno=findViewById(R.id.dealer_phoneno);
         go_back_home=findViewById(R.id.go_back_home);
         rl_all_payments=findViewById(R.id.rl_all_payments);
+        rl_my_customers=findViewById(R.id.rl_my_customers);
 
         dialog = new Dialog(ProfileFragment.this);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -200,6 +202,14 @@ public class ProfileFragment extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileFragment.this, HelpSupportPage.class);
                 startActivity(intent);
+            }
+        });
+        rl_my_customers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileFragment.this, Customer_page_activity.class);
+                startActivity(intent);
+
             }
         });
 

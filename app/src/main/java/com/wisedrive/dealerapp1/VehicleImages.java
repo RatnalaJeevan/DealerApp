@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -38,6 +39,8 @@ public class VehicleImages extends BottomSheetDialogFragment {
    // ArrayList<PojoVehicleImageList> pojoNewVehImgs;
     ArrayList<PojoNewVehImgs> pojoNewVehImgs;
     AdapterNewVehImgs adapterNewVehImgs;
+   public static TextView text_pending_count;
+    private static VehicleImages  instance;
     Activity activity;
     private DealerApis apiInterface;
     //@SuppressLint("MissingInflatedId")
@@ -48,6 +51,25 @@ public class VehicleImages extends BottomSheetDialogFragment {
                 container, false);
         activity=getActivity();
         rv_veh_imgs=v.findViewById(R.id.rv_veh_imgs);
+        text_pending_count=v.findViewById(R.id.text_pending_count);
+        instance=this;
+
+        rv_veh_imgs.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                // Calculate the current visible item position
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+
+                // Update the count in the TextView
+                int totalCount = pojoNewVehImgs.size();
+                String countText = (firstVisibleItemPosition + 1) + "/" + totalCount;
+                text_pending_count.setText(countText);
+            }
+        });
+
         apiInterface = ApiClient.getClient().create(DealerApis.class);
       //  get_veh_images_list();
 
@@ -55,8 +77,8 @@ public class VehicleImages extends BottomSheetDialogFragment {
         //pojoNewVehImgs=appResponse.getResponse().getVehicleImageList();
         pojoNewVehImgs=SPHelper.veh_imgs;
         adapterNewVehImgs=new AdapterNewVehImgs(pojoNewVehImgs,activity);
-        LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
-        rv_veh_imgs.setLayoutManager(linearLayoutManager1);
+        LinearLayoutManager linearLayoutManager2=new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
+        rv_veh_imgs.setLayoutManager(linearLayoutManager2);
         rv_veh_imgs.setAdapter(adapterNewVehImgs);
 
         activity.runOnUiThread(new Runnable() {
@@ -66,6 +88,9 @@ public class VehicleImages extends BottomSheetDialogFragment {
             }
         });
         return v;
+    }
+    public static VehicleImages getInstance() {
+        return instance;
     }
 
 }
