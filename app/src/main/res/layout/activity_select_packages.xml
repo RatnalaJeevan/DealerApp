@@ -19,14 +19,13 @@
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         android:background="@drawable/cv_select_pack"
         android:backgroundTint="@color/text_color1">
 
         <RelativeLayout
             android:id="@+id/rl_go_back"
             android:layout_width="70dp"
-            android:layout_marginTop="15dp"
+            android:layout_centerVertical="true"
             android:layout_height="50dp">
             <ImageView
                 android:id="@+id/back"
@@ -44,14 +43,14 @@
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_go_back"
-            android:layout_marginStart="25dp"
+            android:layout_toRightOf="@+id/rl_go_back"
+            android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/regular"
+            android:fontFamily="@font/medium"
             android:text="Select Package"
             android:textColor="@color/textcolour"
-            android:textSize="40dp">
+            android:textSize="18dp">
 
         </TextView>
     </RelativeLayout>

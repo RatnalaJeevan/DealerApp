@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl1"
-    android:background="@color/white"
+    android:background="@color/background_page"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.CustomerFragment">
 
@@ -13,8 +13,11 @@
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:background="@color/white"
         >
         <ImageView
             android:id="@+id/iv_1"

@@ -10,14 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
-        android:paddingBottom="50dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
         android:background="@color/text_color1">
 
 
         <RelativeLayout
             android:id="@+id/rl_go_back"
             android:layout_width="70dp"
-            android:layout_marginTop="15dp"
+            android:layout_centerVertical="true"
             android:layout_height="50dp">
 
 
@@ -35,16 +36,32 @@
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_go_back"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/rl_go_back"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/regular"
             android:gravity="end"
-            android:text="Get your car inspected \nbefore selling"
+            android:text="Inspecting car no "
             android:textColor="@color/textcolour"
-            android:textSize="25dp">
+            android:textSize="16dp">
+
+        </TextView>
+
+        <TextView
+
+            android:id="@+id/selected_veh_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/heading1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/semibold"
+            android:gravity="center"
+            android:maxLength="15"
+            android:text=""
+            android:textColor="@color/textcolour"
+            android:textSize="15dp">
 
         </TextView>
 
@@ -90,6 +107,7 @@
                         android:id="@+id/v_presale"
                         android:layout_width="25dp"
                         android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
                         android:layout_below="@+id/tv_presale"
                         android:background="@color/black">
 
@@ -122,27 +140,14 @@
                         android:visibility="gone"
                         android:layout_width="25dp"
                         android:layout_height="2dp"
+                        android:layout_marginTop="5dp"
                         android:layout_below="@+id/tv_postsale"
                         android:background="@color/black">
 
                     </View>
                 </RelativeLayout>
 
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/selected_veh_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/semibold"
-                    android:gravity="center"
-                    android:maxLength="15"
-                    android:text="KA00AA0000"
-                    android:textColor="@color/textcolour"
-                    android:textSize="15dp">
 
-                </TextView>
             </LinearLayout>
 
 
@@ -467,6 +472,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:background="@drawable/cv_new_car"
                                 android:backgroundTint="@color/black">
+
                                 <TextView
                                     android:id="@+id/tv_add_thiscar"
                                     android:layout_width="wrap_content"
@@ -594,47 +600,53 @@
 
                         </ImageView>
 
-                        <ImageView
-                            android:id="@+id/iv_cust_icon"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_below="@+id/iv_dealer_icon"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="15dp"
-                            android:src="@drawable/ft_no_icon"
-                            android:padding="5dp">
-
-                        </ImageView>
-
-                        <TextView
-                            android:id="@+id/label_cust"
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:id="@+id/rl_c"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/iv_dealer_icon"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="17dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_toRightOf="@+id/iv_cust_icon"
-                            android:fontFamily="@font/semibold"
-                            android:gravity="center"
-                            android:text="Customer"
-                            android:textColor="@color/cement"
-                            android:textSize="15dp">
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@+id/iv_dealer_icon">
+                            <ImageView
+                                android:id="@+id/iv_cust_icon"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:src="@drawable/ft_no_icon"
+                                android:padding="5dp">
 
-                        </TextView>
+                            </ImageView>
 
-                        <ImageView
-                            android:id="@+id/iv_cust_seleted"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_below="@+id/iv_dealer_icon"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="17dp"
-                            android:layout_alignParentEnd="true"
-                            android:background="@drawable/map_border"
-                            android:padding="5dp">
+                            <TextView
+                                android:id="@+id/label_cust"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="10dp"
+                                android:layout_toRightOf="@+id/iv_cust_icon"
+                                android:fontFamily="@font/semibold"
+                                android:gravity="center"
+                                android:text="Customer"
+                                android:textColor="@color/cement"
+                                android:textSize="15dp">
 
-                        </ImageView>
+                            </TextView>
+
+                            <ImageView
+                                android:id="@+id/iv_cust_seleted"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="40dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentEnd="true"
+                                android:background="@drawable/map_border"
+                                android:padding="5dp">
+
+                            </ImageView>
+                        </RelativeLayout>
+
+
 
                         <RelativeLayout
                             android:visibility="gone"
@@ -642,7 +654,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:layout_below="@+id/iv_cust_seleted"
+                            android:layout_below="@+id/rl_c"
                             >
 
                             <RelativeLayout

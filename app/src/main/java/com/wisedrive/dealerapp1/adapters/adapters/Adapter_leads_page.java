@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wisedrive.dealerapp1.R;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.Common;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_feature_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_leads_page;
 
@@ -31,15 +32,14 @@ import java.util.ArrayList;
 public class Adapter_leads_page extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public ProgressBar progressBar;
     Context context;
-    View view;
     ArrayList<Pojo_leads_page> pojo_leads_pageArrayList;
     private boolean isLoadingAdded = false;
     private static final int LOADING = 0;
     private static final int ITEM = 1;
 
-    public Adapter_leads_page (Context context, ArrayList<Pojo_leads_page>pojo_leads_pageArrayList) {
+    public Adapter_leads_page (Context context) {
         this.context = context;
-        this.pojo_leads_pageArrayList =pojo_leads_pageArrayList;
+        pojo_leads_pageArrayList =new ArrayList<>();
     }
 
 
@@ -71,19 +71,11 @@ public class Adapter_leads_page extends RecyclerView.Adapter<RecyclerView.ViewHo
             case ITEM:
                 final MyViewHolder holder = (MyViewHolder) holder1;
                 Pojo_leads_page list = pojo_leads_pageArrayList.get(position);
-                holder.name.setText(list.getLead_name());
+               // holder.name.setText(list.getLead_name());
                 holder.phone_number.setText(list.getLead_phone_no());
-                holder.text_date.setText(list.getCreated_on_date());
+                holder.text_date.setText(Common.getDateFromString(list.getCreated_on_date()));
                 holder.time.setText(list.getCreated_on_time());
-                //holder.text_am_pm.setText(list.getText_am_pm());
 
-//                if(position==0)
-//                {
-//                    holder.purchased.setVisibility(View.VISIBLE);
-//
-//                }else{
-//                    holder.purchased.setVisibility(View.GONE);
-//                }
                 holder.call.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -92,29 +84,7 @@ public class Adapter_leads_page extends RecyclerView.Adapter<RecyclerView.ViewHo
                         context.startActivity(callIntent);
                     }
                 });
-//                 holder.imv_menu.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        PopupMenu popup = new PopupMenu(context, view);
-//                        popup.getMenuInflater().inflate(R.menu.leads_menu, popup.getMenu());
-//                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                            @Override
-//                            public boolean onMenuItemClick(MenuItem menuItem) {
-//                                switch (menuItem.getItemId()) {
-//                                    case R.id.menu_home:
-//                                        // Handle the Home menu item click
-//                                        return true;
-//                                    case R.id.menu_profile:
-//                                        // Handle the Profile menu item click
-//                                        return true;
-//                                    default:
-//                                        return false;
-//                                }
-//                            }
-//                        });
-//                        popup.show();
-//                    }
-//                });
+
                 break;
             case LOADING:
                 LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder1;

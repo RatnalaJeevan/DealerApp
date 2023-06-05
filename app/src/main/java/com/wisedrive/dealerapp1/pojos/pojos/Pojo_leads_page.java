@@ -3,7 +3,8 @@ package com.wisedrive.dealerapp1.pojos.pojos;
 public class Pojo_leads_page {
     String lead_name,lead_phone_no,created_on_date,created_on_time;
 
-    public Pojo_leads_page() {
+    public Pojo_leads_page()
+    {
 
     }
 

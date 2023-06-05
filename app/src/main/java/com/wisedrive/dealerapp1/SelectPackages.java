@@ -49,6 +49,7 @@ public class   SelectPackages extends AppCompatActivity {
         setContentView(R.layout.activity_select_packages);
         rl_go_back=findViewById(R.id.rl_go_back);
         idPBLoading=findViewById(R.id.idPBLoading);
+        getWindow().setStatusBarColor(getColor(R.color.text_color1));
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         rl_next=findViewById(R.id.rl_next);
         rv_select_packs=findViewById(R.id.rv_select_packs);

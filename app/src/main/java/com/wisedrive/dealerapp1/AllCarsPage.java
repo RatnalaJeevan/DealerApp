@@ -51,6 +51,7 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseExtension;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.ResponseListener;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
+import com.wisedrive.dealerapp1.pojos.PojoSwapVeh;
 import com.wisedrive.dealerapp1.pojos.pojos.Feature;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarsList;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
@@ -83,6 +84,8 @@ import retrofit2.Response;
 
 public class AllCarsPage extends AppCompatActivity
 {
+    EditText sel_desr;
+    TextView sub_desc;
     String mobile_no_pattern = "^[6-9][0-9]{9}$";
     ArrayList<String> final_imgs = new ArrayList<>();
     ArrayList<String> final_ids = new ArrayList<>();
@@ -142,11 +145,14 @@ public class AllCarsPage extends AppCompatActivity
         setContentView(R.layout.activity_all_cars_page);
         instance = this;
         customer_cars_list = new ArrayList<>();
+        getWindow().setStatusBarColor(getColor(R.color.background_page));
         AWSMobileClient.getInstance().initialize(this).execute();
         credentials = new BasicAWSCredentials(SPHelper.getSPData(this, SPHelper.awskey, ""),
                 SPHelper.getSPData(this, SPHelper.awssecret, ""));
         s3Client = new AmazonS3Client(credentials);
         mRequestPermissionHandler = new RequestPermissionHandler();
+        sel_desr=findViewById(R.id.sel_desr);
+        sub_desc=findViewById(R.id.sub_desc);
         iv_search = findViewById(R.id.iv_search);
         rl_search = findViewById(R.id.rl_search);
         search_veh = findViewById(R.id.search_veh);
@@ -251,6 +257,7 @@ public class AllCarsPage extends AppCompatActivity
                 rl_add_image.setVisibility(View.INVISIBLE);
             }
         });
+
         rl_portal_transperant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -259,33 +266,14 @@ public class AllCarsPage extends AppCompatActivity
                 rl_portal_transperant.setVisibility(View.INVISIBLE);
             }
         });
+
         rl_list_in_portal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-               /* if (adapterAllCarPage.is_img_present.equalsIgnoreCase("y") &&
-                        adapterAllCarPage.is_feat_present.equalsIgnoreCase("y")) {
-                    if (check1.getVisibility() == View.VISIBLE) {
-                        // i1 is currently visible, so hide it and l1
-                        check1.setVisibility(View.GONE);
-                        rl_showlistingprice.setVisibility(View.GONE);
-                    } else {
-                        // i1 is currently hidden, so show it and l1
-                        check1.setVisibility(View.VISIBLE);
-                        rl_showlistingprice.setVisibility(View.VISIBLE);
-                    }
-                } else if (adapterAllCarPage.is_img_present.equalsIgnoreCase("n")) {
-                   /* Toast.makeText(AllCarsPage.this,
-                            " Please add vehicle images",
-                            Toast.LENGTH_SHORT).show(); */
-               /* } else if (adapterAllCarPage.is_feat_present.equalsIgnoreCase("n")) {
-                   Toast.makeText(AllCarsPage.this,
-                            " Please add vehicle features",
-                            Toast.LENGTH_SHORT).show(); */
-
-
                 if (adapterAllCarPage.is_img_present.equalsIgnoreCase("y") &&
-                        adapterAllCarPage.is_feat_present.equalsIgnoreCase("y")) {
+                        adapterAllCarPage.is_feat_present.equalsIgnoreCase("y"))
+                {
                     if (check1.getVisibility() == View.VISIBLE) {
                         // i1 is currently visible, so hide it and l1
                         check1.setVisibility(View.GONE);
@@ -304,9 +292,6 @@ public class AllCarsPage extends AppCompatActivity
                             " Please add vehicle features",
                             Toast.LENGTH_SHORT).show();
                 }
-//                check1.setVisibility(View.VISIBLE);
-//                rl_showlistingprice.setVisibility(View.VISIBLE);
-
              }
 
         });
@@ -325,11 +310,10 @@ public class AllCarsPage extends AppCompatActivity
                 }
             }
         });
+
         mark_assold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (!ed_number.getText().toString().equals("") && !ed_number.getText().toString().matches(mobile_no_pattern)) {
                     Toast.makeText(AllCarsPage.this,
                             " Enter Valid Phone Number",
@@ -371,8 +355,14 @@ public class AllCarsPage extends AppCompatActivity
         iv_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rl_search.setVisibility(View.VISIBLE);
-                search();
+
+                if(rl_search.getVisibility()==View.VISIBLE){
+                    rl_search.setVisibility(View.GONE);
+                }else {
+                    rl_search.setVisibility(View.VISIBLE);
+                }
+
+               // search();
             }
         });
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -400,8 +390,52 @@ public class AllCarsPage extends AppCompatActivity
             }
         });
 
+        sub_desc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(sel_desr.getText().toString().equals(""))
+                {
+                    Toast.makeText(AllCarsPage.this, "Enter desciption", Toast.LENGTH_SHORT).show();
+                }else {
+                    update_descr();
+                }
+            }
+        });
         search();
 
+    }
+
+
+    public void update_descr() {
+
+        PojoSwapVeh pojoupdate_des = new PojoSwapVeh(SPHelper.vehid, sel_desr.getText().toString());
+        Call<AppResponse> call = apiInterface.add_desrpition(pojoupdate_des);
+
+        call.enqueue(new Callback<AppResponse>() {
+            @Override
+            public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
+                AppResponse appResponse = response.body();
+                assert appResponse != null;
+                String response_code = appResponse.getResponseType();
+                if (response.body() != null) {
+                    if (response_code.equals("200")) {
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+
+                         get_module_list();
+                       // featureArr = new ArrayList<>();
+
+                    } else {
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AppResponse> call, Throwable t) {
+                // Handle the failure
+            }
+        });
     }
 
     private boolean shouldShowCameraPermissionRationale() {
@@ -429,9 +463,11 @@ public class AllCarsPage extends AppCompatActivity
                     } else {
                         get_insp_veh_list();
                     }
-                } else if (search_veh.getText().toString().length() == 0) {
-                    hideKeybaord();
-                } else {
+                }
+//                else if (search_veh.getText().toString().length() == 0) {
+//                    hideKeybaord();
+//                }
+                 else {
                     if (SPHelper.comingfrom.equals("all")) {
                         get_all_vehiclelist();
                     } else {
@@ -454,7 +490,6 @@ public class AllCarsPage extends AppCompatActivity
         pageno = 1;
         JSONObject params = new JSONObject();
         try {
-
             params.put("dealerId", SPHelper.getSPData(AllCarsPage.this, SPHelper.dealerid, ""));
             params.put("brandId", SPHelper.selected_brandid);
             params.put("listType", "");
@@ -470,7 +505,6 @@ public class AllCarsPage extends AppCompatActivity
             params.put("kmTo", SPHelper.kms_to);
             params.put("fuelId", SPHelper.fuel_id);
             params.put("transmissionId", SPHelper.trans_id);
-
 
             System.out.print(params);
         } catch (JSONException e) {
@@ -488,12 +522,26 @@ public class AllCarsPage extends AppCompatActivity
                             JSONObject tktobj = response.getResponseObject();
                             try {
                                 customer_cars_list.clear();
-                                if (tktobj.getJSONArray("AllInspectedVehWithStatus").length() > 0) {
+                                if (tktobj.getJSONArray("AllInspectedVehWithStatus").length() > 0)
+                                {
                                     tv_no_cars.setVisibility(View.GONE);
-                                    for (int i = 0; i < tktobj.getJSONArray("AllInspectedVehWithStatus").length(); i++) {
-                                        JSONObject apartment = tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i);
-                                        PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
-                                        customer_cars_list.add(leadobj);
+                                    for (int i = 0; i < tktobj.getJSONArray("AllInspectedVehWithStatus").length(); i++)
+                                    {
+                                        if(SPHelper.title.equals("Listed Vehicle List"))
+                                        {
+                                            if(tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i).
+                                                    getString("is_vehicle_present_in_portal").equalsIgnoreCase("y")){
+                                                JSONObject apartment = tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i);
+                                                PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
+                                                customer_cars_list.add(leadobj);
+                                            }
+
+                                        }else {
+                                            JSONObject apartment = tktobj.getJSONArray("AllInspectedVehWithStatus").getJSONObject(i);
+                                            PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
+                                            customer_cars_list.add(leadobj);
+                                        }
+
                                     }
                                     if (customer_cars_list.size() == 30 || customer_cars_list.size() > 30) {
                                         pageno++;
@@ -505,7 +553,9 @@ public class AllCarsPage extends AppCompatActivity
                                             adapterAllCarPage.notifyDataSetChanged();
                                         }
                                     });
-                                } else {
+                                }
+
+                                else {
                                     tv_no_cars.setVisibility(View.VISIBLE);
                                 }
                             } catch (JSONException e) {
@@ -637,8 +687,11 @@ public class AllCarsPage extends AppCompatActivity
                             JSONObject tktobj = response.getResponseObject();
                             try {
                                 customer_cars_list.clear();
-                                if (tktobj.getJSONArray("AllcarList").length() > 0) {
+                                if (tktobj.getJSONArray("AllcarList").length() > 0)
+                                {
                                     tv_no_cars.setVisibility(View.GONE);
+                                    iv_search.setVisibility(View.VISIBLE);
+                                    iv_filter.setVisibility(View.VISIBLE);
                                     for (int i = 0; i < tktobj.getJSONArray("AllcarList").length(); i++) {
                                         JSONObject apartment = tktobj.getJSONArray("AllcarList").getJSONObject(i);
                                         PojoAllCarsList leadobj = new PojoAllCarsList(apartment);
@@ -656,6 +709,13 @@ public class AllCarsPage extends AppCompatActivity
                                         }
                                     });
                                 } else {
+
+//                                    if(search_veh.getText().toString().equals(""))
+//                                    {
+//                                        iv_search.setVisibility(View.GONE);
+//                                        iv_filter.setVisibility(View.GONE);
+//                                    }
+
                                     tv_no_cars.setVisibility(View.VISIBLE);
                                 }
 
@@ -747,7 +807,8 @@ public class AllCarsPage extends AppCompatActivity
 
     }
 
-    public void getimage_part_list() {
+    public void getimage_part_list()
+    {
         System.out.println("vehid" + SPHelper.vehid);
         Call<AppResponse> call = apiInterface.part_list(SPHelper.vehid, "1");
         call.enqueue(new Callback<AppResponse>() {
@@ -777,7 +838,7 @@ public class AllCarsPage extends AppCompatActivity
     }
 
     public void get_module_list() {
-        Call<AppResponse> call = apiInterface.get_module_list();
+        Call<AppResponse> call = apiInterface.get_module_list(SPHelper.vehid);
         call.enqueue(new Callback<AppResponse>() {
             @Override
             public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
@@ -786,10 +847,11 @@ public class AllCarsPage extends AppCompatActivity
                 String response_code = appResponse.getResponseType();
                 if (response.body() != null) {
                     if (response_code.equals("200")) {
+
+                        String des=appResponse.getResponse().getDescription().getDescription();
+                        sel_desr.setText(des);
                         pojo_module_listArrayList = new ArrayList<>();
                         pojo_module_listArrayList = appResponse.getResponse().getModuleList();
-                        //  module_id =pojo_module_listArrayList.get(0).getModule_id();
-                        //   SPHelper.module_id = module_id ;
                         adapter_features = new Adapter_features(AllCarsPage.this, pojo_module_listArrayList);
                         GridLayoutManager layoutManager2 = new GridLayoutManager(AllCarsPage.this, 1);
                         rv_features.setLayoutManager(layoutManager2);
@@ -799,7 +861,6 @@ public class AllCarsPage extends AppCompatActivity
                 }
             }
 
-
             @Override
             public void onFailure(Call<AppResponse> call, Throwable t) {
 
@@ -807,7 +868,8 @@ public class AllCarsPage extends AppCompatActivity
         });
     }
 
-    public void post_list_in_portal() {
+    public void post_list_in_portal()
+    {
         Pojo_listin_portal pojo_listin_portal = new Pojo_listin_portal(SPHelper.vehid, ed_listingprice.getText().toString().trim());
         Call<AppResponse> call = apiInterface.list_in_portal(pojo_listin_portal);
         call.enqueue(new Callback<AppResponse>() {
@@ -822,7 +884,8 @@ public class AllCarsPage extends AppCompatActivity
                         rl_portal_transperant.setVisibility(View.GONE);
                         rl_portal_menu.setVisibility(View.GONE);
                         get_insp_veh_list();
-
+                    }else {
+                        Toast.makeText(AllCarsPage.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -864,28 +927,31 @@ public class AllCarsPage extends AppCompatActivity
         });
     }
 
-    public void get_updated_features() {
+    public void get_updated_features()
+    {
         featureArr = new ArrayList<>();
         for (int i = 0; i < pojo_module_listArrayList.size(); i++) {
-//            if (pojo_module_listArrayList.get(i).isVisible())
-//            {
-            // String moduleId = pojo_module_listArrayList.get(i).getModule_id();
-            for (int j = 0; j < adapter_features.pojo_part_listArrayList.size(); j++) {
 
-                if (adapter_features.pojo_part_listArrayList.get(j).isSelected()) {
+            for (int j = 0; j < pojo_module_listArrayList.get(i).getPartDetails().size(); j++)
+            {
+
+                if (pojo_module_listArrayList.get(i).getPartDetails().get(j).getIs_selected().equals("y"))
+                {
                     Feature obj = new Feature();
-                    obj.setModuleId(adapter_features.pojo_part_listArrayList.get(j).getModule_id());
-                    obj.setPart_id(adapter_features.pojo_part_listArrayList.get(j).getPart_id());
+                    obj.setModuleId(pojo_module_listArrayList.get(i).getPartDetails().get(j).getModule_id());
+                    obj.setPart_id(pojo_module_listArrayList.get(i).getPartDetails().get(j).getPart_id());
                     obj.setIsPresent("Y");
                     featureArr.add(obj);
-                } else {
+                }
+
+                else {
                     Feature obj = new Feature();
-                    obj.setModuleId(adapter_features.pojo_part_listArrayList.get(j).getModule_id());
-                    obj.setPart_id(adapter_features.pojo_part_listArrayList.get(j).getPart_id());
+                    obj.setModuleId(pojo_module_listArrayList.get(i).getPartDetails().get(j).getModule_id());
+                    obj.setPart_id(pojo_module_listArrayList.get(i).getPartDetails().get(j).getPart_id());
                     obj.setIsPresent("N");
                     featureArr.add(obj);
                 }
-                //    }
+
             }
         }
 
@@ -1030,12 +1096,12 @@ public class AllCarsPage extends AppCompatActivity
             }
         });
 
-
         Recapture.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+
                 it_is="c";
                 if (shouldShowCameraPermissionRationale())
                 {
@@ -1052,30 +1118,13 @@ public class AllCarsPage extends AppCompatActivity
                             })
                             .setNegativeButton("Cancel", null)
                             .show();
-                } else {
+                }
+                else {
                     // Request the camera permission directly
                     requestCameraPermission();
                 }
                 dialog.cancel();
-//                mRequestPermissionHandler.requestPermission(AllCarsPage.this, new String[]{
-//                        Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-//                }, 123, new RequestPermissionHandler.RequestPermissionListener()
-//                {
-//                    @Override
-//                    public void onSuccess()
-//                    {
-//                        System.out.println("Succeed");
-//                        it_is = "c";
-//                        Toast.makeText(AllCarsPage.this,  "call camera", Toast.LENGTH_SHORT).show();
-//                        CallCamera();
-//
-//                    }
-//                    @Override
-//                    public void onFailed() {
-//                        Toast.makeText(AllCarsPage.this,  "call camera denied", Toast.LENGTH_SHORT).show();
-//                        System.out.println("denied");
-//                    }
-//                });
+
 
             }
         });
@@ -1305,7 +1354,8 @@ public class AllCarsPage extends AppCompatActivity
 
     public void get_updated_imgs() {
         pojo_imagearrayArrayList = new ArrayList<>();
-        for (int i = 0; i < final_ids.size(); i++) {
+        for (int i = 0; i < final_ids.size(); i++)
+        {
             Pojo_imagearray imageobj = new Pojo_imagearray();
             imageobj.setImage(final_imgs.get(i));
             imageobj.setImage_type_id(final_ids.get(i));

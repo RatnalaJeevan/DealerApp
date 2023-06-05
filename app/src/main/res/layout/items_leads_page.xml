@@ -89,6 +89,7 @@
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_toRightOf="@id/text_date"
                 android:text="11:45"
                 android:fontFamily="@font/semibold"
@@ -97,6 +98,7 @@
                 android:textSize="14dp" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/text_am_pm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -4,32 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_page"
     tools:context=".Customer_page_activity">
 
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         >
+        <RelativeLayout
+            android:id="@+id/rl_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent">
         <ImageView
             android:id="@+id/back"
             android:layout_width="25dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_centerVertical="true"
             android:src="@drawable/back_arrow_black">
         </ImageView>
+        </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Customer"
-            android:textSize="18dp"
-            android:textColor="@color/textcolour"
-            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/semibold"/>
+            android:fontFamily="@font/semibold"
+            android:text="My Customer"
+            android:textColor="@color/textcolour"
+            android:textSize="16dp" />
 
         <ImageView
             android:id="@+id/iv_search"

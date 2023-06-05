@@ -21,6 +21,8 @@ import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -63,21 +65,20 @@ public class Home_fragment_2 extends Fragment {
     ProgressBar progress_bar;
     RelativeLayout rl_all_cars,rl_approved,rl_exp_veh,rl_repair_req;
     String total_cars,sold_carscount,not_soldcars_count;
-    private String insp_veh_count,app_w_c,repair_count,app_w_o_c,re_insp_count,
+    private String live_cars="0",from_car_c="0",repair_count,app_w_o_c,re_insp_count,
             sold_cars_with_warr_count,expired_insp_count,s_w_o_warra_c,all_car_counnt;
-    public TextView tv_allcar_count,tv_count_approved_count,tv_count_exp_insp,tv_count_rep_req;
+    public TextView tv_allcar_count,tv_count_approved_count,tv_count_exp_insp,tv_count_rep_req,label_for_cars;
     RelativeLayout activate_button;
     Activity activity;
-    TextView text_pending_count,tv_live_cars,text_new_leads;
+    TextView text_pending_count,tv_live_cars,text_new_leads,tv_new_leads;
     RelativeLayout rl_live_cars;
-
-
 
     @SuppressLint("MissingInflatedId")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home_2, container, false);
         activity=getActivity();
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.white));
         SPHelper.pojoAllCarBrands=new ArrayList<>();
         SPHelper.fuel_id="";
         SPHelper.trans_id="";
@@ -87,6 +88,8 @@ public class Home_fragment_2 extends Fragment {
         SPHelper.kms_to="";
         SPHelper.selected_insp_status="";
         SPHelper.selected_insp_statuses=new ArrayList<>();
+        tv_new_leads=rootView.findViewById(R.id.tv_new_leads);
+        label_for_cars=rootView.findViewById(R.id.label_for_cars);
         text_new_leads=rootView.findViewById(R.id.text_new_leads);
         tv_live_cars=rootView.findViewById(R.id.tv_live_cars);
         progress_bar=rootView.findViewById(R.id.progress_bar);
@@ -103,7 +106,7 @@ public class Home_fragment_2 extends Fragment {
         activate_button=rootView.findViewById(R.id.activate_button);
         text_pending_count=rootView.findViewById(R.id.text_pending_count);
         rl_live_cars=rootView.findViewById(R.id.rl_live_cars);
-        tv_live_cars.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
 
 
         String text = getResources().getString(R.string.text_to_style);
@@ -122,7 +125,7 @@ public class Home_fragment_2 extends Fragment {
                 SPHelper.with_cool="";
                 SPHelper.with_pack="";
                 SPHelper.status_id="1";
-                SPHelper.title="Approved Vehicle List";
+                SPHelper.title="Listed Vehicle List";
                 SPHelper.pojoAllCarBrands=new ArrayList<>();
                 SPHelper.selected_insp_statuses=new ArrayList<>();
                 SPHelper.fuel_id="";
@@ -134,7 +137,7 @@ public class Home_fragment_2 extends Fragment {
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
 
-                if(app_w_o_c==null||app_w_o_c.equals("0"))
+                if(from_car_c.equals("0")&&live_cars.equals("0"))
                 {
                     Toast.makeText(activity,
                             "there are no cars to show",
@@ -148,8 +151,6 @@ public class Home_fragment_2 extends Fragment {
 
             }
         });
-
-
 
         rl_approved.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,6 +281,7 @@ public class Home_fragment_2 extends Fragment {
 
             }
         });
+
         activate_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,100 +292,13 @@ public class Home_fragment_2 extends Fragment {
             }
         });
 
-        BarChart barChart = rootView.findViewById(R.id.bar_chart);
-
-// Set chart padding to 0dp
-        barChart.setPadding(0, 0, 0, 0);
-
-// Customize chart settings
-        barChart.setDragEnabled(false);
-        barChart.setScaleEnabled(false);
-        barChart.getDescription().setEnabled(false);
-        barChart.setDrawGridBackground(false);
-        barChart.setDrawBorders(false);
-        barChart.getLegend().setEnabled(false);
-
-// Hide axis lines, grid lines, and labels
-        barChart.getXAxis().setDrawAxisLine(false);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getXAxis().setEnabled(false);
-        barChart.getAxisLeft().setEnabled(false);
-        barChart.getAxisRight().setEnabled(false);
-
-// Create data set and add data
-        ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0, 5));
-        entries.add(new BarEntry(1, 7));
-        entries.add(new BarEntry(2, 6));
-        entries.add(new BarEntry(3, 6));
-        entries.add(new BarEntry(4, 6));
-        entries.add(new BarEntry(5, 6));
-        entries.add(new BarEntry(6, 7));
-        entries.add(new BarEntry(7, 6));
-        entries.add(new BarEntry(8, 7));
-        entries.add(new BarEntry(9, 8));
-
-// Customize chart settings
-        barChart.getDescription().setEnabled(false);
-        barChart.setDrawGridBackground(false);
-        barChart.setDrawBorders(false);
-        barChart.getLegend().setEnabled(false);
-        barChart.setDragEnabled(false);
-        barChart.setScaleEnabled(false);
-        barChart.setPadding(0, 0, 0, 0);
-
-// Create data set and add data
-        BarDataSet dataSet = new BarDataSet(entries, "Data Set 1");
-        dataSet.setFormLineWidth(0.01f);
-        int barColor = ContextCompat.getColor(getContext(), R.color.blue);
-        dataSet.setColor(barColor);
-        dataSet.setDrawValues(true); // Set drawValues property to true
-        dataSet.setValueTextColor(Color.BLACK); // Set the text color of the values
-        dataSet.setBarBorderColor(Color.WHITE);
-        dataSet.setBarBorderWidth(1f);
-
-// Set data and fit bars
-        BarData barData = new BarData(dataSet);
-        barChart.setData(barData);
-        barChart.setFitBars(true);
-        barData.setBarWidth(0.1f);
-        barChart.setData(barData);
-
-// Hide axis lines, grid lines, and labels
-        barChart.getXAxis().setDrawAxisLine(true);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getXAxis().setEnabled(true);
-        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        barChart.getXAxis().setLabelCount(entries.size());
-        barChart.getXAxis().setAxisMinimum(-0.5f);
-        barChart.getXAxis().setAxisMaximum(entries.size() - 0.5f);
-        barChart.getXAxis().setCenterAxisLabels(true);
-        barChart.getXAxis().setAvoidFirstLastClipping(true);
-        barChart.getXAxis().setTextColor(Color.BLACK);
-
-        barChart.getAxisLeft().setEnabled(true);
-        barChart.getAxisLeft().setDrawAxisLine(false);
-        barChart.getAxisLeft().setDrawGridLines(false);
-        barChart.getAxisLeft().setDrawLabels(false);
-        barChart.getAxisLeft().setAxisMinimum(0f);
-        barChart.getAxisLeft().setAxisMaximum(10f);
-
-        barChart.getAxisRight().setEnabled(false);
-
-// Disable double-tap to zoom
-        barChart.setDoubleTapToZoomEnabled(false);
-
-// Set chart orientation and animate
-        barChart.setRotation(0f);
-        barChart.animateY(1000);
-        barChart.invalidate();
-
         get_dashboard_count();
         get_dealer_warranty_info();
         return rootView;
 
 
     }
+
     public void get_dealer_warranty_info() {
         if (!Connectivity.isNetworkConnected(getContext())) {
             Toast.makeText(getContext(), "Please Check Your Internet", Toast.LENGTH_SHORT).show();
@@ -399,9 +314,28 @@ public class Home_fragment_2 extends Fragment {
                         if (response_code.equals("200"))
                         {
                             String no_of_warranties_left = appResponse.getResponse().getDealerWarrantyInfo().getNo_of_warranties_left();
-                            String live_cars=appResponse.getResponse().getLiveCarCount().getTotal_live_cars();
+                             live_cars=appResponse.getResponse().getLiveCarCount().getTotal_live_cars();
                             String msg=appResponse.getResponse().getLiveCarCount().getMsg();
                             String total=appResponse.getResponse().getDealerWarrantyInfo().getNo_of_warranties_left_from();
+                            String new_lead_c=appResponse.getResponse().getLiveCarCount().getNew_lead_count();
+                             from_car_c=appResponse.getResponse().getLiveCarCount().getFrom_car_count();
+                            if(new_lead_c==null){
+                                tv_new_leads.setText("0 Total Leads");
+                            }else {
+                                tv_new_leads.setText(new_lead_c+" Total Leads");
+                                Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                                anim.setDuration(200); //You can manage the blinking time with this parameter
+                                anim.setStartOffset(20);
+                                anim.setRepeatMode(Animation.REVERSE);
+                                anim.setRepeatCount(Animation.INFINITE);
+                                tv_new_leads.startAnimation(anim);
+                            }
+                            if(from_car_c==null){
+                                label_for_cars.setText("0 cars");
+                            }else {
+                                label_for_cars.setText("for "+from_car_c+" cars");
+                            }
+
 
                             int warrantiesLeft = Integer.parseInt(no_of_warranties_left != null ? no_of_warranties_left : "0");
                             if(total==null||total.equals("null")||total.equals("0")){
@@ -409,7 +343,7 @@ public class Home_fragment_2 extends Fragment {
                             }
                             String text = warrantiesLeft + "/" + total;
                             text_pending_count.setText(text);
-                            tv_live_cars.setText(live_cars+" Car(s) Live");
+                            tv_live_cars.setText(live_cars+" Cars");
                             text_new_leads.setText(msg);
                         } else if (response_code.equals("300")) {
                             // handle response code 300
@@ -426,6 +360,7 @@ public class Home_fragment_2 extends Fragment {
             });
         }
     }
+
     public  void get_dashboard_count() {
         {
             if (!Connectivity.isNetworkConnected(getContext())) {
@@ -455,8 +390,6 @@ public class Home_fragment_2 extends Fragment {
                                 sold_carscount=appResponse.getResponse().getDashboardCount().getSold_cars_count();
                                 not_soldcars_count=appResponse.getResponse().getDashboardCount().getNot_sold_cars_count();
                                 expired_insp_count=appResponse.getResponse().getExpired().getCount();
-                                insp_veh_count=appResponse.getResponse().getReqInspection().getCount();
-                                app_w_c = appResponse.getResponse().getApprovedwithCooling().getCount();
                                 app_w_o_c=appResponse.getResponse().getApprovedwithoutCooling().getCount();
                                 re_insp_count=appResponse.getResponse().getReinspect().getCount();
                                 repair_count=appResponse.getResponse().getRepair().getCount();
@@ -490,8 +423,6 @@ public class Home_fragment_2 extends Fragment {
             }
         }
     }
-
-
 
 }
 

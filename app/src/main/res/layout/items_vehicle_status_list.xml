@@ -7,10 +7,13 @@
         android:id="@+id/rl_exp_veh"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-       android:layout_margin="15dp"
-        android:padding="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/cv_new_car"
-        android:backgroundTint="@color/bg_location">
+        android:backgroundTint="@color/bg_location"
+        android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,29 +24,33 @@
                 android:id="@+id/tv_veh_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:fontFamily="@font/medium"
                 android:text="KA0123456"
-                android:layout_marginLeft="20dp"
                 android:textColor="@color/textcolour"
                 android:textSize="14dp">
+
             </TextView>
 
             <TextView
                 android:id="@+id/tv_veh_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/medium"
-                android:text="Approved"
                 android:layout_below="@id/tv_veh_no"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/medium"
+                android:text="Approved"
                 android:textColor="@color/ab_green"
                 android:textSize="14dp">
+
             </TextView>
 
             <RelativeLayout
                 android:id="@+id/rl_list_button"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:background="@drawable/add_features"

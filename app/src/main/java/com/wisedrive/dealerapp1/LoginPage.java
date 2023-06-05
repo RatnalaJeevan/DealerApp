@@ -52,6 +52,7 @@ public class LoginPage extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        getWindow().setStatusBarColor(getColor(R.color.white));
         SPHelper.sharedPreferenceInitialization(LoginPage.this);
         timer=findViewById(R.id.timer);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
@@ -541,6 +542,9 @@ public class LoginPage extends AppCompatActivity
                         {
                             if (response_code.equals("200")) {
                                 progressDialog.dismiss();
+                                SPHelper.fragment_is="home";
+                                SPHelper.comingfrom="";
+                                SPHelper.camefrom="";
                                 Intent intent=new Intent(LoginPage.this,MainActivity.class);
                                 startActivity(intent);
                                 finish();

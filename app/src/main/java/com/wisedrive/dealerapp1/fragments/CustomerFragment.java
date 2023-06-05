@@ -140,7 +140,7 @@ public class CustomerFragment extends Fragment
             params.put("dealerId",SPHelper.getSPData(activity,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
             params.put("isSold",SPHelper.is_sold);
             params.put("withCooling",SPHelper.with_cool);
@@ -218,7 +218,7 @@ public class CustomerFragment extends Fragment
             params.put("dealerId",SPHelper.getSPData(activity,SPHelper.dealerid,""));
             params.put("brandId",SPHelper.selected_brandid);
             params.put("listType","");
-            params.put("search","");
+            params.put("search",search_veh.getText().toString());
             params.put("pageNo",String.valueOf(pageno));
             params.put("isSold",SPHelper.is_sold);
             params.put("withCooling",SPHelper.with_cool);

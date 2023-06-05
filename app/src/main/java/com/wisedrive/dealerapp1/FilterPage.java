@@ -54,7 +54,7 @@ public class FilterPage extends AppCompatActivity {
     ImageView iv_diesel,iv_petrol,iv_manual,iv_auto,iv_w_pack,iv_w_o_pack;
     DealerApis apiInterface;
     TextView max_price,max_kms,reset,min_price,min_kms,label_insp_status;
-    RelativeLayout rl_apply,rl_back,rl_sold;
+    RelativeLayout rl_apply,rl_back,rl_sold,rl_w,rl_w_o;
     private DecimalFormat IndianCurrencyFormat;
     String fuel_id="",trans_id="",kms_from="",kms_to="",price_from="",price_to="",is_with_pack="n",is_w_o_pack="n";
     @SuppressLint("MissingInflatedId")
@@ -64,11 +64,13 @@ public class FilterPage extends AppCompatActivity {
         setContentView(R.layout.activity_filter_page);
         SPHelper.camefrom="filter";
         IndianCurrencyFormat = new DecimalFormat("##,##,###");
-
+        getWindow().setStatusBarColor(getColor(R.color.white));
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         iv_w_pack=findViewById(R.id.iv_w_pack);
         iv_w_o_pack=findViewById(R.id.iv_w_o_pack);
         rl_sold=findViewById(R.id.rl_sold);
+        rl_w=findViewById(R.id.rl_w);
+        rl_w_o=findViewById(R.id.rl_w_o);
         label_insp_status=findViewById(R.id.label_insp_status);
         reset=findViewById(R.id.reset);
         rl_apply=findViewById(R.id.rl_apply);
@@ -144,7 +146,8 @@ public class FilterPage extends AppCompatActivity {
                 return value + "INR";
             }
         });
-        if(SPHelper.fuel_id.equals("1")){
+        if(SPHelper.fuel_id.equals("1"))
+        {
             iv_petrol.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
             iv_petrol.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
             iv_diesel.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
@@ -197,7 +200,8 @@ public class FilterPage extends AppCompatActivity {
 
         iv_auto.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 //id=2
                 trans_id="2";
                 iv_auto.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
@@ -224,6 +228,7 @@ public class FilterPage extends AppCompatActivity {
             iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_w_o_pack.setImageDrawable(null);
             is_with_pack="y";
+
         }
         else if(SPHelper.is_with_pack.equalsIgnoreCase("n")){
             iv_w_o_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
@@ -237,31 +242,34 @@ public class FilterPage extends AppCompatActivity {
             iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
             iv_w_pack.setImageDrawable(null);
-            is_w_o_pack="";
-            is_with_pack="";
+            is_w_o_pack="n";
+            is_with_pack="n";
 
         }
-        iv_w_pack.setOnClickListener(new View.OnClickListener() {
+
+        rl_w.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                if(is_with_pack.equals("n")){
+                if(is_with_pack.equals("n"))
+                {
                     iv_w_pack.setImageDrawable(FilterPage.this.getDrawable(R.drawable.black_tickmark));
                     iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.blue_border));
                     iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_o_pack.setImageDrawable(null);
                     is_with_pack="y";
+                    is_w_o_pack="n";
                     SPHelper.is_with_pack="y";
                 }else {
                     is_with_pack="n";
                     SPHelper.is_with_pack="";
+                    is_w_o_pack="n";
                     iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_pack.setImageDrawable(null);
                 }
-
             }
         });
-        iv_w_o_pack.setOnClickListener(new View.OnClickListener() {
+        rl_w_o.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(is_w_o_pack.equals("n"))
@@ -271,14 +279,15 @@ public class FilterPage extends AppCompatActivity {
                     iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_pack.setImageDrawable(null);
                     is_w_o_pack="y";
+                    is_with_pack="n";
                     SPHelper.is_with_pack="n";
                 }else {
                     is_w_o_pack="n";
+                    is_with_pack="n";
                     SPHelper.is_with_pack="";
                     iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_o_pack.setImageDrawable(null);
                 }
-
             }
         });
 
@@ -296,8 +305,9 @@ public class FilterPage extends AppCompatActivity {
                 SPHelper.is_with_pack="";
                 SPHelper.pojoAllCarBrands=new ArrayList<>();
                 SPHelper.selected_insp_statuses=new ArrayList<>();
-                if(SPHelper.comingfrom.equals("customer")){
-                    Intent intent=new Intent(FilterPage.this, MainActivity.class);
+                if(SPHelper.comingfrom.equals("customer"))
+                {
+                    Intent intent=new Intent(FilterPage.this, Customer_page_activity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -332,6 +342,7 @@ public class FilterPage extends AppCompatActivity {
                 kms_to= String.valueOf(y2);
             }
         });
+
         rl_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -391,7 +402,7 @@ public class FilterPage extends AppCompatActivity {
                         SPHelper.kms_to+"\n"+SPHelper.selected_insp_status);
                 if(SPHelper.comingfrom.equals("customer")){
 
-                    Intent intent=new Intent(FilterPage.this, MainActivity.class);
+                    Intent intent=new Intent(FilterPage.this, Customer_page_activity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -527,7 +538,6 @@ public class FilterPage extends AppCompatActivity {
                                 if(SPHelper.selected_insp_statuses.isEmpty()){
                                     SPHelper.selected_insp_statuses=insp_status;
                                 }
-
 
                                 GridLayoutManager gridLayoutManager=new GridLayoutManager(FilterPage.this,2);
                                 rv_insp_status.setLayoutManager(gridLayoutManager);

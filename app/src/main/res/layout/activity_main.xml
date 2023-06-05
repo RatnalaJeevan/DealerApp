@@ -16,9 +16,8 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="55dp"
+        android:paddingTop="10dp"
         >
         <ImageView
             android:layout_width="150dp"
@@ -42,7 +41,7 @@
 
         </ImageView>
         <ImageView
-
+            android:visibility="invisible"
             android:id="@+id/iv_filter"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -72,6 +71,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="24dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/cardview_lightgrey_margined"
             android:backgroundTint="@color/text_color1">
@@ -271,8 +271,10 @@
             android:id="@+id/rl_transperant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:elevation="10dp"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_newdetails_adding"
@@ -338,7 +340,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:elevation="10dp"
+            android:visibility="gone"
+
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_cars_list"
@@ -403,7 +408,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:elevation="10dp"
+            android:visibility="gone"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_listed_cars"
@@ -453,7 +460,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:elevation="10dp"
+            android:visibility="gone"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_alert"
@@ -472,16 +481,20 @@
                     android:layout_alignParentEnd="true"/>
 
                 <TextView
+                    android:id="@+id/tv_swap_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/alert_popup_cross"
-                    android:text="Are you sure you want to remove KA1234 from warranty portal and add KA6789"
-                    android:textSize="18dp"
-                   android:layout_margin="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/medium"
-                    android:textColor="@color/textcolour"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="Are you sure you want to remove KA1234 from warranty portal and add KA6789"
+                    android:textColor="@color/textcolour"
+                    android:textSize="18dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/add_confirm_button"
@@ -506,7 +519,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:elevation="10dp"
+            android:visibility="gone"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_pop_up"
@@ -552,11 +567,13 @@
             </RelativeLayout>
         </RelativeLayout>
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_portal_transperant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transperant"
-            android:visibility="gone">
+            android:elevation="10dp"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_portal_menu"
@@ -575,6 +592,7 @@
                     android:layout_alignParentEnd="true"/>
 
                 <TextView
+                    android:id="@+id/sel_veh_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="KA123456"
@@ -881,4 +899,6 @@
 
 
     </RelativeLayout>
+
+
 </RelativeLayout>

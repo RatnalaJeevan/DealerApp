@@ -63,6 +63,7 @@ public class CheckEligibility extends AppCompatActivity {
         setContentView(R.layout.activity_check_eligibility);
         SPHelper.it_is="check";
         activity=CheckEligibility.this;
+        getWindow().setStatusBarColor(getColor(R.color.bg_location));
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         nsv=findViewById(R.id.nsv);
         rl_veh_list=findViewById(R.id.rl_veh_list);
@@ -117,6 +118,7 @@ public class CheckEligibility extends AppCompatActivity {
         rl_req_insp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SPHelper.is_d_loc="n";
                 SPHelper.vehno=entered_vehno.getText().toString();
                 SPHelper.goneto="act";
                 Intent intent=new Intent(CheckEligibility.this,RequestVehInspection.class);
@@ -351,7 +353,7 @@ public class CheckEligibility extends AppCompatActivity {
                 if(entered_vehno.getText().toString().equals("")){
                     hideKeybaord();
                 }
-                else if(entered_vehno.getText().toString().trim().length()>4)
+                else if(entered_vehno.getText().toString().trim().length()>1)
                 {
                     // SPHelper.dealerselected="";
                     search_results();

@@ -33,6 +33,8 @@ import com.wisedrive.dealerapp1.services1.services.DealerApis;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +54,7 @@ public class ProfileFragment extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile);
+        getWindow().setStatusBarColor(getColor(R.color.text_color1));
         SPHelper.sharedPreferenceInitialization(ProfileFragment.this);
         rl_back=findViewById(R.id.rl_back);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
@@ -134,6 +137,7 @@ public class ProfileFragment extends AppCompatActivity {
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SPHelper.fragment_is="home";
                 Intent intent=new Intent(ProfileFragment.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -143,6 +147,9 @@ public class ProfileFragment extends AppCompatActivity {
             public void onClick(View view) {
                 SPHelper.comingfrom="all";
                 SPHelper.title="All Cars";
+                SPHelper.is_sold="";
+                SPHelper.pojoAllCarBrands=new ArrayList<>();
+                SPHelper.selected_insp_statuses=new ArrayList<>();
                 SPHelper.fuel_id="";
                 SPHelper.trans_id="";
                 SPHelper.price_from= "";
@@ -151,7 +158,7 @@ public class ProfileFragment extends AppCompatActivity {
                 SPHelper.kms_to="";
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
-
+                SPHelper.is_with_pack="";
                 Intent intent=new Intent(ProfileFragment.this, AllCarsPage.class);
                 startActivity(intent);
             }
@@ -262,6 +269,7 @@ public class ProfileFragment extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        SPHelper.fragment_is="home";
         Intent intent=new Intent(ProfileFragment.this, MainActivity.class);
         startActivity(intent);
     }

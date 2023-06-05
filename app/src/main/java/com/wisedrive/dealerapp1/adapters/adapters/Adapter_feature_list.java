@@ -16,6 +16,7 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.Feature;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_feature_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_features;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_imagearray;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_list.MyViewHolder> {
     Context context;
     ArrayList<Pojo_part_list> pojo_part_listArrayList;
+    int count=0;
+
 
     public Adapter_feature_list(Context context, ArrayList<Pojo_part_list> pojo_part_listArrayList) {
         this.context = context;
@@ -37,31 +40,54 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_feature_list.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull Adapter_feature_list.MyViewHolder holder,
+                                 @SuppressLint("RecyclerView") int position)
+    {
         Pojo_part_list list = pojo_part_listArrayList.get(position);
         holder.text_feature_list.setText(list.getPart_name());
 
-        holder.rl_check_box.setVisibility(list.isSelected() ? View.VISIBLE : View.INVISIBLE);
-        holder.rl_uncheck_box.setVisibility(list.isSelected() ? View.INVISIBLE : View.VISIBLE);
-
-        if(list.getIs_feature_present()==null||list.getIs_feature_present().equalsIgnoreCase("n")||
-        list.getIs_feature_present().equals("")){
+        if(list.getIs_selected().equals("n"))
+        {
             holder.rl_check_box.setVisibility(View.INVISIBLE);
-        }else {
+        }else
+        {
             holder.rl_check_box.setVisibility(View.VISIBLE);
+        }
+        if(count==0)
+        {
+            if(list.getIs_feature_present()==null||list.getIs_feature_present().equals("")||
+                    list.getIs_feature_present().equalsIgnoreCase("n"))
+            {
+                list.setIs_selected("n");
+                holder.rl_check_box.setVisibility(View.INVISIBLE);
+            }else {
+                holder.rl_check_box.setVisibility(View.VISIBLE);
+                list.setIs_selected("y");
+
+            }
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                list.setSelected(!list.isSelected());
-                holder.rl_check_box.setVisibility(list.isSelected() ? View.VISIBLE : View.INVISIBLE);
-                holder.rl_uncheck_box.setVisibility(list.isSelected() ? View.INVISIBLE : View.VISIBLE);
+                count=1;
 
-                // Update the is_feature_present value based on the selection
-               // list.setIs_feature_present(list.isSelected() ? "y" : "n");
+                if(list.getIs_selected().equals("n"))
+                {
+
+                    SPHelper.part_ids.add(pojo_part_listArrayList.get(position).getPart_id());
+                    SPHelper.module_ids.add(pojo_part_listArrayList.get(position).getModule_id());
+                    list.setIs_selected("y");
+
+                }else
+                {
+                    list.setIs_selected("n");
+
+                }
+
                 SPHelper.part_id=pojo_part_listArrayList.get(position).getPart_id();
                 SPHelper.module_id=pojo_part_listArrayList.get(position).getModule_id();
+                notifyDataSetChanged();
             }
         });
     }
@@ -70,6 +96,8 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
     public int getItemCount() {
         return pojo_part_listArrayList.size();
     }
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView text_feature_list;
@@ -82,15 +110,7 @@ public class Adapter_feature_list extends RecyclerView.Adapter<Adapter_feature_l
             rl_uncheck_box = itemView.findViewById(R.id.rl_uncheck_box);
         }
     }
-    public ArrayList<Feature> getSelectedFeatures() {
-        ArrayList<Feature> selectedFeatures = new ArrayList<>();
-        for (Pojo_part_list partList : pojo_part_listArrayList) {
-            if (partList.isSelected()) {
-                // Create a new Feature object and add it to the list
-            }
-        }
-        return selectedFeatures;
-    }
+
 }
 
 

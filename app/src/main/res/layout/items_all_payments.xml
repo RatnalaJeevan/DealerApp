@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +11,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="7dp">
 
         <RelativeLayout
             android:id="@+id/rl_1"
@@ -26,14 +25,11 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:paddingBottom="3dp"
-                android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/semibold"
                 android:text="25 Nov ,2022"
-                android:textColor="@color/white"
-                android:background="@drawable/cv_new_car"
-                android:backgroundTint="@color/black"
+                android:textColor="@color/black"
                 android:textSize="14dp">
 
             </TextView>
@@ -44,10 +40,10 @@
                 android:layout_below="@+id/pac_sold_on"
                 android:layout_toStartOf="@+id/paid_label"
                 android:layout_marginStart="15dp"
-                android:fontFamily="@font/semibold"
+                android:fontFamily="@font/medium"
                 android:text="6 Bundle Pack"
-                android:textColor="@color/textcolour"
-                android:textSize="16dp">
+                android:textColor="@color/black"
+                android:textSize="14dp">
 
             </TextView>
 
@@ -56,11 +52,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/main_pack"
+                android:layout_marginTop="5dp"
                 android:layout_toStartOf="@+id/paid_label"
                 android:layout_marginStart="15dp"
-                android:fontFamily="@font/semibold"
+                android:fontFamily="@font/regular"
                 android:text=""
-                android:textColor="@color/textcolour"
+                android:textColor="@color/black"
                 android:textSize="16dp">
 
             </TextView>
@@ -92,8 +89,8 @@
             </TextView>
             <ImageView
                 android:id="@+id/paid_label"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/service_type"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="10dp"

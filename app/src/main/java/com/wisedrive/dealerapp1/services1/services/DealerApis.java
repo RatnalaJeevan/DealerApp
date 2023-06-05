@@ -1,5 +1,6 @@
 package com.wisedrive.dealerapp1.services1.services;
 
+import com.wisedrive.dealerapp1.pojos.PojoSwapVeh;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAddNewCar;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoBuyAddOn;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoBuyOffer;
@@ -190,7 +191,7 @@ public interface DealerApis {
     Call<AppResponse> update_image(@Body Pojo_Update_list pojo_update_list);
 
     @GET("/WarrantyVehicleList/getModuleist")
-    Call<AppResponse> get_module_list();
+    Call<AppResponse> get_module_list(@Query("vehicleId") String vehicleId);
 
     @GET("/WarrantyVehicleList/getCount")
     Call<AppResponse> lead_count(@Query("vehicleId") String vehicleId);
@@ -214,6 +215,28 @@ public interface DealerApis {
     @GET("/VehicleList/getSearchVehicle")
     Call<AppResponse> get_searh_results(@Query("dealerId") String dealerId,@Query("search") String search);
 
+    @GET("/WarrantyVehicleList/getRequirementList")
+    Call<AppResponse> get_requirents_list(@Query("search") String search,@Query("make") String make,
+                                         @Query("model") String model,@Query("kmFrom") String kmFrom,
+                                         @Query("kmTo") String kmTo,@Query("yearFrom") String yearFrom,
+                                         @Query("yearTo") String yearTo,@Query("ownerFrom") String ownerFrom,
+                                          @Query("ownerTo") String ownerTo,@Query("fuelType") String fuelType,
+                                          @Query("transmissionType") String transmissionType,@Query("color") String color,
+                                          @Query("priceFrom") String priceFrom,@Query("priceTo") String priceTo,
+                                          @Query("dealerId") String dealerId,@Query("pageNo") String pageNo);
+
+    @GET("/WarrantyVehicleList/getListedVehList")
+    Call<AppResponse> get_listed_vehList(@Query("dealerId") String dealerId,@Query("pageNo") String pageNo);
+
+    @POST("/WarrantyVehicleList/addDescription")
+    Call<AppResponse> add_desrpition(@Body PojoSwapVeh pojoadd_des);
+
+    @POST("/WarrantyVehicleList/swapVehicle")
+    Call<AppResponse> swap_veh(@Body PojoSwapVeh pojoSwapVeh);
+
+
+    @GET("/WarrantyVehicleList/checkDataPresent")
+    Call<AppResponse> get_checked_data(@Query("vehicleId") String vehicleId);
 
 
 

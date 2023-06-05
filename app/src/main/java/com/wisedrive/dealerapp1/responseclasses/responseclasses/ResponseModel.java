@@ -37,8 +37,10 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoWarrantyDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoWebLinks;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Dealer_status;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_Module_list;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_New_req;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_lead_count;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_leads_page;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_listed_vehicle_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
 import java.util.ArrayList;
@@ -560,6 +562,20 @@ public class ResponseModel {
     @SerializedName("LeadList")
     ArrayList<Pojo_leads_page> LeadList;
 
+    @SerializedName("RequirementList")
+    ArrayList<Pojo_New_req> RequirementList;
+
+    @SerializedName("ListedVehList")
+    ArrayList<Pojo_listed_vehicle_list> ListedVehList;
+
+    public ArrayList<Pojo_listed_vehicle_list> getListedVehList() {
+        return ListedVehList;
+    }
+
+    public ArrayList<Pojo_New_req> getRequirementList() {
+        return RequirementList;
+    }
+
     public ArrayList<Pojo_leads_page> getLeadList() {
         return LeadList;
     }
@@ -575,4 +591,39 @@ public class ResponseModel {
     public PojOurServices getActivegateway() {
         return activegateway;
     }
+
+
+    @SerializedName("DataPresent")
+    VehicleData DataPresent;
+
+    public VehicleData getDataPresent() {
+        return DataPresent;
+    }
+
+    @SerializedName("description")
+    VehicleData description;
+
+    public VehicleData getDescription() {
+        return description;
+    }
+
+    public class VehicleData{
+        String is_image_present;
+        String is_feature_present;
+        String description;
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getIs_image_present() {
+            return is_image_present;
+        }
+
+        public String getIs_feature_present() {
+            return is_feature_present;
+        }
+    }
+
+
 }

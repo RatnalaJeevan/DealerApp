@@ -10,9 +10,8 @@
     <RelativeLayout
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginTop="-10dp"
-        android:paddingBottom="30dp"
         android:background="@color/text_color1"
         >
 
@@ -37,15 +36,15 @@
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_go_back"
+            android:layout_toRightOf="@+id/rl_go_back"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:gravity="end"
             android:fontFamily="@font/regular"
-            android:text="You are adding a\nnew car..."
+            android:text="You are adding a new car..."
             android:textColor="@color/textcolour"
-            android:textSize="25dp">
+            android:textSize="16dp">
 
         </TextView>
     </RelativeLayout>
@@ -1029,12 +1028,8 @@
         <RelativeLayout
          
             android:id="@+id/rl_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingTop="7dp"
-            android:paddingBottom="5dp"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
@@ -1048,6 +1043,7 @@
                 android:id="@+id/tv_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:fontFamily="@font/semibold"
                 android:text="Next"
                 android:textColor="@color/white"
@@ -1116,11 +1112,13 @@
         <RelativeLayout
             android:visibility="gone"
             android:id="@+id/rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/cv_req_insp"
+            android:backgroundTint="#EEEEEE"
             android:padding="5dp">
 
             <TextView
@@ -1128,6 +1126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/semibold"
+                android:layout_centerInParent="true"
                 android:text="Back"
                 android:textColor="@color/textcolour"
                 android:textSize="15dp">
@@ -1135,6 +1134,7 @@
             </TextView>
 
             <View
+                android:visibility="gone"
                 android:layout_width="30dp"
                 android:layout_height="2dp"
                 android:layout_below="@+id/tv_back"

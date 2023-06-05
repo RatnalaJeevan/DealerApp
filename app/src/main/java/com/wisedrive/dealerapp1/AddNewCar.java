@@ -160,7 +160,7 @@ public class AddNewCar extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_car);
-
+        getWindow().setStatusBarColor(getColor(R.color.text_color1));
         init_params();
 
         capture.setOnClickListener(new View.OnClickListener() {
@@ -616,18 +616,6 @@ public class AddNewCar extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                TextView tv = (TextView) view;
-                String item = parent.getItemAtPosition(position).toString();
-//                if (position == 0) {
-//                    tv.setTextColor(Color.rgb(191, 189, 184));
-//                    tv.setTextSize(15);
-//                    tv.setTypeface(Typeface.DEFAULT);
-//                } else {
-//                    tv.setTextColor(Color.rgb(0, 0, 0));
-//                    tv.setTextSize(15);
-//                    tv.setTypeface(Typeface.DEFAULT);
-//                }
-
                 if (entered_ins_type.getSelectedItemPosition() > 0) {
                     selectedinsurancetype = insurancetype.get(position);
                 }
@@ -673,7 +661,7 @@ public class AddNewCar extends AppCompatActivity {
         if(SPHelper.camefrom.equals("edit"))
         {
             cameto=4;
-            heading1.setText("You are changing the \ndetails of the car");
+            heading1.setText("You are changing the details of the car");
             if(SPHelper.selling_price.equals("null")||SPHelper.selling_price.equals("")){
                 selected_sp.setText("");
             }else{
@@ -720,7 +708,8 @@ public class AddNewCar extends AppCompatActivity {
             }
             show_pages();
             get_veh_images_list();
-        }else{
+        }
+        else{
             if(SPHelper.vehno.equals("")){
                 selected_vehno.setFocusable(true);
             }else{
@@ -730,7 +719,7 @@ public class AddNewCar extends AppCompatActivity {
             SPHelper.insurance_provider="";
             SPHelper.insurancetype="";
             get_carbrands_list();
-            heading1.setText("You are adding a \nnew car...");
+            heading1.setText("You are adding a new car...");
             get_carimage_list();
         }
 

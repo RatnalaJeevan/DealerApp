@@ -22,30 +22,11 @@ import java.util.Date;
 
 public class Common {
 
-    public static int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
-    }
-
-    public static int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
-    }
-    public final static String TAG = "Log";
-    public final static int MY_PERMISSIONS_REQUEST_CAMERA = 100;
-    public final static int MY_PERMISSIONS_REQUEST_LOCATION = 100;
 
     public static void CallToast(Context context, String message, int duration) {
         Toast.makeText(context,message,duration).show();
     }
 
-    public final static String PhoneNumberRegix = "[0-9]{10}";
-
-
-    public final static String getCurrentDateDay() {
-        Date current = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String parsed = dateFormat.format(current);
-        return parsed;
-    }
     public static String getDateFromString(String dateStr) {
 
         if(dateStr==null||dateStr.equals("null")||dateStr.equals("")){
@@ -125,7 +106,8 @@ public class Common {
     }
 
 
-    public static String getDeviceIMEI(Context c) {
+    public static String getDeviceIMEI(Context c)
+    {
         String deviceUniqueIdentifier = null;
         try {
             TelephonyManager e = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);

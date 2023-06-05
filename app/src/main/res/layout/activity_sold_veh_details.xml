@@ -9,7 +9,7 @@
         <RelativeLayout
             android:id="@+id/rl_veh_summary"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:layout_marginBottom="-9dp"
             android:background="@drawable/cv_approved_veh"
             android:backgroundTint="@color/text_color1"
@@ -18,8 +18,8 @@
             <ImageView
 
                 android:id="@+id/car_logo"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:layout_alignParentStart="true"
@@ -43,7 +43,7 @@
                     android:fontFamily="@font/regular"
                     android:text="City Diesel 2019"
                     android:textColor="@color/textcolour"
-                    android:textSize="16dp">
+                    android:textSize="14dp">
 
                 </TextView>
 
@@ -55,7 +55,7 @@
                     android:fontFamily="@font/regular"
                     android:text="KA00AA0000"
                     android:textColor="@color/textcolour"
-                    android:textSize="16dp">
+                    android:textSize="14dp">
 
                 </TextView>
                 <TextView

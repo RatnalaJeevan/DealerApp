@@ -1,45 +1,44 @@
 package com.wisedrive.dealerapp1.pojos.pojos;
 
 public class Pojo_listed_vehicle_list {
-    String tv_veh_no,tv_veh_make_model,tv_button_text,tv_lead_count;
+    String vehicle_make,is_feature_present,vehicle_no,vehicle_model,is_image_present,vehicle_id;
+    PojoLeadCount LeadCount;
 
-    public Pojo_listed_vehicle_list(String tv_veh_no, String tv_veh_make_model,
-                                    String tv_button_text, String tv_lead_count) {
-        this.tv_veh_no = tv_veh_no;
-        this.tv_veh_make_model = tv_veh_make_model;
-        this.tv_button_text = tv_button_text;
-        this.tv_lead_count = tv_lead_count;
+    public PojoLeadCount getLeadCount() {
+        return LeadCount;
     }
 
-    public String getTv_veh_no() {
-        return tv_veh_no;
+    public String getVehicle_make() {
+        return vehicle_make;
     }
 
-    public void setTv_veh_no(String tv_veh_no) {
-        this.tv_veh_no = tv_veh_no;
+    public String getIs_feature_present() {
+        return is_feature_present;
     }
 
-    public String getTv_veh_make_model() {
-        return tv_veh_make_model;
+    public String getVehicle_no() {
+        return vehicle_no;
     }
 
-    public void setTv_veh_make_model(String tv_veh_make_model) {
-        this.tv_veh_make_model = tv_veh_make_model;
+    public String getVehicle_model() {
+        return vehicle_model;
     }
 
-    public String getTv_button_text() {
-        return tv_button_text;
+    public String getIs_image_present() {
+        return is_image_present;
     }
 
-    public void setTv_button_text(String tv_button_text) {
-        this.tv_button_text = tv_button_text;
+    public String getVehicle_id() {
+        return vehicle_id;
     }
 
-    public String getTv_lead_count() {
-        return tv_lead_count;
+    public class PojoLeadCount{
+        String count;
+
+        public String getCount() {
+            return count;
+        }
     }
 
-    public void setTv_lead_count(String tv_lead_count) {
-        this.tv_lead_count = tv_lead_count;
-    }
+
 }

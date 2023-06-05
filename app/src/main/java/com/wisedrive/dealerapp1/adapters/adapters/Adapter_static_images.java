@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.wisedrive.dealerapp1.AllCarsPage;
 import com.wisedrive.dealerapp1.R;
+import com.wisedrive.dealerapp1.ShowListedImages;
 import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
 
@@ -55,18 +56,33 @@ public class Adapter_static_images extends RecyclerView.Adapter<Adapter_static_i
                 SPHelper.doc_name=list.getPart_name();
                 selectedPosition = position;
                 adapter_position=position;
-                AllCarsPage.getInstance().showPhotoDialog();
+                if( SPHelper.comingfrom.equals("app")){
+                    AllCarsPage.getInstance().showPhotoDialog();
+                }else {
+                    ShowListedImages.getInstance().showPhotoDialog();
+                }
+
             }
         });
 
+
         if (pojo_part_listArrayList.get(position).getTaken_img() == null)
         {
-            holder.text_takephoto.setVisibility(View.VISIBLE);
-            holder.car_image_position.setVisibility(View.VISIBLE);
-            holder.taken_img.setVisibility(View.GONE);
-            Glide.with(context).load(pojo_part_listArrayList.get(position).getImage()).placeholder(R.drawable.icon_noimage).into(holder.car_image_position);
+            if(!pojo_part_listArrayList.get(position).getImage().equals(""))
+            {
+                holder.taken_img.setVisibility(View.VISIBLE);
+                Glide.with(context).load(pojo_part_listArrayList.get(0).getImage()).placeholder(R.drawable.icon_noimage).into(holder.taken_img);
+                holder.text_takephoto.setVisibility(View.GONE);
+                holder.car_image_position.setVisibility(View.GONE);
+            }else {
+                holder.text_takephoto.setVisibility(View.VISIBLE);
+                holder.car_image_position.setVisibility(View.VISIBLE);
+                holder.taken_img.setVisibility(View.GONE);
+                Glide.with(context).load(pojo_part_listArrayList.get(position).getImage()).placeholder(R.drawable.icon_noimage).into(holder.car_image_position);
+            }
+        }
 
-        } else {
+        else {
             holder.taken_img.setVisibility(View.VISIBLE);
             holder.taken_img.setImageURI(pojo_part_listArrayList.get(position).getTaken_img());
             holder.text_takephoto.setVisibility(View.GONE);

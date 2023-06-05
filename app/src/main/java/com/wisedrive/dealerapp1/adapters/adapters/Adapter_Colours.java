@@ -22,9 +22,9 @@ import java.util.ArrayList;
 public class Adapter_Colours extends RecyclerView.Adapter<Adapter_Colours.MyViewHolder> {
     Context context;
     private View view;
-    ArrayList<Pojo_colours> pojoColoursArrayList;
+    ArrayList<String> pojoColoursArrayList;
 
-    public  Adapter_Colours(Context context, ArrayList<Pojo_colours> pojoColoursArrayList) {
+    public  Adapter_Colours(Context context, ArrayList<String> pojoColoursArrayList) {
         this.context = context;
         this. pojoColoursArrayList= pojoColoursArrayList;
     }
@@ -38,8 +38,8 @@ public class Adapter_Colours extends RecyclerView.Adapter<Adapter_Colours.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Pojo_colours list = pojoColoursArrayList.get(position);
-        holder.tv_color.setText(list.getTv_color());
+       // Pojo_colours list = pojoColoursArrayList.get(position);
+        holder.tv_color.setText(pojoColoursArrayList.get(position));
 
     }
     @Override
@@ -55,8 +55,6 @@ public class Adapter_Colours extends RecyclerView.Adapter<Adapter_Colours.MyView
             super(itemView);
             tv_color=itemView.findViewById(R.id.tv_color);
             rl_colour=itemView.findViewById(R.id.rl_colour);
-
-
         }
     }
 

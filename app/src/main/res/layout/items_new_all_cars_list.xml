@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="15dp">
-        <RelativeLayout
+    <RelativeLayout
             android:id="@+id/rl_cv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
-            android:paddingStart="15dp">
+            android:paddingStart="20dp"
+            android:background="@color/white">
 
             <RelativeLayout
                 android:id="@+id/rl_top"
@@ -754,7 +755,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+    <RelativeLayout
 
             android:id="@+id/rl_sold_label"
             android:layout_width="match_parent"
@@ -795,7 +796,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/forward_white">
+                android:src="@drawable/r_arr_white">
 
             </ImageView>
         </RelativeLayout>
@@ -949,14 +950,15 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_customer"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/rl_cv"
         android:layout_marginTop="-10dp"
-        android:visibility="gone"
         android:background="@drawable/view_background">
         <View
+            android:visibility="gone"
             android:id="@+id/cv"
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -964,15 +966,17 @@
             android:layout_centerInParent="true"/>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_toLeftOf="@+id/cv"
             android:layout_centerVertical="true">
 
             <ImageView
                 android:id="@+id/eye_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_toLeftOf="@+id/view_number"
                 android:src="@drawable/white_eye"
                 android:layout_marginTop="5dp"
                 android:layout_centerVertical="true"/>
@@ -982,11 +986,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Views"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/semibold"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/view_number"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"/>
 
@@ -995,7 +999,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            android:layout_toRightOf="@id/eye_icon"
+            android:layout_toLeftOf="@id/text_view"
             android:textColor="@color/white"
             android:fontFamily="@font/semibold"
             android:textSize="14dp"
@@ -1009,34 +1013,35 @@
            android:id="@+id/rl_leads"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:layout_toRightOf="@+id/cv"
-           android:layout_marginRight="30dp"
+           android:paddingLeft="20dp"
+           android:paddingRight="20dp"
            android:layout_centerVertical="true">
         <TextView
             android:id="@+id/text_lead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Leads"
+            android:text="Total Leads"
+            android:layout_toRightOf="@+id/total_leadno"
             android:fontFamily="@font/semibold"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
-            android:textSize="14dp"
+            android:textSize="15dp"
             android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@id/new_lead_no"/>
+            />
 
            <TextView
             android:id="@+id/total_leadno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-               android:fontFamily="@font/semibold"
-               android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/text_lead"
+            android:fontFamily="@font/semibold"
+            android:layout_centerVertical="true"
             android:textColor="@color/white"
             android:layout_marginRight="5dp"
-            android:textSize="14dp" />
+            android:textSize="15dp" />
 
            <ImageView
+               android:visibility="gone"
                android:id="@+id/led_image"
                android:layout_width="20dp"
                android:layout_height="20dp"
@@ -1046,14 +1051,14 @@
                android:layout_marginRight="5dp"/>
 
            <TextView
-               android:visibility="invisible"
+               android:visibility="gone"
                android:id="@+id/new_lead_no"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="(1 New)"
-               android:fontFamily="@font/semibold"
+               android:layout_alignParentRight="true"
+               android:text="1 New"
+               android:fontFamily="@font/bold"
                android:layout_centerVertical="true"
-               android:layout_alignParentEnd="true"
                android:textColor="@color/white"
                android:textSize="14dp" />
 

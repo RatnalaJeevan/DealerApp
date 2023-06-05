@@ -37,15 +37,19 @@ public class AdapterSelectPack extends RecyclerView.Adapter<AdapterSelectPack.Re
         return new RecyclerViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AdapterSelectPack.RecyclerViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.label_pack_type.setText(pojoSelectPacks.get(position).getDisplay_name());
         holder.label1.setText(position+1+".");
 
-        holder.pending_packs.setText(pojoSelectPacks.get(position).getNo_of_warranties_left());
-        holder.paid_date.setText(pojoSelectPacks.get(position).getPayment_date());
-        holder.exp_date.setText(pojoSelectPacks.get(position).getValid_days()+"\tdays");
+        holder.label_pending.setText(pojoSelectPacks.get(position).getNo_of_warranties_left()+" pending");
+//        holder.paid_date.setText(pojoSelectPacks.get(position).getPayment_date());
+        //holder.exp_date.setText(pojoSelectPacks.get(position).getValid_days()+"\tdays");
+        holder.exp_date.setText(Common.getDateFromString(pojoSelectPacks.get(position).getValid_to_date()));
         holder.sub_pack_name.setText("("+pojoSelectPacks.get(position).getSub_package_name()+")");
+
+
 //        for(int i=0;i<pojoSelectPacks.size();i++){
 //            int j=i+1;
 //            holder.label1.setText(j+".");
@@ -63,7 +67,8 @@ public class AdapterSelectPack extends RecyclerView.Adapter<AdapterSelectPack.Re
 
                 SPHelper.selected_pack_id=pojoSelectPacks.get(position).getPackage_id();
                 SPHelper.dpp_id=pojoSelectPacks.get(position).getDpp_id();
-                for (int i=0;i<pojoSelectPacks.size();i++) {
+                for (int i=0;i<pojoSelectPacks.size();i++)
+                {
                     if (i == position) {
                         pojoSelectPacks.get(i).setIsSelected("y");
 
@@ -85,7 +90,7 @@ public class AdapterSelectPack extends RecyclerView.Adapter<AdapterSelectPack.Re
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView label1,label_pack_type,pending_packs,paid_date,exp_date,sub_pack_name;
+        TextView label1,label_pack_type,pending_packs,paid_date,exp_date,sub_pack_name,label_pending;
         RelativeLayout rl_1st;
         ImageView selected;
         public RecyclerViewHolder(@NonNull View itemView) {
@@ -94,10 +99,9 @@ public class AdapterSelectPack extends RecyclerView.Adapter<AdapterSelectPack.Re
             label_pack_type=itemView.findViewById(R.id.label_pack_type);
             rl_1st=itemView.findViewById(R.id.rl_1st);
             selected=itemView.findViewById(R.id.selected);
-            pending_packs=itemView.findViewById(R.id.pending_packs);
-            paid_date=itemView.findViewById(R.id.paid_date);
             exp_date=itemView.findViewById(R.id.exp_date);
             sub_pack_name=itemView.findViewById(R.id.sub_pack_name);
+            label_pending=itemView.findViewById(R.id.label_pending);
         }
     }
 }

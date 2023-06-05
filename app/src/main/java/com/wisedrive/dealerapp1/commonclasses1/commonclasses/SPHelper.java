@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.collection.ArraySet;
 
 import com.google.gson.JsonArray;
+import com.wisedrive.dealerapp1.pojos.pojos.Feature;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoAllCarBrands;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoNewVehImgs;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoOfferarray;
@@ -13,6 +14,7 @@ import com.wisedrive.dealerapp1.pojos.pojos.PojoPackageDetails;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSample;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoSelectPack;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_part_list;
+import com.wisedrive.dealerapp1.pojos.pojos.Pojo_vehicle_status_list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,7 @@ import java.util.List;
 public class SPHelper {
 
     public static SharedPreferences prefs;
-    public static String comingfromhome="";
     public static String camefrom="";
-    public static ArrayList<PojoPackageDetails> packageDetails;
-    public static String main_packid="";
     public static String dealerid="dealerid";
     public static String dealername="dealername";
     public static String dealerno="dealerno";
@@ -35,9 +34,6 @@ public class SPHelper {
     public static String comet_authkey="comet_authkey";
     public static String comet_region="comet_region";
     public static String comet_appid="comet_appid";
-    public static String content2="";
-    public static String content1="";
-    public static String selected_repairid = "";
     public static String carbrandid="";
     public static String carmodelid="";
     public static String manufacture_year="";
@@ -45,35 +41,23 @@ public class SPHelper {
     public static String fueltype="";
     public static String model_name="";
     public static String brandlogo="";
-    public static String activationcode="";
     public static String vehid="";
     public static String selected_brandid="";
-    public static ArrayList<PojoAllCarBrands> allbrandlogos;
     public static String kmsdriven="";
     public static String vehno="";
     public static String veh_color="";
     public static String no_owners="";
     public static String veh_ispublic="";
-    public static String selected_ispublic="";
-    public static String is_insurance_update="";
     public static String insurance_provider="";
-    public static String insurance_status="";
     public static String insurancetype="";
     public static String tnc="";
     public static String pp="";
     public static String comingfrom="";
     public static String selling_price="";
     public static String inspectionreport="";
-    public static String userid="";
     public static double finalamount=0;
-    public static String todealerid="";
-    public static String to_userid="";
-    public static String payment_link="";
+
     public static String claim_warranty="";
-    public static String service_type_id="";
-    public static String main_package_id="";
-    public static String sub_package_id="";
-    public static String ischat_login="n";
     public static String goneto="";
     public static String ins_doc_image="";
     public static String rb_doc_image="";
@@ -82,11 +66,8 @@ public class SPHelper {
     public static String af_doc_image="";
     public static String doc_image="";
     public static String doc_name="";
-    public static String inspection_type="";
-    public static String insp_status="";
     public static String cool_no_ofdays="";
     public static String cool_kms="";
-    public static String comments="";
     public static String req_veh_count="";
     public static String cfp_count="";
     public static String cfs_count="";
@@ -99,7 +80,6 @@ public class SPHelper {
     public static String can_skip="";
     public static String veh_fnt_img="";
     public static String insu_pol="";
-    public static ArrayList<String> selected_array;
     public static String category_id="";
     public static String exp_vehid="";
     public static String fuel_id="";
@@ -154,9 +134,7 @@ public class SPHelper {
     public static String pur_from="";
     public static String ins_exp_date="";
     public static String brand_name="";
-    public static String selected_cat_id="";
     public static String selected_offer_id="";
-    public  static  ArrayList<PojoOfferarray> pojoOfferarray=new ArrayList();
     public  static  ArrayList<PojoAllCarBrands> pojoAllCarBrands=new ArrayList();
     public static ArrayList<PojoSample> selected_insp_statuses=new ArrayList<>();
     public static String gateway_id="";
@@ -165,11 +143,21 @@ public class SPHelper {
     public static String fragment_is="";
     public static String module_id="";
     public static String part_id="";
-    public static String leadcount="";
     public static String veh_sel="";
     public static String it_is="";
     public static ArrayList<Pojo_part_list> part_list=new ArrayList<>();
     public static String is_with_pack="";
+    public static ArrayList<Pojo_vehicle_status_list> matc_cars=new ArrayList<>();
+    public static ArrayList<String> sel_clr_list=new ArrayList<>();
+    public static String is_img_present="";
+    public static String is_feature_present="";
+    public static String old_veh_id="";
+    public static String ol_veh_no="";
+    public static String is_swap="";
+    public static ArrayList<Feature> sel_fea=new ArrayList<>();
+    public static ArrayList<String> module_ids=new ArrayList<>();
+    public static ArrayList<String> part_ids=new ArrayList<>();
+    public static String is_d_loc="";
 
     private  static String spName="DealerApp1";
 

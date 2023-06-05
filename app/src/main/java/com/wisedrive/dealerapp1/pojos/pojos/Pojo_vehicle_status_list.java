@@ -1,35 +1,46 @@
 package com.wisedrive.dealerapp1.pojos.pojos;
 
 public class Pojo_vehicle_status_list {
-    String tv_veh_no,tv_veh_status,tv_button_text;
+    String vehicle_no,inspection_status,vehicle_model,vehicle_make,vehicle_id,is_image_present,is_feature_present;
+    String id,is_dealer_active,listingCount;
 
-    public Pojo_vehicle_status_list(String tv_veh_no, String tv_veh_status, String tv_button_text) {
-        this.tv_veh_no = tv_veh_no;
-        this.tv_veh_status = tv_veh_status;
-        this.tv_button_text = tv_button_text;
+    public String getId() {
+        return id;
     }
 
-    public String getTv_veh_no() {
-        return tv_veh_no;
+    public String getListingCount() {
+        return listingCount;
     }
 
-    public void setTv_veh_no(String tv_veh_no) {
-        this.tv_veh_no = tv_veh_no;
+    public String getIs_dealer_active() {
+        return is_dealer_active;
     }
 
-    public String getTv_veh_status() {
-        return tv_veh_status;
+    public String getVehicle_id() {
+        return vehicle_id;
     }
 
-    public void setTv_veh_status(String tv_veh_status) {
-        this.tv_veh_status = tv_veh_status;
+    public String getVehicle_no() {
+        return vehicle_no;
     }
 
-    public String getTv_button_text() {
-        return tv_button_text;
+    public String getInspection_status() {
+        return inspection_status;
     }
 
-    public void setTv_button_text(String tv_button_text) {
-        this.tv_button_text = tv_button_text;
+    public String getVehicle_model() {
+        return vehicle_model;
+    }
+
+    public String getVehicle_make() {
+        return vehicle_make;
+    }
+
+    public String getIs_image_present() {
+        return is_image_present;
+    }
+
+    public String getIs_feature_present() {
+        return is_feature_present;
     }
 }

@@ -110,6 +110,7 @@ public class BuyBackGuarantee extends AppCompatActivity implements CFCheckoutRes
             @Override
             public void onClick(View view) {
                 SPHelper.goneto="bbg";
+                SPHelper.is_d_loc="n";
                 SPHelper.vehno=entered_vehno.getText().toString();
                 Intent intent=new Intent(BuyBackGuarantee.this,RequestVehInspection.class);
                 startActivity(intent);

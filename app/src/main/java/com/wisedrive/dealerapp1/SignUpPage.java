@@ -97,7 +97,7 @@ public class SignUpPage extends AppCompatActivity
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
     private RequestPermissionHandler mRequestPermissionHandler;
-    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]*@"
             + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
     @SuppressLint("MissingInflatedId")
@@ -108,6 +108,7 @@ public class SignUpPage extends AppCompatActivity
         setContentView(R.layout.activity_sign_up_page);
         cityname = new ArrayList<>();
         cityid = new ArrayList<>();
+        getWindow().setStatusBarColor(getColor(R.color.white));
         AWSMobileClient.getInstance().initialize(SignUpPage.this).execute();
         credentials = new BasicAWSCredentials(SPHelper.getSPData(SignUpPage.this,SPHelper.awskey,""), SPHelper.getSPData(SignUpPage.this,SPHelper.awssecret,""));
         s3Client = new AmazonS3Client(credentials);
@@ -1063,6 +1064,9 @@ public class SignUpPage extends AppCompatActivity
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.comet_authkey, appResponse.getResponse().getCredentials().getComet_auth_key());
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.comet_region, appResponse.getResponse().getCredentials().getComet_region());
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.comet_appid, appResponse.getResponse().getCredentials().getComet_app_id());
+                                SPHelper.fragment_is="home";
+                                SPHelper.comingfrom="";
+                                SPHelper.camefrom="";
                                 Intent intent=new Intent(SignUpPage.this,MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -1133,7 +1137,9 @@ public class SignUpPage extends AppCompatActivity
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.city_id, appResponse.getResponse().getDealerInfo().getCity_id());
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.state_id, appResponse.getResponse().getDealerInfo().getState_id());
                                 SPHelper.saveSPdata(SignUpPage.this, SPHelper.pincode, appResponse.getResponse().getDealerInfo().getPincode());
-//
+                               SPHelper.camefrom="";
+                                SPHelper.comingfrom="";
+                                SPHelper.fragment_is="profile";
                                 Intent intent=new Intent(SignUpPage.this,MainActivity.class);
                                 startActivity(intent);
                                 finish();

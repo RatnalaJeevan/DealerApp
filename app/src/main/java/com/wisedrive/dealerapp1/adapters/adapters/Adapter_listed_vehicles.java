@@ -1,5 +1,6 @@
 package com.wisedrive.dealerapp1.adapters.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wisedrive.dealerapp1.MainActivity;
 import com.wisedrive.dealerapp1.R;
+import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_listed_vehicle_list;
 import com.wisedrive.dealerapp1.pojos.pojos.Pojo_vehicle_status_list;
 
@@ -35,30 +37,39 @@ public class Adapter_listed_vehicles extends RecyclerView.Adapter<Adapter_listed
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Pojo_listed_vehicle_list list = pojo_listed_vehicle_listArrayList.get(position);
-        holder.tv_veh_no.setText(list.getTv_veh_no());
-        holder.tv_veh_make_model.setText(list.getTv_veh_make_model());
-        holder.tv_button_text.setText(list.getTv_button_text());
-        holder.tv_lead_count.setText(list.getTv_lead_count());
+        holder.tv_veh_no.setText(list.getVehicle_no());
+        holder.tv_veh_make_model.setText(list.getVehicle_make()+"-"+list.getVehicle_model());
+       //holder.tv_button_text.setText(list.get());
 
-        if(position==0){
+        if(list.getLeadCount().getCount().equals("0"))
+        {
             holder.rl_list_button.setVisibility(View.VISIBLE);
-            holder. tv_lead_count.setVisibility(View.INVISIBLE);
+            holder.tv_lead_count.setVisibility(View.INVISIBLE);
+        }else {
+            holder.rl_list_button.setVisibility(View.INVISIBLE);
+            holder.tv_lead_count.setVisibility(View.VISIBLE);
+            holder.tv_lead_count.setText(list.getLeadCount().getCount()+" Leads");
         }
 
-        holder.rl_list_button.setOnClickListener(new View.OnClickListener() {
+        holder.rl_list_button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                MainActivity.getInstance(). rl_trans_alert_pop_up.setVisibility(View.VISIBLE);
+            public void onClick(View view)
+            {
+                SPHelper.old_veh_id=list.getVehicle_id();
+                SPHelper.ol_veh_no=list.getVehicle_no();
+                MainActivity.getInstance().tv_swap_content.setText("Are you sure you want to remove "+SPHelper.ol_veh_no
+                +" from warranty portal and add "+SPHelper.vehno);
+                MainActivity.getInstance().rl_trans_alert_pop_up.setVisibility(View.VISIBLE);
                 MainActivity.getInstance().rl_alert.setVisibility(View.VISIBLE);
                 MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
                 MainActivity.getInstance().rl_transperant_listed_cars.setVisibility(View.GONE);
-
             }
         });
-
 
     }
     @Override

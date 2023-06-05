@@ -1,9 +1,16 @@
 package com.wisedrive.dealerapp1.pojos.pojos;
 
+import java.util.ArrayList;
+
 public class Pojo_Module_list {
     String module_id,module_name;
     public boolean isVisible;
+    String is_selected="n";
+    ArrayList<Pojo_part_list>  PartDetails;
 
+    public ArrayList<Pojo_part_list> getPartDetails() {
+        return PartDetails;
+    }
 
     public boolean isVisible() {
         return isVisible;

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowListedImages">
+
+
+    <RelativeLayout
+            android:id="@+id/rl_add_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rl_feature_pop_up"
+           >
+
+            <RelativeLayout
+                android:id="@+id/rl_car_imgs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/text_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Car Images"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/medium"/>
+                <ImageView
+                    android:id="@+id/image_popup_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wrong"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentEnd="true"/>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/image_popup_cross">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_car_imagelist"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_centerHorizontal="true">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/add_feature_button"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="15dp"
+                            android:text="ADD IMAGE"
+                            android:textSize="14dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_below="@id/rv_car_imagelist"
+                            android:textColor="@color/white"
+                            android:background="@drawable/add_features"/>
+                    </RelativeLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:background="@color/black">
+
+    </ProgressBar>
+</RelativeLayout>

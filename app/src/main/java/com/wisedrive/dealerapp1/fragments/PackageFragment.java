@@ -86,7 +86,7 @@ public class PackageFragment extends Fragment implements CFCheckoutResponseCallb
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_package, container, false);
-
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.white));
         activity=getActivity();
         instance=this;
         indicator1= rootView.findViewById(R.id.indicator1);

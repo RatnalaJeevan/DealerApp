@@ -83,7 +83,7 @@ public class Activate extends BottomSheetDialogFragment {
     public int general_count,cashback_count,add_on_count;
     String offer_paymemnt_id="",offer_id="";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
-    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]*@"
             + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
     public int fromWhere=0;
     private ProgressDialog progressDialog;
@@ -127,6 +127,7 @@ public class Activate extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_activate,container, false);
         activity=getActivity();
+
         ///act warranty
         init_params(v);
 
@@ -134,7 +135,7 @@ public class Activate extends BottomSheetDialogFragment {
         instance=this;
 
         if(SPHelper.customer_id==null||SPHelper.customer_id.equals("")){
-            app_stamp.setImageResource(R.drawable.approved_stamp);
+            app_stamp.setImageResource(R.drawable.app_bla);
         }
         else {
             entered_name.setText(SPHelper.customer_name);

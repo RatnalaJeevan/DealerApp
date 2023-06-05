@@ -55,8 +55,8 @@ public class RequestVehInspection extends AppCompatActivity
     DatePickerDialog date_picker;
     public RelativeLayout rl_req_insp,rl_presale,rl_postsale,rl_presale_details,rl_show_popup,rl_transparent,rl_check_status,
             rl_postsale_details,rl_location_details,rl_insp_cust_details,rl_submit_insp,rl_add_car,rl_label,rl_go_back,
-            rl_veh_list;
-    TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date,label_no_results;
+            rl_veh_list,rl_c;
+    TextView tv_presale,tv_postsale,selected_veh_no,postsale_insp_date,label_no_results,heading1;
     View v_postsale,v_presale;
     ImageView iv_cust_seleted,iv_dealer_selected,back,cancel_veh_info,close;
     int req_page=1;
@@ -70,11 +70,14 @@ public class RequestVehInspection extends AppCompatActivity
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modal_bottom_sheet);
         SPHelper.it_is="req";
         //req insp
+        getWindow().setStatusBarColor(getColor(R.color.text_color1));
+        heading1=findViewById(R.id.heading1);
         rv_search_results=findViewById(R.id.rv_search_results);
         label_no_results=findViewById(R.id.label_no_results);
         rl_veh_list=findViewById(R.id.rl_veh_list);
@@ -112,12 +115,22 @@ public class RequestVehInspection extends AppCompatActivity
         rl_add_car=findViewById(R.id.rl_add_car);
         rl_show_popup=findViewById(R.id.rl_show_popup);
         rl_transparent=findViewById(R.id.rl_transparent);
+        rl_c=findViewById(R.id.rl_c);
+        if(SPHelper.is_d_loc.equals("n")){
+            rl_c.setVisibility(View.VISIBLE);
+        }else {
+            rl_c.setVisibility(View.GONE);
+        }
 
-
+        if(SPHelper.vehno.equals("")){
+            heading1.setText("Request for inspection");
+        }else {
+            heading1.setText("Inspecting car no");
+        }
         if(SPHelper.goneto.equals("repair")||SPHelper.goneto.equals("expired"))
         {
-            selected_vehno.setText(SPHelper.vehno);
-            selected_veh_no.setText(SPHelper.vehno);
+            selected_vehno.setText(SPHelper.vehno.toUpperCase());
+            selected_veh_no.setText(SPHelper.vehno.toUpperCase());
             req_page=3;
             inspection_type=SPHelper.goneto;
             show_req_insp();
@@ -125,8 +138,8 @@ public class RequestVehInspection extends AppCompatActivity
             rl_postsale.setEnabled(false);
 
         }else if(SPHelper.goneto.equals("act")||SPHelper.goneto.equals("bbg")){
-            selected_vehno.setText(SPHelper.vehno);
-            selected_veh_no.setText(SPHelper.vehno);
+            selected_vehno.setText(SPHelper.vehno.toUpperCase());
+            selected_veh_no.setText(SPHelper.vehno.toUpperCase());
             req_page=3;
             inspection_type="Postsale";
             show_req_insp();
@@ -189,6 +202,7 @@ public class RequestVehInspection extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 req_page=1;
+                heading1.setText("Request for inspection");
                 selected_veh_no.setText("");
                 inspection_type="Presale";
                 locationType="";
@@ -204,6 +218,7 @@ public class RequestVehInspection extends AppCompatActivity
             public void onClick(View view) {
                 req_page=2;
                 et_no_cars.setText("");
+                heading1.setText("Request for inspection");
                 selected_insp_date.setText("");
                 serverdate="";
                 postsale_insp_date.setText("");
@@ -372,33 +387,6 @@ public class RequestVehInspection extends AppCompatActivity
         });
     }
 
-    private void select_vehno()
-    {
-        selected_vehno.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-                if(selected_vehno.getText().toString().trim().length()>=6)
-                {
-
-                }else{
-
-                }
-            }
-        });
-
-    }
     public void search()
     {
         selected_vehno.addTextChangedListener(new TextWatcher() {
@@ -514,8 +502,6 @@ public class RequestVehInspection extends AppCompatActivity
         }
     }
 
-
-
     public  void select_date(){
         final Calendar cldr = Calendar.getInstance();
         int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -600,8 +586,10 @@ public class RequestVehInspection extends AppCompatActivity
                         String response_code = appResponse.getResponseType();
                         if (response.body()!=null)
                         {
-                            if (response_code.equals("200")) {
+                            if (response_code.equals("200"))
+                            {
                                 //progress_bar.setVisibility(View.GONE);
+                                heading1.setText("Inspecting car no");
                                 String errormsg=appResponse.getResponse().getInspectionEligibility().getError_msg();
                                 String veh_exists=appResponse.getResponse().getInspectionEligibility().getIs_vehicle_exists();
                                 String can_request_for_inspection=appResponse.getResponse().getInspectionEligibility().getCan_request_for_inspection();
@@ -717,4 +705,5 @@ public class RequestVehInspection extends AppCompatActivity
             inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
         }
     }
+
 }

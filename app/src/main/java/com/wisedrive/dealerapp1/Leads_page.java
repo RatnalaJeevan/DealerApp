@@ -49,7 +49,7 @@ public class Leads_page extends AppCompatActivity {
         idPBLoading=findViewById(R.id.idPBLoading);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         instance=this;
-
+        getWindow().setStatusBarColor(getColor(R.color.background_page));
         rl_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +58,7 @@ public class Leads_page extends AppCompatActivity {
         });
 
         get_leads();
-        adapter_leads_page = new Adapter_leads_page(this,pojo_leads_pageArrayList);
+        adapter_leads_page = new Adapter_leads_page(this);
         GridLayoutManager layoutManager1 = new GridLayoutManager(Leads_page.this, 1);
         rv_leads_list.setLayoutManager(layoutManager1);
         rv_leads_list.setAdapter(adapter_leads_page);

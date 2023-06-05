@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -270,7 +271,7 @@
                     android:layout_below="@+id/label_fuel"
                     android:fontFamily="@font/semibold"
                     android:text="Diesel"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/textcolour"
                     android:textSize="14dp">
                 </TextView>
@@ -374,14 +375,11 @@
             android:layout_marginEnd="20dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/forward_white">
+            android:src="@drawable/r_arr_white">
 
         </ImageView>
     </RelativeLayout>
 
     </RelativeLayout>
 
-
-
-
-        </RelativeLayout>
+</RelativeLayout>

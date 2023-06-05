@@ -19,15 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
-        android:paddingBottom="10dp"
         android:background="@drawable/cv_req_insp"
         android:backgroundTint="@color/bg_location">
 
         <RelativeLayout
             android:id="@+id/rl_go_back"
             android:layout_width="70dp"
-            android:layout_marginTop="15dp"
-            android:layout_height="50dp">
+            android:layout_centerVertical="true"
+            android:layout_height="40dp">
 
 
             <ImageView
@@ -45,16 +44,15 @@
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_go_back"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/rl_go_back"
+
+            android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/regular"
-            android:layout_centerHorizontal="true"
-            android:text="Check vehicle status before activating warranty"
+            android:text="Check vehicle status"
             android:textColor="@color/textcolour"
-            android:textSize="28dp">
+            android:textSize="18dp">
 
         </TextView>
     </RelativeLayout>

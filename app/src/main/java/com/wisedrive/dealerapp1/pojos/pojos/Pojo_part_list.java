@@ -4,12 +4,21 @@ import android.net.Uri;
 
 public class Pojo_part_list {
     String sample_image,image,module_id,part_id,part_name,is_feature_present;
+    String is_selected="n";
 
     private Uri taken_img = null;
     private String filename = "";
 
     public Uri getTaken_img() {
         return taken_img;
+    }
+
+    public String getIs_selected() {
+        return is_selected;
+    }
+
+    public void setIs_selected(String is_selected) {
+        this.is_selected = is_selected;
     }
 
     public void setTaken_img(Uri taken_img) {

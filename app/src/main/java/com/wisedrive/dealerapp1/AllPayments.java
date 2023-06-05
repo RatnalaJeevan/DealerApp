@@ -55,6 +55,7 @@ public class AllPayments extends AppCompatActivity {
         rv_all_payments=findViewById(R.id.rv_all_payments);
         go_back_home=findViewById(R.id.go_back_home);
         idPBLoading=findViewById(R.id.idPBLoading);
+        getWindow().setStatusBarColor(getColor(R.color.white));
         go_back_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -29,15 +29,11 @@ import retrofit2.Response;
 
 public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyViewHolder> {
     Context context;
-    View view;
     ArrayList<Pojo_Module_list> pojo_module_listArrayList;
-    private DealerApis apiInterface;
-    RelativeLayout rl_1;
-   public ArrayList<Pojo_part_list> pojo_part_listArrayList;
+   public ArrayList<Pojo_part_list> pojo_part_listArrayList=new ArrayList<>();
     public Adapter_features(Context context, ArrayList<Pojo_Module_list> pojo_module_listArrayList) {
         this.context = context;
         this.pojo_module_listArrayList = pojo_module_listArrayList;
-        apiInterface = ApiClient.getClient().create(DealerApis.class);
     }
 
     @NonNull
@@ -51,14 +47,11 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
     public void onBindViewHolder(@NonNull Adapter_features.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Pojo_Module_list list = pojo_module_listArrayList.get(position);
         list.setIsSelected("n"); // Add this line to set the isSelected value
-
-
         holder.text_feature.setText(list.getModule_name());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                String module_id = pojo_module_listArrayList.get(position).getModule_id();
-
                 if (list.isVisible())
                 {
                     holder.rl_1.setVisibility(View.GONE);
@@ -71,7 +64,7 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
                     holder.down_arrow.setVisibility(View.INVISIBLE);
                     holder.up_arrow_button.setVisibility(View.VISIBLE);
 
-                    feature_questions(holder.rv_feature_list1, module_id);
+                    inside_feature_list(holder.rv_feature_list1,position);
                 }
 
                 System.out.println("isvisible"+list.isVisible);
@@ -100,33 +93,16 @@ public class Adapter_features extends RecyclerView.Adapter<Adapter_features.MyVi
         }
     }
 
-    private void feature_questions(RecyclerView recyclerView, String module_id)
+
+    private void inside_feature_list(RecyclerView recyclerView, int sel_pos)
     {
-        Call<AppResponse> call = apiInterface.part_list(SPHelper.vehid, module_id);
-        call.enqueue(new Callback<AppResponse>() {
-            @Override
-            public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
-                AppResponse appResponse = response.body();
-                if (appResponse != null) {
-                    String response_code = appResponse.getResponseType();
-                    if (response_code.equals("200")) {
-                         pojo_part_listArrayList=new ArrayList<>();
-                         pojo_part_listArrayList = appResponse.getResponse().getPartDetails();
+        pojo_part_listArrayList=new ArrayList<>();
+        pojo_part_listArrayList = pojo_module_listArrayList.get(sel_pos).getPartDetails();
 
-                         //SPHelper.part_list=pojo_part_listArrayList;
-                        Adapter_feature_list adapter_feature_list = new Adapter_feature_list(context, pojo_part_listArrayList);
-                        GridLayoutManager layoutManager1 = new GridLayoutManager(context, 1);
-                        recyclerView.setLayoutManager(layoutManager1);
-                        recyclerView.setAdapter(adapter_feature_list);
-                        adapter_feature_list.notifyDataSetChanged();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AppResponse> call, Throwable t) {
-                // Handle failure
-            }
-        });
+        Adapter_feature_list adapter_feature_list = new Adapter_feature_list(context, pojo_part_listArrayList);
+        GridLayoutManager layoutManager1 = new GridLayoutManager(context, 1);
+        recyclerView.setLayoutManager(layoutManager1);
+        recyclerView.setAdapter(adapter_feature_list);
+        adapter_feature_list.notifyDataSetChanged();
     }
 }

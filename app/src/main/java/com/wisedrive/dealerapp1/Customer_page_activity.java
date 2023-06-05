@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.wisedrive.dealerapp1.fragments.CustomerFragment;
 import com.wisedrive.dealerapp1.fragments.ProfileFragment;
@@ -15,6 +16,7 @@ import com.wisedrive.dealerapp1.fragments.ProfileFragment;
 public class Customer_page_activity extends AppCompatActivity {
    public ImageView iv_search, iv_filter,back;
    Context context;
+   RelativeLayout rl_back;
     public static Customer_page_activity instance;
 
 
@@ -23,8 +25,10 @@ public class Customer_page_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_page);
+        getWindow().setStatusBarColor(getColor(R.color.background_page));
         iv_search=findViewById(R.id.iv_search);
         iv_filter=findViewById(R.id.iv_filter);
+        rl_back=findViewById(R.id.rl_back);
         back=findViewById(R.id.back);
         instance = this;
 
@@ -39,8 +43,12 @@ public class Customer_page_activity extends AppCompatActivity {
             public void onClick(View view) {
 //                fragment=new CustomerFragment();
 //                fragment.search();
+                if(CustomerFragment.getInstance().rl_search.getVisibility()==View.VISIBLE){
+                    CustomerFragment.getInstance().rl_search.setVisibility(View.GONE);
+                }else {
+                    CustomerFragment.getInstance().rl_search.setVisibility(View.VISIBLE);
+                }
 
-                CustomerFragment.getInstance().rl_search.setVisibility(View.VISIBLE);
             }
         });
 

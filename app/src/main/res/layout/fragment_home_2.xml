@@ -44,79 +44,127 @@
             <RelativeLayout
                 android:id="@+id/rl_live_cars"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:layout_below="@id/rel_activation_pending_no"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
-                android:padding="10dp"
                 android:background="@drawable/cv_new_car"
-                android:backgroundTint="@color/bg_location">
-
-                <TextView
-                    android:id="@+id/tv_live_cars"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/semibold"
-                    android:text="20 Cars Live"
-                    android:textColor="@color/textcolour"
-                    android:textSize="19dp" />
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/bar_chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_below="@id/tv_live_cars"
-                    android:layout_margin="10dp"
-                    android:visibility="gone"/>
-
+                android:backgroundTint="@color/green_light">
 
 
                 <RelativeLayout
+                    android:id="@+id/rl_no_veh"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/bar_chart"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:layout_toLeftOf="@id/rl_2"
+                    android:layout_marginTop="5dp">
 
                 <RelativeLayout
                     android:id="@+id/rl_image"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="10dp">
+                    android:visibility="gone"
+                    android:layout_centerVertical="true">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/customer"
-                        android:layout_centerInParent="true"/>
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/customer" />
                 </RelativeLayout>
+
                     <TextView
-                        android:id="@+id/tv_newcount"
+                        android:id="@+id/tv_new_leads"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4 New"
-                        android:fontFamily="@font/bold"
-                        android:textSize="15dp"
-                        android:visibility="gone"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/textcolour"
-                        android:layout_toRightOf="@id/rl_image"/>
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="14dp"
+                        android:fontFamily="@font/semibold"
+                        android:text="2 New Leads"
+                        android:textColor="@color/white"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:id="@+id/label_for_cars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/tv_new_leads"
+                        android:text="For 2 cars"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/medium"
+                        android:layout_marginLeft="5dp"/>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/text_new_leads"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:text="@string/text_to_style"
-                    android:textColor="@color/textcolour"
+                    android:textColor="@color/white"
                     android:textSize="15dp"
-                    android:fontFamily="@font/medium"
+                    android:fontFamily="@font/semibold"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/tv_newcount"/>
+                    android:layout_toRightOf="@id/rl_image"/>
             </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@color/black"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:id="@+id/tv_live_cars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="14dp"
+                        android:fontFamily="@font/semibold"
+                        android:text="20 Cars"
+                        android:textColor="@color/white"
+                        android:textSize="19dp" />
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:visibility="gone"
+                        android:id="@+id/iv_anim"
+                        android:layout_width="70dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tv_live_cars"
+                        android:src="@drawable/live_gif_image"
+                        >
+
+                    </pl.droidsonroids.gif.GifImageView>
+
+                    <TextView
+                        android:id="@+id/label_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/tv_live_cars"
+                        android:text="Listed in portal"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/medium"
+                        android:layout_marginLeft="5dp"/>
+                </RelativeLayout>
+                <View
+                    android:visibility="gone"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_toLeftOf="@+id/rl_2">
+
+                </View>
             </RelativeLayout>
 
             <TextView
@@ -146,7 +194,7 @@
                     android:id="@+id/rl_all_cars"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:padding="7dp"
                     android:background="@drawable/cv_new_car"
                     android:backgroundTint="@color/bg_location">
@@ -217,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="@color/v_light_green"                    android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/bg_location"                    android:layout_marginTop="15dp"
                     android:padding="7dp">
 
                     <TextView
@@ -231,7 +279,7 @@
                         android:gravity="center"
                         android:paddingTop="3dp"
                         android:text="00"
-                        android:textColor="@color/ab_green"
+                        android:textColor="@color/black"
                         android:textSize="24dp">
 
                     </TextView>
@@ -273,7 +321,7 @@
                             android:layout_below="@id/tv_approved_cars"
                             android:fontFamily="@font/medium"
                             android:text="Cars approved for warranty which can be activated with warranty. "
-                            android:textColor="@color/ab_green"
+                            android:textColor="@color/black"
                             android:textSize="14dp"
                             android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
@@ -286,7 +334,7 @@
                     android:layout_marginTop="15dp"
                     android:padding="7dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="#ffcccb">
+                    android:backgroundTint="@color/bg_location">
 
                     <TextView
                         android:id="@+id/tv_count_exp_insp"
@@ -299,7 +347,7 @@
                         android:text="00"
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
-                        android:textColor="@color/light_red"
+                        android:textColor="@color/black"
                         android:textSize="24dp">
                     </TextView>
 
@@ -316,7 +364,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerInParent="true"
-                            android:src="@drawable/expired_icon" />
+                            android:src="@drawable/exp_insp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -332,7 +380,7 @@
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/bold"
                             android:text="Expired"
-                            android:textColor="@color/light_red"
+                            android:textColor="#bf7709"
                             android:textSize="16dp">
                         </TextView>
                         <TextView
@@ -341,12 +389,13 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_expired_cars"
                             android:fontFamily="@font/medium"
-                            android:text="These cars are inspected but expired as the inspection has crossed 45 days. These cars cannot be activated with Warranty unless reinspected."
-                            android:textColor="@color/light_red"
+                            android:text="These cars are inspected but expired as the inspection has crossed 45 days."
+                            android:textColor="@color/black"
                             android:textSize="14dp"
                             android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/rl_repair_req"
                     android:layout_width="match_parent"
@@ -354,7 +403,7 @@
                     android:layout_marginTop="15dp"
                     android:padding="7dp"
                     android:background="@drawable/cv_new_car"
-                    android:backgroundTint="#ffcccb">
+                    android:backgroundTint="@color/bg_location">
 
                     <TextView
                         android:id="@+id/tv_count_rep_req"
@@ -367,7 +416,7 @@
                         android:text="00"
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="20dp"
-                        android:textColor="@color/light_red"
+                        android:textColor="@color/black"
                         android:textSize="24dp">
                      </TextView>
 
@@ -408,12 +457,13 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_repair_request_cars"
                             android:fontFamily="@font/medium"
-                            android:text="These cars are requested to be repaired. once repaired you can request for reinspection. These cars cannot be activated with Warranty unless reinspected."
-                            android:textColor="@color/light_red"
+                            android:text="These cars are requested to be repaired. once repaired you can request for reinspection."
+                            android:textColor="@color/black"
                             android:textSize="14dp"
                             android:layout_marginBottom="10dp"/>
                     </RelativeLayout>
                 </RelativeLayout>
+
             </LinearLayout>
 
             <RelativeLayout
