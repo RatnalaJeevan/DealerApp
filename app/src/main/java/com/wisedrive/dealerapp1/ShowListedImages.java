@@ -199,6 +199,7 @@ public class ShowListedImages extends BottomSheetDialogFragment
                                 final_imgs = new ArrayList<>();
                                 final_ids = new ArrayList<>();
                                 pojo_imagearrayArrayList = new ArrayList<>();
+                                dismiss();
                             } else if (response_code.equals("300")) {
                                 progress_bar.setVisibility(View.GONE);
                                 Toast.makeText(activity, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
@@ -277,7 +278,7 @@ public class ShowListedImages extends BottomSheetDialogFragment
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(activity,  "call camera", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity,  "call camera", Toast.LENGTH_SHORT).show();
                 it_is="c";
                 if (shouldShowCameraPermissionRationale())
                 {
@@ -296,7 +297,6 @@ public class ShowListedImages extends BottomSheetDialogFragment
                             .show();
                 } else {
                     // Request the camera permission directly
-                    Toast.makeText(activity,  "req camera", Toast.LENGTH_SHORT).show();
                     requestCameraPermission();
                 }
                 dialog.cancel();
@@ -314,12 +314,7 @@ public class ShowListedImages extends BottomSheetDialogFragment
         // Request the permissions
         requestPermissions(permissions, selectedObject);
     }
-//    private void requestCameraPermission()
-//    {
-//        ActivityCompat.requestPermissions(activity,
-//                new String[]{Manifest.permission.CAMERA},
-//                selectedObject);
-//    }
+
 
     public void open_Camera()
     {

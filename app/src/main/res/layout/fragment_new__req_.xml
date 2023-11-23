@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_no_cars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:text="No requiremts to show"
+            android:textColor="@color/black"
+            android:textSize="18dp">
+        </TextView>
         <RelativeLayout
             android:visibility="gone"
             android:id="@+id/rl_search"
@@ -68,5 +80,7 @@
         />
 
     </RelativeLayout>
+
+
 
 </FrameLayout>

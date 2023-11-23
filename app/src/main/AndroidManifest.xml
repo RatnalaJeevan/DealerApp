@@ -25,6 +25,9 @@
         android:usesCleartextTraffic="true"
         tools:node="merge">
         <activity
+            android:name=".NewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowListedImages"
             android:exported="false">
             <meta-data

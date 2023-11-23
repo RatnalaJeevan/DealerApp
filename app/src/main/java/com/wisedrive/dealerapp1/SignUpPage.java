@@ -83,8 +83,8 @@ public class SignUpPage extends AppCompatActivity
     String otps;
     Integer textlength1,textlength2,textlength3;
     EditText otp1,otp2,otp3,otp4;
-    EditText selected_dealership_name,selected_dealername,selected_phoneno,selected_adres,selected_pincode,entered_location,
-            selected_mail;
+    EditText selected_dealership_name,selected_dealername,selected_phoneno,
+            selected_adres,selected_pincode,entered_location,selected_mail;
     TextView selected_city,selected_state,label_create;
     LinearLayout otp_ll;
     public String selectedcityid="",selectedstateid="",selectedcityname="";
@@ -97,8 +97,7 @@ public class SignUpPage extends AppCompatActivity
     private AmazonS3Client s3Client;
     private BasicAWSCredentials credentials;
     private RequestPermissionHandler mRequestPermissionHandler;
-    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]*@"
-            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    String emailpattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
     @SuppressLint("MissingInflatedId")
     @Override
@@ -177,7 +176,8 @@ public class SignUpPage extends AppCompatActivity
             selected_pincode.setEnabled(false);
             selected_pincode.setFocusable(false);
             label_create.setText("Edit Your\nAccount");
-        }else{
+        }
+        else{
             tv_signup.setText("SIGNUP");
             label_create.setText("Create\nAccount");
         }
@@ -563,7 +563,8 @@ public class SignUpPage extends AppCompatActivity
 
                 }
 
-            } else {
+            } else
+            {
 
                 // Camera permission denied, handle accordingly
                 Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
@@ -571,48 +572,8 @@ public class SignUpPage extends AppCompatActivity
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void getCameraPermissions( int fromWhere)
-    {
-        mRequestPermissionHandler.requestPermission(SignUpPage.this, new String[]
-                {
-                        android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, fromWhere, new RequestPermissionHandler.RequestPermissionListener() {
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
-                if (fromWhere == 1) {
-                    CallCamera();
-                } else if (fromWhere == 10) {
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    startActivityForResult(pickPhoto, 200);
-                } 
-            }
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-    }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void CallCamera() {
-        mRequestPermissionHandler.requestPermission(SignUpPage.this, new String[]{
-                android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
 
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
-                openCamera();
-            }
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -633,7 +594,8 @@ public class SignUpPage extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (it_is.equals("c") && resultCode == RESULT_OK )
@@ -1015,6 +977,7 @@ public class SignUpPage extends AppCompatActivity
             });
         }
     }
+
     public  void create_account(){
         {
             if(!Connectivity.isNetworkConnected(SignUpPage.this))

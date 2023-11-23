@@ -260,15 +260,18 @@ public class FilterPage extends AppCompatActivity {
                     is_with_pack="y";
                     is_w_o_pack="n";
                     SPHelper.is_with_pack="y";
+                    SPHelper.is_sold="y";
                 }else {
                     is_with_pack="n";
                     SPHelper.is_with_pack="";
+                    SPHelper.is_sold="";
                     is_w_o_pack="n";
                     iv_w_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_pack.setImageDrawable(null);
                 }
             }
         });
+
         rl_w_o.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -281,10 +284,12 @@ public class FilterPage extends AppCompatActivity {
                     is_w_o_pack="y";
                     is_with_pack="n";
                     SPHelper.is_with_pack="n";
+                    SPHelper.is_sold="y";
                 }else {
                     is_w_o_pack="n";
                     is_with_pack="n";
                     SPHelper.is_with_pack="";
+                    SPHelper.is_sold="";
                     iv_w_o_pack.setBackground(FilterPage.this.getDrawable(R.drawable.map_border));
                     iv_w_o_pack.setImageDrawable(null);
                 }
@@ -303,6 +308,7 @@ public class FilterPage extends AppCompatActivity {
                 SPHelper.selected_insp_status="";
                 SPHelper.selected_brandid="";
                 SPHelper.is_with_pack="";
+                SPHelper.is_sold="";
                 SPHelper.pojoAllCarBrands=new ArrayList<>();
                 SPHelper.selected_insp_statuses=new ArrayList<>();
                 if(SPHelper.comingfrom.equals("customer"))

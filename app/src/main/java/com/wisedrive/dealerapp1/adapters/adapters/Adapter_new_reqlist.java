@@ -72,22 +72,67 @@ public class Adapter_new_reqlist  extends RecyclerView.Adapter<RecyclerView.View
                 Pojo_New_req list = pojo_new_reqArrayList.get(position);
                 IndianCurrencyFormat=new DecimalFormat("##,##,###");
                 holder.expiry_date.setText(Common.getDateFromString(list.getPosted_on_date()));
-                  holder.tv_no_leads.setText(list.getCount_1()+" Leads");
-                holder. tv_make_model.setText(list.getModel());
-                holder. tv_price_range.setText("RS "+IndianCurrencyFormat.format((int)list.getPrice_range_from())+"-"+
-                        IndianCurrencyFormat.format((int)list.getPrice_range_to()));
-                holder.tv_kmsdriven.setText(IndianCurrencyFormat.format((int)list.getKms_from())+"-"+
-                        IndianCurrencyFormat.format((int)list.getKms_to()));
-                holder.tv_makeyear.setText(list.getYear_from()+"-"+list.getYear_to());
-                holder.owner_no.setText(list.getNo_of_owners_from()+"-"+list.getNo_of_owners_to());
+                holder.tv_no_leads.setText(list.getCount_1()+" Lead");
 
-                if(list.getFuel_type().length()>7){
+//                if(pojo_new_reqArrayList.get(position).getBrand_icon()==null||
+//                        pojo_new_reqArrayList.get(position).getBrand_icon().equals("null")){
+//
+//                }else {
+                    Glide.with(context)
+                    .load(pojo_new_reqArrayList.get(position).getBrand_icon())
+                    .placeholder(R.drawable.icon_noimage)
+                    .error(R.drawable.icon_noimage)  // any image in case of error
+                    //.override(200, 200) // resizing
+                    .centerCrop()
+                    .into(holder.brand_logo);
+            //    }
+
+                if(list.getPrice_range_to()==0){
+                    holder.tv_price_range.setText("-");
+                }else {
+                    holder. tv_price_range.setText("RS "+IndianCurrencyFormat.format((int)list.getPrice_range_from())+"-"+
+                            IndianCurrencyFormat.format((int)list.getPrice_range_to()));
+                }
+
+                if(list.getModel()==null||list.getModel().equals("")){
+                    holder.tv_make_model.setText("");
+                }else {
+                    holder.tv_make_model.setText(list.getModel());
+                }
+
+                if(list.getYear_from()==null||list.getYear_from().equals("")){
+                    holder.tv_makeyear.setText("-");
+                }else {
+                    holder.tv_makeyear.setText(list.getYear_from()+"-"+list.getYear_to());
+                }
+
+                if(list.getKms_to()==0){
+                    holder.tv_kmsdriven.setText("-");
+                }else {
+                    holder.tv_kmsdriven.setText(IndianCurrencyFormat.format((int)list.getKms_from())+"-"+
+                            IndianCurrencyFormat.format((int)list.getKms_to()));
+                }
+
+
+                if(list.getNo_of_owners_from()==null||list.getNo_of_owners_from().equals("")){
+                    holder.owner_no.setText("-");
+                }else {
+                    holder.owner_no.setText(list.getNo_of_owners_from()+"-"+list.getNo_of_owners_to());
+                }
+
+                if(list.getFuel_type()==null||list.getFuel_type().equals("")){
+                    holder.tv_fuel_type.setText("-");
+                }
+                else if(list.getFuel_type().length()>7){
                     holder.tv_fuel_type.setText("Any");
                 }else {
                     holder.tv_fuel_type.setText(list.getFuel_type());
                 }
 
-                if(list.getTransmission_type().length()>9){
+                if(list.getTransmission_type()==null||list.getTransmission_type().equals("")){
+                    holder.tv_trans_type.setText("-");
+                }
+                else if(list.getTransmission_type().length()>9){
                     holder.tv_trans_type.setText("Any");
                 }else {
                     holder.tv_trans_type.setText(list.getTransmission_type());
@@ -103,9 +148,8 @@ public class Adapter_new_reqlist  extends RecyclerView.Adapter<RecyclerView.View
                     holder.tv_matching_count.setText(list.getMatchingVehList().size()+" Matching cars");
                 }
 
-                Glide.with(context).load(list.getBrand_icon()).placeholder(R.drawable.icon_noimage).into(holder.brand_logo);
 
-                holder.tv_color.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
 
                 holder.rl_matching_car.setOnClickListener(new View.OnClickListener()
                 {
@@ -117,7 +161,7 @@ public class Adapter_new_reqlist  extends RecyclerView.Adapter<RecyclerView.View
                             SPHelper.matc_cars=list.getMatchingVehList();
                             MainActivity.getInstance().rl_transperant_cars_list.setVisibility(View.VISIBLE);
                             MainActivity.getInstance().rl_cars_list.setVisibility(View.VISIBLE);
-                            MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
+                           // MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
                             Adapter_vehicle_status_list adapter_vehicle_status_list =
                                     new Adapter_vehicle_status_list(context, SPHelper.matc_cars);
                             LinearLayoutManager linearLayoutManager = new
@@ -141,19 +185,26 @@ public class Adapter_new_reqlist  extends RecyclerView.Adapter<RecyclerView.View
 
                 });
 
-                String csvString = list.getColor();
+                if(list.getColor()==null||list.getColor().equals("")){
+                    holder.tv_color.setText("-");
+                }
+                else {
+                    holder.tv_color.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+                    String csvString = list.getColor();
 
-                String[] values = csvString.split(",");
-                ArrayList<String> sel_clr=new ArrayList<>();
-                for (String value : values) {
-                    System.out.println(value);
-                    sel_clr.add(value);
+                    String[] values = csvString.split(",");
+                    ArrayList<String> sel_clr=new ArrayList<>();
+                    for (String value : values) {
+                        System.out.println(value);
+                        sel_clr.add(value);
+                    }
+                    if(sel_clr.size()>1){
+                        holder.tv_color.setText(sel_clr.get(0)+" +"+(sel_clr.size()-1));
+                    }else {
+                        holder.tv_color.setText(sel_clr.get(0));
+                    }
                 }
-                if(sel_clr.size()>1){
-                    holder.tv_color.setText(sel_clr.get(0)+" +"+(sel_clr.size()-1));
-                }else {
-                    holder.tv_color.setText(sel_clr.get(0));
-                }
+
 
                 holder.l_color.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -175,7 +226,7 @@ public class Adapter_new_reqlist  extends RecyclerView.Adapter<RecyclerView.View
                             System.out.println("value"+sel_clr);
                             SPHelper.sel_clr_list=sel_clr;
                             MainActivity.getInstance().rl_color_popup_transperant.setVisibility(View.VISIBLE);
-                            MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
+                           // MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
                             Adapter_Colours  adapter_colours= new Adapter_Colours(context,SPHelper.sel_clr_list);
                             LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                             MainActivity.getInstance().rv_colors.setLayoutManager(linearLayoutManager3);

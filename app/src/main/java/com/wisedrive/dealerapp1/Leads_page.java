@@ -56,7 +56,7 @@ public class Leads_page extends AppCompatActivity {
                 finish();
             }
         });
-
+        System.out.println("veh_id"+SPHelper.vehid);
         get_leads();
         adapter_leads_page = new Adapter_leads_page(this);
         GridLayoutManager layoutManager1 = new GridLayoutManager(Leads_page.this, 1);

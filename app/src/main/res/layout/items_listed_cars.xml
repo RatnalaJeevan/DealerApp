@@ -21,24 +21,22 @@
                 android:id="@+id/tv_veh_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:fontFamily="@font/medium"
                 android:text="KA0123456"
-                android:layout_marginLeft="20dp"
                 android:textColor="@color/textcolour"
-                android:textSize="14dp">
-            </TextView>
+                android:textSize="14dp"></TextView>
 
             <TextView
                 android:id="@+id/tv_veh_make_model"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/medium"
-                android:text="Honda City"
                 android:layout_below="@id/tv_veh_no"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/medium"
+                android:text="Honda City"
                 android:textColor="@color/textcolour"
-                android:textSize="14dp">
-            </TextView>
+                android:textSize="14dp"></TextView>
 
             <RelativeLayout
                 android:id="@+id/rl_list_button"

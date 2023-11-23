@@ -149,15 +149,15 @@ public class Adapter_vehicle_status_list extends RecyclerView.Adapter<Adapter_ve
                         MainActivity.getInstance().rl_transperant_listed_cars.setVisibility(View.VISIBLE);
                         MainActivity.getInstance().rl_listed_cars.setVisibility(View.VISIBLE);
                         MainActivity.getInstance().rl_transperant_cars_list.setVisibility(View.GONE);
-                        MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
+                       // MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
                     }else {
                         SPHelper.is_swap="n";
                         MainActivity.getInstance().rl_portal_transperant.setVisibility(View.VISIBLE);
                         MainActivity.getInstance().sel_veh_no.setText(SPHelper.vehno);
                     }
 
-
-                } else if (list.getId().equals("5"))
+                }
+                else if (list.getId().equals("5"))
                 {
                     SPHelper.goneto="repair";
                     SPHelper.is_d_loc="y";

@@ -1,12 +1,15 @@
 package com.wisedrive.dealerapp1;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +23,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -33,6 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -78,13 +84,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Activate extends BottomSheetDialogFragment {
-    public String isWithOffer="N",cat_id="";
+public class Activate extends BottomSheetDialogFragment
+{
+    private static final int REQUEST_CAMERA = 1;
+    private Camera camera;
+    private CameraPreview cameraPreview;
+    public int selectedObject=0;
+    public String isWithOffer="N",cat_id="",it_is="";
     public int general_count,cashback_count,add_on_count;
     String offer_paymemnt_id="",offer_id="";
     String mobile_no_pattern="^[6-9][0-9]{9}$";
-    String emailpattern = "^(?=.{1,64}@)[A-Za-z0-9_-]*@"
-            + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+    String emailpattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     public int fromWhere=0;
     private ProgressDialog progressDialog;
     private BasicAWSCredentials credentials;
@@ -94,8 +104,10 @@ public class Activate extends BottomSheetDialogFragment {
     public String isvalid="",is_offer_taken="";
     ProgressBar idPBLoading;
     DealerApis apiInterface;
-    public  String filename, aadharfronturl="",aadharbackurl="",rcfronturl ="", rcbackurl ="",del_note_url="",sale_re_url="",KEY = "", SECRET = "", is_with_ft="",
-            insuranceurl ="",setimage ,panurl="",fast_tagurl="",ins_stat="",ins_pro="",ins_type="",ins_pol="",ext_frnt="";
+    public  String filename, aadharfronturl="",aadharbackurl="",rcfronturl ="", rcbackurl ="",del_note_url="",
+            sale_re_url="",KEY = "", SECRET = "", is_with_ft="",
+            insuranceurl ="",setimage ,panurl="",fast_tagurl="",
+            ins_stat="",ins_pro="",ins_type="",ins_pol="",ext_frnt="";
     RecyclerView rv_offers_list,rv_max_details;
     public RelativeLayout rl_check_status,rl_offer_details
             ,rl_pur_details,rl_veh_docs,rl_cust_details,rl_cust,rl_docs,rl_purchase,rl_offers,
@@ -124,13 +136,16 @@ public class Activate extends BottomSheetDialogFragment {
     @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_activate,container, false);
         activity=getActivity();
 
         ///act warranty
         init_params(v);
-
+//        cameraPreview = new CameraPreview(this);
+//        FrameLayout previewLayout = findViewById(R.id.camera_preview);
+//        previewLayout.addView(cameraPreview);
         System.out.println("SPHelper.vehid"+SPHelper.vehid);
         instance=this;
 
@@ -249,14 +264,13 @@ public class Activate extends BottomSheetDialogFragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void afterTextChanged(Editable editable)
             {
                 if(cust_pincode.getText().toString().length()==6){
-                   // hideKeybaord();
+                    //hideKeyboard();
                     get_pincode_details();
                 }else if(cust_pincode.getText().toString().length()<6){
                     selected_city.setText("");
@@ -515,12 +529,7 @@ public class Activate extends BottomSheetDialogFragment {
         }
     }
 
-    private void hideKeybaord(){
 
-        InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-
-    }
     private void init_params(View v)
     {
         entered_mail=v.findViewById(R.id.entered_mail);
@@ -925,10 +934,14 @@ public class Activate extends BottomSheetDialogFragment {
         RelativeLayout rl_camera4 = view4.findViewById(R.id.rl_camera);
         RelativeLayout rl_gallery4 = view4.findViewById(R.id.rl_gallery);
 
+        // Check if the permission is granted
+
+
         rl_camera4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            public void onClick(View v)
+            {
+
                     if(setimage.equals("rcfront")){
                         fromWhere=1;
                     }else if(setimage.equals("rcback")){
@@ -955,16 +968,65 @@ public class Activate extends BottomSheetDialogFragment {
                     else if(setimage.equals("sa_re")){
                         fromWhere=9;
                     }
-                    getCameraPermissions(fromWhere);
-                }
+                    //only_camera_per(fromWhere);
+                CallCamera();
+
+
+                it_is="c";
+
+//                if (shouldShowCameraPermissionRationale())
+//                {
+//                    // Show a dialog or message explaining why the camera permission is needed
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//                    builder.setTitle("Camera Permission Required")
+//                            .setMessage("This app needs access to your camera to capture photos.")
+//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    // Request the camera permission
+//                                    requestCameraPermission();
+//                                }
+//                            })
+//                            .setNegativeButton("Cancel", null)
+//                            .show();
+//                    Toast.makeText(activity, "camera per req", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    // Request the camera permission directly
+//                    requestCameraPermission();
+//                    Toast.makeText(activity, "camera per not req camera", Toast.LENGTH_SHORT).show();
+//                }
                 dialog4.dismiss();
             }
         });
+
         rl_gallery4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                it_is="g";
+//                if (shouldShowCameraPermissionRationale())
+//                {
+//                    // Show a dialog or message explaining why the camera permission is needed
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//                    builder.setTitle("Camera Permission Required")
+//                            .setMessage("This app needs access to your camera to capture photos.")
+//                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    // Request the camera permission
+//                                    requestCameraPermission();
+//                                }
+//                            })
+//                            .setNegativeButton("Cancel", null)
+//                            .show();
+//                } else {
+//                    // Request the camera permission directly
+//                    requestCameraPermission();
+//                }
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//                {
                     if(setimage.equals("rcfront")){
                         fromWhere=10;
                     }else if(setimage.equals("rcback")){
@@ -992,43 +1054,23 @@ public class Activate extends BottomSheetDialogFragment {
                         fromWhere=90;
                     }
                     getCameraPermissions(fromWhere);
-                }
+//                }
                 dialog4.dismiss();
             }
         });
         dialog4.show();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public void getCameraPermissions( int fromWhere)
     {
-        mRequestPermissionHandler.requestPermission(activity, new String[]
-                {
-                        android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                }, fromWhere, new RequestPermissionHandler.RequestPermissionListener() {
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
 
-                Intent intent;
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                {
-                    intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                }else{
-                    intent = new Intent(Intent.ACTION_GET_CONTENT);
-                }
-                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setType("image/*");
 
                 if (fromWhere == 1) {
                     CallCamera();
                 } else if (fromWhere == 10) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 200);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 200);
 
 
@@ -1036,9 +1078,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 20) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 400);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 400);
 
 
@@ -1046,9 +1086,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 30) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 600);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 600);
 
 
@@ -1056,9 +1094,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 40) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 800);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 800);
 
 
@@ -1066,9 +1102,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 50) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 1000);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1000);
 
 
@@ -1077,9 +1111,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 60) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 1200);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1200);
 
 
@@ -1088,9 +1120,7 @@ public class Activate extends BottomSheetDialogFragment {
 
                     CallCamera();
                 } else if (fromWhere == 70) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 1400);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1400);
 
 
@@ -1102,66 +1132,33 @@ public class Activate extends BottomSheetDialogFragment {
                 } else if (fromWhere == 80) {
 
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1600);
-
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 1600);
-
                 }
                 else if (fromWhere == 9) {
 
                     CallCamera();
                 } else if (fromWhere == 90) {
-//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivityForResult(pickPhoto, 1800);
+
                     startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1800);
-
-
                 }
-            }
 
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void CallCamera() {
-        mRequestPermissionHandler.requestPermission(activity, new String[]{
-                android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
-
-            @Override
-            public void onSuccess() {
-                System.out.println("Succeed");
-                openCamera();
-            }
-            @Override
-            public void onFailed() {
-                System.out.println("denied");
-            }
-        });
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    void openCamera() {
+    public void CallCamera()
+    {
 
+        openCamera();
+    }
+    void openCamera()
+    {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-            // Create the File where the photo should go
-            SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
-            String fineName = dateFormat.format(new Date());
-            filename = BitmapUtility.PictUtil.getSavePath().getPath() + "/" + fineName;
-            imageUri = FileProvider.getUriForFile(activity,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    new File(filename));
-            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-            //startActivityForResult(takePictureIntent, 100);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("-yyyy_MM_dd_HH_mm_ss_SSSSSS'.jpg'");
+        String fineName = dateFormat.format(new Date());
+        filename = BitmapUtility.PictUtil.getSavePath().getPath() + "/" + "CarService" + fineName;
+        imageUri = FileProvider.getUriForFile(activity,
+                BuildConfig.APPLICATION_ID + ".provider", new File(filename));
+        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
             if(setimage.equals("rcfront")){
                 startActivityForResult(takePictureIntent, 100);
             }else if(setimage.equals("rcback")){
@@ -1191,6 +1188,210 @@ public class Activate extends BottomSheetDialogFragment {
 
     }
 
+
+    public void only_camera_per( int fromWhere)
+    {
+        mRequestPermissionHandler.requestPermission(activity, new String[]
+                {
+                        android.Manifest.permission.CAMERA,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, 123, new RequestPermissionHandler.RequestPermissionListener() {
+            @Override
+            public void onSuccess() {
+                System.out.println("Succeed");
+
+                Intent intent;
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+                {
+                    intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                }else{
+                    intent = new Intent(Intent.ACTION_GET_CONTENT);
+                }
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setType("image/*");
+
+                if (fromWhere == 1) {
+                    CallCamera1();
+                } else if (fromWhere == 10) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 200);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 200);
+
+
+                } else if (fromWhere == 2) {
+
+                    CallCamera1();
+                } else if (fromWhere == 20) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 400);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 400);
+
+
+                } else if (fromWhere == 3) {
+
+                    CallCamera1();
+                } else if (fromWhere == 30) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 600);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 600);
+
+
+                } else if (fromWhere == 4) {
+
+                    CallCamera1();
+                } else if (fromWhere == 40) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 800);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 800);
+
+
+                }else if (fromWhere == 5) {
+
+                    CallCamera1();
+                } else if (fromWhere == 50) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 1000);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1000);
+
+
+                }
+                else if (fromWhere == 6) {
+
+                    CallCamera1();
+                } else if (fromWhere == 60) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 1200);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1200);
+
+
+                }
+                else if (fromWhere == 7) {
+
+                    CallCamera1();
+                } else if (fromWhere == 70) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 1400);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1400);
+
+
+                }
+
+                else if (fromWhere == 8) {
+
+                    CallCamera1();
+                } else if (fromWhere == 80) {
+
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1600);
+
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 1600);
+
+                }
+                else if (fromWhere == 9) {
+
+                    CallCamera();
+                } else if (fromWhere == 90) {
+//                        Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivityForResult(pickPhoto, 1800);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1800);
+
+
+                }
+            }
+
+            @Override
+            public void onFailed() {
+                System.out.println("denied");
+            }
+        });
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void CallCamera1() {
+        mRequestPermissionHandler.requestPermission(activity, new String[]{
+                android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 123, new RequestPermissionHandler.RequestPermissionListener() {
+
+            @Override
+            public void onSuccess() {
+                System.out.println("Succeed");
+                openCamera();
+            }
+            @Override
+            public void onFailed() {
+                System.out.println("denied");
+            }
+        });
+    }
+
+    private void requestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, selectedObject);
+        }
+//        ActivityCompat.requestPermissions(activity,
+//                new String[]{Manifest.permission.CAMERA},
+//                selectedObject);
+    }
+
+    private boolean shouldShowCameraPermissionRationale() {
+        return ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.CAMERA);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == selectedObject) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, start camera activity
+                     if(setimage.equals("rcfront")){
+                        fromWhere=1;
+                    }else if(setimage.equals("rcback")){
+                        fromWhere=2;
+                    }
+                    else if(setimage.equals("aadharfront")){
+                        fromWhere=3;
+                    }
+                    else if(setimage.equals("aadharback")){
+                        fromWhere=4;
+                    }
+                    else if(setimage.equals("insurance1st")){
+                        fromWhere=5;
+                    }
+                    else if(setimage.equals("pan")){
+                        fromWhere=6;
+                    }
+                    else if(setimage.equals("fast")){
+                        fromWhere=7;
+                    }
+                    else if(setimage.equals("de_no")){
+                        fromWhere=8;
+                    }
+                    else if(setimage.equals("sa_re")){
+                        fromWhere=9;
+                    }
+                    getCameraPermissions(fromWhere);
+            } else {
+                // Permission denied, show a message or handle the denial
+                Toast.makeText(activity, "Camera permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {

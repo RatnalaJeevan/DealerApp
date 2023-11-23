@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wisedrive.dealerapp1.AllPayments;
@@ -57,7 +58,9 @@ public class New_Req_Fragment extends Fragment {
     ProgressBar idPBLoading;
     public RelativeLayout rl_search;
     private static New_Req_Fragment instance;
+    LinearLayoutManager linearLayoutManager;
     EditText search_veh;
+    TextView tv_no_cars;
     @SuppressLint("MissingInflatedId")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,9 +72,9 @@ public class New_Req_Fragment extends Fragment {
         search_veh=rootView.findViewById(R.id.search_veh);
         apiInterface = ApiClient.getClient().create(DealerApis.class);
         idPBLoading=rootView.findViewById(R.id.idPBLoading);
-
+        tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
         get_req_list();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+         linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         adapter_new_reqlist = new Adapter_new_reqlist(requireContext());
         rv_new_req.setLayoutManager(linearLayoutManager);
         rv_new_req.setAdapter(adapter_new_reqlist);
@@ -120,15 +123,32 @@ public class New_Req_Fragment extends Fragment {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable editable)
+            {
 
-                if (search_veh.getText().toString().length() > 2) {
+                if (search_veh.getText().toString().length() > 1)
+                {
+                    linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+                    adapter_new_reqlist = new Adapter_new_reqlist(requireContext());
+                    rv_new_req.setLayoutManager(linearLayoutManager);
+                    rv_new_req.setAdapter(adapter_new_reqlist);
                     get_req_list();
-                } else if (search_veh.getText().toString().length() == 0) {
+                } else if (search_veh.getText().toString().length() == 0)
+                {
+                    linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+                    adapter_new_reqlist = new Adapter_new_reqlist(requireContext());
+                    rv_new_req.setLayoutManager(linearLayoutManager);
+                    rv_new_req.setAdapter(adapter_new_reqlist);
+                    get_req_list();
                     hideKeybaord();
-                } else {
-                    get_req_list();
                 }
+//                else {
+//                    linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+//                    adapter_new_reqlist = new Adapter_new_reqlist(requireContext());
+//                    rv_new_req.setLayoutManager(linearLayoutManager);
+//                    rv_new_req.setAdapter(adapter_new_reqlist);
+//                    get_req_list();
+//                }
 
             }
         });
@@ -169,6 +189,7 @@ public class New_Req_Fragment extends Fragment {
     public void get_req_list()
     {
         currentPage=1;
+
         if(!Connectivity.isNetworkConnected(requireContext()))
         {
             Toast.makeText(requireContext(),
@@ -198,10 +219,13 @@ public class New_Req_Fragment extends Fragment {
                             pojo_new_reqArrayList = new ArrayList<>();
                             pojo_new_reqArrayList = appResponse.getResponse().getRequirementList();
                             if(pojo_new_reqArrayList.isEmpty()){
-
+                                tv_no_cars.setVisibility(View.VISIBLE);
+                                rv_new_req.setVisibility(View.GONE);
                             }
                             else
                             {
+                                tv_no_cars.setVisibility(View.GONE);
+                                rv_new_req.setVisibility(View.VISIBLE);
                                 adapter_new_reqlist.addAll(pojo_new_reqArrayList);
                                 if (currentPage <= TOTAL_PAGES)
                                 {

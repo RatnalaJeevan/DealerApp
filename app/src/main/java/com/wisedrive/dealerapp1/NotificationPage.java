@@ -2,6 +2,7 @@ package com.wisedrive.dealerapp1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +15,8 @@ import com.wisedrive.dealerapp1.commonclasses1.commonclasses.SPHelper;
 public class NotificationPage extends AppCompatActivity {
 
     RelativeLayout tv_AU_Update1;
-    TextView tv_AU_skip;
+    TextView tv_AU_skip,tv_no_thanks;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +24,8 @@ public class NotificationPage extends AppCompatActivity {
         SPHelper.sharedPreferenceInitialization(NotificationPage.this);
         tv_AU_skip=findViewById(R.id.tv_AU_skip);
         tv_AU_Update1= findViewById(R.id.tv_AU_Update1);
+        tv_no_thanks=findViewById(R.id.tv_no_thanks);
 
-        if(SPHelper.can_skip.equalsIgnoreCase("y")){
-            tv_AU_skip.setVisibility(View.VISIBLE);
-        }else {
-            tv_AU_skip.setVisibility(View.GONE);
-        }
         tv_AU_Update1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +34,7 @@ public class NotificationPage extends AppCompatActivity {
                 startActivity(httpIntent);
             }
         });
+
         tv_AU_skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +52,24 @@ public class NotificationPage extends AppCompatActivity {
                     startActivity(intent1);
                     NotificationPage.this.finish();
                 }
+            }
+        });
+
+        if(SPHelper.can_skip.equalsIgnoreCase("y")){
+            tv_AU_skip.setVisibility(View.VISIBLE);
+            tv_no_thanks.setVisibility(View.GONE);
+        }else {
+            tv_AU_skip.setVisibility(View.GONE);
+            tv_no_thanks.setVisibility(View.VISIBLE);
+        }
+
+        tv_no_thanks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
             }
         });
     }

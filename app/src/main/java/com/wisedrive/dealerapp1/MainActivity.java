@@ -74,25 +74,26 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
    private static MainActivity  instance;
-    private DealerApis apiInterface;
+   private DealerApis apiInterface;
    public TextView tv_profile,tv_home,tv_pack,tv_customer,bundle_label,label_single;
     LinearLayout layout_1,layout_2,layout_3,layout_4;
-  public ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter,iv_search;
+   public ImageView iv_home,iv_pack,iv_customer,iv_profile,iv_filter,iv_search;
     RelativeLayout rl_pack_selection,rl_single,rl_bundle;
    public int count1=0,count2=0,count3=0;
     AppCompatButton add_new_car_button;
     RelativeLayout rl_transperant,rl_new_car,new_inspection,rl_newdetails_adding;
    public View card_btm_nav;
     LinearLayout l_bottom;
-    AppCompatButton add_confirm_button;
-
+    AppCompatButton add_confirm_button,buy_pac;
     ImageView cross_matched_veh,imv_listedcars_cross,alert_popup_cross,imv_colorpopup_cross
             ,portal_popup_cross,imv_featurecross_button,image_popup_cross;
    public RelativeLayout rl_portal_transperant;
@@ -105,13 +106,10 @@ public class MainActivity extends AppCompatActivity {
     public TextView text_add_images;
     public TextView text_add_features;
     public TextView tv_swap_content,sel_veh_no;
-
     public RecyclerView rv_listed_vehicle_list;
     Adapter_listed_vehicles adapter_listed_vehicles;
     ArrayList<Pojo_listed_vehicle_list>pojo_listed_vehicle_listArrayList;
-
-     public RecyclerView rv_colors;
-
+    public RecyclerView rv_colors;
 
     @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
@@ -354,7 +352,6 @@ public class MainActivity extends AppCompatActivity {
             bottomSheetDialogFragment.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
             CongratulationsPage bottomSheetDialogFragment1 = new CongratulationsPage();
             bottomSheetDialogFragment1.show(MainActivity.this.getSupportFragmentManager(), "CongratsPage");
-
         }
         else
         {
@@ -593,7 +590,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rl_transperant.setVisibility(View.VISIBLE);
-                card_btm_nav.setVisibility(View.GONE);
+              //  card_btm_nav.setVisibility(View.GONE);
             }
         });
 
@@ -619,6 +616,35 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.overridePendingTransition( R.anim.slide_inup, R.anim.slide_outup);
             }
         });
+        buy_pac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                rl_transperant_listed_cars.setVisibility(View.GONE);
+                if(count2==0) {
+                    tv_home.setVisibility(View.GONE);
+                    tv_pack.setVisibility(View.VISIBLE);
+                    tv_customer.setVisibility(View.GONE);
+                    tv_profile.setVisibility(View.GONE);
+                    iv_filter.setVisibility(View.GONE);
+                    iv_search.setVisibility(View.GONE);
+                    add_new_car_button.setVisibility(View.GONE);
+                    rl_pack_selection.setVisibility(View.VISIBLE);
+                    iv_home.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unselected_home));
+                    iv_pack.setImageDrawable(MainActivity.this.getDrawable(R.drawable.packages_sel_black));
+                    iv_customer.setImageDrawable(MainActivity.this.getDrawable(R.drawable.unslected_cust));
+                    iv_profile.setImageDrawable(MainActivity.this.getDrawable(R.drawable.profile_icon));
+                    rl_top.setBackgroundResource(R.color.white);
+                    SPHelper.camefrom = "";
+                    SPHelper.comingfrom = "";
+                    SPHelper.fragment_is = "pack";
+                    replaceFragment(new PackageFragment());
+                    count2=1;
+                    count1=0;
+                    count3=0;
+                }
+            }
+        });
         new_inspection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -631,7 +657,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
     public static MainActivity getInstance() {
         return instance;
     }
@@ -647,7 +676,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void get_listed_veh_list()
     {
-        Call<AppResponse> call = apiInterface.get_listed_vehList( SPHelper.getSPData(MainActivity.this,SPHelper.dealerid,""),"1");
+        Call<AppResponse> call = apiInterface.get_listed_vehList( SPHelper.getSPData(MainActivity.this,SPHelper.dealerid,""),"1",
+                "");
         call.enqueue(new Callback<AppResponse>() {
             @Override
             public void onResponse(Call<AppResponse> call, Response<AppResponse> response) {
@@ -677,6 +707,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void init_params(){
+        buy_pac=findViewById(R.id.buy_pac);
         rl_top=findViewById(R.id.rl_top);
         ed_listingprice=findViewById(R.id.ed_listingprice);
         price_submit=findViewById(R.id.price_submit);
@@ -762,6 +793,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         rl_portal_transperant.setVisibility(View.GONE);
                         rl_transperant_listed_cars.setVisibility(View.GONE);
+                        rl_trans_alert_pop_up.setVisibility(View.GONE);
                         New_Req_Fragment.getInstance().get_req_list();
                         Toast.makeText(MainActivity.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -793,6 +825,7 @@ public class MainActivity extends AppCompatActivity {
                     if (response_code.equals("200")) {
                         rl_portal_transperant.setVisibility(View.GONE);
                         rl_transperant_listed_cars.setVisibility(View.GONE);
+                        rl_trans_alert_pop_up.setVisibility(View.GONE);
                         New_Req_Fragment.getInstance().get_req_list();
                         Toast.makeText(MainActivity.this, appResponse.getResponse().getMessage(), Toast.LENGTH_SHORT).show();
 

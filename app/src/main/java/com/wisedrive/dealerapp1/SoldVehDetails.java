@@ -385,8 +385,6 @@ public class SoldVehDetails extends BottomSheetDialogFragment
                             String package_act_date=appResponse.getResponse().getWarrantyDetails().getPackage_activated_on();
 
 
-
-
                                 act_date.setText(Common.getDateFromString(package_act_date));
                             if(act_code==null){
                                 activation_code.setText("");

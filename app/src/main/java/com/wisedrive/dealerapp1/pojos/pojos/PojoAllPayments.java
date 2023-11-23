@@ -6,7 +6,10 @@ import java.util.ArrayList;
 
 public class PojoAllPayments {
 
-
+    @SerializedName("amount")
+    double amount;
+    @SerializedName("main_package_name")
+    String main_package_name;
     @SerializedName("sub_package_name")
     String sub_package_name;
     @SerializedName("service_name")
@@ -32,6 +35,14 @@ public class PojoAllPayments {
 
     public String getPayment_date() {
         return payment_date;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getMain_package_name() {
+        return main_package_name;
     }
 
     public String getService_name() {

@@ -394,7 +394,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
             if(recyclerdata.getInspection_warranty_status()==null||recyclerdata.getInspection_warranty_status().equals("null"))
             {
                 if(recyclerdata.getInspection_status_by_mechanic()==null||recyclerdata.getInspection_status_by_mechanic().equals("null")){
-                    holder.tv_insp_on_date.setText("Not Inspected");
+                    holder.tv_insp_on_date.setText("Not Requested");
                 }
                 else if(recyclerdata.getInspection_status_by_mechanic().equalsIgnoreCase("completed")){
                     holder.tv_insp_on_date.setText("In Review");
@@ -477,7 +477,7 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.black));
                // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.req_clr));
             }
-            else if(holder.tv_insp_on_date.getText().equals("Not Inspected")){
+            else if(holder.tv_insp_on_date.getText().equals("Not Requested")){
                 holder.tv_inspect_status.setBackgroundTintList(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                 holder.tv_insp_on_date.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
                // holder.tv_last_insp.setTextColor(ContextCompat.getColorStateList(activity, R.color.rep_req_clr));
@@ -811,15 +811,27 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                 // if veh_is sold ,, show package sold on label and date
                 //else expires on label and date and also right side insp status
                 holder.expired_date_label.setVisibility(View.GONE);
-                holder.expire_date_label.setVisibility(View.VISIBLE);
+
                 if(recyclerdata.getIs_with_package()==null)
                 {
-
-                    holder.expire_date_label.setText("Expires On");
                     holder.expired_date.setVisibility(View.VISIBLE);
                     holder.tv_withpack.setVisibility(View.GONE);
                     holder.tv_insp_on_date.setVisibility(View.VISIBLE);
-                    holder.expired_date.setText(Common.getDateFromString(recyclerdata.getInspection_expires_on()));
+                    if(recyclerdata.getInspection_expires_on()==null||recyclerdata.getInspection_expires_on().equals("null")||
+                            recyclerdata.getInspection_expires_on().equals("")){
+
+                        holder.expire_date_label.setText("Added On");
+                        holder.expired_date.setText(Common.getDateFromString(recyclerdata.getCreated_on()));
+                    }else {
+
+                        if(holder.tv_insp_on_date.getText().equals("EXPIRED")){
+                            holder.expire_date_label.setText("Expired On");
+                        }else {
+                            holder.expire_date_label.setText("Expires On");
+                        }
+                        holder.expired_date.setText(Common.getDateFromString(recyclerdata.getInspection_expires_on()));
+                    }
+
                 }else if(recyclerdata.getIs_with_package().equalsIgnoreCase("y")&&
                         recyclerdata.getStatus_id().equals("3")){
                     holder.tv_insp_on_date.setVisibility(View.GONE);
@@ -841,12 +853,21 @@ public class AdapterAllCarPage extends RecyclerView.Adapter<RecyclerView.ViewHol
                     holder.tv_insp_on_date.setVisibility(View.VISIBLE);
                     holder.expired_date.setVisibility(View.VISIBLE);
                     holder.tv_withpack.setVisibility(View.GONE);
-                    holder.expire_date_label.setText("Expires On");
-                    holder.expired_date.setText(Common.getDateFromString(recyclerdata.getInspection_expires_on()));
+                    if(recyclerdata.getInspection_expires_on()==null||recyclerdata.getInspection_expires_on().equals("null")||
+                            recyclerdata.getInspection_expires_on().equals("")){
+                        holder.expire_date_label.setText("Added On");
+                        holder.expired_date.setText(Common.getDateFromString(recyclerdata.getCreated_on()));
+                    }else {
+                        if(holder.tv_insp_on_date.getText().equals("EXPIRED")){
+                            holder.expire_date_label.setText("Expired On");
+                        }else {
+                            holder.expire_date_label.setText("Expires On");
+                        }
+                        holder.expired_date.setText(Common.getDateFromString(recyclerdata.getInspection_expires_on()));
+                    }
                 }
 
             }
-
 
         }
         else if (holderView instanceof LoadingViewHolder) {

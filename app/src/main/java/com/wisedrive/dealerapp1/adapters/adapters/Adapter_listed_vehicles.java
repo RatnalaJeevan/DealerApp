@@ -66,7 +66,7 @@ public class Adapter_listed_vehicles extends RecyclerView.Adapter<Adapter_listed
                 +" from warranty portal and add "+SPHelper.vehno);
                 MainActivity.getInstance().rl_trans_alert_pop_up.setVisibility(View.VISIBLE);
                 MainActivity.getInstance().rl_alert.setVisibility(View.VISIBLE);
-                MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
+               // MainActivity.getInstance().card_btm_nav.setVisibility(View.GONE);
                 MainActivity.getInstance().rl_transperant_listed_cars.setVisibility(View.GONE);
             }
         });

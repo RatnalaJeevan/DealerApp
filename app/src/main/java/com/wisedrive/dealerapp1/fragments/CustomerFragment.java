@@ -4,10 +4,12 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
@@ -64,29 +66,7 @@ public class CustomerFragment extends Fragment
 
     private static CustomerFragment instance;
     @SuppressLint("MissingInflatedId")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_customer, container, false);
-        activity=getActivity();
-        instance=this;
-        SPHelper.is_sold="Y";
-        SPHelper.with_cool="";
-        SPHelper.with_pack="Y";
-        SPHelper.status_id="99";
-        SPHelper.comingfrom="customer";
-        //SPHelper.selected_brandid="";
-        rl_search=rootView.findViewById(R.id.rl_search);
-        search_veh=rootView.findViewById(R.id.search_veh);
-        tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
-        rv_all_cars=rootView.findViewById(R.id.rv_all_cars);
-        progress_bar=rootView.findViewById(R.id.progress_bar);
 
-        search();
-
-        return rootView;
-    }
 
     public void search(){
 
@@ -288,34 +268,6 @@ public class CustomerFragment extends Fragment
         adapterAllCarPage.notifyItemRemoved(customer_cars_list.size());
     }
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        GridLayoutManager linearLayoutManager2 = new GridLayoutManager(activity,1);
-        rv_all_cars.setLayoutManager(linearLayoutManager2);
-        adapterAllCarPage=new AdapterAllCarPage(activity,customer_cars_list,rv_all_cars);
-        rv_all_cars.setAdapter(adapterAllCarPage);
-        adapterAllCarPage.setOnLoadMoreListener(() -> {
-            if (pageno > 1)
-            {
-                customer_cars_list.add(null);
-                rv_all_cars.post(new Runnable()
-                {
-                    public void run() {
-                        adapterAllCarPage.notifyItemInserted(customer_cars_list.size() - 1);
-
-                        if(customer_cars_list.size()>0){
-                            get_insp_veh_list_pagination();
-                        }
-                    }
-                });
-            }
-        });
-
-        get_insp_veh_list();
-
-    }
 
     private void hideKeybaord() {
         View view = activity.getCurrentFocus();
@@ -324,4 +276,116 @@ public class CustomerFragment extends Fragment
             inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
         }
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            View rootView = inflater.inflate(R.layout.fragment_customer, container, false);
+            activity=getActivity();
+            instance=this;
+            SPHelper.is_sold="Y";
+            SPHelper.with_cool="";
+            SPHelper.with_pack="Y";
+            SPHelper.status_id="99";
+            SPHelper.comingfrom="customer";
+            //SPHelper.selected_brandid="";
+            rl_search=rootView.findViewById(R.id.rl_search);
+            search_veh=rootView.findViewById(R.id.search_veh);
+            tv_no_cars=rootView.findViewById(R.id.tv_no_cars);
+            rv_all_cars=rootView.findViewById(R.id.rv_all_cars);
+            progress_bar=rootView.findViewById(R.id.progress_bar);
+
+            search();
+
+            return rootView;
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
+    @Override
+    public void onResume() {
+            super.onResume();
+            GridLayoutManager linearLayoutManager2 = new GridLayoutManager(activity,1);
+            rv_all_cars.setLayoutManager(linearLayoutManager2);
+            adapterAllCarPage=new AdapterAllCarPage(activity,customer_cars_list,rv_all_cars);
+            rv_all_cars.setAdapter(adapterAllCarPage);
+            adapterAllCarPage.setOnLoadMoreListener(() -> {
+                if (pageno > 1)
+                {
+                    customer_cars_list.add(null);
+                    rv_all_cars.post(new Runnable()
+                    {
+                        public void run() {
+                            adapterAllCarPage.notifyItemInserted(customer_cars_list.size() - 1);
+
+                            if(customer_cars_list.size()>0){
+                                get_insp_veh_list_pagination();
+                            }
+                        }
+                    });
+                }
+            });
+
+            get_insp_veh_list();
+
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+    }
+
 }

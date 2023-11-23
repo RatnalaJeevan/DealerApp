@@ -342,13 +342,12 @@
             android:background="@color/transperant"
             android:elevation="10dp"
             android:visibility="gone"
-
             >
 
             <RelativeLayout
                 android:id="@+id/rl_cars_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/rl_feature_pop_up">
 
@@ -384,9 +383,10 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_vehicle_status_list"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:layout_above="@+id/add_car_button"
                         android:layout_below="@id/rl_heading"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -394,9 +394,9 @@
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:text="Add Car"
                     android:textSize="14dp"
-                    android:layout_below="@id/rv_vehicle_status_list"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/white"
@@ -415,7 +415,7 @@
             <RelativeLayout
                 android:id="@+id/rl_listed_cars"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/rl_feature_pop_up">
                 <RelativeLayout
@@ -449,10 +449,24 @@
                  <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_listed_vehicle_list"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                      android:layout_above="@+id/buy_pac"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                     android:layout_marginBottom="10dp"
                      android:layout_below="@id/rl_heading_2"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buy_pac"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Buy Package"
+                    android:textSize="14dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/add_features"/>
             </RelativeLayout>
         </RelativeLayout>
         <RelativeLayout

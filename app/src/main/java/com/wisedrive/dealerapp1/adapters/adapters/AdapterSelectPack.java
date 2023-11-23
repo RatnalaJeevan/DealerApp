@@ -65,17 +65,27 @@ public class AdapterSelectPack extends RecyclerView.Adapter<AdapterSelectPack.Re
             @Override
             public void onClick(View view) {
 
-                SPHelper.selected_pack_id=pojoSelectPacks.get(position).getPackage_id();
-                SPHelper.dpp_id=pojoSelectPacks.get(position).getDpp_id();
-                for (int i=0;i<pojoSelectPacks.size();i++)
-                {
-                    if (i == position) {
-                        pojoSelectPacks.get(i).setIsSelected("y");
 
-                    } else {
-                        pojoSelectPacks.get(i).setIsSelected("n");
+                SPHelper.selected_pack_id="";
+                SPHelper.dpp_id="";
+
+                if(pojoSelectPacks.get(position).getIsSelected().equals("y")){
+                    pojoSelectPacks.get(position).setIsSelected("n");
+                }else {
+                    for (int i=0;i<pojoSelectPacks.size();i++)
+                    {
+                        if (i == position)
+                        {
+                            SPHelper.selected_pack_id=pojoSelectPacks.get(position).getPackage_id();
+                            SPHelper.dpp_id=pojoSelectPacks.get(position).getDpp_id();
+                            pojoSelectPacks.get(i).setIsSelected("y");
+
+                        } else {
+                            pojoSelectPacks.get(i).setIsSelected("n");
+                        }
                     }
                 }
+
 
                 notifyDataSetChanged();
             }

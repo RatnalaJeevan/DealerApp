@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/relative_layout_services"
@@ -16,7 +16,15 @@
         <RelativeLayout
             android:id="@+id/rl_customer_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
+
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
 
             <TextView
                 android:id="@+id/name"
@@ -24,8 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="@font/semibold"
-                android:text="Maheen"
-                android:layout_marginTop="10dp"
+                android:text="customer"
                 android:textColor="@color/textcolour"
                 android:textSize="15dp" />
 
@@ -46,7 +53,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/call" />
 
@@ -62,12 +69,12 @@
                 android:visibility="gone"
                 android:textColor="@color/white"
                 android:background="@drawable/purchased"/>
-
+            </RelativeLayout>
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/phone_number"
+                android:layout_below="@id/rl1"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"

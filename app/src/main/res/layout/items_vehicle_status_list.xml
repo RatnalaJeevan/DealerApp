@@ -47,14 +47,15 @@
 
             <RelativeLayout
                 android:id="@+id/rl_list_button"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:background="@drawable/add_features"
-                android:text="List">
+
+               >
 
                 <TextView
                     android:id="@+id/tv_button_text"
@@ -70,7 +71,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

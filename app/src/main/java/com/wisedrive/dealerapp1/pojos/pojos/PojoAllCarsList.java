@@ -54,7 +54,9 @@ public class PojoAllCarsList
     private String is_images_present_in_portal;
     private String is_features_present_in_portal;
     private String status_id;
+    private String created_on;
     private String is_with_package;
+    private String  customer_mail_id;
     private JSONObject LeadCount;
     private JSONObject ViewCount;
 
@@ -115,6 +117,8 @@ public class PojoAllCarsList
                 is_features_present_in_portal=(obj.has("is_features_present_in_portal")? obj.getString("is_features_present_in_portal") : "");
                 status_id=(obj.has("status_id")? obj.getString("status_id") : "");
                 is_with_package=(obj.has("is_with_package")? obj.getString("is_with_package") : "");
+                created_on=(obj.has("created_on")? obj.getString("created_on") : "");
+                customer_mail_id=(obj.has("customer_mail_id")? obj.getString("customer_mail_id") : "");
                 LeadCount=(obj.has("LeadCount")?(obj.getJSONObject("LeadCount")):new JSONObject());
                 ViewCount=(obj.has("ViewCount")?(obj.getJSONObject("ViewCount")):new JSONObject());
             } catch (Exception e) {
@@ -122,6 +126,14 @@ public class PojoAllCarsList
 
             }
         }
+    }
+
+    public String getCustomer_mail_id() {
+        return customer_mail_id;
+    }
+
+    public String getCreated_on() {
+        return created_on;
     }
 
     public String getIs_with_package() {

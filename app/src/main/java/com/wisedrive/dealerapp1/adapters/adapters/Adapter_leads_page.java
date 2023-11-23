@@ -71,7 +71,13 @@ public class Adapter_leads_page extends RecyclerView.Adapter<RecyclerView.ViewHo
             case ITEM:
                 final MyViewHolder holder = (MyViewHolder) holder1;
                 Pojo_leads_page list = pojo_leads_pageArrayList.get(position);
-               // holder.name.setText(list.getLead_name());
+
+                if(list.getLead_name()==null||list.getLead_name().equals("")){
+                     holder.name.setVisibility(View.GONE);
+                }else {
+                     holder.name.setVisibility(View.VISIBLE);
+                     holder.name.setText(list.getLead_name());
+                }
                 holder.phone_number.setText(list.getLead_phone_no());
                 holder.text_date.setText(Common.getDateFromString(list.getCreated_on_date()));
                 holder.time.setText(list.getCreated_on_time());

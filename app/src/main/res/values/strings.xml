@@ -62,5 +62,6 @@
         <item>100000</item>
     </string-array>
     <string name="text_to_style">4 New Lead From 3 Cars</string>
+    <string name="skip">Skip</string>
 
 </resources>

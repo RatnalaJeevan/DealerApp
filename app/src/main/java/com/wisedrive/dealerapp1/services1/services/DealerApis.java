@@ -1,7 +1,6 @@
 package com.wisedrive.dealerapp1.services1.services;
 
 import com.wisedrive.dealerapp1.pojos.PojoSwapVeh;
-import com.wisedrive.dealerapp1.pojos.pojos.PojoAddNewCar;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoBuyAddOn;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoBuyOffer;
 import com.wisedrive.dealerapp1.pojos.pojos.PojoBuyPackage;
@@ -24,7 +23,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface DealerApis {
+
+public interface DealerApis
+{
+
     @GET("/send/otp")
     Call<AppResponse> sendotp(@Query("mobile_no") String mobile_no, @Query("is_for_login") String is_for_login);
 
@@ -226,7 +228,8 @@ public interface DealerApis {
                                           @Query("dealerId") String dealerId,@Query("pageNo") String pageNo);
 
     @GET("/WarrantyVehicleList/getListedVehList")
-    Call<AppResponse> get_listed_vehList(@Query("dealerId") String dealerId,@Query("pageNo") String pageNo);
+    Call<AppResponse> get_listed_vehList(@Query("dealerId") String dealerId,@Query("pageNo") String pageNo,
+                                         @Query("search") String search);
 
     @POST("/WarrantyVehicleList/addDescription")
     Call<AppResponse> add_desrpition(@Body PojoSwapVeh pojoadd_des);
@@ -237,31 +240,6 @@ public interface DealerApis {
 
     @GET("/WarrantyVehicleList/checkDataPresent")
     Call<AppResponse> get_checked_data(@Query("vehicleId") String vehicleId);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //    @POST("/api/v2/cftoken/order")
 //    Call<AppResponse> generate_cf_token(@Header("x-client-id") String cfid,@Header("x-client-secret") String cfsecret,

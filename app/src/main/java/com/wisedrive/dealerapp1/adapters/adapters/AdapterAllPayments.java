@@ -1,5 +1,6 @@
 package com.wisedrive.dealerapp1.adapters.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -70,6 +71,7 @@ public class AdapterAllPayments extends RecyclerView.Adapter<RecyclerView.ViewHo
 //        return new RecyclerViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder1, int position) {
         switch (getItemViewType(position))
@@ -79,10 +81,9 @@ public class AdapterAllPayments extends RecyclerView.Adapter<RecyclerView.ViewHo
                 PojoAllPayments recyclerdata=pojoAllPayments.get(position);
                 apiInterface = ApiClient.getClient().create(DealerApis.class);
                 IndianCurrencyFormat = new DecimalFormat("##,##,###");
-                apiInterface = ApiClient.getClient().create(DealerApis.class);
 
-                holder.main_pack.setText(recyclerdata.getDisplay_name());
-                holder.pac_sold_on.setText(recyclerdata.getPayment_date());
+                holder.main_pack.setText(recyclerdata.getMain_package_name()+" "+recyclerdata.getDisplay_name());
+                holder.pac_sold_on.setText(recyclerdata.getPayment_date()+" - Rs. "+IndianCurrencyFormat.format((int)recyclerdata.getAmount()));
                 holder.payment_mode.setText(recyclerdata.getPayment_mode());
                 holder.sub_pack_name.setText("("+recyclerdata.getSub_package_name()+")");
 
